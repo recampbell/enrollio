@@ -13,7 +13,7 @@
         <h1 style="margin-left:20px;">Programs</h1>
         <ul>
         <g:each var="program" in="${org.bworks.bworksdb.Program.getAll()}">
-            <li><g:link controller="program" action="show">${program.name}</g:link></li>
+            <li><g:link controller="program" action="show" id="${program.id}">${program.name}</g:link></li>
         </g:each>
         </ul>
         
