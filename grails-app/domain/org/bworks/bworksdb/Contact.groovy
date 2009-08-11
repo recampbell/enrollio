@@ -13,11 +13,15 @@ class Contact {
     // Declared to assist w/adding phoneNumbers to class easily
     // http://lxisoft.com/web/guest/grails
     List phoneNumbers = new ArrayList()
-
-
     
     static constraints = {
+        address1(nullable:true)
+        address2(nullable:true)
+        state(nullable:true)
+        zipCode(nullable:true)
+        emailAddress(nullable:true)
     }
+
     String toString(){
         return lastName + ',' + firstName
     }
