@@ -41,3 +41,8 @@ LessonDate.groovy
 Note.groovy
 PhoneNumber.groovy
 Program.groovy
+
+= Contact Phone Numbers =
+Addition of dynamic contact phone numbers was provided by:
+http://lxisoft.com/web/guest/grails
+

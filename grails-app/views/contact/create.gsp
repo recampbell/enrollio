@@ -43,7 +43,7 @@
                                     <input type="text" id="lastName" name="lastName" value="${fieldValue(bean:contactInstance,field:'lastName')}"/>
                                 </td>
                             </tr>
-                          
+                            <g:render template="phoneNumbers" bean="${contactInstance}"/>                         
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="address1">Address1:</label>
