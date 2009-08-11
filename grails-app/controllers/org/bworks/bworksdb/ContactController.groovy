@@ -85,7 +85,8 @@ class ContactController {
      //Create closure in QuestController.gsp
     def create = {
         def contactInstance = new Contact()
-        2.times {contactInstance.addToPhoneNumbers(new PhoneNumber())}
+        contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Home'))
+        contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Work'))
         contactInstance.properties = params
         return ['contactInstance':contactInstance]
     }
