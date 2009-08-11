@@ -53,11 +53,11 @@
                             <td valign="top" class="name">Interests:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
+                                <ol>
                                 <g:each var="i" in="${programInstance.interests}">
                                     <li><g:link controller="interest" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
                                 </g:each>
-                                </ul>
+                                </ol>
                             </td>
                             
                         </tr>
