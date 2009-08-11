@@ -9,7 +9,7 @@ class Contact {
     String state
     String zipCode
     String emailAddress
-    static hasMany = [students:Student]
+    static hasMany = [students:Student, phoneNumbers:PhoneNumber]
     
     static constraints = {
     }
