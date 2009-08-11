@@ -65,6 +65,19 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name">Phone Numbers:</td>
+                            
+                            <td  valign="top" style="text-align:left;" class="value">
+                                <ul>
+                                <g:each var="p" in="${contactInstance.phoneNumbers}">
+                                    <li><g:link controller="phoneNumber" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+                                </g:each>
+                                </ul>
+                            </td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name">State:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'state')}</td>
