@@ -21,7 +21,7 @@
                 <g:renderErrors bean="${contactInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="save" method="post" >
+            <g:form  method="post" >
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -93,7 +93,8 @@
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
+                <g:actionSubmit value="Create" action="save" />
+                <g:actionSubmit value="Create and Add Students" action="saveAndAddStudents" />
                 </div>
             </g:form>
         </div>
