@@ -7,6 +7,7 @@ class Student {
     String middleName
     Date birthDate
     String gender
+    String emailAddress
     Contact contact
     static belongsTo = [Contact]
     static hasMany = [ interests:Interest ]

@@ -6,9 +6,11 @@ class Contact {
     String lastName
     String address1
     String address2
+    String city
     String state
     String zipCode
     String emailAddress
+
     static hasMany = [students:Student, phoneNumbers:PhoneNumber]
     // Declared to assist w/adding phoneNumbers to class easily
     // http://lxisoft.com/web/guest/grails
@@ -18,6 +20,7 @@ class Contact {
         address1(nullable:true)
         address2(nullable:true)
         state(nullable:true)
+        city(nullable:true)
         zipCode(nullable:true)
         emailAddress(nullable:true)
     }
