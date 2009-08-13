@@ -31,6 +31,22 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="firstName">First Name:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'firstName','errors')}">
+                                    <input type="text" id="firstName" name="firstName" value="${fieldValue(bean:studentInstance,field:'firstName')}"/>
+                                </td>
+                            </tr> 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="middleName">Middle Name:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'middleName','errors')}">
+                                    <input type="text" id="middleName" name="middleName" value="${fieldValue(bean:studentInstance,field:'middleName')}"/>
+                                </td>
+                            </tr> 
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="lastName">Last Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'lastName','errors')}">
@@ -56,14 +72,6 @@
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="firstName">First Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'firstName','errors')}">
-                                    <input type="text" id="firstName" name="firstName" value="${fieldValue(bean:studentInstance,field:'firstName')}"/>
-                                </td>
-                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -74,6 +82,14 @@
                                 </td>
                             </tr> 
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="middleName">Email Address:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'emailAddress','errors')}">
+                                    <input type="text" id="emailAddress" name="emailAddress" value="${fieldValue(bean:studentInstance,field:'emailAddress')}"/>
+                                </td>
+                            </tr> 
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="interests">Interests:</label>
@@ -87,14 +103,6 @@ value="${studentInstance?.interests}" />
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="middleName">Middle Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'middleName','errors')}">
-                                    <input type="text" id="middleName" name="middleName" value="${fieldValue(bean:studentInstance,field:'middleName')}"/>
-                                </td>
-                            </tr> 
                         
                         </tbody>
                     </table>

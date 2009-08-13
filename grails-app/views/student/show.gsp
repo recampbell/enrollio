@@ -26,27 +26,19 @@
                             
                             <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'id')}</td>
                             
+                            <td valign="top" class="name">Contact:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="contact" action="show" id="${studentInstance?.contact?.id}">${studentInstance?.contact?.encodeAsHTML()}</g:link></td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name">First Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'firstName')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Middle Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'middleName')}</td>
                             
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name">Last Name:</td>
+                            <td valign="top" class="name">Name:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'lastName')}</td>
+                            <td valign="top" class="value">${studentInstance}</td>
                             
                         </tr>
-                    
                     
                         <tr class="prop">
                             <td valign="top" class="name">Birth Date:</td>
@@ -56,17 +48,21 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Contact:</td>
+                            <td valign="top" class="name">Grade:</td>
                             
-                            <td valign="top" class="value"><g:link controller="contact" action="show" id="${studentInstance?.contact?.id}">${studentInstance?.contact?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'grade')}</td>
                             
                         </tr>
-                    
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Gender:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'gender')}</td>
+                            
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Email Address:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'emailAddress')}</td>
                             
                         </tr>
                     
