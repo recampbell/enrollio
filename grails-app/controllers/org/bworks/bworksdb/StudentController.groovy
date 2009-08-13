@@ -83,7 +83,12 @@ class StudentController {
     }
 
     def create = {
+        def contact
+
         def studentInstance = new Student()
+        if (params.contact?.id) {
+            studentInstance.lastName = Contact.get(params.contact.id)?.lastName
+        }
         studentInstance.properties = params
         return ['studentInstance':studentInstance]
     }
