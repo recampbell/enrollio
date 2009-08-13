@@ -7,6 +7,7 @@ class Student {
     String middleName
     Date birthDate
     String gender
+    Integer grade
     String emailAddress
     Contact contact
     static belongsTo = [Contact]
