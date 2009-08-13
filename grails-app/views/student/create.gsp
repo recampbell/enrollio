@@ -40,7 +40,7 @@
                                     <label for="birthDate">Birth Date:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'birthDate','errors')}">
-                                    <g:datePicker name="birthDate" value="${studentInstance?.birthDate}" precision="minute" ></g:datePicker>
+                                    <g:datePicker name="birthDate" value="${studentInstance?.birthDate}" precision="day" ></g:datePicker>
                                 </td>
                             </tr> 
                         

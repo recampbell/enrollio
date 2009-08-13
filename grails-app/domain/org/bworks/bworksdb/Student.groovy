@@ -14,6 +14,7 @@ class Student {
 
     static constraints = {
         lastName(nullable:false, blank:false)
+        emailAddress(nullable:true, blank:false)
     }
     
     String toString(){
