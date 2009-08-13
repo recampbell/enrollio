@@ -19,7 +19,7 @@ class Student {
     }
     
     String toString(){
-        return lastName + ', ' + firstName
+        return lastName + ', ' + firstName + ' ' + middleName
     }
     
 }
