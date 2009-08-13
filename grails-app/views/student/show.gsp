@@ -21,20 +21,32 @@
                 <table>
                     <tbody>
 
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'id')}</td>
                             
                         </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">First Name:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'firstName')}</td>
+                            
+                        </tr>
                     
+                        <tr class="prop">
+                            <td valign="top" class="name">Middle Name:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'middleName')}</td>
+                            
+                        </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Last Name:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'lastName')}</td>
                             
                         </tr>
+                    
                     
                         <tr class="prop">
                             <td valign="top" class="name">Birth Date:</td>
@@ -50,12 +62,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">First Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'firstName')}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Gender:</td>
@@ -77,12 +83,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Middle Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'middleName')}</td>
-                            
-                        </tr>
                     
                     </tbody>
                 </table>
