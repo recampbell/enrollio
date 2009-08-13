@@ -112,6 +112,8 @@
                     <input type="hidden" name="id" value="${contactInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you crazy?');" value="Delete" /></span>
+                    <span class="button"><g:link controller="student" action="create" params="['contact.id':contactInstance.id]">
+                      create crazy student</g:link></span>
                 </g:form>
             </div>
         </div>
