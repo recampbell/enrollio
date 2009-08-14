@@ -36,6 +36,12 @@ class BootStrap {
        c1.save()
        c1.addToPhoneNumbers(new PhoneNumber(label:'Cell', 
                                             phoneNumber:'(314)-777-1111'))
+       c1.addToStudents(new Student(lastName:'Pill',
+                                    firstName:'Blue'))
+       c1.addToStudents(new Student(lastName:'Pill',
+                                    firstName:'Jagged',
+                                    middleName:'Little'))
+
 
        loadDevPrograms()
    } 
