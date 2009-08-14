@@ -1,4 +1,4 @@
-<g:render template="studentEdit" model="[student:student, idx:idx]" />
+<g:render template="studentEdit" model="[student:student, idx:idx, availPrograms:availPrograms]" />
 
 <tr>
 <td>

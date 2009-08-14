@@ -1,17 +1,18 @@
 
     <tr>
-    <th>First Name</th>
-    <th>Middle Name</th>
-    <th>Last Name</th>
-    <th>Grade</th>
-    <th>Gender</th>
+    <th width="10%">First Name</th>
+    <th width="10%">Middle Name</th>
+    <th width="10%">Last Name</th>
+    <th width="5%">Grade</th>
+    <th width="5%">Gender</th>
     <th>Birth Date</th>
+    <th>Interests</th>
     
     </tr>
 
 <g:each in="${contactInstance.students}" var="student" status="idx">
     <tr id="student_${idx}" class="prop">
-       <g:render template="studentEdit" model="[student:student, idx:idx]" />
+       <g:render template="studentEdit" model="[student:student, idx:idx, availPrograms:availPrograms]" />
     </tr>
 </g:each>
 

@@ -21,7 +21,7 @@ class ContactController {
             flash.message = "Contact not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ contactInstance : contactInstance ] }
+        else { return [ contactInstance : contactInstance, availPrograms:Program.findAll()] }
     }
 
     def delete = {
@@ -149,7 +149,7 @@ class ContactController {
 
     //Show editable student row for data entry
     def newInlineStudent = {
-      render(template: 'newInlineStudent', model: ['idx': params.idx])
+      render(template: 'newInlineStudent', model: ['idx': params.idx, availPrograms:Program.findAll()])
     }
 
     //Replace inline div with "New student" button

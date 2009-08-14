@@ -120,8 +120,8 @@
 
               <br><br><h2>Contact's Students:</h2>
               <input type="hidden" name="id" value="${contactInstance.id}"/>
-              <table id="studentList" style="width:99%;padding:2px;margin:2px;">
-                <g:render template='studentList'/>
+              <table id="studentList" style="width:99%;table-layout:fixed;padding:2px;margin:2px;">
+                <g:render template='studentList' model:"[availPrograms:availPrograms]" />
               </table>
               <div class="buttons">
                 <span class="button"><g:submitButton class="save" name="Save"/></span>
