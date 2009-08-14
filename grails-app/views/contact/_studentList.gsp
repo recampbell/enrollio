@@ -12,7 +12,7 @@
 
 <g:each in="${contactInstance.students}" var="student" status="idx">
     <tr id="student_${idx}" class="prop">
-       <g:render template="studentEdit" model="[student:student, idx:idx, availPrograms:availPrograms]" />
+       <g:render template="studentEdit" model="[student:student, idx:idx]" />
     </tr>
 </g:each>
 

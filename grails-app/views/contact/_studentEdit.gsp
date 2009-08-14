@@ -21,9 +21,5 @@
 
 
 <td>
-<g:each var="program" in="${availPrograms}" status="i">
-    <label for="program${program.id}">${program.name}</label>
-    <g:checkBox name="program{$program.id}" value="${program.id}" /><br />
-    
-</g:each>
+    <g:interestCheckBoxes student="${student}" idx="${idx}"/>
 </td>
