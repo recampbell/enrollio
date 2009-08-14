@@ -26,6 +26,7 @@ class BootStrap {
                                             phoneNumber:'(314)-444-5555'))
        c0.addToStudents(new Student(lastName:'Sprat',
                                     firstName:'Snarfo'))
+       c0.save(flush:true)
        def c1 = new Contact(firstName:'Jill',
                            lastName:'Pill',
                            address1:'304 Zonkers Ave.',
@@ -35,7 +36,7 @@ class BootStrap {
        if (!c1.validate()) {
            c1.errors.allErrors.each { println it }
        }
-       c1.save()
+       c1.save(flush:true)
        c1.addToPhoneNumbers(new PhoneNumber(label:'Cell', 
                                             phoneNumber:'(314)-777-1111'))
        c1.addToStudents(new Student(lastName:'Pill',
@@ -45,6 +46,11 @@ class BootStrap {
                                     middleName:'Little'))
 
 
+       // You have to flush, otherwise hibernate doesn't save this doodie
+       // and the findByFirstNameAndLastName flips out in the loadDevPrograms method.
+       // TODO: Find mobetta way of doing this, like setting some kind of "politeToilet:true"
+       // method so that Grails flushes after every use.
+       c1.save(flush:true)
        loadDevPrograms()
    } 
 
@@ -63,6 +69,10 @@ class BootStrap {
                              name:"Adult EAC").save()
        def p2 = new Program(description:"Byteworks Mentorship Program",
                              name:"Mentorship Program").save()
+
+       def s = Student.findByFirstNameAndLastName('Jagged', 'Pill')
+       assert s != null
+       s.addToInterests(new Interest(program:p0, active:true))
    }
 
 }
