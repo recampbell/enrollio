@@ -78,4 +78,3 @@ When calling the interestCheckBoxes tag library, I had a quote missing from the 
 received a less than helpful message.  Something like this will reproduce the problem:
 
   <g:interestCheckBoxes student="${student}" idx="${idx} />
-
