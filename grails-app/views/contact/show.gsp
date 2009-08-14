@@ -3,8 +3,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="main" />    
         <title>Show Contact</title>
+  <g:javascript library="prototype" />
     </head>
     <body>
         <div class="nav">
@@ -107,15 +108,29 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="buttons">
                 <g:form>
                     <input type="hidden" name="id" value="${contactInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you crazy?');" value="Delete" /></span>
-                    <span class="button"><g:link controller="student" action="create" params="['contact.id':contactInstance.id]">
-                      create crazy student</g:link></span>
+                    <span class="button"><g:link controller="student" action="create" params="['contact.id':contactInstance.id]" />
                 </g:form>
             </div>
+            <g:form action="saveContactAndStudents">
+
+              <br><br><h2>Contact's Students:</h2>
+              <input type="hidden" name="id" value="${contactInstance.id}"/>
+              <table id="studentList" style="width:99%;padding:2px;margin:2px;">
+                <g:render template='studentList'/>
+              </table>
+              <div class="buttons">
+                <span class="button"><g:submitButton class="save" name="Save"/></span>
+                <span class="button"><g:actionSubmit class="delete"
+                        onclick="return confirm('Are you sure?');" action="delete" value="Delete contact"/></span>
+                <span class="button"><g:actionSubmit class="edit" action="list"
+                        value="Return to contact List"/></span>
+              </div>
+            </g:form>
         </div>
     </body>
 </html>

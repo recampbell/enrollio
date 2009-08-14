@@ -113,4 +113,72 @@ class ContactController {
             render(view:'create',model:[contactInstance:contactInstance])
         }
     }
+
+    /**
+     * Save the given Contact and their associated students
+     */
+    def saveContactAndStudents = {
+      def contactInstance
+      println params
+      if (params.id) {
+        contactInstance = Contact.get(params.id)
+
+        contactInstance.properties = params
+
+        contactInstance.validate()
+
+        //Loop through students, validate and save
+        contactInstance.students.each {student ->
+          if (student.validate()) {
+            student.save()
+          }
+          else {
+              student.errors.allErrors.each {
+                  println it
+              }
+          }
+        }
+
+        contactInstance.save()
+        
+        redirect action:'show', id:contactInstance.id
+        return
+      }
+      redirect action:'show', id:contactInstance.id
+    }
+
+    //Show editable student row for data entry
+    def newInlineStudent = {
+      render(template: 'newInlineStudent', model: ['studentidx': params.studentidx])
+    }
+
+    //Replace inline div with "New student" button
+    def cancelInlinestudent = {
+      render(template: 'newInlinestudentButton', model: ['studentidx': params.studentidx])
+    }
+
+    /**
+     * Delete an individual student associated with the given id from the DB
+     */
+    def deleteInLineStudent = {
+        def contactInstance
+        // student id passed from GSP
+        if (params.id) {
+            def studentInstance = student.get(params.id)
+                contactInstance = studentInstance.contact
+                // Remove student from list on contact DO
+                contactInstance.removeFromStudents(studentInstance)
+                studentInstance.delete() // Delete student from DB
+                contactInstance.save(flush: true)
+                render(template: "studentList",
+                        model: [contactInstance:contactInstance])
+        }
+        // contact id passed from GSP
+        else if (params.contact.id) {
+            // Return a refreshed contact instance
+            contactInstance = contact.get(params.contact.id)
+                render(template: "studentList",
+                        model: [contactInstance: contactInstance])
+        }
+    }
 }

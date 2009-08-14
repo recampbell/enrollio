@@ -41,16 +41,17 @@
                         
                             <td><g:link action="show" id="${contactInstance.id}">${contactInstance}</g:link></td>
                         
-                            <td>${fieldValue(bean:contactInstance, field:'address1')}</td>
-                        
-                            <td>${fieldValue(bean:contactInstance, field:'address2')}</td>
-                        
-                            <td>${fieldValue(bean:contactInstance, field:'emailAddress')}</td>
                         
                             <td>${fieldValue(bean:contactInstance, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:contactInstance, field:'lastName')}</td>
                         
+                            <td>${fieldValue(bean:contactInstance, field:'address1')}</td>
+                        
+                            <td>${fieldValue(bean:contactInstance, field:'address2')}</td>
+                        
+                            <td>${fieldValue(bean:contactInstance, field:'emailAddress')}</td>
+                            <td>${contactInstance.firstName} <g:link id="${contactInstance.id}" action="contactStudents">Edit Students</g:link><br></td>
                         </tr>
                     </g:each>
                     </tbody>
