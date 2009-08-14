@@ -24,6 +24,8 @@ class BootStrap {
 
        c0.addToPhoneNumbers(new PhoneNumber(label:'Work', 
                                             phoneNumber:'(314)-444-5555'))
+       c0.addToStudents(new Student(lastName:'Sprat',
+                                    firstName:'Snarfo'))
        def c1 = new Contact(firstName:'Jill',
                            lastName:'Pill',
                            address1:'304 Zonkers Ave.',
