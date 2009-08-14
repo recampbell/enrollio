@@ -94,7 +94,6 @@
                 </div>
                 <div class="buttons">
                 <g:actionSubmit value="Create" action="save" />
-                <g:actionSubmit value="Create and Add Students" action="saveAndAddStudents" />
                 </div>
             </g:form>
         </div>
