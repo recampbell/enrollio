@@ -31,6 +31,15 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="note">Note:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'note','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Note.list()}" name="note.id" value="${interestInstance?.note?.id}" noSelection="['null':'']"></g:select>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="active">Active:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'active','errors')}">
@@ -40,10 +49,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="note">Note:</label>
+                                    <label for="program">Program:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'note','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Note.list()}" name="note.id" value="${interestInstance?.note?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'program','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Program.list()}" name="program.id" value="${interestInstance?.program?.id}" ></g:select>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="student">Student:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'student','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Student.list()}" name="student.id" value="${interestInstance?.student?.id}" ></g:select>
                                 </td>
                             </tr> 
                         

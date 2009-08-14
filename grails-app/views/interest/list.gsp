@@ -23,9 +23,13 @@
                         
                    	        <g:sortableColumn property="id" title="Id" />
                         
+                   	        <th>Note</th>
+                   	    
                    	        <g:sortableColumn property="active" title="Active" />
                         
-                   	        <th>Note</th>
+                   	        <th>Program</th>
+                   	    
+                   	        <th>Student</th>
                    	    
                         </tr>
                     </thead>
@@ -35,9 +39,13 @@
                         
                             <td><g:link action="show" id="${interestInstance.id}">${fieldValue(bean:interestInstance, field:'id')}</g:link></td>
                         
+                            <td>${fieldValue(bean:interestInstance, field:'note')}</td>
+                        
                             <td>${fieldValue(bean:interestInstance, field:'active')}</td>
                         
-                            <td>${fieldValue(bean:interestInstance, field:'note')}</td>
+                            <td>${fieldValue(bean:interestInstance, field:'program')}</td>
+                        
+                            <td>${fieldValue(bean:interestInstance, field:'student')}</td>
                         
                         </tr>
                     </g:each>

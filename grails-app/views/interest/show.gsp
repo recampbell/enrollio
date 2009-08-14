@@ -30,6 +30,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name">Note:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="note" action="show" id="${interestInstance?.note?.id}">${interestInstance?.note?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name">Active:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:interestInstance, field:'active')}</td>
@@ -37,9 +44,16 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Note:</td>
+                            <td valign="top" class="name">Program:</td>
                             
-                            <td valign="top" class="value"><g:link controller="note" action="show" id="${interestInstance?.note?.id}">${interestInstance?.note?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="program" action="show" id="${interestInstance?.program?.id}">${interestInstance?.program?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Student:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="student" action="show" id="${interestInstance?.student?.id}">${interestInstance?.student?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
