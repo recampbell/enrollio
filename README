@@ -65,3 +65,17 @@ Program.groovy
 Addition of dynamic contact phone numbers was provided by:
 http://lxisoft.com/web/guest/grails
 
+h1. Troubles
+
+h2. Data not persisted immediately in BootStrap
+
+I had problems in the bootStrap when saving test data, and then trying to retrieve it immediately,
+due to the flush:true not being specified when saving DOs
+
+h2. Obscure errors when quotes missing
+
+When calling the interestCheckBoxes tag library, I had a quote missing from the 2nd param, and
+received a less than helpful message.  Something like this will reproduce the problem:
+
+  <g:interestCheckBoxes student="${student}" idx="${idx} />
+
