@@ -149,7 +149,7 @@ class ContactController {
 
     //Show editable student row for data entry
     def newInlineStudent = {
-      render(template: 'newInlineStudent', model: ['studentidx': params.studentidx])
+      render(template: 'newInlineStudent', model: ['idx': params.idx])
     }
 
     //Replace inline div with "New student" button

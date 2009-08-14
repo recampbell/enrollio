@@ -10,7 +10,9 @@
     </tr>
 
 <g:each in="${contactInstance.students}" var="student" status="idx">
-   <g:render template="studentEdit" model="[student:student, idx:idx]" />
+    <tr id="student_${idx}" class="prop">
+       <g:render template="studentEdit" model="[student:student, idx:idx]" />
+    </tr>
 </g:each>
 
 <g:set var="nextstudentidx" value="${contactInstance.students ? contactInstance.students.size() : 0}"/>
@@ -18,5 +20,5 @@
 <!--Don't show the "New student" link if there are errors. User must fix existing errors before adding more students. -->
   <tr name="foo" id="foo">
     <g:render template='newInlineStudentButton' 
-              model="['studentidx':nextstudentidx]"/>
+              model="['idx':nextstudentidx]"/>
   </tr>
