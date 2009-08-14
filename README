@@ -1,7 +1,26 @@
-This is for the bworks volunteer program
+Enrollio is used to enroll students in the programs offered by Bworks.
+
+Bworks is the umbrella organization for Byteworks and Bicycleworks located
+in Saint Louis, Missouri
+
+Byteworks and Bicycleworks are volunteer organizations that strive to
+help inner city children reach their full potential.
+
+Byteworks offers the "Earn A Computer" program where students take six
+computer-related classes, and are awarded a free computer upon completion
+of the six classes.  Bicycleworks offers a similar "Earn-A-Bike" class.
+
+Please see http://bworks.org for more information
+
+Enrollio's purpose is to help Bworks maintain its student database.
 
 
-Purpose:  Maintain student contact and enrollment information.
+h1. Grailsy Voodoo Features
+
+h2. Tag Libraries
+Enrollio has a slick Tag Library which loops through all available Programs,
+and returns a checkbox for the program which is checked/unchecked depending
+on whether the student is already interested in the Program.
 
 Data structure:
 
