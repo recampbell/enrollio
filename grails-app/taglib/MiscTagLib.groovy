@@ -14,17 +14,23 @@ class MiscTagLib {
         programs.each { prog ->
             // Note: Need to search for active == true, also
             def checkBoxName = "studentInterests[${idx}]"
-            out << "<label for='${checkBoxName}'>${prog.name}</label>"
-            println "Searching for ${student} interested in ${prog}"
-            if (Interest.findByStudentAndProgram(student, prog)) {
-                println "Jar Jar! " * 1000
+            // TODO Find out why I can't put AndActive at the end of
+            // this dynamic query
+            def c = Interest.createCriteria()
+            def i = c.list {
+                eq("student", student)
+                eq("program", prog)
+                eq("active", true)
+            }
+
+            if (i) {
                 out << g.checkBox(value:prog.id, checked:true, name:checkBoxName)
-                out << '<br />'
             }
             else {
                 out << g.checkBox(value:prog.id, checked:false, name:checkBoxName)
-                out << '<br />'
             }
+            out << "<label for='${checkBoxName}'>${prog.name}</label>"
+            out << '<br />'
         }
         return out
     }

@@ -1,9 +1,8 @@
-
-
 package org.bworks.bworksdb
 
 class ContactController {
     
+    def studentService
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -123,14 +122,21 @@ class ContactController {
       if (params.id) {
         contactInstance = Contact.get(params.id)
 
+        // println 'foo' * 1000; 
+        // println params['students[0]']
         contactInstance.properties = params
 
         contactInstance.validate()
 
         //Loop through students, validate and save
-        contactInstance.students.each {student ->
+        contactInstance.students.eachWithIndex {student, idx ->
           if (student.validate()) {
             student.save()
+            println "params are: " + params
+            // println "index is: " * 10
+            println idx
+            // println params.students[idx]
+            studentService.saveInterests(student, params["studentInterests[${idx}]"])
           }
           else {
               student.errors.allErrors.each {
@@ -151,12 +157,12 @@ class ContactController {
     def newInlineStudent = {
         // Available interests are all programs
         def interests = Program.findAll()
-      render(template: 'newInlineStudent', model: ['idx': params.idx, interests:interests])
+        render(template: 'newInlineStudent', model: ['idx': params.idx, interests:interests])
     }
 
     //Replace inline div with "New student" button
     def cancelInlinestudent = {
-      render(template: 'newInlinestudentButton', model: ['studentidx': params.studentidx])
+        render(template: 'newInlinestudentButton', model: ['studentidx': params.studentidx])
     }
 
     /**
