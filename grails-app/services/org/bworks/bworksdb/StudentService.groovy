@@ -11,7 +11,6 @@ class StudentService {
     // Interests is an array of goofy Grails checkboxes
     def saveInterests(student, interests) {
         println "--" * 200
-        if (interests == null ) return;
         println "Milf" * 10
         def allPrograms = Program.findAll()
         allPrograms.each { prog ->
@@ -30,12 +29,7 @@ class StudentService {
                     }
                 }
                 else {
-                    def i = Interest.findWhere(student:student, program:prog, active:true)
-                    if (i) {
-                        println "Blasting from foomanchu " + i
-                        i.active = false
-                        i.save()
-                    }
+                    blastInterests(student, prog)
                 }
             }
             else if (interests && interests instanceof java.lang.String[]) {
@@ -53,24 +47,24 @@ class StudentService {
                     }
                 }
                 if (!found) {
-                    def i = Interest.findWhere(student:student, program:prog, active:true)
-                    if (i) {
-                        println "Blasting from interests[]" + i
-                        i.active = false
-                        i.save()
-                    }
+                    blastInterests(student, prog)
                 }
 
             }
             else {
-                // Momma said knock you out!
-                def i = Interest.findWhere(student:student, program:prog, active:true)
-                if (i) {
-                    println "Blasting from wherever" + i
-                    i.active = false
-                    i.save()
-                }
+                blastInterests(student, prog)
             }
         }
     }
+
+    def blastInterests(Student student, Program prog) {
+        // Momma said knock you out!
+        def is = Interest.findWhere(student:student, program:prog, active:true)
+        is.each {
+            println "Blasting from wherever" + it
+            it.active = false
+            it.save()
+        }
+    }
+
 }
