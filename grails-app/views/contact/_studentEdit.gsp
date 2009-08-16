@@ -21,5 +21,11 @@
 
 
 <td>
-    <g:interestCheckBoxes student="${student}" idx="${idx}"/>
+    <!-- only auto-select the default prog if we have a new student -->
+    <g:if test="${student}">
+        <g:interestCheckBoxes student="${student}" idx="${idx}" />
+    </g:if>
+    <g:else>
+        <g:interestCheckBoxes student="${student}" idx="${idx}" checkDefaultProg="true" />
+    </g:else>
 </td>

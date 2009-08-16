@@ -2,6 +2,8 @@ import org.bworks.bworksdb.*
 
 class MiscTagLib {
 
+    def configSettingService
+
     // Create a checkbox for all programs for this student
     // Checkboxes are named using an index 'idx' which corresponds to the student's
     // index, so that the appropriate programs/interests can be assigned to the appropriate
@@ -10,20 +12,28 @@ class MiscTagLib {
     def interestCheckBoxes = { attrs ->
         def student = attrs['student']
         def idx = attrs['idx']
+        def defaultProgId
+        // Whether to check the default program
+        def checkDefaultProg = attrs['checkDefaultProg']
+        if (checkDefaultProg) {
+            defaultProgId = configSettingService.getSetting('defaultInterestProgram')
+            if (defaultProgId) defaultProgId = defaultProgId.value;
+        }
         def programs = Program.findAll()
+        // def defaultProgram = configSettingService.getSetting('defaultInterestProgram')
         programs.each { prog ->
             // Note: Need to search for active == true, also
             def checkBoxName = "studentInterests[${idx}]"
             // TODO Find out why I can't put AndActive at the end of
             // this dynamic query
-            def c = Interest.createCriteria()
-            def i = c.list {
+            def results = Interest.withCriteria {
                 eq("student", student)
                 eq("program", prog)
                 eq("active", true)
             }
-
-            if (i) {
+            // If student already has an interest in this program, or if
+            // the caller wants us to check the default program automatically
+            if (results || (checkDefaultProg && (prog.id.toString() == defaultProgId))) {
                 out << g.checkBox(value:prog.id, checked:true, name:checkBoxName)
             }
             else {
