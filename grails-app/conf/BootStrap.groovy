@@ -11,6 +11,10 @@ class BootStrap {
 
    // Git some test data in these here parts
    def loadDevData() {
+       def s0 = new ConfigSetting(key:'defaultInterestProgram',
+                                  value:1,
+                                  isDefault: true,
+                                  description:'When entering Students, this program will be the default program they\'re interested in').save()
        def c0 = new Contact(firstName:'Jack',
                            lastName:'Sprat',
                            address1:'103 Smith Street',
