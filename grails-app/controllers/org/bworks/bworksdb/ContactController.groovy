@@ -90,6 +90,10 @@ class ContactController {
         return ['contactInstance':contactInstance]
     }
 
+    def callList = {
+        def contacts = contactService.getCallListForProgram(params.id)
+    }
+
     def saveAndAddStudents = {
         def contactInstance = new Contact(params)
         if(!contactInstance.hasErrors() && contactInstance.save()) {
