@@ -7,12 +7,12 @@
 			<ul class="navlist">
 				<li>
 					<g:link controller="contact" action="list">
-                                            List Contacts
+                                            List
 					</g:link>
 				</li>				
 				<li>
 					<g:link controller="contact" action="create">
-                                            Add Contacts
+                                            Add
 					</g:link>		
 				</li>	
 			</ul>						
@@ -24,14 +24,17 @@
 
 	<div class="navcontainer1">
 			<h1 class="panelHeader">				
-				Actions
+				Programs
 			</h1>
 			<ul class="navlist">
-				<li><a href="#">do something 1</a></li>		
-				<li><a href="#">do something 2</a></li>		
-				<li><a href="#">do something 3</a></li>		
-				<li><a href="#">do something 4</a></li>		
-				<li><a href="#">do something 5</a></li>		
+                        <li>
+                            <g:link controller="program" action="list">
+                                List
+                            </g:link>		
+                            <g:link controller="program" action="create">
+                                Create
+                            </g:link>
+                            </li>
 			</ul>						
 	</div> 	
 	
