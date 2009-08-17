@@ -20,12 +20,8 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                   	        <g:sortableColumn property="id" title="Id" />
-                        
-                   	        <g:sortableColumn property="description" title="Description" />
-                        
                    	        <g:sortableColumn property="name" title="Name" />
+                   	        <g:sortableColumn property="description" title="Description" />
                         
                         </tr>
                     </thead>
@@ -33,11 +29,11 @@
                     <g:each in="${programInstanceList}" status="i" var="programInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${programInstance.id}">${fieldValue(bean:programInstance, field:'id')}</g:link></td>
+                            <td><g:link action="show" id="${programInstance.id}">${fieldValue(bean:programInstance, field:'name')}</g:link></td>
                         
                             <td>${fieldValue(bean:programInstance, field:'description')}</td>
                         
-                            <td>${fieldValue(bean:programInstance, field:'name')}</td>
+                            <td><g:link action="createCallList" id="${programInstance.id}">Create Call List</g:link></td>
                         
                         </tr>
                     </g:each>
