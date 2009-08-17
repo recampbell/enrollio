@@ -15,14 +15,63 @@ Please see http://bworks.org for more information
 Enrollio's purpose is to help Bworks maintain its student database.
 
 
-h1. Grailsy Voodoo Features
+# Grailsy Voodoo Features
 
-h2. Tag Libraries
+## Tag Libraries
+
 Enrollio has a slick Tag Library which loops through all available Programs,
 and returns a checkbox for the program which is checked/unchecked depending
 on whether the student is already interested in the Program.
 
-Data structure:
+# Attributions
+
+Thanks to the following sources for providing code examples, etc
+
+## Contact Phone Numbers
+
+Addition of dynamic contact phone numbers was provided by:
+http://lxisoft.com/web/guest/grails
+
+## General Layout of Application
+
+http://moongrails.blogspot.com/2008/12/grails-templates.html
+
+# Problems
+
+The "Problems" section can be used to point out things in Grails or Enrollio that were
+confusing, time-draining or otherwise not really fun to develop.  We can use this section
+to identify things we'd like to improve as we continue our mastery of Grails and subsequently
+the rest of the Universe.
+
+## Data not persisted immediately in BootStrap
+
+I had problems in the bootStrap when saving test data, and then trying to retrieve it immediately,
+due to the flush:true not being specified when saving DOs
+
+## Obscure errors when quotes missing
+
+When calling the interestCheckBoxes tag library, I had a quote missing from the 2nd param, and
+received a less than helpful message.  Something like this will reproduce the problem:
+
+  <g:interestCheckBoxes student="${student}" idx="${idx} />
+
+## findAll using Booleans
+
+I was unable to easily write a method/getter on the Program DO which would show
+me the Active Interests in that Program.
+
+I tried the following:
+
+  getActiveInterests() {
+      return interests.findByActive(true)
+  }
+
+# Program Documentation
+
+We might move this documentation to the wiki, since it could become rather large
+to fit in a README file, but for now......
+
+## Data structure:
 
 Program ->
   Describes one of the volunteer programs that are available at Bworks.
@@ -61,25 +110,4 @@ Note.groovy
 PhoneNumber.groovy
 Program.groovy
 
-= Contact Phone Numbers =
-Addition of dynamic contact phone numbers was provided by:
-http://lxisoft.com/web/guest/grails
 
-# Problems
-
-The "Problems" section can be used to point out things in Grails or Enrollio that were
-confusing, time-draining or otherwise not really fun to develop.  We can use this section
-to identify things we'd like to improve as we continue our mastery of Grails and subsequently
-the rest of the Universe.
-
-## Data not persisted immediately in BootStrap
-
-I had problems in the bootStrap when saving test data, and then trying to retrieve it immediately,
-due to the flush:true not being specified when saving DOs
-
-## Obscure errors when quotes missing
-
-When calling the interestCheckBoxes tag library, I had a quote missing from the 2nd param, and
-received a less than helpful message.  Something like this will reproduce the problem:
-
-  <g:interestCheckBoxes student="${student}" idx="${idx} />
