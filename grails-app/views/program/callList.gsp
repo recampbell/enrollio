@@ -17,20 +17,31 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <div class="list">
+                    <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="lastName" title="Name" />
+                            <g:sortableColumn property="lastName" title="Contact Name" />
                             <g:sortableColumn property="emailAddress" title="Email Address" />
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
                             <td><g:link controller="contact" action="show" id="${contactInstance.id}">${contactInstance}</g:link></td>
                             <td>${fieldValue(bean:contactInstance, field:'emailAddress')}</td>
                         </tr>
+                        <tr>
+                        <th>Student(s)</th>
+                        <th>Grade</th>
+                        <th>Gender</th>
+                        <th>Birthdate</th>
+                        </tr>
+                        <g:each in="${contactInstance.students}" var="student">
+
+                            <g:render template="/student/studentDetails" model="[student:student]" />
+                        </g:each>
+                        
                     </g:each>
                     </tbody>
                 </table>
