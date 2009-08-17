@@ -33,7 +33,7 @@
                         
                             <td>${fieldValue(bean:programInstance, field:'description')}</td>
                         
-                            <td><g:link action="createCallList" id="${programInstance.id}">Create Call List</g:link></td>
+                            <td><g:link action="callList" id="${programInstance.id}">Create Call List</g:link></td>
                         
                         </tr>
                     </g:each>

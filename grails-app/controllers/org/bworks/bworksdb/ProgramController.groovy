@@ -5,9 +5,17 @@ package org.bworks.bworksdb
 class ProgramController {
     
     def index = { redirect(action:list,params:params) }
+    def programService
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+
+    def callList = {
+        def contactInstanceList = programService.getCallList(params.id)
+
+        [ contactInstanceList: contactInstanceList, contactInstanceTotal: Contact.count() ]
+
+    }
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)

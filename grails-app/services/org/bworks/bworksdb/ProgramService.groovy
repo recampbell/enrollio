@@ -1,13 +1,16 @@
 package org.bworks.bworksdb
 
-class ContactService {
+class ProgramService {
 
     boolean transactional = true
 
-    def getCallListForProgram(id) {
+    def getCallList(id) {
         def prog = Program.get(id)
         if (!prog) return null;
-        def contacts = prog.activeInterests.collect { it.student.contact }
+        def interests = prog.interests.findAll { it.active == true }
+        println interests
+        def students = interests.collect { it.student }
+        def contacts = students.collect { it.contact }
 
         return contacts
     }
