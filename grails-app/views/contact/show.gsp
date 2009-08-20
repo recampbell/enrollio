@@ -77,6 +77,13 @@
                             </td>
                             
                         </tr>
+                
+	                    <tr class="prop">
+	                        <td valign="top" class="name">City:</td>
+                        
+	                        <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'city')}</td>
+                        
+	                    </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">State:</td>

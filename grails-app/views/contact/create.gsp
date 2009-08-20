@@ -61,6 +61,15 @@
                                     <input type="text" id="address2" name="address2" value="${fieldValue(bean:contactInstance,field:'address2')}"/>
                                 </td>
                             </tr> 
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="city">City:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:contactInstance,field:'city','errors')}">
+                                    <input type="text" id="city" name="city" value="${fieldValue(bean:contactInstance,field:'city')}"/>
+                                </td>
+                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">

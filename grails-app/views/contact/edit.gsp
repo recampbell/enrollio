@@ -74,6 +74,16 @@
                                 </td>
                             </tr> 
                             <g:render template="phoneNumbers" bean="${contactInstance}"/>                       
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="state">City:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:contactInstance,field:'city','errors')}">
+                                    <input type="text" id="city" name="city" value="${fieldValue(bean:contactInstance,field:'city')}"/>
+                                </td>
+                            </tr> 
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="state">State:</label>
