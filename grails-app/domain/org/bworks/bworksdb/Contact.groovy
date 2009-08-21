@@ -49,8 +49,7 @@ class Contact {
     }
 
     String allPhoneNumbers() {
-        return "123-4567 (home), 321-43567 (work)"
-        // phoneNumbers?.join(", ")
+        phoneNumbers?.join(", ")
     }
 
 

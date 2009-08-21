@@ -26,7 +26,7 @@
                 <tr>
                     <th>Phone(s)</th>
                     <td>
-                        (314) 123-4567
+                        ${contactInstance.allPhoneNumbers()}
                     </td>
                 </tr>
                 <tr>
