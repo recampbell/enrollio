@@ -17,9 +17,9 @@
                     <td>
                         ${contactInstance}
                     </td>
-                    <td>Address:</td>
+                    <th>Address:</th>
                     <td>
-                        123 Smith Street, St. Louis, MO 63143
+                        ${contactInstance.fullAddress()}
                     
                     </td>
                 </tr>
