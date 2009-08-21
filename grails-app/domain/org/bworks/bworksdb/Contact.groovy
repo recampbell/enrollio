@@ -28,6 +28,30 @@ class Contact {
     }
 
     String toString(){
-        return lastName + ',' + firstName
+        return lastName + ', ' + firstName
     }
+
+    String fullAddress() {
+        def addr = address1
+        if (address2) {
+            addr += ", " + address2
+        }
+
+        if (city) {
+            addr += ", " + city
+        }
+        if (state) {
+            addr += ", " + state
+        }
+        if (zipCode) {
+            addr += "  " + zipCode
+        }
+    }
+
+    String allPhoneNumbers() {
+        return "123-4567 (home), 321-43567 (work)"
+        // phoneNumbers?.join(", ")
+    }
+
+
 }
