@@ -46,13 +46,15 @@
                     <td>Birtddate</td>
                     <td>Interests (Circle to Enroll)</td>
                 </tr>
-                <tr>
-                    <td>Buchholz, Francisco</td>
-                    <td>4</td>
-                    <td>M</td>
-                    <td>10/23/1009</td>
-                    <td>Basketball, idiocy, stupidity</td>
-                </tr>
+                <g:each var="studentInstance" in="${contactInstance.students}">
+                    <tr>
+                        <td>${studentInstance}</td>
+                        <td>${studentInstance.grade}</td>
+                        <td>${studentInstance.gender}</td>
+                        <td>${studentInstance.birthDate}</td>
+                        <td>${studentInstance.activeInterestsSummary()}</td>
+                    </tr>
+                </g:each>
                 </table>
                 </g:each>
             </div>
