@@ -17,6 +17,13 @@ class ProgramController {
 
     }
 
+    def pdfCallList = {
+        def contactInstanceList = programService.getCallList(1)
+        println "Contact instances are: " + contactInstanceList
+
+        [ contactInstanceList: contactInstanceList, contactInstanceTotal: Contact.count() ]
+
+    }
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ programInstanceList: Program.list( params ), programInstanceTotal: Program.count() ]
