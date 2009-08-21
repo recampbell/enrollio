@@ -96,6 +96,7 @@ class BootStrap {
        def c0 = new Contact(firstName:firstName,
                            lastName:lastName,
                            address1:randAddress.toString() + ' ' + randomStreetName(),
+                           city:'Saint Louis',
                            state:'MO',
                            zipCode:zip,
                            emailAddress:emailAddress).save()
