@@ -338,7 +338,7 @@ font-size:1.6em;
 /* --------------------------------------*/
 #content { 
 float: left; 
-width: 80%;
+width: 70%;
 color: #000; 
 margin: 0 0.5em 0 0;
 padding: 0px 10px 5px 0px;
@@ -349,7 +349,7 @@ padding: 0px 10px 5px 0px;
 /* --------------------------------------*/ 
 #navbar { 
 float: right; 
-width: 210px; 
+width: 25%; 
 color: #ff0000; 
 padding: 0px 5px 0px 5px; 
 margin: 0 0 0 0;
