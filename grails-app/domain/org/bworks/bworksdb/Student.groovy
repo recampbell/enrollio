@@ -39,8 +39,14 @@ class Student {
     // Return a printable string of the active interests the student
     // has
     String activeInterestsSummary() {
-        return "Basket weaving, stupidity, sensationalness"
-        // interests.find { active == true }?.collect(it.program.name)?.join(", ")
+        // return "Basket weaving, stupidity, sensationalness"
+        def progs = []
+        interests.each { 
+            if (it.active) {
+                progs << it.program.name 
+            }
+        }
+        return progs ? progs.join(", ") : ''
     }
 
 }
