@@ -90,9 +90,9 @@ class BootStrap {
        def randAddress = seed.nextInt(1000) 
        def zip = '63' + seed.nextInt(100).toString().padLeft(3, "0")
        def lastName = randomLastName()
-       def firstName = randomLastName()
+       def firstName = randomFirstName()
        // Use an email address for 50% of the people
-       def emailAddress = seed.nextInt(1) == 1 ?: "${firstName}.${lastName}@" + randomEmailServer() + ".com"
+       def emailAddress = seed.nextInt(2) == 1 ? '' : "${firstName}.${lastName}@" + randomEmailServer() + ".com"
        def c0 = new Contact(firstName:firstName,
                            lastName:lastName,
                            address1:randAddress.toString() + ' ' + randomStreetName(),
