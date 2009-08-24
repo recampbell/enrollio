@@ -28,6 +28,29 @@ class Contact {
     }
 
     String toString(){
-        return lastName + ',' + firstName
+        return lastName + ', ' + firstName
     }
+
+    String fullAddress() {
+        def addr = address1
+        if (address2) {
+            addr += ", " + address2
+        }
+
+        if (city) {
+            addr += ", " + city
+        }
+        if (state) {
+            addr += ", " + state
+        }
+        if (zipCode) {
+            addr += "  " + zipCode
+        }
+    }
+
+    String allPhoneNumbers() {
+        phoneNumbers?.join(", ")
+    }
+
+
 }

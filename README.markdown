@@ -14,6 +14,9 @@ Please see http://bworks.org for more information
 
 Enrollio's purpose is to help Bworks maintain its student database.
 
+# Installed Plugins:
+
+## PDF Plugin
 
 # Grailsy Voodoo Features
 
