@@ -7,7 +7,7 @@ class StudentTests extends GroovyTestCase {
 
     void testNotNullLastName() {
         def s = new Student(firstName:"Groovy in Action", lastName:"Foo")
-        assertTrue s.validate()
+        assertFalse s.validate()
     }
 
     // This is just to see what it takes to find a Student's Interests
