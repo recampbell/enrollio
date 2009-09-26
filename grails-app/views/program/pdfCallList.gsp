@@ -13,7 +13,7 @@
                     <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                 <table>
                 <tr>
-                    <th>Contact Name:</th>
+                    <th>Contact:</th>
                     <td>
                         ${contactInstance}
                     </td>
@@ -40,11 +40,11 @@
                     </tr>
 
                 <tr>
-                    <td>Student Name</td>
-                    <td>Grade</td>
-                    <td>Gender</td>
-                    <td>Birtddate</td>
-                    <td>Interests (Circle to Enroll)</td>
+                    <th>Student</th>
+                    <th>Grade</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Interests</th>
                 </tr>
                 <g:each var="studentInstance" in="${contactInstance.students}">
                     <tr>
