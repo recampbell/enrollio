@@ -50,16 +50,13 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Interests:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ol>
-                                <g:each var="i" in="${programInstance.interests}">
-                                    <li><g:link controller="interest" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ol>
-                            </td>
-                            
+                        <td colspan="2">
+                           <g:link controller="interest" 
+                               action="list" params="['program.id' : programInstance.id]">
+                                 Interested Students (${programInstance.interests.size()})                              
+                               
+                           </g:link>
+                        </td>
                         </tr>
                     
                         <tr class="prop">
