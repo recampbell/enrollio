@@ -12,6 +12,8 @@ class Student {
     Contact contact
     static belongsTo = [Contact]
     static hasMany = [ interests:Interest ]
+    Date dateCreated
+    Date lastUpdated
 
     static constraints = {
         birthDate(nullable:true, blank:true)
@@ -21,6 +23,7 @@ class Student {
         grade(nullable:true, blank:true)
         lastName(nullable:false, blank:false)
         middleName(nullable:true, blank:true)
+        lastUpdated(nullable:true, blank:true)
     }
     
     String toString(){

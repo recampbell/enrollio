@@ -10,6 +10,8 @@ class Contact {
     String state
     String zipCode
     String emailAddress
+    Date dateCreated
+    Date lastUpdated
 
     // Declared to assist w/adding phoneNumbers to class easily
     // http://lxisoft.com/web/guest/grails
@@ -25,6 +27,7 @@ class Contact {
         city(nullable:true)
         zipCode(nullable:true)
         emailAddress(nullable:true)
+        lastUpdated(nullable:true, blank:true)
     }
 
     String toString(){
