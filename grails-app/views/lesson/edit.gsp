@@ -31,28 +31,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="description">Description:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="lessonDates">Lesson Dates:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'lessonDates','errors')}">
-                                    <g:select name="lessonDates"
-from="${org.bworks.bworksdb.LessonDate.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${lessonInstance?.lessonDates}" />
-
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="name">Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'name','errors')}">
@@ -60,6 +38,23 @@ value="${lessonInstance?.lessonDates}" />
                                 </td>
                             </tr> 
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="program">Program:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'program','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Program.list()}" name="program.id" value="${lessonInstance?.program?.id}" ></g:select>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">Description:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'description','errors')}">
+                                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/>
+                                </td>
+                            </tr> 
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="sequence">Sequence:</label>

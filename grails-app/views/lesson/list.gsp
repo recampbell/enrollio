@@ -27,6 +27,8 @@
                         
                    	        <g:sortableColumn property="name" title="Name" />
                         
+                   	        <th>Program</th>
+                   	    
                    	        <g:sortableColumn property="sequence" title="Sequence" />
                         
                         </tr>
@@ -40,6 +42,8 @@
                             <td>${fieldValue(bean:lessonInstance, field:'description')}</td>
                         
                             <td>${fieldValue(bean:lessonInstance, field:'name')}</td>
+                        
+                            <td>${fieldValue(bean:lessonInstance, field:'program')}</td>
                         
                             <td>${fieldValue(bean:lessonInstance, field:'sequence')}</td>
                         

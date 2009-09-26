@@ -57,6 +57,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name">Program:</td>
+                            
+                            <td valign="top" class="value"><g:link controller="program" action="show" id="${lessonInstance?.program?.id}">${lessonInstance?.program?.encodeAsHTML()}</g:link></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name">Sequence:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:lessonInstance, field:'sequence')}</td>

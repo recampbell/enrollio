@@ -26,14 +26,6 @@
                     <table>
                         <tbody>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="description">Description:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/>
-                                </td>
-                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -46,6 +38,15 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="program">Program:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'program','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Program.list()}" name="program.id" value="${lessonInstance?.program?.id}" ></g:select>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="sequence">Sequence:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'sequence','errors')}">
@@ -53,6 +54,14 @@
                                 </td>
                             </tr> 
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">Description:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'description','errors')}">
+                                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/>
+                                </td>
+                            </tr> 
                         </tbody>
                     </table>
                 </div>
