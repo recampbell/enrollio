@@ -71,6 +71,12 @@
                             </td>
                             
                         </tr>
+                        <tr class="prop">
+                            <td colspan="2" valign="top" class="name">
+                            <g:link action="create" controller="lesson"
+                                    params="['program.id' : programInstance.id]">Add Lesson</g:link>
+                            </td>
+                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
