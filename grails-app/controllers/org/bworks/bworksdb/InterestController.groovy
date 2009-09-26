@@ -10,8 +10,20 @@ class InterestController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
+        def interestInstanceList
+        def programInstance
+        if (params.program) {
+            programInstance = Program.get(params.program.id)
+            interestInstanceList = Interest.findAllByProgram(programInstance)
+        }
+        else {
+            interestInstanceList = Interest.list( params )
+        }
+
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ interestInstanceList: Interest.list( params ), interestInstanceTotal: Interest.count() ]
+        [ interestInstanceList : interestInstanceList ,
+          interestInstanceTotal: interestInstanceList.count(),
+          programInstance : programInstance ]
     }
 
     def show = {

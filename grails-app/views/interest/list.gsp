@@ -4,7 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Interest List</title>
+        <g:if test="${programInstance}">
+            <title>Interest List for ${programInstance}</title>
+        </g:if>
+        <g:else>
+            <title>Interest List</title>
+        </g:else>
     </head>
     <body>
         <div class="nav">
@@ -12,7 +17,12 @@
             <span class="menuButton"><g:link class="create" action="create">New Interest</g:link></span>
         </div>
         <div class="body">
+        <g:if test="${programInstance}">
+            <h1>Interest List for ${programInstance}<h1>
+        </g:if>
+        <g:else>
             <h1>Interest List</h1>
+        </g:else>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -21,15 +31,13 @@
                     <thead>
                         <tr>
                         
-                   	        <g:sortableColumn property="id" title="Id" />
+                   	        <th>Student</th>
                         
                    	        <th>Note</th>
                    	    
                    	        <g:sortableColumn property="active" title="Active" />
                         
-                   	        <th>Program</th>
                    	    
-                   	        <th>Student</th>
                    	    
                         </tr>
                     </thead>
@@ -37,15 +45,11 @@
                     <g:each in="${interestInstanceList}" status="i" var="interestInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${interestInstance.id}">${fieldValue(bean:interestInstance, field:'id')}</g:link></td>
+                            <td><g:link action="show" id="${interestInstance.id}">${fieldValue(bean:interestInstance, field:'student')}</g:link></td>
                         
                             <td>${fieldValue(bean:interestInstance, field:'note')}</td>
                         
                             <td>${fieldValue(bean:interestInstance, field:'active')}</td>
-                        
-                            <td>${fieldValue(bean:interestInstance, field:'program')}</td>
-                        
-                            <td>${fieldValue(bean:interestInstance, field:'student')}</td>
                         
                         </tr>
                     </g:each>
