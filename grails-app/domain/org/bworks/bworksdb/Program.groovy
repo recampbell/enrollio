@@ -10,4 +10,8 @@ class Program {
     
     static constraints = {
     }
+
+    String toString() {
+        name
+    }
 }
