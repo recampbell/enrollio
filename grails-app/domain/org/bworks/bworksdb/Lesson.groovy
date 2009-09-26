@@ -4,6 +4,7 @@ class Lesson implements Comparable {
     String name 
     String description
     Integer sequence
+    Program program
     static belongsTo = [Program]
     static hasMany = [lessonDates:LessonDate]
     static constraints = {
