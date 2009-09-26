@@ -100,9 +100,9 @@ class BootStrap {
 
    def randomFirstName() {
        def seed = new Random()
-       def names = ['Bob', 'Jane', 'Dooge', 'Patty', 'Charlie', 'Snoopy', 'Schizoid',
-                    'Nate', 'Dan', 'Mary', 'Adam', 'Chris', 'Theresa', 'Snarf', 'Peter',
-                    'Missie', 'Julie', 'Wong', 'Debbie']
+       def names = ['Bob', 'Jane', 'Dooge', 'Patty', 'Charlie', 'Snoopy', 'Woodstock', 
+                    'Schizoid', 'Nate', 'Dan', 'Mary', 'Adam', 'Chris', 'Theresa', 
+                    'Snarf', 'Peter', 'Missie', 'Julie', 'Wong', 'Debbie']
        return names[seed.nextInt(names.size() - 1)]
    }
    
