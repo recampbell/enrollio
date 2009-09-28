@@ -321,7 +321,7 @@ text-align:left;
 /* --------------------------------------*/
 #header { 
 background: #227ce8;
-height: 150px; 
+height: 75px; 
 margin: 0px auto; 
 border-top: solid 2px #000000;
 } 
@@ -449,4 +449,8 @@ border-left: 10px solid #1c64d1;
 border-right: 10px solid #5ba3e0;
 background-color: #2586d7;
 color: #fff;
+}
+
+.searchbox {
+float: right;
 }

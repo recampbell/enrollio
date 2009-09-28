@@ -1,7 +1,7 @@
 package org.bworks.bworksdb
 
 class Student {
-    
+    static searchable = true 
     String firstName
     String lastName
     String middleName

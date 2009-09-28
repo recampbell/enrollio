@@ -1,7 +1,7 @@
 package org.bworks.bworksdb
 
 class Contact {
-
+    static searchable = true
     String firstName
     String lastName
     String address1
