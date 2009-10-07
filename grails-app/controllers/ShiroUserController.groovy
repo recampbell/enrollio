@@ -1,4 +1,4 @@
-
+import org.apache.shiro.crypto.hash.Sha1Hash
 
 class ShiroUserController {
     
@@ -88,7 +88,11 @@ class ShiroUserController {
 
     def save = {
         def shiroUserInstance = new ShiroUser(params)
-        if(!shiroUserInstance.hasErrors() && shiroUserInstance.save()) {
+        if(!shiroUserInstance.hasErrors()) {
+            // We know that the password and password confirm are equal.
+            // Generate a new password hash
+            shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+            shiroUserInstance.save()
             flash.message = "ShiroUser ${shiroUserInstance.id} created"
             redirect(action:show,id:shiroUserInstance.id)
         }
