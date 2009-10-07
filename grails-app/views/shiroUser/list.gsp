@@ -43,6 +43,7 @@
                             <td>${fieldValue(bean:shiroUserInstance, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:shiroUserInstance, field:'lastName')}</td>
+                            <td><g:link action="edit" id="${shiroUserInstance.id}">Edit User</g:link></td>
                         
                         
                         </tr>
