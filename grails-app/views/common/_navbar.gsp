@@ -44,7 +44,7 @@
 
 	<div class="navcontainer1">
 			<h1 class="panelHeader">				
-				Admin
+				Users
 			</h1>
 			<ul class="navlist">
                             <li>
@@ -52,12 +52,15 @@
                                     List Users
                                 </g:link>
                             </li>
+                            <shiro:hasRole name="Administrator">
                             <li>
                                 <g:link controller="shiroUser" action="create">
                                     Create User
                                 </g:link>
                             </li>
+                            </shiro:hasRole>
                         </ul>						
 	</div> 	
 	
 </div>
+
