@@ -44,15 +44,20 @@
 
 	<div class="navcontainer1">
 			<h1 class="panelHeader">				
-				Leisure
+				Admin
 			</h1>
 			<ul class="navlist">
-				<li><a href="#">Activity 1</a></li>		
-				<li><a href="#">Activity 2</a></li>		
-				<li><a href="#">Activity 3</a></li>		
-				<li><a href="#">Activity 4</a></li>		
-				<li><a href="#">Activity 5</a></li>		
-			</ul>						
+                            <li>
+                                <g:link controller="shiroUser" action="list">
+                                    List Users
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link controller="shiroUser" action="create">
+                                    Create User
+                                </g:link>
+                            </li>
+                        </ul>						
 	</div> 	
 	
 </div>
