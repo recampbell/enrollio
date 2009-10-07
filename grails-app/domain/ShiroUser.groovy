@@ -12,6 +12,11 @@ class ShiroUser {
         username(nullable: false, blank: false)
         firstName(nullable:false, blank:false)
         lastName(nullable:false, blank:false)
-
+        password(validator: { val, obj ->
+            if(val.equals(obj.passwordConfirm)) {
+                return true
+            }
+            return 'user.password.mustmatch.confirmation'
+        })
     }
 }
