@@ -29,9 +29,6 @@
                         
                    	        <g:sortableColumn property="lastName" title="Last Name" />
                         
-                   	        <g:sortableColumn property="passwordHash" title="Password Hash" />
-                        
-                   	        <g:sortableColumn property="password" title="Password" />
                         
                         </tr>
                     </thead>
@@ -47,9 +44,6 @@
                         
                             <td>${fieldValue(bean:shiroUserInstance, field:'lastName')}</td>
                         
-                            <td>${fieldValue(bean:shiroUserInstance, field:'passwordHash')}</td>
-                        
-                            <td>${fieldValue(bean:shiroUserInstance, field:'password')}</td>
                         
                         </tr>
                     </g:each>

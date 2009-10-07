@@ -50,26 +50,8 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Password Hash:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:shiroUserInstance, field:'passwordHash')}</td>
-                            
-                        </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Password:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:shiroUserInstance, field:'password')}</td>
-                            
-                        </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Password Confirm:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:shiroUserInstance, field:'passwordConfirm')}</td>
-                            
-                        </tr>
                     
                     </tbody>
                 </table>

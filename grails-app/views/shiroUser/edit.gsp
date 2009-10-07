@@ -56,14 +56,6 @@
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="passwordHash">Password Hash:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:shiroUserInstance,field:'passwordHash','errors')}">
-                                    <input type="text" name="passwordHash" id="passwordHash" value="${fieldValue(bean:shiroUserInstance,field:'passwordHash')}" />
-                                </td>
-                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
