@@ -67,7 +67,7 @@
                                     <label for="password">Password:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:shiroUserInstance,field:'password','errors')}">
-                                    <input type="text" name="password" id="password" value="${fieldValue(bean:shiroUserInstance,field:'password')}" />
+                                    <g:passwordField name="password" value="${fieldValue(bean:shiroUserInstance,field:'password')}" />
                                 </td>
                             </tr> 
                         
@@ -76,7 +76,7 @@
                                     <label for="passwordConfirm">Password Confirm:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:shiroUserInstance,field:'passwordConfirm','errors')}">
-                                    <input type="text" name="passwordConfirm" id="passwordConfirm" value="${fieldValue(bean:shiroUserInstance,field:'passwordConfirm')}" />
+                                    <g:passwordField name="passwordConfirm" value="${fieldValue(bean:shiroUserInstance,field:'passwordConfirm')}" />
                                 </td>
                             </tr> 
                         
