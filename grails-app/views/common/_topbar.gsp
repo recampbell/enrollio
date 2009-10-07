@@ -1,7 +1,9 @@
 <div id="welcome">
-12th June 2008 
+<g:formatDate format="EEEE, MMMM d yyyy" date="${new Date()}"/>
 </div>
 
 <div id="menu">
-	Welcome TODO Username | <a href="#">logout</a>
+        <shiro:isLoggedIn>
+	Welcome, <shiro:principal/>! | <g:link controller="auth" action="signOut">Log Out</g:link>
+        </shiro:isLoggedIn>
 </div>
