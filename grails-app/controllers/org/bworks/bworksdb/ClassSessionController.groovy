@@ -1,8 +1,8 @@
-
-
 package org.bworks.bworksdb
 
 class ClassSessionController {
+
+    def programService
     
     def index = { redirect(action:list,params:params) }
 
@@ -85,6 +85,8 @@ class ClassSessionController {
     def create = {
         def classSessionInstance = new ClassSession()
         classSessionInstance.properties = params
+        classSessionInstance.lessonDates =
+            programService.nextAvailableClasses(classSessionInstance.program, new Date())
         return ['classSessionInstance':classSessionInstance]
     }
 
