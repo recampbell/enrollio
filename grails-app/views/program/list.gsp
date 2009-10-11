@@ -34,6 +34,7 @@
                             <td>${fieldValue(bean:programInstance, field:'description')}</td>
                         
                             <td><g:link action="callList" id="${programInstance.id}">Create Call List</g:link></td>
+                            <td><g:link controller="classSession" action="create" params="['program.id':programInstance.id]">New Class Session</g:link></td>
                             %{-- lucky that we can pass the ID of the program, meow --}%
                             <td><g:pdfLink url="/program/pdfCallList">PDF Call List</g:pdfLink></td>
                         </tr>

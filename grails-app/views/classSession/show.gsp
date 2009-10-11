@@ -62,12 +62,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Note:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="note" action="show" id="${classSessionInstance?.note?.id}">${classSessionInstance?.note?.encodeAsHTML()}</g:link></td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Start Date:</td>

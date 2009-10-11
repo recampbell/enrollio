@@ -25,22 +25,21 @@
                 <div class="dialog">
                     <table>
                         <tbody>
-                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="name">Program:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
+                                    ${classSessionInstance.program?.name}
+                                    <input type="hidden" id="program.id" name="program.id" value="${classSessionInstance.program?.id}" />
+                                </td>
+                            </tr> 
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="name">Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
                                     <input type="text" id="name" name="name" value="${fieldValue(bean:classSessionInstance,field:'name')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="note">Note:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'note','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Note.list()}" name="note.id" value="${classSessionInstance?.note?.id}" ></g:select>
                                 </td>
                             </tr> 
                         
