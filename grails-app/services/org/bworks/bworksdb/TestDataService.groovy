@@ -29,7 +29,7 @@ class TestDataService {
         def p2 = new Program(description:"Byteworks Mentorship Program",
                               name:"Mentorship Program").save()
  
-        def s0 = new ConfigSetting(key:'defaultInterestProgram',
+        def s0 = new ConfigSetting(configKey:'defaultInterestProgram',
                                    value:1,
                                    isDefault: true,
                                    description:'When entering Students, this program will be the default program they\'re interested in').save()

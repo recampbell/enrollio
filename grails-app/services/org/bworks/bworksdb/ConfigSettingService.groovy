@@ -5,20 +5,20 @@ class ConfigSettingService {
     boolean transactional = true
 
     def getSetting(key) {
-        def setting = ConfigSetting.findByKeyAndIsDefault(key, false)
+        def setting = ConfigSetting.findByConfigKeyAndIsDefault(key, false)
         if (!setting) {
-            setting = ConfigSetting.findByKeyAndIsDefault(key, true)
+            setting = ConfigSetting.findByConfigKeyAndIsDefault(key, true)
         }
         return setting
     }
 
     def setSetting(key, value, description = '') {
-        def setting = ConfigSetting.findByKey(key)
+        def setting = ConfigSetting.findByConfigKey(key)
         if (!setting) {
             setting = new ConfigSetting()
         }
 
-        setting.key = key
+        setting.configKey = key
         setting.value = value
         setting.description = description
         setting.isDefault = false

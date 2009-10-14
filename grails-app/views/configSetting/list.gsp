@@ -29,7 +29,7 @@
                         
                    	        <g:sortableColumn property="isDefault" title="Is Default" />
                         
-                   	        <g:sortableColumn property="key" title="Key" />
+                   	        <g:sortableColumn property="configKey" title="Key" />
                         
                         </tr>
                     </thead>
@@ -45,7 +45,7 @@
                         
                             <td>${fieldValue(bean:configSettingInstance, field:'isDefault')}</td>
                         
-                            <td>${fieldValue(bean:configSettingInstance, field:'key')}</td>
+                            <td>${fieldValue(bean:configSettingInstance, field:'configKey')}</td>
                         
                         </tr>
                     </g:each>
