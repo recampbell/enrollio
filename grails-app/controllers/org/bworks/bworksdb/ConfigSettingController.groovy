@@ -5,13 +5,39 @@ package org.bworks.bworksdb
 class ConfigSettingController {
     
     def index = { redirect(action:list,params:params) }
+    def testDataService
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete:'POST', save:'POST', update:'POST', generateTestData:'POST']
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ configSettingInstanceList: ConfigSetting.list( params ), configSettingInstanceTotal: ConfigSetting.count() ]
+    }
+
+    def testDataRequest = {
+        [ ]
+    }
+
+    // TODO: Make this error message friendlier
+    def generateTestContacts = {
+        try {
+            def nc = params.numContacts.toInteger()
+            testDataService.loadDummyContacts(nc)
+            flash.message = "Test data was successfully generated."
+            redirect(uri:'/')
+        } catch (Exception e) {
+            flash.message = e
+            redirect(uri:'/')
+        }
+
+    }
+
+    // TODO: Make this error message friendlier
+    def generateTestPrograms = {
+        testDataService.loadDefaultPrograms()
+        flash.message = "Test programs were successfully generated."
+        redirect(uri:'/')
     }
 
     def show = {

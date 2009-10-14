@@ -5,19 +5,15 @@ class TestDataService {
     boolean transactional = true
 
     // Git some test data in these here parts
-    def loadDevData() {
-        def s0 = new ConfigSetting(key:'defaultInterestProgram',
-                                   value:1,
-                                   isDefault: true,
-                                   description:'When entering Students, this program will be the default program they\'re interested in').save()
-        loadDevPrograms()
+    def loadDevData(numContacts = 100) {
+        loadDefaultPrograms()
  
-        100.times {
+        numContacts.times {
             loadDummyContactAndStudents()
         }
     } 
  
-    def loadDevPrograms() {
+    def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:"Children's EAC").save()
         def eacLessons = ['Intro to Computers', 'Scratch Programming',
@@ -33,6 +29,17 @@ class TestDataService {
         def p2 = new Program(description:"Byteworks Mentorship Program",
                               name:"Mentorship Program").save()
  
+        def s0 = new ConfigSetting(key:'defaultInterestProgram',
+                                   value:1,
+                                   isDefault: true,
+                                   description:'When entering Students, this program will be the default program they\'re interested in').save()
+    }
+
+    def loadDummyContacts(numContacts = 100) {
+
+        numContacts.times {
+            loadDummyContactAndStudents()
+        }
     }
  
     // Method used to create a dummy contact, student and an interest

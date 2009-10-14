@@ -76,6 +76,11 @@
                                     Settings
                                 </g:link>
                             </li>
+                            <li>
+                                <g:link controller="configSetting" action="testDataRequest">
+                                    Load Test Data
+                                </g:link>
+                            </li>
                         </ul>						
 	</div> 	
 	
