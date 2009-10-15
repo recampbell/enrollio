@@ -51,6 +51,11 @@
                                     <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
                                 </td>
                             </tr> 
+                            <tr>
+                                %{-- <g:datePicker name="lessonDates[0].lessonDate" precision="day" ></g:datePicker> --}%
+                                %{-- <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" /> --}%
+
+                            </tr>
                         
                         </tbody>
                     </table>
