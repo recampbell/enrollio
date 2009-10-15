@@ -55,10 +55,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="key">Key:</label>
+                                    <label for="configKey">Key:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'key','errors')}">
-                                    <input type="text" id="key" name="key" value="${fieldValue(bean:configSettingInstance,field:'key')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'configKey','errors')}">
+                                    <input type="text" id="configKey" name="configKey" value="${fieldValue(bean:configSettingInstance,field:'configKey')}"/>
                                 </td>
                             </tr> 
                         

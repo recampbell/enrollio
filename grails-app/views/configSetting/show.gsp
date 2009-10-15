@@ -53,7 +53,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Key:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'key')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'configKey')}</td>
                             
                         </tr>
                     

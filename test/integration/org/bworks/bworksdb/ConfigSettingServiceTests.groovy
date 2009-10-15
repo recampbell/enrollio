@@ -15,10 +15,10 @@ class ConfigSettingServiceTests extends GrailsUnitTestCase {
 
     void testSomething() {
 
-        def defaultSetting = new ConfigSetting(key:'foo', value:'Default', isDefault:true)
+        def defaultSetting = new ConfigSetting(configKey:'foo', value:'Default', isDefault:true)
         assert defaultSetting.validate()
         defaultSetting.save()
-        def nonDefaultSetting = new ConfigSetting(key:'foo', value:'NonDefault', isDefault:false)
+        def nonDefaultSetting = new ConfigSetting(configKey:'foo', value:'NonDefault', isDefault:false)
         assert nonDefaultSetting.save()
 
         def setting = configSettingService.getSetting('foo')

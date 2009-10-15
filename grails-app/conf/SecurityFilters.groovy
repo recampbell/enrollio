@@ -18,6 +18,14 @@ class SecurityFilters {
                 }
             }
         }
+        adminOnlyForConfig(controller:"configSettings", action:"*") {
+            before = {
+                accessControl {
+                     // Only admins
+                     role("Administrator")
+                }
+            }
+        }
     }
 }
 

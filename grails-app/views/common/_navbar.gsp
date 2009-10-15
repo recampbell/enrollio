@@ -63,4 +63,26 @@
 	</div> 	
 	
 </div>
+<shiro:hasRole name="Administrator">
+<div class='navbarBox'>
 
+	<div class="navcontainer1">
+			<h1 class="panelHeader">				
+                        Admin
+			</h1>
+			<ul class="navlist">
+                            <li>
+                                <g:link controller="configSetting" action="list">
+                                    Settings
+                                </g:link>
+                            </li>
+                            <li>
+                                <g:link controller="configSetting" action="testDataRequest">
+                                    Load Test Data
+                                </g:link>
+                            </li>
+                        </ul>						
+	</div> 	
+	
+</div>
+</shiro:hasRole>

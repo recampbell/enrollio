@@ -2,7 +2,7 @@ package org.bworks.bworksdb
 
 class ConfigSetting {
 
-    String key
+    String configKey
     String value
     String description
     Boolean isDefault
