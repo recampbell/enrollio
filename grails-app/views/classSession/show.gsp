@@ -7,11 +7,6 @@
         <title>Show ClassSession</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">ClassSession List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New ClassSession</g:link></span>
-        </div>
         <div class="body">
             <h1>Show ClassSession</h1>
             <g:if test="${flash.message}">
