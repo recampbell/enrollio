@@ -52,8 +52,7 @@
                                 </td>
                             </tr> 
                             <tr>
-                                %{-- <g:datePicker name="lessonDates[0].lessonDate" precision="day" ></g:datePicker> --}%
-                                %{-- <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" /> --}%
+                                <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" /> 
 
                             </tr>
                         
