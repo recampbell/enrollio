@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Create ClassSession</title>         
+        <title>Create ClassSession</title>
     </head>
     <body>
         <div class="nav">
@@ -33,7 +33,7 @@
                                     ${classSessionInstance.program?.name}
                                     <input type="hidden" id="program.id" name="program.id" value="${classSessionInstance.program?.id}" />
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="name">Name:</label>
@@ -41,8 +41,8 @@
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
                                     <input type="text" id="name" name="name" value="${fieldValue(bean:classSessionInstance,field:'name')}"/>
                                 </td>
-                            </tr> 
-                        
+                            </tr>
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="startDate">Start Date:</label>
@@ -50,12 +50,12 @@
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
                                     <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
                                 </td>
-                            </tr> 
+                            </tr>
                             <tr>
-                                <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" /> 
+                                <!-- <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" />  -->
 
                             </tr>
-                        
+
                         </tbody>
                     </table>
                 </div>
@@ -66,3 +66,4 @@
         </div>
     </body>
 </html>
+
