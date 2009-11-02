@@ -28,7 +28,7 @@
                 <div class="dialog">
                     <table>
                         <tbody>
-                        
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="enrollments">Enrollments:</label>
@@ -40,8 +40,8 @@ size="5" multiple="yes" optionKey="id"
 value="${classSessionInstance?.enrollments}" />
 
                                 </td>
-                            </tr> 
-                        
+                            </tr>
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="lessonDates">Lesson Dates:</label>
@@ -53,8 +53,8 @@ size="5" multiple="yes" optionKey="id"
 value="${classSessionInstance?.lessonDates}" />
 
                                 </td>
-                            </tr> 
-                        
+                            </tr>
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="name">Name:</label>
@@ -62,17 +62,9 @@ value="${classSessionInstance?.lessonDates}" />
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
                                     <input type="text" id="name" name="name" value="${fieldValue(bean:classSessionInstance,field:'name')}"/>
                                 </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="note">Note:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'note','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Note.list()}" name="note.id" value="${classSessionInstance?.note?.id}" ></g:select>
-                                </td>
-                            </tr> 
-                        
+                            </tr>
+
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="startDate">Start Date:</label>
@@ -80,8 +72,8 @@ value="${classSessionInstance?.lessonDates}" />
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
                                     <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
                                 </td>
-                            </tr> 
-                        
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -93,3 +85,4 @@ value="${classSessionInstance?.lessonDates}" />
         </div>
     </body>
 </html>
+
