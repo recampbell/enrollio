@@ -16,17 +16,17 @@
                 <table>
                     <tbody>
 
-                    
+
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
-                            
+
                             <td valign="top" class="value">${fieldValue(bean:classSessionInstance, field:'id')}</td>
-                            
+
                         </tr>
-                    
+
                         <tr class="prop">
                             <td valign="top" class="name">Enrollments:</td>
-                            
+
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="e" in="${classSessionInstance.enrollments}">
@@ -34,12 +34,14 @@
                                 </g:each>
                                 </ul>
                             </td>
-                            
+
+
+
                         </tr>
-                    
+
                         <tr class="prop">
                             <td valign="top" class="name">Lesson Dates:</td>
-                            
+
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="l" in="${classSessionInstance.lessonDates}">
@@ -47,30 +49,50 @@
                                 </g:each>
                                 </ul>
                             </td>
-                            
+
                         </tr>
-                    
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
-                            
+
                             <td valign="top" class="value">${fieldValue(bean:classSessionInstance, field:'name')}</td>
-                            
+
                         </tr>
-                    
-                    
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Program:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:classSessionInstance, field:'program.name')}</td>
+
+                        </tr>
+
+
                         <tr class="prop">
                             <td valign="top" class="name">Start Date:</td>
-                            
+
                             <td valign="top" class="value">${fieldValue(bean:classSessionInstance, field:'startDate')}</td>
-                            
+
                         </tr>
-                    
+
                     </tbody>
                 </table>
             </div>
             <div class="buttons">
                 <g:form>
                     <input type="hidden" name="id" value="${classSessionInstance?.id}" />
+                    <g:link action="enroll" params="[classSessionId : classSessionInstance.id]">Enroll Students in this Session</g:link>
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
                 </g:form>
@@ -78,3 +100,4 @@
         </div>
     </body>
 </html>
+

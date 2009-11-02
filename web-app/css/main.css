@@ -20,11 +20,11 @@ body {
 /*This [color:#666] forces the menu items in the side bar to display in gray
   solution: remove a:visited */
 /*a:link, a:visited, a:hover {*/
-	a:link, a:hover {	
+	a:link, a:hover {
     color: #666;
     font-weight: bold;
     text-decoration: none;
-} 
+}
 
 h1 {
     color: #006dba;
@@ -34,7 +34,7 @@ h1 {
 }
 
 ul {
-    padding-left: 15px;	
+    padding-left: 15px;
 }
 
 input, select, textarea {
@@ -67,7 +67,7 @@ input:focus, select:focus, textarea:focus {
 .nav {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
-    border-style: solid none solid none;	
+    border-style: solid none solid none;
     margin-top: 5px;
     padding: 7px 12px;
 }
@@ -115,7 +115,7 @@ div.errors {
 }
 div.errors ul {
     list-style: none;
-    padding: 0;	
+    padding: 0;
 }
 div.errors li {
 	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
@@ -139,7 +139,7 @@ table {
 tr {
     border: 0;
 }
-td, th { 
+td, th {
     font: 11px verdana, arial, helvetica, sans-serif;
     line-height: 12px;
     padding: 5px 6px;
@@ -277,12 +277,12 @@ th.desc a {
 /* PAGE container                        */
 /* --------------------------------------*/
 /* Contains page contents e.g header,navbar, content, footer */
-#page { 
-width: 90%; 
-margin: 0px auto; 
-padding: 4px 0; 
-text-align:left; 
-} 
+#page {
+width: 90%;
+margin: 0px auto;
+padding: 4px 0;
+text-align:left;
+}
 
 
 /* --------------------------------------*/
@@ -292,23 +292,23 @@ text-align:left;
 	text-align:left;
 	padding:5px 0;
 	border-top: 1px solid #333;
-	background: #000000;	
+	background: #000000;
 	height: 15px;
 }
 
 #topbar #welcome{
 	float:left;
 	text-align:left;
-	font-size: 12px; 	
-	padding: 0px 0px 0px 10px;	
+	font-size: 12px;
+	padding: 0px 0px 0px 10px;
 	color: #ffffff;
 }
 
 #topbar #menu{
 	float: right;
 	text-align: right;
-	font-size: 12px; 	
-	color: #ffffff;	
+	font-size: 12px;
+	color: #ffffff;
 }
 
 #topbar #menu a{
@@ -319,58 +319,58 @@ text-align:left;
 /* --------------------------------------*/
 /* HEADER                                */
 /* --------------------------------------*/
-#header { 
+#header {
 background: #227ce8;
-height: 75px; 
-margin: 0px auto; 
+height: 75px;
+margin: 0px auto;
 border-top: solid 2px #000000;
-} 
+}
 
-#header h1 { 
-font-family:Arial,sans-serif; 
-color: white; 
-padding: 20px 0 0 6px; 
-font-size:1.6em; 
+#header h1 {
+font-family:Arial,sans-serif;
+color: white;
+padding: 20px 0 0 6px;
+font-size:1.6em;
 }
 
 /* --------------------------------------*/
 /* CONTENT                               */
 /* --------------------------------------*/
-#content { 
-float: left; 
+#content {
+float: left;
 width: 70%;
-color: #000; 
+color: #000;
 margin: 0 0.5em 0 0;
 padding: 0px 10px 5px 0px;
 }
 
 /* --------------------------------------*/
 /* NAVBAR                                */
-/* --------------------------------------*/ 
-#navbar { 
-float: right; 
-width: 25%; 
-color: #ff0000; 
-padding: 0px 5px 0px 5px; 
+/* --------------------------------------*/
+#navbar {
+float: right;
+width: 25%;
+color: #ff0000;
+padding: 0px 5px 0px 5px;
 margin: 0 0 0 0;
-border-left: 1px solid #d3d3d3; 
-border-right: 1px solid #d3d3d3; 
-} 
+border-left: 1px solid #d3d3d3;
+border-right: 1px solid #d3d3d3;
+}
 
 
 /*2.12.08 IE correction to drop sidbarBox*/
 html>body #navbar .navbarBox {
 
-	width: 200px; 
-	color: #0000ff; 
+	width: 200px;
+	color: #0000ff;
 	background: #2175bc;
 	margin: 0px 5px 5px 5px  ; /*ensure there's a gap between text in navbar and start of navbar*/
 }
 
 /*Header for boxes in navbar menu*/
-#navbar .navbarBox h1{	
+#navbar .navbarBox h1{
 	background: #227ce8;
-	color: #ffffff;	
+	color: #ffffff;
     font-weight: normal;
     font-size: 16px;
 }
@@ -381,10 +381,10 @@ html>body #navbar .navbarBox {
 #footer {
 	border: solid 1px #000000;
 	height: 20px;
-	clear:both; 
+	clear:both;
 	padding:5px;
 	margin: 5px 5px 5px 5px;
-	background: #ababab url(../images/footer.png) repeat; 
+	background: #ababab url(../images/footer.png) repeat;
 }
 
 #footer .tandc{
@@ -402,14 +402,14 @@ html>body #navbar .navbarBox {
 /*----------------------------------------------------------*/
 
 h1.panelHeader{
-	font-weight: bold; 
-	text-align: center; 
+	font-weight: bold;
+	text-align: center;
 }
 
 /*need html>body hack otw menu boxes, e.g. navbarbx all merge together*/
 html>body .navcontainer1
 {
-width: 100%;	
+width: 100%;
 border-right: 1px solid #000;
 font-family: Verdana, Lucida, Geneva, Helvetica, Arial, sans-serif;
 background-color: #227ee8;
@@ -454,3 +454,87 @@ color: #fff;
 .searchbox {
 float: right;
 }
+
+
+
+
+
+
+body {
+    font-family: sans-serif;
+}
+h1, h2, h3, h4, p {
+    padding: 0px;
+    margin: 0px;
+}
+.hover {
+	background-color: yellow;
+	cursor:pointer;
+}
+.back {
+    background-color: white;
+    border: solid black;
+    border-width: 0px 0px 1px 1px;
+    position: absolute;
+    padding: 5px;
+    top: 0px;
+    right: 0px;
+    font-size: 12pt;
+    z-index: 8888;
+}
+
+.studentBox {
+    height: 20em;
+    width: 15em;
+    overflow: scroll;
+}
+
+#enrolledStudents  {
+    background-color: black;
+    border: solid red 1px;
+
+}
+#availableStudents  {
+    background-color: gray;
+    border: solid blue 1px;
+}
+#status {
+    position: absolute;
+    z-index: 7777;
+    top: 5px;
+    right: 100px;
+    font-size: 14pt;
+    font-weight: bold;
+    color: red;
+}
+/*
+.cacheWrapper {
+    float:right;
+    width: 55%;
+}
+*/
+ul.itemListing {
+    min-height: 24em;
+}
+table td {
+    padding: 4px;
+}
+.item {
+    background-color: white;
+}
+
+ul { list-style-type: none; }
+
+li {
+    border: solid black 3px;
+
+    width: 100px;
+
+    margin: 0 0.4em 0.4em 0;
+    text-align: center;
+}
+li h5 {
+    margin: 0 0 0.4em; cursor: move;
+}
+.item img { height: 100px; cursor: move;}
+

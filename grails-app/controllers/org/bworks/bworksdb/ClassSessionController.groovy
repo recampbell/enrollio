@@ -3,7 +3,7 @@ package org.bworks.bworksdb
 class ClassSessionController {
 
     def programService
-    
+
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -12,6 +12,20 @@ class ClassSessionController {
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
+    }
+
+    def enroll = {
+        //
+        def interests = Interest.findAll()
+
+        def interestedStudents = interests.findAll {
+            it.active == true && it.program.id == 4
+        }.collect {
+            it.student
+        }
+
+
+        [ interestedStudents : interestedStudents ]
     }
 
     def show = {
@@ -61,7 +75,7 @@ class ClassSessionController {
             if(params.version) {
                 def version = params.version.toLong()
                 if(classSessionInstance.version > version) {
-                    
+
                     classSessionInstance.errors.rejectValue("version", "classSession.optimistic.locking.failure", "Another user has updated this ClassSession while you were editing.")
                     render(view:'edit',model:[classSessionInstance:classSessionInstance])
                     return
@@ -92,7 +106,14 @@ class ClassSessionController {
     }
 
     def save = {
+        params.each {
+            println it
+        }
         def classSessionInstance = new ClassSession(params)
+        classSessionInstance.lessonDates.each {
+            println it
+        }
+
         if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
             flash.message = "ClassSession ${classSessionInstance.id} created"
             redirect(action:show,id:classSessionInstance.id)
@@ -102,3 +123,4 @@ class ClassSessionController {
         }
     }
 }
+
