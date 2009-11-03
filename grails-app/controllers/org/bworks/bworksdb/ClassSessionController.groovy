@@ -15,17 +15,16 @@ class ClassSessionController {
     }
 
     def enroll = {
-        //
-        def interests = Interest.findAll()
-
-        def interestedStudents = interests.findAll {
-            it.active == true && it.program.id == 4
-        }.collect {
-            it.student
+        def classSession = ClassSession.get(params.classSessionId)
+        // TODO if programId not provided, flash message and redirect back
+        def interests = Interest.findAllByProgram(classSession.program).findAll {
+            it.active == true
         }
+        [ interests : interests , classSession:classSession ]
+    }
 
-
-        [ interestedStudents : interestedStudents ]
+    def saveEnrollments = {
+        redirect(action:show,id:params.id)
     }
 
     def show = {

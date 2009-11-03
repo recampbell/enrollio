@@ -455,86 +455,118 @@ color: #fff;
 float: right;
 }
 
+<!--
+/* Terence Ordona, portal[AT]imaputz[DOT]com         */
+/* http://creativecommons.org/licenses/by-sa/2.0/    */
 
-
-
-
-
+/* begin some basic styling here                     */
 body {
-    font-family: sans-serif;
-}
-h1, h2, h3, h4, p {
-    padding: 0px;
-    margin: 0px;
-}
-.hover {
-	background-color: yellow;
-	cursor:pointer;
-}
-.back {
-    background-color: white;
-    border: solid black;
-    border-width: 0px 0px 1px 1px;
-    position: absolute;
-    padding: 5px;
-    top: 0px;
-    right: 0px;
-    font-size: 12pt;
-    z-index: 8888;
+	background: #FFF;
+	color: #000;
+	font: normal normal 12px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	padding: 0
 }
 
-.studentBox {
-    height: 20em;
-    width: 15em;
-    overflow: scroll;
+table, td, a {
+	color: #000;
+	font: normal normal 12px Verdana, Geneva, Arial, Helvetica, sans-serif
 }
 
-#enrolledStudents  {
-    background-color: black;
-    border: solid red 1px;
-
-}
-#availableStudents  {
-    background-color: gray;
-    border: solid blue 1px;
-}
-#status {
-    position: absolute;
-    z-index: 7777;
-    top: 5px;
-    right: 100px;
-    font-size: 14pt;
-    font-weight: bold;
-    color: red;
-}
-/*
-.cacheWrapper {
-    float:right;
-    width: 55%;
-}
-*/
-ul.itemListing {
-    min-height: 24em;
-}
-table td {
-    padding: 4px;
-}
-.item {
-    background-color: white;
+h1 {
+	font: normal normal 18px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin: 0 0 5px 0
 }
 
-ul { list-style-type: none; }
-
-li {
-    border: solid black 3px;
-
-    width: 100px;
-
-    margin: 0 0.4em 0.4em 0;
-    text-align: center;
+h2 {
+	font: normal normal 16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin: 0 0 5px 0
 }
-li h5 {
-    margin: 0 0 0.4em; cursor: move;
+
+h3 {
+	font: normal normal 13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #008000;
+	margin: 0 0 15px 0
 }
-.item img { height: 100px; cursor: move;}
+/* end basic styling                                 */
+
+/* define height and width of scrollable area. Add 16px to width for scrollbar          */
+div.tableContainer {
+	clear: both;
+	border: 1px solid #963;
+	height: 285px;
+	overflow: auto;
+	width: 700px;
+}
+
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr {
+	position: relative
+}
+
+/* set THEAD element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+html>body thead.fixedHeader tr {
+	display: block
+}
+
+/* make the TH elements pretty */
+thead.fixedHeader th {
+	/* background: #C96; */
+	border: medium medium;
+	font-weight: normal;
+	padding: 4px 3px;
+	text-align: left;
+        width: 100px
+}
+
+thead.fixedHeader th + th {
+    width: 240px
+}
+
+tbody.fixedHeader th + th + th {
+	width: 300px
+}
+
+/* define the table content to be scrollable                                              */
+/* set TBODY element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+/* induced side effect is that child TDs no longer accept width: auto                     */
+html>body tbody.scrollContent {
+	display: block;
+	height: 262px;
+	overflow: auto;
+	width: 100%
+}
+
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+	background: #FFF;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
+}
+
+/* define width of TD elements: 1st, 2nd, and 3rd respectively.          */
+/* All other non-IE browsers.                                            */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
+tbody.scrollContent td {
+	width: 100px
+}
+
+tbody.scrollContent td + td {
+	width: 240px
+}
+
+tbody.scrollContent td + td + td {
+	width: 300px
+}
+
 
