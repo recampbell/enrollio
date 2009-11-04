@@ -17,22 +17,15 @@
 			</div>
 			
 
-                            <div id="header">
-                            
-			</div>
 
 			<div id="content">				
 				<g:layoutBody />		
-			</div>
-			<div id='navbar'>
-				<g:render template="/common/navbar" />
 			</div>
 					
 			<div id="footer">
 				<g:render template="/common/footer" />
 			</div>
 		
-		</div> 			
 
     </body>	
 </html>
