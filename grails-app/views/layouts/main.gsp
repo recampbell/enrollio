@@ -6,10 +6,8 @@
             <g:layoutTitle default="Enrollio!" />
         </title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
-        <link type="text/css"
-        href="${resource(dir:'css/pepper-grinder', file:'jquery-ui-1.7.2.custom.css')}" />
-        <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}"
-        type="image/x-icon" />
+        <link type="text/css" href="${resource(dir:'css/pepper-grinder', file:'jquery-ui-1.7.2.custom.css')}" />
+        <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="application" />
     </head>
