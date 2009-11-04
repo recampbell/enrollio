@@ -3,6 +3,7 @@ html * {
     /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
 }
 
+
 /* GENERAL */
 
 .spinner {
@@ -20,7 +21,7 @@ body {
 /*This [color:#666] forces the menu items in the side bar to display in gray
   solution: remove a:visited */
 /*a:link, a:visited, a:hover {*/
-	a:link, a:hover {
+	a:link {
     color: #666;
     font-weight: bold;
     text-decoration: none;
@@ -62,6 +63,18 @@ input:focus, select:focus, textarea:focus {
     margin: 0 15px 10px 15px;
 }
 
+/* MAIN TITLE BAR */
+.enr-app-title {
+    display:inline;
+}
+
+.enr-welcome-message {
+    float:right;
+}
+
+.enr-main-menu {
+    float:right;
+}
 /* NAVIGATION MENU */
 
 .nav {

@@ -3,6 +3,7 @@
     <head>
         <title><g:layoutTitle default="Enrollio!" /></title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}"/>
+        <link type="text/css" href="${resource(dir:'css/pepper-grinder', file:'jquery-ui-1.7.2.custom.css')}" />	
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript library="application" />				
@@ -11,16 +12,13 @@
 
 		<div id="page">
 		
-			<div id="topbar">
+			<div >
 				<g:render template="/common/topbar" />
 			</div>
 			
 
                             <div id="header">
-                            <img src="${resource(dir:'images',file:'bworks_logo_matthews.png')}"
-                                 alt="Byteworks Enrollio" style="float: left;"/> <div class="searchbox"><g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get">
-        <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
-    </g:form>  </div>
+                            
 			</div>
 
 			<div id="content">				
