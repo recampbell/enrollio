@@ -8,7 +8,7 @@
         <br />
         <div class="enr-main-menu">
             <shiro:hasRole name="Administrator">
-                <g:link controller="admin" action="show" class="enr-top-menu-item"> Admin </g:link>&nbsp;|&nbsp;
+                <g:link controller="admin"  class="enr-top-menu-item"> Admin </g:link>&nbsp;|&nbsp;
             </shiro:hasRole>
             <g:link controller="program" action="list" 
                 class="enr-top-menu-item">Programs </g:link>&nbsp;|&nbsp;
