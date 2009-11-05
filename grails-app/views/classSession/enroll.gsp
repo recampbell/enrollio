@@ -16,21 +16,43 @@
     <!-- <script src="${resource(dir:'js', file:'tables.js')}" type="text/javascript"></script> -->
     <!-- <script src="${resource(dir:'js', file:'forms.js')}" type="text/javascript"></script> -->
     <!-- <script src="${resource(dir:'js', file:'rotators.js')}" type="text/javascript"></script> -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+                $('.addButtonIconExample').toggle(function() {
+                    $(this).parent('tr').appendTo('#enrolledStudents');
+                    var btn = $(this).find('span');
+                    btn.toggleClass('ui-icon-plus');
+                    btn.toggleClass('ui-icon-minus');
+                    $(this).find('div').attr('title', 'Un-enroll this student');
+                },
+                function() {
+                    $(this).parent('tr').appendTo('#eligibleStudents');
+                    var btn = $(this).find('span');
+                    btn.toggleClass('ui-icon-plus');
+                    btn.toggleClass('ui-icon-minus');
+                    $(this).find('div').attr('title', 'Enroll this student');
+                }
+                );
+
+        });
+    </script>
 </head>
 <body>
     <g:form>
         <input type="hidden" name="classSessionId" value="${classSession.id}" />
-        <table border="0" cellpadding="0" cellspacing="0" width="100%"
-        class="sortable paginated scrollTable">
-            <thead class="fixedHeader">
-                <tr>
-                    <th class="sort-numeric">Enroll?</th>
-                    <th class="sort-alpha">Student</th>
-                    <th class="sort-alpha">Contact</th>
-                    <th class="sort-date">Signup Date</th>
-                </tr>
+        <table  style="float:left;" width="50%">
+            <caption>Eligible Students</caption>
+            <thead>
+                <th>&nbsp;</th>
+
+                <th>Student</th>
+
+                <th>Contact</th>
+
+                <th>Signup Date</th>
             </thead>
-            <tbody class="scrollContent">
+
+            <tbody id="eligibleStudents" class="scrollContent">
                 <g:each var="interest" in="${interests}">
                     <tr>
                         <td class="addButtonIconExample">
@@ -43,13 +65,26 @@
                         </td>
                         <td>${interest.student}</td>
                         <td>${interest.student.contact}</td>
-                        <td>${interest.dateCreated}</td>
+                        <td><g:formatDate format="MM/dd/yyyy" date="${interest.dateCreated}" />
+                            <td>&nbsp;</td>
                     </tr>
                 </g:each>
             </tbody>
+            </table>
+            <table  width="50%">
+            <caption>Enrolled Students</caption>
+            <thead>
+                <th>&nbsp;</th>
+
+                <th>Student</th>
+
+                <th>Contact</th>
+
+                <th>Signup Date</th>
+            </thead>
+
+            <tbody id="enrolledStudents" class="scrollContent">
+            </tbody>
         </table>
-        <span class="button">
-            <g:actionSubmit class="save" action="saveEnrollments" value="Save" />
-        </span>
     </g:form>
 </body>

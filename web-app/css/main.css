@@ -21,7 +21,7 @@ body {
 /*This [color:#666] forces the menu items in the side bar to display in gray
   solution: remove a:visited */
 /*a:link, a:visited, a:hover {*/
-	a:link {
+a:link {
     color: #666;
     font-weight: bold;
     text-decoration: none;
@@ -147,7 +147,7 @@ td.errors input {
 
 table {
     border: 1px solid #ccc;
-    width: 100%
+    /* width: 100% */
 }
 tr {
     border: 0;
@@ -503,83 +503,18 @@ h3 {
 }
 /* end basic styling                                 */
 
-/* define height and width of scrollable area. Add 16px to width for scrollbar          */
-div.tableContainer {
-	clear: both;
-	border: 1px solid #963;
-	height: 285px;
-	overflow: auto;
-	width: 700px;
-}
 
 
-/* set table header to a fixed position. WinIE 6.x only                                       */
-/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
-/* an element that has an overflow property set, the relative value translates into fixed.    */
-/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
-thead.fixedHeader tr {
-	position: relative
-}
-
-/* set THEAD element to have block level attributes. All other non-IE browsers            */
-/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
-html>body thead.fixedHeader tr {
-	display: block
-}
-
-/* make the TH elements pretty */
-thead.fixedHeader th {
-	/* background: #C96; */
-	border: medium medium;
-	font-weight: normal;
-	padding: 4px 3px;
-	text-align: left;
-        width: 100px
-}
-
-thead.fixedHeader th + th {
-    width: 240px
-}
-
-tbody.fixedHeader th + th + th {
-	width: 300px
-}
 
 /* define the table content to be scrollable                                              */
 /* set TBODY element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 /* induced side effect is that child TDs no longer accept width: auto                     */
-html>body tbody.scrollContent {
-	display: block;
-	height: 262px;
-	overflow: auto;
-	width: 100%
+.scrollContent {
+    height: 262px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-/* make TD elements pretty. Provide alternating classes for striping the table */
-/* http://www.alistapart.com/articles/zebratables/                             */
-tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
-	background: #FFF;
-	border-bottom: none;
-	border-left: none;
-	border-right: 1px solid #CCC;
-	border-top: 1px solid #DDD;
-	padding: 2px 3px 3px 4px
-}
-
-/* define width of TD elements: 1st, 2nd, and 3rd respectively.          */
-/* All other non-IE browsers.                                            */
-/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
-tbody.scrollContent td {
-	width: 100px
-}
-
-tbody.scrollContent td + td {
-	width: 240px
-}
-
-tbody.scrollContent td + td + td {
-	width: 300px
-}
 
 
