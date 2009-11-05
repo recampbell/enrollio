@@ -7,7 +7,7 @@ class ClassSessionController {
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete:'POST', save:'POST', saveEnrollments:'POST', update:'POST']
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
@@ -24,7 +24,7 @@ class ClassSessionController {
     }
 
     def saveEnrollments = {
-        redirect(action:show,id:params.id)
+        redirect(action:show,id:params.classSessionId)
     }
 
     def show = {
