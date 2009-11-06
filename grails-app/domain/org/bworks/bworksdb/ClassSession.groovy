@@ -8,4 +8,8 @@ class ClassSession {
     static hasMany = [ lessonDates:LessonDate, enrollments:Enrollment ]
     static constraints = {
     }
+
+    String toString() {
+        program.name + ", " + name
+    }
 }
