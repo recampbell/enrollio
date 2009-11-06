@@ -13,7 +13,8 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <div class="dialog">
-                <table>
+                <table style="float:left;">
+                    <caption>Session: ${classSessionInstance.name}</caption>
                     <tbody>
 
 
@@ -24,20 +25,6 @@
 
                         </tr>
 
-                        <tr class="prop">
-                            <td valign="top" class="name">Enrollments:</td>
-
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="e" in="${classSessionInstance.enrollments}">
-                                    <li><g:link controller="enrollment" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-
-
-
-                        </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name">Lesson Dates:</td>
@@ -88,6 +75,22 @@
 
                     </tbody>
                 </table>
+                <table>
+                    <caption>Enrolled Students</caption>
+                    <g:each var="e" in="${classSessionInstance.enrollments}">
+                    <tr>
+                        <td>
+                            <g:link controller="student" action="show" id="${e.id}">
+                            ${e.student}
+                            </g:link>
+                    </td>
+                </tr>
+                    </g:each>
+
+                </table>
+
+
+                        </tr>
             </div>
             <div class="buttons">
                 <g:form>
