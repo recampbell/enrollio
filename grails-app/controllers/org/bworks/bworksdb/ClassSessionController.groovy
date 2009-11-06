@@ -24,6 +24,12 @@ class ClassSessionController {
     }
 
     def saveEnrollments = {
+        def enrollees = params.interestedStudents
+        def classSession = ClassSession.get(params.classSessionId)
+        enrollees.each {
+            def stud = Student.get(it)
+            def e = new Enrollment(student: stud, classSession:classSession ).save()
+        }
         redirect(action:show,id:params.classSessionId)
     }
 

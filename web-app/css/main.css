@@ -511,10 +511,7 @@ h3 {
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 /* induced side effect is that child TDs no longer accept width: auto                     */
 .scrollContent {
-    height: 262px;
+    height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-
-
-

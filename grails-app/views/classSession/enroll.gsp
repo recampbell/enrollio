@@ -38,8 +38,6 @@
     </script>
 </head>
 <body>
-    <g:form>
-        <input type="hidden" name="classSessionId" value="${classSession.id}" />
         <table  style="float:left;" width="50%">
             <caption>Eligible Students</caption>
             <thead>
@@ -52,7 +50,7 @@
                 <th>Signup Date</th>
             </thead>
 
-            <tbody id="eligibleStudents" class="scrollContent">
+            <tbody id="eligibleStudents" class="scrollContent" style="min-height: 50px;">
                 <g:each var="interest" in="${interests}">
                     <tr>
                         <td class="addButtonIconExample">
@@ -60,8 +58,9 @@
                                 title="Enroll this Student">
                                 <span class="ui-icon ui-icon-plus"></span>
                             </div>
-                            <input type="hidden" name="interestedStudent[]"
-                            value="${interest.student.id}"></input>
+                            <input type="hidden" 
+                                   name="interestedStudents"
+                                   value="${interest.student.id}"></input>
                         </td>
                         <td>${interest.student}</td>
                         <td>${interest.student.contact}</td>
@@ -71,6 +70,8 @@
                 </g:each>
             </tbody>
             </table>
+    <g:form>
+        <input type="hidden" name="classSessionId" value="${classSession.id}" />
             <table  width="50%">
             <caption>Enrolled Students</caption>
             <thead>
@@ -86,5 +87,6 @@
             <tbody id="enrolledStudents" class="scrollContent">
             </tbody>
         </table>
+        <g:actionSubmit style="float:right;" value="Save Enrollments" action="saveEnrollments" />
     </g:form>
 </body>
