@@ -11,8 +11,18 @@ class TestDataService {
         numContacts.times {
             loadDummyContactAndStudents()
         }
+        loadClassSessions()
     } 
- 
+
+    def loadClassSessions() {
+        def progs = Program.list()
+        progs.each {
+            def cs = new ClassSession(name:"${it.name} session.",
+                                      program:it,
+                                      startDate: new Date()).save()
+        }
+
+   }
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:"Children's EAC").save()
