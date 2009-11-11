@@ -73,7 +73,7 @@ margin-top:20px;
 	line-height:22px;
 }
 #sidebar ul li a,#sidebar ul li a:visited{
-	padding-left:19px;
+	/* padding-left:19px; */
 	text-decoration:none;
 	margin:0 3px;
 	display:block;
