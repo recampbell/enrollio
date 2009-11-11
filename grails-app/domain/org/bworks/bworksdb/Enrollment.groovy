@@ -5,6 +5,9 @@ class Enrollment {
     Student student
     ClassSession classSession
 
+    String status
+
     static constraints = {
+        status(nullable:true, blank:true)
     }
 }

@@ -15,7 +15,7 @@ class ClassSessionController {
     }
 
     def enroll = {
-        def classSession = ClassSession.get(params.classSessionId)
+        def classSession = ClassSession.get(params.id)
         // TODO if programId not provided, flash message and redirect back
         def interests = Interest.findAllByProgram(classSession.program).findAll {
             it.active == true
