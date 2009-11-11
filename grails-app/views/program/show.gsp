@@ -1,99 +1,112 @@
-
-<%@ page import="org.bworks.bworksdb.Program" %>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- This template is to use when creating new blank gsps -->
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Show Program</title>
+        <title>Something</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Program List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New Program</g:link></span>
-        </div>
-        <div class="body">
-            <h1>Show Program</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:programInstance, field:'id')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Class Sessions:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="c" in="${programInstance.classSessions}">
-                                    <li><g:link controller="classSession" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Description:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:programInstance, field:'description')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                        <td colspan="2">
-                           <g:link controller="interest" 
-                               action="list" params="['program.id' : programInstance.id]">
-                                 Interested Students (${programInstance.interests.size()})                              
-                               
-                           </g:link>
-                        </td>
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Lessons:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="l" in="${programInstance.lessons}">
-                                    <li><g:link controller="lesson" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                        <tr class="prop">
-                            <td colspan="2" valign="top" class="name">
-                            <g:link action="create" controller="lesson"
-                                    params="['program.id' : programInstance.id]">Add Lesson</g:link>
-                            </td>
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:programInstance, field:'name')}</td>
-                            
-                        </tr>
-                    
-                    </tbody>
-                </table>
-            </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${programInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
+        <div id="container">
+            <div id="wrapper">
+                <div id="content">
+                    <div id="rightnow">
+                        <h3 class="reallynow">
+                            <span>${programInstance}</span>
+                            <br />
+                        </h3>
+                        <p class="youhave">${programInstance.description} Put message
+                        here</p>
+                    </div>
+                    <div id="infowrap">
+                        <div id="infobox">
+                            <h3>Lessons
+                                <span>
+                                    <g:link action="create" controller="lesson" 
+                                            params="[ 'program.id' : programInstance.id ]">
+                                    (New)
+                                    </g:link></span></h3>
+                            <table>
+                                <tbody>
+                                    <g:each var="lesson" in="${programInstance.lessons}">
+                                        <tr>
+                                            <td>
+                                                <g:link controller="lesson" action="show"
+                                                id="${lesson.id}">
+                                                ${lesson?.encodeAsHTML()}</g:link>
+                                            </td>
+                                        </tr>
+                                    </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="infobox">
+                            <h3>Sessions</h3>
+                            <table>
+                                <tbody>
+                                    <g:each var="session"
+                                    in="${programInstance.classSessions}">
+                                        <tr>
+                                            <td>
+                                                <g:link controller="classSession"
+                                                action="show" id="${session.id}">
+                                                ${session?.encodeAsHTML()}</g:link>
+                                            </td>
+                                            <td>${session.startDate}</td>
+                                        </tr>
+                                    </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="infowrap">
+                        <div id="infobox">
+                            <h3>Interested Students</h3>
+                            <table>
+                                <tbody>
+                                    <g:each var="interest" in="${programInstance.interests}">
+                                        <tr>
+                                            <td>
+                                                ${interest.dateCreated}
+                                            </td>
+                                            <td>
+                                                ${interest.student}
+                                            </td>
+                                        </tr>
+                                    </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="sidebar">
+                    <ul>
+                        <li>
+                        <h3>
+                            <a href="#" class="house">Menu</a>
+                        </h3>
+                        <li>
+                            <g:link action="callList" id="${programInstance.id}">Create
+                            Call List</g:link>
+                        </li>
+                        <li>
+                            <g:link controller="classSession" action="create"
+                            params="['program.id':programInstance.id]">New Class
+                            Session</g:link>
+                        </li>%{-- lucky that we can pass the ID of the program, meow --}%
+                        
+                        <li>
+                            <g:pdfLink url="/program/pdfCallList">PDF Call
+                            List</g:pdfLink>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="#" class="report_seo">Something</a>
+                            </li>
+                        </ul></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>
