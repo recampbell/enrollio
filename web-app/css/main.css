@@ -4,6 +4,11 @@ html * {
 }
 
 
+/* Search Bar */
+
+#enr-main-searchbar {
+    float: right;
+}
 /* GENERAL */
 
 .spinner {
@@ -64,7 +69,8 @@ input:focus, select:focus, textarea:focus {
 }
 
 .enr-main-menu {
-    float:right;
+    float:left;
+    padding: 10px 0px 0px 0px;
 }
 /* NAVIGATION MENU */
 
