@@ -16,7 +16,7 @@
             $(document).ready(function(){
               $('#startDate').datepicker({
                   showOn: 'both',
-                  buttonImage: 'images/calendar.gif',
+                  buttonImage: '${resource(dir:'images', file:'calendar.gif')}',
                   onSelect: function(dateText, inst) { 
                   
                       $('.lessonDate').each(function(i) {
