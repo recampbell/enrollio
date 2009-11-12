@@ -5,6 +5,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title>Create ClassSession</title>
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.core.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.datepicker.js')}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+              $('#startDate').datepicker({
+                  showOn: 'button',
+                  buttonImage: 'images/calendar.gif',
+                  buttonImageOnly: true,
+                  onSelect: function(dateText, inst) { 
+                      $('.classDate').each(function(i) {
+                          Date.format = 'mm/dd/yyyy';
+                          var newDate = new Date(dateText);
+                          newDate.addDays(i * 7);
+                          $(this).val(newDate.asString('mm/dd/yyyy'));
+                      });
+                  }
+              });
+            });
+        </script>
     </head>
     <body>
         <div class="nav">
@@ -48,7 +68,8 @@
                                     <label for="startDate">Start Date:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
-                                    <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
+                                    <input id="startDate" />
+                                    <div id="datePicker"></div>
                                 </td>
                             </tr>
                             <tr>
