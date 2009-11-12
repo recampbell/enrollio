@@ -8,19 +8,24 @@
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.core.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.datepicker.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
         <script type="text/javascript">
+            // This function updates the other lessonDates when the startDate
+            // is chosen from the Calendar.  Each lessonDate is given a date
+            // that's a week later than the previous lessonDate
             $(document).ready(function(){
               $('#startDate').datepicker({
-                  showOn: 'button',
+                  showOn: 'both',
                   buttonImage: 'images/calendar.gif',
-                  buttonImageOnly: true,
                   onSelect: function(dateText, inst) { 
-                      $('.classDate').each(function(i) {
+                  
+                      $('.lessonDate').each(function(i) {
                           Date.format = 'mm/dd/yyyy';
                           var newDate = new Date(dateText);
                           newDate.addDays(i * 7);
                           $(this).val(newDate.asString('mm/dd/yyyy'));
                       });
+                      // $(this).datepicker('hide');
                   }
               });
             });
@@ -73,7 +78,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" />  -->
+                                <g:render template="editLessonDates" model="[lessonDates:classSessionInstance.lessonDates]" /> 
 
                             </tr>
 
