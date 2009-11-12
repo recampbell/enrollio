@@ -6,8 +6,8 @@
         <meta name="layout" content="main" />
         <title>Create ClassSession</title>
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.core.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js/ui', file:'ui.datepicker.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
         <script type="text/javascript">
             // This function updates the other lessonDates when the startDate
@@ -25,17 +25,12 @@
                           newDate.addDays(i * 7);
                           $(this).val(newDate.asString('mm/dd/yyyy'));
                       });
-                      // $(this).datepicker('hide');
                   }
               });
             });
         </script>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">ClassSession List</g:link></span>
-        </div>
         <div class="body">
             <h1>Create ClassSession</h1>
             <g:if test="${flash.message}">
