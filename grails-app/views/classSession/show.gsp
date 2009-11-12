@@ -16,7 +16,7 @@
 
                         <br />
                     </h3>
-                    	    <p class="youhave">TODO Put message here</p>
+                    	    <p class="youhave"></p>
                     <table>
 						<thead>
 						</thead>

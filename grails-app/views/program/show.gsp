@@ -15,8 +15,7 @@
                             <span>${programInstance}</span>
                             <br />
                         </h3>
-                        <p class="youhave">${programInstance.description} Put message
-                        here</p>
+                        <p class="youhave">${programInstance.description}</p>
                     </div>
                     <div id="infowrap">
                         <div id="infobox">
@@ -96,8 +95,7 @@
                         </li>%{-- lucky that we can pass the ID of the program, meow --}%
                         
                         <li>
-                            <g:pdfLink url="/program/pdfCallList">PDF Call
-                            List</g:pdfLink>
+                            <g:pdfLink url="/program/pdfCallList">PDF Call List</g:pdfLink>
                         </li>
                         <ul>
                             <li>
