@@ -111,21 +111,27 @@ class ClassSessionController {
     }
 
     def save = {
-        params.each {
-            println it
-        }
+        println params.startDate
+        def myFormat = 'MM/dd/yyyy'
+        params.remove('startDate')
+        def lessonDates = params.remove('lessonDates[]')
+        println params
         def classSessionInstance = new ClassSession(params)
-        classSessionInstance.lessonDates.each {
-            println it
-        }
+        // params.startDate = Date.parse(myFormat, params.startDate).toString()
+        render 'okay'
 
-        if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
-            flash.message = "ClassSession ${classSessionInstance.id} created"
-            redirect(action:show,id:classSessionInstance.id)
-        }
-        else {
-            render(view:'create',model:[classSessionInstance:classSessionInstance])
-        }
+        // classSessionInstance.lessonDates.each {
+            // println it
+        // }
+
+//        if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
+//            flash.message = "ClassSession ${classSessionInstance.id} created"
+//            redirect(action:show,id:classSessionInstance.id)
+//        }
+//        else {
+//            render(view:'create',model:[classSessionInstance:classSessionInstance])
+//        }
+           // redirect(action:show,id:classSessionInstance.id)
     }
 }
 

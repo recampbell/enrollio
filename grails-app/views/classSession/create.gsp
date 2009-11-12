@@ -68,8 +68,7 @@
                                     <label for="startDate">Start Date:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
-                                    <input id="startDate" />
-                                    <div id="datePicker"></div>
+                                    <input type="text" name="startDate" id="startDate"></input>
                                 </td>
                             </tr>
                             <tr>
