@@ -103,7 +103,6 @@ class ClassSessionController {
 
     def create = {
         def classSessionInstance = new ClassSession()
-        println params
         classSessionInstance.properties = params
         classSessionInstance.lessonDates =
             programService.nextAvailableClasses(classSessionInstance.program, new Date())
@@ -111,33 +110,39 @@ class ClassSessionController {
     }
 
     def save = {
-        // println params
-        def myFormat = 'MM/dd/yyyy'
+        def lessonDates = [:]
+        // lesson Dates come in like this:
+        // lesson_{lessonId} = '11/12/2009'
+        params.findAll { it.key.startsWith('lesson_') }.each {
+            def lessonId = it.key.split('_')[1]
+            def date = it.value
+            lessonDates[lessonId] = date
+        }
+
+        params.findAll { it.key.startsWith('lesson_') }.each {
+            params.remove(it.key)
+        }
+       
+        println lessonDates
+        def dateFormat = 'MM/dd/yyyy'
         def startDate = params.remove('startDate')
-        def lessonDates = params.remove('lessonDate')
         def classSessionInstance = new ClassSession(params)
-        classSessionInstance.startDate = Date.parse(myFormat, startDate)
-           lessonDates.each {
-               println it.lessonId?
-               it.each { thing ->
-                   println thing.lessonId?
-               }
-               // classSessionInstance.addToLessonDates(
-               // lessonDate : Date.parse(myFormat, it.lessonDate),
-               // lesson : Lesson.get(1)
-               // )
-           }
+        classSessionInstance.startDate = Date.parse(dateFormat, startDate)
  
-    //    if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
-    //        // now, save lessonDates
-    //       // classSessionInstance.save()
-    //        flash.message = "ClassSession ${classSessionInstance.id} created"
-    //        redirect(action:show,id:classSessionInstance.id)
-    //    }
-    //    else {
-    //        render(view:'create',model:[classSessionInstance:classSessionInstance])
-    //    }
-    render 'ol'
+        if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
+            lessonDates.each {
+                println 'foo'
+                classSessionInstance.addToLessonDates(new LessonDate(lesson : Lesson.get(it.key),
+                                                      lessonDate : Date.parse(dateFormat, it.value)));
+            }
+            classSessionInstance.save()
+            flash.message = "ClassSession ${classSessionInstance.id} created"
+            redirect(action:show,id:classSessionInstance.id)
+        }
+        else {
+            render(view:'create',model:[classSessionInstance:classSessionInstance])
+        }
+        render 'ol'
     }
     
 }
