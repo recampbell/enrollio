@@ -38,6 +38,15 @@
                     <table>
                         <tbody>
                             <g:each var="lessonDate" in="${classSessionInstance.lessonDates}">
+                                <tr>
+                                    <td><g:link controller="lessonDate" 
+                                                action="show"
+                                                id="${lessonDate.id}">${lessonDate.lesson.name}</g:link>
+                                    </td>
+                                    <td>
+                                        <g:formatDate format="MM/dd/yyyy" date="${lessonDate.lessonDate}"/>
+                                    </td>
+                                </tr>
                             </g:each>
                         </tbody>
 							
