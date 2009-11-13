@@ -1,19 +1,64 @@
 
 <%@ page import="org.bworks.bworksdb.LessonDate" %>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Show LessonDate</title>
+        <title>Something</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">LessonDate List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New LessonDate</g:link></span>
+        <div id="container">
+            <div id="wrapper">
+                <div id="content">
+                    <div id="rightnow">
+                        <h3 class="reallynow">
+            ${lessonDateInstance.lesson.name}, ${lessonDateInstance.classSession.name}
+                        </h3>
+                        <p class="youhave"> ${formatDate(format:'MM/dd/yyyy', date:lessonDateInstance.lessonDate)}</p>
+                    </div>
+                    <div id="infowrap">
+                        <div id="infobox">
+                            <h3>Attendees </h3>
+                            <table>
+                                <tbody>
+                                 <g:each var="a" in="${lessonDateInstance.attendees}">
+                                 <tr><td><g:link controller="attendance" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></td></tr>
+                                </g:each>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="sidebar">
+                    <ul>
+                        <li>
+                        <h3>
+                            <a href="#" class="house">Menu</a>
+                        </h3>
+                        <li>
+                        Something
+                        </li>
+                        <li>
+                        </li>%{-- lucky that we can pass the ID of the program, meow --}%
+                        
+                        <ul>
+                            <li>
+                                <a href="#" class="report_seo">Something</a>
+                            </li>
+                        </ul></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="body">
-            <h1>Show LessonDate</h1>
+    </body>
+</html>
+
+
+
+
+
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -22,22 +67,13 @@
                     <tbody>
 
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:lessonDateInstance, field:'id')}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Attendees:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
-                                <g:each var="a" in="${lessonDateInstance.attendees}">
-                                    <li><g:link controller="attendance" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
+                               </ul>
                             </td>
                             
                         </tr>
@@ -45,20 +81,6 @@
                         <tr class="prop">
                             <td valign="top" class="name">Lesson Date:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:lessonDateInstance, field:'lessonDate')}</td>
                             
                         </tr>
-                    
-                    </tbody>
-                </table>
-            </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${lessonDateInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
-        </div>
-    </body>
-</html>
+ 

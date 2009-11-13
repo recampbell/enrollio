@@ -5,7 +5,8 @@
            
            <input type="text" id="lesson_${lessonDate.lesson.id}" 
                             name="lesson_${lessonDate.lesson.id}"
-                            value="${lessonDate?.lessonDate}"
+                            value="${formatDate(format:'MM/dd/yyyy', 
+                                                  date:lessonDate?.lessonDate)}"
                             class="lessonDate"></input>
            
        </td>
