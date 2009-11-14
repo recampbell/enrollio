@@ -6,7 +6,7 @@ class Attendance {
 
     Student student
     LessonDate lessonDate
-    String attendanceStatus
+    String status
     
     static constraints = {
     }

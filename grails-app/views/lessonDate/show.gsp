@@ -6,6 +6,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                    $('.statusSwitcher').click(function() {
+                        $.post('${createLink(controller:"attendance",
+                                                 action:"updateStatus")}',
+                               { 'status' : $(this).attr('attendanceStatus'),
+                                 'id'     : $(this).attr('attendanceId') });
+                        });
+                    });
+
+
+        </script>
         <title>Something</title>
     </head>
     <body>
@@ -26,9 +39,17 @@
                                     <g:each var="a" 
                                              in="${lessonDateInstance.attendees}">
                                     <tr>
-                                        <td><g:link controller="attendance" 
+                                        <td>
+                                            <g:link controller="attendance" 
                                             action="show" 
                                             id="${a.id}">${a.student}</g:link>
+
+                                            </td>
+            <td>
+                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="present" name="status${a.id}" value="present" checked="${a.status == 'present'}"/>Present
+                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="absent" name="status${a.id}" value="absent" checked="${a.status == 'absent'}" />Absent
+                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="late" name="status${a.id}" value="late" checked="${a.status == 'late'}"/>Late
+
                                     </td>
                                 </tr>
                                 </g:each>
