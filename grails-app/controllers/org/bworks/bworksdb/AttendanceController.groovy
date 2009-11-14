@@ -25,9 +25,17 @@ class AttendanceController {
     }
 
     def updateStatus = {
-        render 'Boo!'
-        println "I got something"
-        println params
+        def attendanceInstance = Attendance.get( params.id )
+        if(attendanceInstance) {
+            println "Setting ${attendanceInstance.student} attendance to ${params.status}"
+
+            attendanceInstance.status = params.status
+            attendanceInstance.save()
+        }
+        else {
+            flash.message = "Attendance not found with id ${params.id}"
+            redirect(action:list)
+        }
     }
 
     def delete = {
