@@ -65,7 +65,8 @@
                             <a href="#" class="house">Menu</a>
                         </h3>
                         <li>
-                        Something
+                        <g:link action="show" controller="classSession"
+                        id="${lessonDateInstance.classSession.id}">Class Session</g:link> 
                         </li>
                         <li>
                         </li>%{-- lucky that we can pass the ID of the program, meow --}%
