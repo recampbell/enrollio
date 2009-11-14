@@ -1,8 +1,12 @@
 package org.bworks.bworksdb
 
-class Attendance {
+class Attendance implements Comparable {
     
     static belongsTo = [Student, LessonDate]
+
+    static mapping = {
+        sort "student.lastName"
+    }
 
     Student student
     LessonDate lessonDate
@@ -10,4 +14,12 @@ class Attendance {
     
     static constraints = {
     }
+
+    int compareTo(obj) {
+        this.student.toString() <=> obj.student.toString()
+    }
 }
+
+
+
+
