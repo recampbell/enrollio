@@ -23,8 +23,14 @@
                             <h3>Attendees </h3>
                             <table>
                                 <tbody>
-                                 <g:each var="a" in="${lessonDateInstance.attendees}">
-                                 <tr><td><g:link controller="attendance" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></td></tr>
+                                    <g:each var="a" 
+                                             in="${lessonDateInstance.attendees}">
+                                    <tr>
+                                        <td><g:link controller="attendance" 
+                                            action="show" 
+                                            id="${a.id}">${a.student}</g:link>
+                                    </td>
+                                </tr>
                                 </g:each>
                                 </tbody>
                             </table>

@@ -4,6 +4,8 @@ package org.bworks.bworksdb
 
 class LessonDateController {
     
+    def attendanceService
+
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -21,7 +23,14 @@ class LessonDateController {
             flash.message = "LessonDate not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ lessonDateInstance : lessonDateInstance ] }
+        else { 
+           // Initialize attendances, if need be.
+           attendanceService.initializeAttendees(lessonDateInstance)
+            
+            
+            
+            
+            return [ lessonDateInstance : lessonDateInstance ] }
     }
 
     def delete = {
