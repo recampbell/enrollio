@@ -4,6 +4,8 @@ class TestDataService {
 
     boolean transactional = true
 
+    def programService
+
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
         loadDefaultPrograms()
@@ -20,6 +22,12 @@ class TestDataService {
             def cs = new ClassSession(name:"${it.name} session.",
                                       program:it,
                                       startDate: new Date()).save()
+            def nac = programService.nextAvailableClasses(cs.program, new Date())
+            nac.each {
+                cs.addToLessonDates(it)
+            }
+
+            cs.save()
         }
 
    }
