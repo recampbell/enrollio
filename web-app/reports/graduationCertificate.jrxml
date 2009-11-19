@@ -6,7 +6,7 @@
 		<band height="685">
 			<image scaleImage="FillFrame">
 				<reportElement x="0" y="0" width="925" height="685"/>
-				<imageExpression class="java.lang.String"><![CDATA["/home/nate/Documents/byteworks/blank_certificate_background.jpg"]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA["./blank_certificate_background.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="216" y="27" width="492" height="80"/>
