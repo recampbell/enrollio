@@ -26,6 +26,16 @@ class Student {
         lastUpdated(nullable:true, blank:true)
     }
     
+    // Prints 'Gerald David Buchner' or
+    //        'Lee Harvey Danger'
+    String fullName() {
+        def fullName = firstName
+        if (middleName) {
+            fullName += ' ' + middleName
+        }
+        return fullName + ' ' + lastName
+    }
+
     String toString(){
         def fullName
         // Is this really the best we can do?
