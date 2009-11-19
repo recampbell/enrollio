@@ -13,20 +13,30 @@ class TestDataService {
         numContacts.times {
             loadDummyContactAndStudents()
         }
-        loadClassSessions()
+        loadDummyClassSessions()
     } 
 
-    def loadClassSessions() {
+    def loadDummyClassSessions() {
         def progs = Program.list()
-        progs.each {
-            def cs = new ClassSession(name:"${it.name} session.",
-                                      program:it,
+        progs.each { prog ->
+            def cs = new ClassSession(name:"${prog.name} ${new Date().format('MM/dd/yyyy')}.",
+                                      program:prog,
                                       startDate: new Date()).save()
             def nac = programService.nextAvailableClasses(cs.program, new Date())
-            nac.each {
-                cs.addToLessonDates(it)
+            nac.each { lessonDate ->
+                cs.addToLessonDates(lessonDate)
             }
 
+            cs.save()
+
+            prog.interests.eachWithIndex  { interest, i ->
+                if (i < 5) {
+                    cs.addToEnrollments(new Enrollment(student:interest.student))
+                }
+                else {
+                    return
+                }
+            }
             cs.save()
         }
 
