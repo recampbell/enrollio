@@ -8,7 +8,9 @@ class ConfigSettingController {
     def testDataService
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST', generateTestData:'POST']
+    static allowedMethods = [delete:'POST', save:'POST', update:'POST', 
+                             generateTestData:'POST',
+                             generateTestSessions:'POST']
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
@@ -17,6 +19,18 @@ class ConfigSettingController {
 
     def testDataRequest = {
         [ ]
+    }
+
+    // TODO: Make this error message friendlier
+    def generateTestSessions = {
+        try {
+            testDataService.loadDummyClassSessions()
+            flash.message = "Test Sessions were successfully generated."
+            redirect(uri:'/')
+        } catch (Exception e) {
+            flash.message = e
+            redirect(uri:'/')
+        }
     }
 
     // TODO: Make this error message friendlier
