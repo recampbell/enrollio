@@ -134,7 +134,6 @@ class ClassSessionController {
  
         if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
             lessonDates.each {
-                println 'foo'
                 classSessionInstance.addToLessonDates(new LessonDate(lesson : Lesson.get(it.key),
                                                       lessonDate : Date.parse(dateFormat, it.value)));
             }
@@ -146,6 +145,22 @@ class ClassSessionController {
             render(view:'create',model:[classSessionInstance:classSessionInstance])
         }
         render 'ol'
+    }
+
+    def printGraduationCertificates = {
+        def classSessionInstance = ClassSession.get( params.id )
+        def lastDate = classSessionInstance?.lessonDates?.last()?.lessonDate
+
+        // Default Graduation Date to date of last class
+        // TODO: Refactor to a Service, or else give classSession a graduationDate
+        def students = classSessionInstance.enrollments.collect { 
+            [STUDENT_NAME:it.student.fullName(),
+             GRADUATION_DATE:lastDate.format('MMMM d, yyyy')]
+        }
+
+        chain(controller:'jasper',
+              action:'index',
+              model:[data:students],params:params)
     }
     
 }

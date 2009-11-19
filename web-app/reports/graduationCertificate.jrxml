@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Graduation Certificate" language="groovy" pageWidth="965" pageHeight="725" orientation="Landscape" columnWidth="925" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<field name="STUDENT_NAME" class="java.lang.String"/>
+	<field name="GRADUATION_DATE" class="java.lang.String"/>
+	<background>
+		<band height="685">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="925" height="685"/>
+				<imageExpression class="java.lang.String"><![CDATA["/home/nate/Documents/byteworks/blank_certificate_background.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="216" y="27" width="492" height="80"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tlwg Typist" size="58" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Byte WORKS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="107" width="605" height="54"/>
+				<textElement textAlignment="Center">
+					<font fontName="Sawasdee" size="32" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICATE OF EXCELLENCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="161" width="605" height="54"/>
+				<textElement textAlignment="Center">
+					<font fontName="Sawasdee" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Is Hereby Granted To:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="438" width="717" height="73"/>
+				<textElement textAlignment="Center">
+					<font fontName="Sawasdee" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[For Completing Byte WORKS Earn-A-Computer Program through Dedication, Imagination, and Respect of Fellow Classmates and Instructors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="567" width="289" height="79"/>
+				<textElement markup="html">
+					<font fontName="Sawasdee" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nathan Neff, <br />Vice President, BWORKS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="104" y="566" width="288" height="1"/>
+			</line>
+		</band>
+	</background>
+	<detail>
+		<band height="685">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="58" y="325" width="809" height="87"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="56"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="527" width="294" height="38"/>
+				<textElement textAlignment="Right">
+					<font fontName="Sawasdee" size="24" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GRADUATION_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
