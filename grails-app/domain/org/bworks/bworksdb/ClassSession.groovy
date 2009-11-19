@@ -6,6 +6,9 @@ class ClassSession {
     Program program
     static belongsTo = [ Program ] 
     static hasMany = [ lessonDates:LessonDate, enrollments:Enrollment ]
+
+    SortedSet lessonDates
+    SortedSet enrollments
     static constraints = {
     }
 

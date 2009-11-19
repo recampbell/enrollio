@@ -104,8 +104,11 @@ class ClassSessionController {
     def create = {
         def classSessionInstance = new ClassSession()
         classSessionInstance.properties = params
-        classSessionInstance.lessonDates =
-            programService.nextAvailableClasses(classSessionInstance.program, new Date())
+        def nac = programService.nextAvailableClasses(classSessionInstance.program, new Date())
+        nac.each {
+            classSessionInstance.addToLessonDates(it)
+        }
+            
         return ['classSessionInstance':classSessionInstance]
     }
 

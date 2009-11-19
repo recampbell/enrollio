@@ -1,6 +1,6 @@
 package org.bworks.bworksdb
 
-class LessonDate {
+class LessonDate implements Comparable {
 
     static belongsTo = [ ClassSession, Lesson ]
     static hasMany = [ attendees : Attendance ]
@@ -11,5 +11,9 @@ class LessonDate {
     Date lessonDate
     
     static constraints = {
+    }
+
+    int compareTo(obj) {
+        this.lessonDate <=> obj.lessonDate
     }
 }
