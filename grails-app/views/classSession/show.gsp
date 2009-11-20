@@ -93,6 +93,12 @@
                             name="Graduation">Print Certificates 
                             <input type="hidden" name="id"
                             value="${classSessionInstance.id}" /></g:jasperReport>
+                            <g:jasperReport controller="classSession"
+                            action="simpleTest"
+                            jasper="simpleTest" format="PDF"
+                            name="Graduation">Simple Test
+                            <input type="hidden" name="id"
+                            value="${classSessionInstance.id}" /></g:jasperReport>
                         </li>
                     </ul>
                 </div>
