@@ -37,7 +37,7 @@ environments {
     production {
         // Changed due to resource() method not resolving to
         // correct URL on production
-        grails.serverURL = "http://enrollio.enjoyvps.net:8080/${appName}"
+        grails.serverURL = "http://enrollio.enjoyvps.net:8080/${appName}-${appVersion}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
