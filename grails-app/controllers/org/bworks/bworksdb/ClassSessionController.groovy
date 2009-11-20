@@ -174,6 +174,12 @@ class ClassSessionController {
              GRADUATION_DATE:lastDate.format('MMMM d, yyyy')]
         }
 
+        // Set the background picture for the report using absolute URL
+        // Haven't tried using a relative URL
+        params['backgroundImageUrlParam'] =
+            resource(dir:'images', file:'blank_certificate_background.jpg',
+                     absolute:true)
+
         chain(controller:'jasper',
               action:'index',
               model:[data:students],params:params)
