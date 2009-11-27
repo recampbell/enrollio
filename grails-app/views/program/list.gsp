@@ -1,11 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- This template is to use when creating new blank gsps -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Something</title>
+        <title>Programs</title>
     </head>
     <body>
         <div id="wrapper">
@@ -13,7 +10,7 @@
                 <div id="rightnow">
                         <h3 class="reallynow">
                             <span>Programs</span>
-                        <g:link action="create" class="addorder">New Program</g:link>
+                        <g:link action="create" class="addorder">Add Program</g:link>
                         <br />
                         </h3>
                         <table>
