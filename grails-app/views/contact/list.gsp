@@ -38,7 +38,8 @@
                     <g:paginate total="${contactInstanceTotal}" />
                 </div>
             </div>
-            </div><div id="sidebar">
+            </div>
+            <div id="sidebar">
                 <g:render template="/common/sideMenu" />
             </div>
         </div>
