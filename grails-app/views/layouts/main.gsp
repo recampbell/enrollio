@@ -24,47 +24,43 @@
             <shiro:isNotLoggedIn>
                 <h2>Welcome to Enrollio!</h2>
             </shiro:isNotLoggedIn>
-    <div id="topmenu">
+            <div id="topmenu">
+               <ul>
+                   <li>
+                   <g:link controller="program" action="list" 
+                        class="enr-top-menu-item">Programs</g:link>
+                   </li>
 
-        <shiro:isLoggedIn>
-            <span class="enr-welcome-message">
-                Welcome, <shiro:principal/>! | <g:link controller="auth" action="signOut">Log Out</g:link>
-            </span>
-            <br />
-            <div class="enr-main-menu">
-                <g:link controller="program" action="list" 
-                    class="enr-top-menu-item">Programs</g:link>&nbsp;|&nbsp;
-
-                <g:link controller="contact" action="list" 
-                    class="enr-top-menu-item">Contacts</g:link>&nbsp;|&nbsp;
-                <g:link controller="classSession" action="list" 
-                    class="enr-top-menu-item">Class Sessions</g:link>
-                <shiro:hasRole name="Administrator">
-                     &nbsp;|&nbsp;<g:link controller="admin"  class="enr-top-menu-item">Admin</g:link>
-                </shiro:hasRole>
-            </div>
-
-            <div id="enr-main-searchbar" >
-                <g:form url='[controller: "searchable", action: "index"]'
-                        id="searchableForm" name="searchableForm" method="get">
-                        <g:textField name="q" value="${params.q}" size="30"/>
-                        <input type="submit" value="Search" />
-                </g:form>  
-            </div>
-        </shiro:isLoggedIn>
-</div>
-
-            	<ul>
-                    <li class="current"><a href="index.html">Dashboard</a></li>
-                    <li><a href="#">Orders</a></li>
-                	<li><a href="users.html">Users</a></li>
-                    <li><a href="#">Manage</a></li>
-                    <li><a href="#">CMS</a></li>
-                    <li><a href="#">Statistics</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li>
+                    <g:link controller="contact" action="list" 
+                        class="enr-top-menu-item">Contacts</g:link>
+                    </li><li>
+                    <g:link controller="student" action="list" 
+                        class="enr-top-menu-item">Students</g:link>
+                    </li>
+                    <li>
+                    <g:link controller="classSession" action="list" 
+                        class="enr-top-menu-item">Class Sessions</g:link>
+                    </li>
+                    <shiro:hasRole name="Administrator">
+                         <li>
+                         <g:link controller="admin"  class="enr-top-menu-item">Admin</g:link>
+                         </li>
+                    </shiro:hasRole>
               </ul>
+                <div class="enr-main-menu">
+                </div>
+
+                <div id="enr-main-searchbar" >
+                    <g:form url='[controller: "searchable", action: "index"]'
+                            id="searchableForm" name="searchableForm" method="get">
+                            <g:textField name="q" value="${params.q}" size="30"/>
+                            <input type="submit" value="Search" />
+                    </g:form>  
+                </div>
+        </div>
+
           </div>
-      </div>
         <div id="top-panel">
             <div id="panel">
                 <ul>
@@ -77,13 +73,15 @@
       </div>
         <div id="wrapper">
             <div id="content">
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
+                <g:layoutBody />
             </div>
             <div id="sidebar">
   				<ul>
                 	<li><h3><a href="#" class="house">Dashboard</a></h3>
                         <ul>
+            <li>
+            <g:link class="shipping" controller="auth" action="signOut">Log Out</g:link>
+            </li>
                         	<li><a href="#" class="report">Sales Report</a></li>
                     		<li><a href="#" class="report_seo">SEO Report</a></li>
                             <li><a href="#" class="search">Search</a></li>
@@ -114,31 +112,11 @@
                     </li>
 				</ul>       
           </div>
-      </div>
         <div id="footer">
-        <div id="credits">
-   		Template by <a href="http://www.bloganje.com">Bloganje</a>
-        </div>
-        <div id="styleswitcher">
-            <ul>
-                <li><a href="javascript: document.cookie='theme='; window.location.reload();" title="Default" id="defswitch">d</a></li>
-                <li><a href="javascript: document.cookie='theme=1'; window.location.reload();" title="Blue" id="blueswitch">b</a></li>
-                <li><a href="javascript: document.cookie='theme=2'; window.location.reload();" title="Green" id="greenswitch">g</a></li>
-                <li><a href="javascript: document.cookie='theme=3'; window.location.reload();" title="Brown" id="brownswitch">b</a></li>
-                <li><a href="javascript: document.cookie='theme=4'; window.location.reload();" title="Mix" id="mixswitch">m</a></li>
-            </ul>
-        </div><br />
 
         </div>
-</div>
+      </div>
 
-        <!-- <div id="page"> -->
-            <!-- <div> -->
-                <!-- <g:render template="/common/topbar" /> -->
-            <!-- </div> -->
-            <!-- <div id="content"> -->
-                <!-- <g:layoutBody /> -->
-            <!-- </div> -->
-        <!-- </div> -->
+      </div>
     </body>
 </html>
