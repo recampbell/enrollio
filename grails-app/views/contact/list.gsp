@@ -10,7 +10,7 @@
             <div id="content">
                 <div id="rightnow">
                         <h3 class="reallynow">Contacts
-                        <g:link action="create" class="addorder">Add Contact</g:link>
+                        <g:link action="create" class="add">Add Contact</g:link>
                         <br /></h3>
                         <table>
                             <thead>
