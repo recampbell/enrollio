@@ -7,19 +7,14 @@
         <title>Create Contact</title>         
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Contact List</g:link></span>
-        </div>
-        <div class="body">
-            <h1>Create Contact</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
+        <div id="wrapper">
+        <div id="content">
+        <div id="rightnow">
+            <h3>Create Contact</h3>
             <g:hasErrors bean="${contactInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${contactInstance}" as="list" />
-            </div>
+                <div class="errors">
+                    <g:renderErrors bean="${contactInstance}" as="list" />
+                </div>
             </g:hasErrors>
             <g:form  method="post" >
                 <div class="dialog">
@@ -105,6 +100,8 @@
                 <g:actionSubmit value="Create" action="save" />
                 </div>
             </g:form>
+        </div>
+        </div>
         </div>
     </body>
 </html>
