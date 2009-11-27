@@ -9,7 +9,6 @@
         <!--[if IE]>
         <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
         <![endif]-->
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme.css')}" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'style.css')}" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme1.css')}" />
         <g:layoutHead />
