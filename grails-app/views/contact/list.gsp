@@ -8,55 +8,48 @@
         <title>Contact List</title>
     </head>
     <body>
-        <div id="container">
-            <div id="wrapper">
-                <div id="content">
-                    <div id="infowrap">
-                        <div id="infobox">
-                            <h3>Contacts</h3>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <g:sortableColumn property="lastName" title="Name" />
-                                    <g:sortableColumn property="emailAddress"
-                                    title="Email Address" />
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <g:each in="${contactInstanceList}" status="i"
-                                    var="contactInstance">
-                                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                                            <td>
-                                                <g:link action="show"
-                                                id="${contactInstance.id}">
-                                                ${contactInstance}</g:link>
-                                            </td>
-                                            <td>${fieldValue(bean:contactInstance,
-                                            field:'emailAddress')}</td>
-                                        </tr>
-                                    </g:each>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="infowrap">
-                        <div id="infobox">
-                        <div class="paginateButtons">
-                            <g:paginate total="${contactInstanceTotal}" />
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="sidebar">
+        <div id="top-panel">
+            <div id="panel">
                 <ul>
                     <li>
-                        <h3> <a href="#" class="house">Menu</a> </h3>
-                    </li>
-                    <li>
-                        <g:link action="create">New Contact</g:link>
+                        <g:link controller="contact" action="create" class="addorder">New
+                        Student</g:link>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id="content">
+                <div class="list">
+                    <h3>Contacts</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <g:sortableColumn property="lastName" title="Name" />
+                                <g:sortableColumn property="emailAddress"
+                                title="Email Address" />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <g:each in="${contactInstanceList}" status="i"
+                            var="contactInstance">
+                                <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                                    <td>
+                                        <g:link action="show" id="${contactInstance.id}">
+                                        ${contactInstance}</g:link>
+                                    </td>
+                                    <td>${fieldValue(bean:contactInstance,
+                                    field:'emailAddress')}</td>
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="paginateButtons">
+                    <g:paginate total="${contactInstanceTotal}" />
+                </div>
+            </div><div id="sidebar">
+                <g:render template="/common/sideMenu" />
             </div>
         </div>
     </body>
