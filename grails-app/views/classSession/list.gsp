@@ -6,18 +6,13 @@
         <title>Class Sessions</title>
     </head>
     <body>
-        <div id="top-panel">
-            <div id="panel">
-                <ul>
-                    <li>
-                        <g:link action="create" class="addorder">New Class
-                        Session</g:link>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div id="wrapper">
             <div id="content">
+                <div id="rightnow">
+                    <h3 class="reallynow">Sessions
+                        <g:link action="create" class="add">Add Session</g:link>
+                        <br />
+                    </h3>
                 <table>
                     <thead>
                         <tr>
@@ -44,6 +39,7 @@
                         </g:each>
                     </tbody>
                 </table>
+                </div>
                 <div class="paginateButtons">
                     <g:paginate total="${classSessionInstanceTotal}" />
                 </div>

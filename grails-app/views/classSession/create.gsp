@@ -31,11 +31,10 @@
         </script>
     </head>
     <body>
-        <div class="body">
-            <h1>Create ClassSession</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
+        <div id="wrapper">
+            <div id="content">
+                <div id="rightnow">
+            <h3 class="reallynow">New Class Session</h3>
             <g:hasErrors bean="${classSessionInstance}">
             <div class="errors">
                 <g:renderErrors bean="${classSessionInstance}" as="list" />
@@ -84,6 +83,8 @@
                 </div>
             </g:form>
         </div>
+    </div>
+    </div>
     </body>
 </html>
 
