@@ -8,12 +8,9 @@
   <g:javascript library="prototype" />
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Contact List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New Contact</g:link></span>
-        </div>
-        <div class="body">
+        <div id="wrapper">
+            <div id="content">
+                <div id="rightnow">
             <h1>Show Contact</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -138,6 +135,10 @@
                         value="Return to contact List"/></span>
               </div>
             </g:form>
+        </div>
+        </div>
+        </div><div id="sidebar">
+            <g:render template="/common/sideMenu" />
         </div>
     </body>
 </html>
