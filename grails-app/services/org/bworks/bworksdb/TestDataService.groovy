@@ -106,7 +106,7 @@ class TestDataService {
         if (randAddress.mod(3) == 0) {
             address2 = 'Apt. A'
         }
-        def zip = '63' + seed.nextInt(100).toString().padLeft(3, "0")
+        def zip = '63' + seed.nextInt(100).toString().padLeft(3, "0") + '-1234'
         def lastName = randomLastName()
         def firstName = randomFirstName()
         // Use an email address for 50% of the people

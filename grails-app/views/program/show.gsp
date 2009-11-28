@@ -85,23 +85,18 @@
                             <a href="#" class="house">Menu</a>
                         </h3>
                         <li>
-                            <g:link action="callList" id="${programInstance.id}">View
-                            Call List</g:link>
-                        </li>
-                        <li>
                             <g:link controller="classSession" action="create"
                             params="['program.id':programInstance.id]">New Class
                             Session</g:link>
                         </li>%{-- lucky that we can pass the ID of the program, meow --}%
                         
                         <li>
-                            <g:pdfLink url="/program/pdfCallList">PDF Call List</g:pdfLink>
+                        <g:jasperReport controller="program" action="callList"
+                            jasper="callList" format="PDF" name="Call List" delimiter=" ">
+                            <input type="hidden" name="id" value="${programInstance.id}" />
+                        </g:jasperReport>
                         </li>
-                        <ul>
-                            <li>
-                                <a href="#" class="report_seo">Something</a>
-                            </li>
-                        </ul></li>
+                        </li>
                     </ul>
                 </div>
             </div>

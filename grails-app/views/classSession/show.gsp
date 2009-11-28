@@ -87,18 +87,14 @@
                             </h3>
                         </li>
                         <li>
-                            <g:jasperReport controller="classSession"
-                            action="printGraduationCertificates"
-                            jasper="graduationCertificate" format="PDF"
-                            name="Graduation">Print Certificates 
-                            <input type="hidden" name="id"
-                            value="${classSessionInstance.id}" /></g:jasperReport>
-                            <g:jasperReport controller="classSession"
-                            action="simpleTest"
-                            jasper="simpleTest" format="PDF"
-                            name="Graduation">Simple Test
-                            <input type="hidden" name="id"
-                            value="${classSessionInstance.id}" /></g:jasperReport>
+                        Graduation Certificates
+                        <g:jasperReport controller="classSession"
+                        action="printGraduationCertificates"
+                        jasper="graduationCertificate" format="PDF"
+                        name="Graduation">Graduation Certificates
+                        <input type="hidden" name="id"
+                        value="${classSessionInstance.id}" />
+                        </g:jasperReport>
                         </li>
                     </ul>
                 </div>

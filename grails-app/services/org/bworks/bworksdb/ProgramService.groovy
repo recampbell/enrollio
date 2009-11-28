@@ -25,4 +25,8 @@ class ProgramService {
         def students = interests.collect { it.student }
         def contacts = students.collect { it.contact }
     }
+
+    def activeInterests(Program p) {
+        return Interest.findAllByProgramAndActive(p, true)
+    }
 }
