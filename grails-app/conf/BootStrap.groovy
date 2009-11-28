@@ -5,14 +5,18 @@ class BootStrap {
     def testDataService
 
     def init = { servletContext ->
+        def totalUsers = ShiroUser.count()
+        if (totalUsers == 0) {
+            loadUserRoles()
+            loadAdminUser()
+        }
+
         if (grails.util.GrailsUtil.environment == "development") {
+            // loadDevData will load test users, so make sure that
+            // admin user is already created before you call loadDevData
             testDataService.loadDevData()
         }
 
-        def totalUsers = ShiroUser.count()
-        if (totalUsers == 0) {
-            loadAdminUser()
-        }
 
 
     }
@@ -23,7 +27,7 @@ class BootStrap {
     def loadAdminUser() {
 
         // Administrator user and role. 
-        def adminRole = new ShiroRole(name: "Administrator").save() 
+        def adminRole = ShiroRole.findByName("Administrator")
         def adminUser = new ShiroUser(username: "admin", 
             firstName : 'admin',
             lastName : 'admin',
@@ -37,6 +41,12 @@ class BootStrap {
             adminUser.save()
             new ShiroUserRoleRel(user: adminUser, role: adminRole).save()
         }
+    }
+
+    def loadUserRoles() {
+        // Initialize User role
+        def userRole = new ShiroRole(name: "User").save() 
+        def adminRole = new ShiroRole(name: "Administrator").save() 
     }
 
 }

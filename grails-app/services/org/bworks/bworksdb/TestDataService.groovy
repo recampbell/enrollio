@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.apache.shiro.crypto.hash.Sha1Hash
 
 class TestDataService {
 
@@ -14,6 +15,7 @@ class TestDataService {
             loadDummyContactAndStudents()
         }
         loadDummyClassSessions()
+        loadDummyUsers()
     } 
 
     def loadDummyClassSessions() {
@@ -41,6 +43,30 @@ class TestDataService {
         }
 
    }
+
+    def loadDummyUsers(numUsers = 3) {
+        numUsers.times {
+            def userRole = ShiroRole.findByName("User")
+            def lastName = randomLastName()
+            def firstName = randomFirstName()
+            def userName = firstName.substring(0,1) + lastName 
+            def dummyUser = new ShiroUser(username: userName,
+                    firstName : firstName,
+                    lastName : lastName,
+                    passwordHash: new Sha1Hash(userName).toHex()
+                    )
+            if (!dummyUser.validate()) {
+                println "username : ${userName}"
+                println "User didn't validate!"
+                println adminUser.errors.allErrors
+            }
+            else {
+                dummyUser.save()
+                new ShiroUserRoleRel(user: dummyUser, role: userRole).save()
+            }
+        }
+    }
+
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:"Children's EAC").save()
