@@ -1,5 +1,3 @@
-
-
 package org.bworks.bworksdb
 
 class ProgramController {
@@ -140,4 +138,18 @@ class ProgramController {
               action:'index',
               model:[data:reportData],params:params)
     }
+
+    // Fetches new lesson dates from program specified in params.id
+    // starting at params.startDate or today
+    def nextAvailableLessonDates = {
+        def p = Program.get(params.id)
+        def startDate = new Date()
+        if (params.startDate) {
+            startDate = Date.parse('MM/dd/yyyy', params.startDate)
+        }
+        def lessonDates = programService.nextAvailableLessonDates(p, startDate)
+        render(template:'/classSession/editLessonDates',
+                  model:[lessonDates:lessonDates])
+    }
+
 }

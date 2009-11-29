@@ -24,7 +24,7 @@ class TestDataService {
             def cs = new ClassSession(name:"${prog.name} ${new Date().format('MM/dd/yyyy')}.",
                                       program:prog,
                                       startDate: new Date()).save()
-            def nac = programService.nextAvailableClasses(cs.program, new Date())
+            def nac = programService.nextAvailableLessonDates(cs.program, new Date())
             nac.each { lessonDate ->
                 cs.addToLessonDates(lessonDate)
             }
