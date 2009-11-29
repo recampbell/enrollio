@@ -100,22 +100,22 @@ form#form #button1:hover, form#form #button2:hover {
 /***************
 	Home
 ***************/
-#infobox{
+.infobox{
 	border:1px solid #d9e6f0;
 }
-#infobox h3{
+.infobox h3{
 	background:#f3f9ff;
 	border-bottom:1px solid #d9e6f0;
 	color:#375b91;
 }
-#rightnow {
+.rightnow {
 	border:1px solid #d9e6f0;
 }
-#rightnow .reallynow {
+.rightnow .reallynow {
 	background:#f3f9ff;
 	color:#375b91;
 }
-#rightnow h3{
+.rightnow h3{
 	background:#f3f9ff;
 	border-bottom:1px solid #d9e6f0;
 }

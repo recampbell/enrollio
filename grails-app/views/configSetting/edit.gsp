@@ -9,7 +9,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
             <h1>Edit ConfigSetting</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>

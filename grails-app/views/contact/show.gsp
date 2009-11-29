@@ -10,7 +10,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
             <h1>Show Contact</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>

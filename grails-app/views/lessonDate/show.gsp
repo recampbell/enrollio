@@ -25,14 +25,14 @@
         <div id="container">
             <div id="wrapper">
                 <div id="content">
-                    <div id="rightnow">
+                    <div class="rightnow">
                         <h3 class="reallynow">
             ${lessonDateInstance.lesson.name}, ${lessonDateInstance.classSession.name}
                         </h3>
                         <p class="youhave"> ${formatDate(format:'MM/dd/yyyy', date:lessonDateInstance.lessonDate)}</p>
                     </div>
-                    <div id="infowrap">
-                        <div id="infobox">
+                    <div class="infowrap">
+                        <div class="infobox">
                             <h3>Attendees </h3>
                             <table>
                                 <tbody>

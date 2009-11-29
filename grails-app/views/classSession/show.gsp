@@ -10,7 +10,7 @@
         <div id="container">
             <div id="wrapper">
                 <div id="content">
-                    <div id="rightnow">
+                    <div class="rightnow">
                         <h3 class="reallynow">
                             <span>Class Session: ${classSessionInstance.name}</span>
                             <br />
@@ -34,8 +34,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="infowrap">
-                        <div id="infobox">
+                    <div class="infowrap">
+                        <div class="infobox">
                             <h3>Lesson Dates</h3>
                             <table>
                                 <tbody>
@@ -56,7 +56,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="infobox" class="margin-left">
+                        <div class="infobox" class="margin-left">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
                                 <g:link action="enroll" id="${classSessionInstance.id}">

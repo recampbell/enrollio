@@ -10,7 +10,7 @@
 
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
 
         <div class="body">
             <h1>Edit ShiroUser</h1>

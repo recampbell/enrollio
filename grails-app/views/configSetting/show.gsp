@@ -10,7 +10,7 @@
 
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
 
             <h1>Show ConfigSetting</h1>
             <g:if test="${flash.message}">

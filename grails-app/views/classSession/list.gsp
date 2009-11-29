@@ -8,7 +8,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
                     <h3 class="reallynow">Sessions
                         <g:link action="create" class="add">Add Session</g:link>
                         <br />

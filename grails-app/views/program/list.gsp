@@ -7,8 +7,8 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
-                        <h3 class="reallynow">
+                <div class="rightnow">
+                    <h3 class="reallynow">
                             <span>Programs</span>
                         <g:link action="create" class="addorder">Add Program</g:link>
                         <br />

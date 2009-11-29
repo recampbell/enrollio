@@ -9,7 +9,7 @@
     <body>
         <div id="wrapper">
         <div id="content">
-        <div id="rightnow">
+        <div class="rightnow">
             <h3>Create Contact</h3>
             <g:hasErrors bean="${contactInstance}">
                 <div class="errors">

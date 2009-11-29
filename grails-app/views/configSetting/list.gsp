@@ -8,7 +8,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <div class="rightnow">
                     <h1 class="reallynow">Settings
                         <g:link action="create" class="add">Add Setting</g:link>
                         <br /></h1>
