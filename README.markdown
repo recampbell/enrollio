@@ -18,6 +18,17 @@ Enrollio's purpose is to help Bworks maintain its student database.
 
 ## PDF Plugin
 
+# JQuery Voodoo Features
+
+## Date Picker
+
+  * Creating Class Sessions:
+    * Date Picker when creating Class Sessions will update all the LessonDates with
+      newly selected date, in weekly increments
+    * If user selects a different Program for a new Class Session, 
+      LessonDates Ajaxily downloaded for the new Program, and given
+      dates that adhere to any startDate the user already selected
+
 # Grailsy Voodoo Features
 
 ## Tag Libraries
