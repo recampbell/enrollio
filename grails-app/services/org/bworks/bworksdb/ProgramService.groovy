@@ -4,9 +4,9 @@ class ProgramService {
 
     boolean transactional = true
 
-    // Go through Programs's Classes, and create dummy
+    // Go through Programs's Lessons, and create dummy
     // LessonDates, starting with startDate
-    def nextAvailableClasses(Program p, Date startDate) {
+    def nextAvailableLessonDates(Program p, Date startDate) {
         def d = startDate
         def proposedClasses = []
         p.lessons.each {
@@ -24,5 +24,9 @@ class ProgramService {
         println interests
         def students = interests.collect { it.student }
         def contacts = students.collect { it.contact }
+    }
+
+    def activeInterests(Program p) {
+        return Interest.findAllByProgramAndActive(p, true)
     }
 }

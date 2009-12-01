@@ -73,7 +73,7 @@ margin-top:20px;
 	line-height:22px;
 }
 #sidebar ul li a,#sidebar ul li a:visited{
-	/* padding-left:19px; */
+	padding-left:19px;
 	text-decoration:none;
 	margin:0 3px;
 	display:block;
@@ -234,35 +234,41 @@ thead{
 #infowrap li{
 	display:inline:
 }
-#infobox{
+.infobox{
 	width:365px;
 	float:left;
 	margin-top:10px;
 }
-#infobox h3{
+.infobox h3{
 	padding:5px;
 	font-size:14px;
 }
 .margin-left{
 	margin-left:5px;
 }
-#rightnow .reallynow {
+.rightnow .reallynow {
 	padding: 5px;
 	font-size:14px;
 }
-#rightnow h3{
+.rightnow h3{
 	padding:2px;
 	padding: 0 10px;
 	font-size:14px;
 }
-#rightnow .reallynow span {
+.rightnow .reallynow span {
 	display: block;
 	text-align: left;
 	float: left;
 	padding:0 2px;
 	font-size:14px
 }
-#rightnow .reallynow a {
+
+/* No longer need parent #rightnow.
+ * Like being able to have "Add" and "Edit"
+ * buttons inside infobox elements, instead of
+ * just #rightnow elements
+ */
+.reallynow a {
 	text-decoration:none;
 	display: block;
 	text-align: right;
@@ -272,7 +278,7 @@ thead{
 	font-weight:normal;
 	font-size:12px;
 }
-#rightnow .reallynow a:hover{
+#rightnow .reallynow a:hover {
 	text-decoration:underline;
 }
 #rightnow .youhave {
@@ -353,27 +359,74 @@ form#form #button1:hover, form#form #button2:hover {
 	display:inline-block;
 	line-height:20px;
 }
-.user{background:transparent url(../img/icons/user.png) no-repeat left;}
-.useradd{background:transparent url(../img/icons/user_add.png) no-repeat left;}
-.group{background:transparent url(../img/icons/group.png) no-repeat left;}
-.search{background:transparent url(../img/icons/magnifier.png) no-repeat left;}
-.online{background:transparent url(../img/icons/world.png) no-repeat left;}
-.pagenew{background:transparent url(../img/icons/page_add.png) no-repeat left;}
-.rss{background:transparent url(../img/icons/rss.png) no-repeat left;}
-.feed{background:transparent url(../img/icons/feed.png) no-repeat left;}
-.report{background:transparent url(../img/icons/report.png) no-repeat left;}
-.house{background:transparent url(../img/icons/house.png) no-repeat left;}
-.manage{background:transparent url(../img/icons/cog.png) no-repeat left;}
-.manage_page{background:transparent url(../img/icons/page_gear.png) no-repeat left;}
-.folder{background:transparent url(../img/icons/folder.png) no-repeat left;}
-.promotions{background:transparent url(../img/icons/coins.png) no-repeat left;}
-.cart{background:transparent url(../img/icons/cart.png) no-repeat left;}
-.folder_table{background:transparent url(../img/icons/folder_page.png) no-repeat left;}
-.shipping{background:transparent url(../img/icons/car.png) no-repeat left;}
-.invoices{background:transparent url(../img/icons/page_white_text_width.png) no-repeat left;}
-.addorder{background:transparent url(../img/icons/folder_page_add.png) no-repeat left;}
-.add{background:transparent url(../img/icons/add.png) no-repeat left;}
-.app_add{background:transparent url(../img/icons/application_add.png) no-repeat left;}
-.report_seo{background:transparent url(../img/icons/report_link.png) no-repeat left;}
-.modules{background:transparent url(../img/icons/bricks.png) no-repeat left;}
-.modules_manage{background:transparent url(../img/icons/bricks_gear.png) no-repeat left;}
+.user{background:transparent url(../images/icons/user.png) no-repeat left;}
+.useradd{background:transparent url(../images/icons/user_add.png) no-repeat left;}
+.group{background:transparent url(../images/icons/group.png) no-repeat left;}
+.search{background:transparent url(../images/icons/magnifier.png) no-repeat left;}
+.online{background:transparent url(../images/icons/world.png) no-repeat left;}
+.pagenew{background:transparent url(../images/icons/page_add.png) no-repeat left;}
+.rss{background:transparent url(../images/icons/rss.png) no-repeat left;}
+.feed{background:transparent url(../images/icons/feed.png) no-repeat left;}
+.report{background:transparent url(../images/icons/report.png) no-repeat left;}
+.house{background:transparent url(../images/icons/house.png) no-repeat left;}
+.manage{background:transparent url(../images/icons/cog.png) no-repeat left;}
+.manage_page{background:transparent url(../images/icons/page_gear.png) no-repeat left;}
+.folder{background:transparent url(../images/icons/folder.png) no-repeat left;}
+.promotions{background:transparent url(../images/icons/coins.png) no-repeat left;}
+.cart{background:transparent url(../images/icons/cart.png) no-repeat left;}
+.folder_table{background:transparent url(../images/icons/folder_page.png) no-repeat left;}
+.shipping{background:transparent url(../images/icons/car.png) no-repeat left;}
+.invoices{background:transparent url(../images/icons/page_white_text_width.png) no-repeat left;}
+.addorder{background:transparent url(../images/icons/folder_page_add.png) no-repeat left;}
+.add{background:transparent url(../images/icons/add.png) no-repeat left;}
+.app_add{background:transparent url(../images/icons/application_add.png) no-repeat left;}
+.report_seo{background:transparent url(../images/icons/report_link.png) no-repeat left;}
+.modules{background:transparent url(../images/icons/bricks.png) no-repeat left;}
+.modules_manage{background:transparent url(../images/icons/bricks_gear.png) no-repeat left;}
+
+
+/* PAGINATION */
+
+.paginateButtons {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-top: 0;
+    color: #666;
+    font-size: 10px;
+    overflow: hidden;
+    padding: 10px 3px;
+}
+.paginateButtons a {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-color: #ccc #aaa #aaa #ccc;
+    color: #666;
+    margin: 0 3px;
+    padding: 2px 6px;
+}
+.paginateButtons span {
+    padding: 2px 3px;
+}
+
+/* DIALOG */
+
+.dialog table {
+    padding: 5px 0;
+}
+
+.prop {
+    padding: 5px;
+}
+.prop .name {
+    text-align: left;
+    width: 15%;
+    white-space: nowrap;
+}
+.prop .value {
+    text-align: left;
+    width: 85%;
+}
+
+
+
+

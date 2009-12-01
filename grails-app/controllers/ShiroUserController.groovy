@@ -66,7 +66,15 @@ class ShiroUserController {
                 }
             }
             shiroUserInstance.properties = params
-            if(!shiroUserInstance.hasErrors() && shiroUserInstance.save()) {
+            if(!shiroUserInstance.hasErrors() && shiroUserInstance.validate()) {
+                if (shiroUserInstance.password) {
+                    // We know that the password and password confirm are equal
+                    // due to constraints in ShiroUser
+                    // Generate a new password hash, now that we're sure that 
+                    // the user typed something in the password box
+                    shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+                }
+                shiroUserInstance.save()
                 flash.message = "ShiroUser ${params.id} updated"
                 redirect(action:show,id:shiroUserInstance.id)
             }
@@ -88,11 +96,9 @@ class ShiroUserController {
 
     def save = {
         def shiroUserInstance = new ShiroUser(params)
-        if(!shiroUserInstance.hasErrors()) {
-            // We know that the password and password confirm are equal.
-            // Generate a new password hash
-            shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
-            shiroUserInstance.save()
+        // Generate a new password hash
+        shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+        if(!shiroUserInstance.hasErrors() && shiroUserInstance.save()) {
             flash.message = "ShiroUser ${shiroUserInstance.id} created"
             redirect(action:show,id:shiroUserInstance.id)
         }

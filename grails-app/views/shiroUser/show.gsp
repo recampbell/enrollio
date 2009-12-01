@@ -7,11 +7,9 @@
         <title>Show ShiroUser</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">ShiroUser List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New ShiroUser</g:link></span>
-        </div>
+        <div id="wrapper">
+            <div id="content">
+                <div class="rightnow">
         <div class="body">
             <h1>Show ShiroUser</h1>
             <g:if test="${flash.message}">
@@ -63,6 +61,12 @@
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
                 </g:form>
             </div>
+        </div>
+        </div>
+        </div>
+        <div id="sidebar">
+            <g:render template="/common/sideMenu" />
+            <g:render template="/admin/adminMenu" />
         </div>
     </body>
 </html>

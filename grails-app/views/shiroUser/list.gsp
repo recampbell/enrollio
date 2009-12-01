@@ -7,10 +7,9 @@
         <title>ShiroUser List</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="create" action="create">New ShiroUser</g:link></span>
-        </div>
+        <div id="wrapper">
+            <div id="content">
+                <div class="rightnow">
         <div class="body">
             <h1>ShiroUser List</h1>
             <g:if test="${flash.message}">
@@ -54,6 +53,12 @@
             <div class="paginateButtons">
                 <g:paginate total="${shiroUserInstanceTotal}" />
             </div>
+        </div>
+        </div>
+        </div>
+        <div id="sidebar">
+            <g:render template="/common/sideMenu" />
+            <g:render template="/admin/adminMenu" />
         </div>
     </body>
 </html>

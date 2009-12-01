@@ -10,7 +10,7 @@
         <div id="container">
             <div id="wrapper">
                 <div id="content">
-                    <div id="rightnow">
+                    <div class="rightnow">
                         <h3 class="reallynow">
                             <span>Class Session: ${classSessionInstance.name}</span>
                             <br />
@@ -34,8 +34,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="infowrap">
-                        <div id="infobox">
+                    <div class="infowrap">
+                        <div class="infobox">
                             <h3>Lesson Dates</h3>
                             <table>
                                 <tbody>
@@ -56,7 +56,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="infobox" class="margin-left">
+                        <div class="infobox" class="margin-left">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
                                 <g:link action="enroll" id="${classSessionInstance.id}">
@@ -87,18 +87,14 @@
                             </h3>
                         </li>
                         <li>
-                            <g:jasperReport controller="classSession"
-                            action="printGraduationCertificates"
-                            jasper="graduationCertificate" format="PDF"
-                            name="Graduation">Print Certificates 
-                            <input type="hidden" name="id"
-                            value="${classSessionInstance.id}" /></g:jasperReport>
-                            <g:jasperReport controller="classSession"
-                            action="simpleTest"
-                            jasper="simpleTest" format="PDF"
-                            name="Graduation">Simple Test
-                            <input type="hidden" name="id"
-                            value="${classSessionInstance.id}" /></g:jasperReport>
+                        Graduation Certificates
+                        <g:jasperReport controller="classSession"
+                        action="printGraduationCertificates"
+                        jasper="graduationCertificate" format="PDF"
+                        name="Graduation">Graduation Certificates
+                        <input type="hidden" name="id"
+                        value="${classSessionInstance.id}" />
+                        </g:jasperReport>
                         </li>
                     </ul>
                 </div>
