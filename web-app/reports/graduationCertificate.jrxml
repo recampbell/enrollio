@@ -38,7 +38,7 @@
 				<text><![CDATA[For Completing Byte WORKS Earn-A-Computer Program through Dedication, Imagination, and Respect of Fellow Classmates and Instructors]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="103" y="567" width="289" height="79"/>
+				<reportElement x="103" y="567" width="368" height="79"/>
 				<textElement markup="html">
 					<font fontName="Sawasdee" size="24" isBold="true" isItalic="true"/>
 				</textElement>
