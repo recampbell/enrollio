@@ -16,8 +16,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="id" title="Id" />
-                            <g:sortableColumn property="name" title="Name" />
+                             <g:sortableColumn property="name" title="Name" />
                             <g:sortableColumn property="startDate" title="Start Date" />
                         </tr>
                     </thead>
@@ -29,12 +28,10 @@
                                     <g:link action="show"
                                     id="${classSessionInstance.id}">
                                     ${fieldValue(bean:classSessionInstance,
-                                    field:'id')}</g:link>
+                                    field:'name')}</g:link>
                                 </td>
-                                <td>${fieldValue(bean:classSessionInstance,
-                                field:'name')}</td>
-                                <td>${fieldValue(bean:classSessionInstance,
-                                field:'startDate')}</td>
+                                <td><g:formatDate format="MM/dd/yyyy"
+                                                date="${classSessionInstance.startDate}" /></td>
                             </tr>
                         </g:each>
                     </tbody>
