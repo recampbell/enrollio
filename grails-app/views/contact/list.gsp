@@ -12,6 +12,9 @@
                         <h3 class="reallynow">Contacts
                         <g:link action="create" class="add">Add Contact</g:link>
                         <br /></h3>
+                        <g:form url='[controller: "contact", action: "list"]' id="searchableForm" name="searchableForm" method="get">
+                          <g:textField name="q" value="${params.q}" size="20"/> <input type="submit" value="Search" />
+                        </g:form>
                         <table>
                             <thead>
                                 <tr>
@@ -35,7 +38,7 @@
                             </tbody>
                         </table>
                 <div class="paginateButtons">
-                    <g:paginate total="${contactInstanceTotal}" />
+                    <g:paginate total="${contactInstanceTotal}" params="${[q:previousQuery]}"/>
                 </div>
             </div>
             </div>

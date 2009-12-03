@@ -9,8 +9,18 @@ class ContactController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
+        def contactList
+        def contactCount 
+        
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ contactInstanceList: Contact.list( params ), contactInstanceTotal: Contact.count() ]
+        if(params.q){
+            contactList = Contact.search( params.q + "*", offset:params.offset ).results
+            contactCount = Contact.countHits( params.q + "*" )
+        } else { 
+            contactList = Contact.list( params )
+            contactCount = Contact.count()
+        }
+        [ contactInstanceList: contactList, contactInstanceTotal: contactCount, previousQuery: params.q ]
     }
 
     def show = {
