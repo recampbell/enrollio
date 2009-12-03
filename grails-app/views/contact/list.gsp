@@ -10,11 +10,12 @@
             <div id="content">
                 <div class="rightnow">
                         <h3 class="reallynow">Contacts
+                        <g:form url='[controller: "contact", action: "list"]' id="searchableForm" name="searchableForm" method="get">
+                        <g:textField name="page" name="q" value="${params.q}" size="20"/> 
+                        <input class="search" type="submit" value="Search" />
+                        </g:form>
                         <g:link action="create" class="add">Add Contact</g:link>
                         <br /></h3>
-                        <g:form url='[controller: "contact", action: "list"]' id="searchableForm" name="searchableForm" method="get">
-                          <g:textField name="q" value="${params.q}" size="20"/> <input type="submit" value="Search" />
-                        </g:form>
                         <table>
                             <thead>
                                 <tr>
