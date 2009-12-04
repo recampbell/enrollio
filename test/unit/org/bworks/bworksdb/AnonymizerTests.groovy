@@ -89,11 +89,11 @@ class AnonymizerTests extends GrailsUnitTestCase {
 
     void testZipCodeFormat() {
         def z = anon.zipCode()
-        assert z =~ /\d{5}-\d{2}/, "Format must be 12345-1234:  Got: ${z}"
+        assert z =~ /^\d{5}-\d{4}$/, "Format must be 12345-1234:  Got: ${z}"
     }
 
     void testPhoneNumberFormat() {
-        assert anon.phoneNumber() =~ /\(314\)-123-\d{4}/
+        assert anon.phoneNumber() =~ /^\(314\)-123-\d{4}$/
     }
     // TODO: Test address anonymizer
     // TODO: Test email anonymizer
