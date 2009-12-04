@@ -78,7 +78,12 @@ class AnonymizerTests extends GrailsUnitTestCase {
 
         assert expectedNames.size() == 0, "Randomizer did not select name: ${expectedNames}"
     }
-    void testLastName() {
-        assert anon.lastName()
+
+    void testRandomZipCode() {
+        // Taking a slight chance 1 in 10000? that we'll get two zips that are the same
+        10.times {
+            def prev = anon.zipCode()
+            assert anon.zipCode() != prev
+        }
     }
 }
