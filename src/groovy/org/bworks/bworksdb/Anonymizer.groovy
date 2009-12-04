@@ -42,7 +42,7 @@ class Anonymizer {
     }
 
     def zipCode() {
-        return random.nextInt(10000).toString().padLeft(3, "0") + '-1234'
+        return random.nextInt(10000).toString().padLeft(5, "0") + '-1234'
     }
 
     def emailAddress(String username) {
