@@ -34,11 +34,11 @@ class Anonymizer {
     }
 
     def firstName() {
-        return firstNames[random.nextInt(firstNames.size() - 1)]
+        return firstNames[random.nextInt(firstNames.size())]
     }
 
     def lastName() {
-        return lastNames[random.nextInt(lastNames.size() - 1)]
+        return lastNames[random.nextInt(lastNames.size())]
     }
 
     def zipCode() {
