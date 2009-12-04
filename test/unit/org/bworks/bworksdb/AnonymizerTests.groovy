@@ -86,4 +86,8 @@ class AnonymizerTests extends GrailsUnitTestCase {
             assert anon.zipCode() != prev
         }
     }
+
+    void testZipCodeFormat() {
+        assert anon.zipCode() =~ /\d{5}-\d{2}
+    }
 }
