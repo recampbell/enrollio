@@ -1,12 +1,46 @@
 package org.bworks.bworksdb
+
 import org.apache.shiro.crypto.hash.Sha1Hash
+import org.bworks.bworksdb.util.TestKeys
 
 class TestDataService {
 
     boolean transactional = true
 
     def programService
+        
+    // we don't want random data for integration tests
+    def loadIntegrationTestData() {
+        // get program
+        loadDefaultPrograms()
+        
+        def program = Program.findByName(TestKeys.PROGRAM)
+        
+        // build contact, student
+        def contact = new Contact(firstName:'first',
+                            lastName:'last',
+                            address1:'add1',
+                            address2:'add2',
+                            city:'Saint Louis',
+                            state:'MO',
+                            zipCode:'63043',
+                            emailAddress:'email').save()
 
+        def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
+
+        contact.addToStudents(student)
+        contact.save(flush:true)
+        
+        // add interest to program and student
+        def note = new Note(text:TestKeys.NOTE).save()
+        def interest = new Interest(active:false, student:student, program:program, note:note).save()        
+        program.addToInterests(interest)
+        student.addToInterests(interest)
+
+        student.save(flush:true)
+        program.save(flush:true)
+    }
+    
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
         loadDefaultPrograms()
@@ -78,10 +112,8 @@ class TestDataService {
                                        sequence:i))
         }
             
-        def p1 = new Program(description:"Byteworks Adult Earn-A-Computer Program",
-                              name:"Adult EAC").save()
-        def p2 = new Program(description:"Byteworks Mentorship Program",
-                              name:"Mentorship Program").save()
+        new Program(description:"Byteworks Adult Earn-A-Computer Program", name:"Adult EAC").save()
+        new Program(description:"Byteworks Mentorship Program", name:"Mentorship Program").save()
  
         def s0 = new ConfigSetting(configKey:'defaultInterestProgram',
                                    value:1,
