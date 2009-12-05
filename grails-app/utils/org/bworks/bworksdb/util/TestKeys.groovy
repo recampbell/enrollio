@@ -7,4 +7,5 @@ class TestKeys {
     static public final String STUDENT = 'Supervisor Jim Lahey'
     static public final String NOTE = 'this is a note'
     static public final String PROGRAM = 'Adult EAC'
+    static public final String CONTACT_EMAIL = 'groovy@gmail.com'
 }

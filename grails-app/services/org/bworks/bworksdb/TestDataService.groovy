@@ -24,7 +24,7 @@ class TestDataService {
                             city:'Saint Louis',
                             state:'MO',
                             zipCode:'63043',
-                            emailAddress:'email').save()
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
 
         def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
 
@@ -33,7 +33,7 @@ class TestDataService {
         
         // add interest to program and student
         def note = new Note(text:TestKeys.NOTE).save()
-        def interest = new Interest(active:false, student:student, program:program, note:note).save()        
+        def interest = new Interest(active:true, student:student, program:program, note:note).save()        
         program.addToInterests(interest)
         student.addToInterests(interest)
 
