@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}"/>
+        <meta name="tabName" content="program" />
         <title>Contact List</title>
     </head>
     <body>

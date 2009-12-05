@@ -2,6 +2,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Moving stuff around in jQuery</title>
     <meta name="layout" content="main" />
+    <meta name="tabName" content="classSession" />
     <link rel="stylesheet" href="${resource(dir:'css/pepper-grinder',file:'jquery-ui-1.7.2.custom.css')}" />
     <!-- <link rel="stylesheet" href="${resource(dir:'css',file:'enrollments.css')}"/> -->
     <!-- <link rel="stylesheet" href="${resource(dir:'css',file:'bookstore.css')}"/> -->

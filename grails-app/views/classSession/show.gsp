@@ -4,7 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Dashboard - Admin Template</title>
+        <meta name="tabName" content="classSession" />
+        <title>Class Sessions - Enrollio</title>
     </head>
     <body>
         <div id="container">
