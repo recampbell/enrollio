@@ -44,4 +44,14 @@ class MiscTagLib {
         }
         return out
     }
+
+    def isCurrentTab = { attrs ->
+        if (pageProperty(name:'meta.tabName') == attrs['tabName']) {
+            out << 'current'
+        }
+        else {
+            out << 'enr-top-menu-item'
+        }
+        return out
+    }
 }
