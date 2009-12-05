@@ -28,24 +28,22 @@
                 </shiro:isNotLoggedIn>
                 <div id="topmenu">
                     <ul>
-                        <li>
-                            <g:link controller="program" action="list"
-                            class="enr-top-menu-item">Programs</g:link>
+                        <li class="${isCurrentTab(tabName:'program')}">
+                            <g:link controller="program" action="list">Programs</g:link>
                         </li>
-                        <li>
-                            <g:link controller="contact" action="list"
-                            class="enr-top-menu-item">Contacts</g:link>
+                        <li class="${isCurrentTab(tabName:'contact')}">
+                            <g:link controller="contact" action="list">Contacts</g:link>
                         </li>
-                        <li>
+                        <li class="${isCurrentTab(tabName:'student')}">
                             <g:link controller="student" action="list"
                             class="enr-top-menu-item">Students</g:link>
                         </li>
-                        <li>
+                        <li class="${isCurrentTab(tabName:'classSession')}">
                             <g:link controller="classSession" action="list"
                             class="enr-top-menu-item">Class Sessions</g:link>
                         </li>
                         <shiro:hasRole name="Administrator">
-                            <li>
+                            <li class="${isCurrentTab(tabName:'admin')}">
                                 <g:link controller="admin" class="enr-top-menu-item">
                                 Admin</g:link>
                             </li>
