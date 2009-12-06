@@ -17,8 +17,8 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     void testCallListReportData() {
          controller.programService = programService 
 
-         def program = Program.findByName(TestKeys.PROGRAM)
-         assertEquals TestKeys.PROGRAM, program.name
+         def program = Program.findByName(TestKeys.PROGRAM_ADULT_AEC)
+         assertEquals TestKeys.PROGRAM_ADULT_AEC, program.name
        
          def student = Student.findByLastName(TestKeys.STUDENT)
          assertEquals TestKeys.STUDENT, student.lastName
@@ -28,7 +28,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
          // test
          def reportData = controller.callListReportData()
         
-         assertEquals TestKeys.PROGRAM, mockParams['PROGRAM_NAME']         
+         assertEquals TestKeys.PROGRAM_ADULT_AEC, mockParams['PROGRAM_NAME']         
          assertNotNull reportData
          def thisMap = reportData[0]
          assertEquals student.fullName(), thisMap['STUDENT_NAME'] 
