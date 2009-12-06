@@ -10,12 +10,8 @@ class StudentService {
     // inactive if they exist for that student.  Read on.  You'll get it.
     // Interests is an array of goofy Grails checkboxes
     def saveInterests(student, interests) {
-        println "--" * 200
-        println "Milf" * 10
         def allPrograms = Program.findAll()
         allPrograms.each { prog ->
-        println "Checking program: " + prog.id
-        // println interests.className
             // See if there's a checkbox in the array that's selected 
             if (interests && interests instanceof java.lang.String) {
                 println "Trying to match " + interests.toString() + " with " + prog.id.toString()
@@ -35,13 +31,9 @@ class StudentService {
             else if (interests && interests instanceof java.lang.String[]) {
                 def found = false
                 interests.each {
-                    println "it : " + it
-                    println "prog.id : " + prog.id
                     if (it.toString() == prog.id.toString()) {
                         found = true
-                        println "Yes sld"
                         if (!Interest.findWhere(student:student, program:prog, active:true)) {
-                            println "mached array" * 10
                             student.addToInterests(new Interest(program:prog, active:true))
                         }
                     }
@@ -61,7 +53,6 @@ class StudentService {
         // Momma said knock you out!
         def is = Interest.findWhere(student:student, program:prog, active:true)
         is.each {
-            println "Blasting from wherever" + it
             it.active = false
             it.save()
         }
