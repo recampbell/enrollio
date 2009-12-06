@@ -136,11 +136,7 @@ class ProgramController {
         // TODO: Refactor to a Service, or else give classSession a graduationDate
         def interests = programService.activeInterests(programInstance)
 
-        def reportData = interests.collect {
-            buildReportData(it)
-        }
-        
-        return reportData
+        return interests.collect(buildReportData)
     }
     
     def callList = {
