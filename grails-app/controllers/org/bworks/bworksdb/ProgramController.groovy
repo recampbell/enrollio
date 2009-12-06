@@ -105,7 +105,7 @@ class ProgramController {
         }
     }
 
-    def buildReportData = { interest ->
+    protected def buildReportData = { interest ->
         def student = interest.student
         def contact = student.contact 
         
@@ -128,7 +128,7 @@ class ProgramController {
         ]        
     }
     
-    def callListReportData = {
+    protected def callListReportData = {
         def programInstance = Program.get(params.id)
         params['PROGRAM_NAME'] = programInstance.name
 

@@ -11,9 +11,7 @@ class StudentService {
             // turn 1 or N into a single list and iterate
             def tmpInterests = []
             tmpInterests << interests
-            tmpInterests.flatten().each { it ->
-                selected << it.toString()
-            }
+            tmpInterests.flatten().each { selected << it.toString() }
         }
         
         selected
