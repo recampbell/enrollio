@@ -1,3 +1,4 @@
+<shiro:isLoggedIn>
 <ul>
     <li>
         <h3>
@@ -78,3 +79,4 @@
         </ul>
     </li>
     --}%
+</shiro:isLoggedIn>
