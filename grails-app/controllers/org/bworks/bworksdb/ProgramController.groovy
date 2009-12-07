@@ -105,35 +105,43 @@ class ProgramController {
         }
     }
 
-    def callList = {
-        def programInstance = Program.get(params.id)
-
-        // Default Graduation Date to date of last class
-        // TODO: Refactor to a Service, or else give classSession a graduationDate
-        def students = programService.activeInterests(programInstance)
-        params['PROGRAM_NAME'] = programInstance.name
-        def reportData = students.collect {
-            def addr = [ it.student.contact.address1 , it.student.contact.address2 ?: '' ]
-            def csz = [it.student.contact.city ?: '' , 
-                       it.student.contact.state ?: '', 
-                       it.student.contact.zipCode ?: '']
-            [
-            CONTACT_NAME:it.student.contact,
+    protected def buildReportData = { interest ->
+        def student = interest.student
+        def contact = student.contact 
+        
+        def addr = [ contact.address1 , contact.address2 ?: '' ]
+        def csz = [ contact.city ?: '' , contact.state ?: '', contact.zipCode ?: '']
+        
+        [
+            CONTACT_NAME:contact,
             CONTACT_ADDRESS:addr.join('<BR />'),
             // TODO Contact Notes, mmmk?
             CONTACT_NOTES:'',
             CONTACT_CITY_STATE_ZIP:csz.join(', '),
-            CONTACT_EMAIL:it.student.contact.emailAddress,
-            CONTACT_PHONE:it.student.contact.phoneNumbers.join('<br />'),
-            CONTACT_ID:it.student.contact.id,
-            STUDENT_NAME:it.student.fullName(),
-            STUDENT_BIRTHDATE:it.student.birthDate ?: '?',
-            STUDENT_GENDER:it.student.gender ?: '?',
-            STUDENT_GRADE:it.student.grade ?: '?'
+            CONTACT_EMAIL:contact.emailAddress,
+            CONTACT_PHONE:contact.phoneNumbers.join('<br />'),
+            CONTACT_ID:contact.id,
+            STUDENT_NAME:student.fullName(),
+            STUDENT_BIRTHDATE:student.birthDate ?: '?',
+            STUDENT_GENDER:student.gender ?: '?',
+            STUDENT_GRADE:student.grade ?: '?'
+        ]        
+    }
+    
+    protected def callListReportData = {
+        def programInstance = Program.get(params.id)
+        params['PROGRAM_NAME'] = programInstance.name
 
-            ]
-        }
+        // Default Graduation Date to date of last class
+        // TODO: Refactor to a Service, or else give classSession a graduationDate
+        def interests = programService.activeInterests(programInstance)
 
+        return interests.collect(buildReportData)
+    }
+    
+    def callList = {
+        def reportData = callListReportData()
+        
         chain(controller:'jasper',
               action:'index',
               model:[data:reportData],params:params)

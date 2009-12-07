@@ -10,7 +10,16 @@ class InterestTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void testSomething() {
+    void testConstraints_Green() {
+        mockDomain(Interest)
+        
+        def s = new Student()
+        def p = new Program()
+        
+        // test
+        def interest = new Interest(active:false, student:s, program:p)
+        
+        assertTrue interest.validate()
+    }    
 
-    }
 }

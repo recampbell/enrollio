@@ -6,19 +6,22 @@ class BootStrap {
 
     def init = { servletContext ->
         def totalUsers = ShiroUser.count()
+        
         if (totalUsers == 0) {
             loadUserRoles()
+
+            // loadDevData will load test users, so make sure that
+            // admin user is already created before you call loadDevData
             loadAdminUser()
         }
 
         if (grails.util.GrailsUtil.environment == "development") {
-            // loadDevData will load test users, so make sure that
-            // admin user is already created before you call loadDevData
             testDataService.loadDevData()
         }
-
-
-
+        
+        if (grails.util.GrailsUtil.environment == "test") {
+            testDataService.loadIntegrationTestData()
+        }
     }
 
     def destroy = {

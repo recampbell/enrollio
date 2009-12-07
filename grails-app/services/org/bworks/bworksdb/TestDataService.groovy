@@ -1,12 +1,50 @@
 package org.bworks.bworksdb
+
 import org.apache.shiro.crypto.hash.Sha1Hash
+import org.bworks.bworksdb.util.TestKeys
 
 class TestDataService {
 
     boolean transactional = true
 
     def programService
+        
+    // we don't want random data for integration tests
+    def loadIntegrationTestData() {
+        // get programs
+        loadDefaultPrograms()
+                
+        // build contact, student
+        def contact = new Contact(firstName:'first',
+                            lastName:'last',
+                            address1:'add1',
+                            address2:'add2',
+                            city:'Saint Louis',
+                            state:'MO',
+                            zipCode:'63043',
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
 
+        def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
+
+        contact.addToStudents(student)
+        contact.save(flush:true)
+        
+        // interests
+        addInterest(student, Program.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
+        addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
+    }
+    
+    def addInterest(student, program, isActive) {
+        // add interest to program and student
+        def note = new Note(text:TestKeys.NOTE).save()
+        def interest = new Interest(active:isActive, student:student, program:program, note:note).save()        
+        program.addToInterests(interest)
+        student.addToInterests(interest)        
+
+        student.save(flush:true)
+        program.save(flush:true)
+    }
+    
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
         loadDefaultPrograms()
@@ -69,7 +107,7 @@ class TestDataService {
 
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
-                              name:"Children's EAC").save()
+                              name:TestKeys.PROGRAM_KIDS_AEC).save()
         def eacLessons = ['Intro to Computers', 'Scratch Programming',
                           'Word Processing', 'Presentations', 'Email and WWW', 'Graduation']
         eacLessons.eachWithIndex { it, i ->
@@ -78,10 +116,8 @@ class TestDataService {
                                        sequence:i))
         }
             
-        def p1 = new Program(description:"Byteworks Adult Earn-A-Computer Program",
-                              name:"Adult EAC").save()
-        def p2 = new Program(description:"Byteworks Mentorship Program",
-                              name:"Mentorship Program").save()
+        new Program(description:"Byteworks Adult Earn-A-Computer Program", name:TestKeys.PROGRAM_ADULT_AEC).save()
+        new Program(description:"Byteworks Mentorship Program", name:TestKeys.PROGRAM_MENTORSHIP).save()
  
         def s0 = new ConfigSetting(configKey:'defaultInterestProgram',
                                    value:1,

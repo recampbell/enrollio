@@ -129,12 +129,10 @@ class ContactController {
      */
     def saveContactAndStudents = {
       def contactInstance
-      println params
+
       if (params.id) {
         contactInstance = Contact.get(params.id)
 
-        // println 'foo' * 1000; 
-        // println params['students[0]']
         contactInstance.properties = params
 
         contactInstance.validate()
@@ -143,10 +141,6 @@ class ContactController {
         contactInstance.students.eachWithIndex {student, idx ->
           if (student.validate()) {
             student.save()
-            println "params are: " + params
-            // println "index is: " * 10
-            println idx
-            // println params.students[idx]
             studentService.saveInterests(student, params["studentInterests[${idx}]"])
           }
           else {
