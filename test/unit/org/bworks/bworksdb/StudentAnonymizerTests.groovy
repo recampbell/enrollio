@@ -39,6 +39,26 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
         }
         assert found != null
     }
+
+    void testMultipleFirstNames() {
+        def testStudents = getXmlStudents(2)
+
+        sa = new StudentAnonymizer(testStudents)
+        def origFirstNames = sa.students.collect {
+            it.FirstName.text()
+        }
+
+        assert origFirstNames[0] == 'Lexicon#@#123^^^'
+        assert origFirstNames[1] == 'Lexicon#@#123^^^'
+
+        sa.anonymize()
+        assert 'Lexicon#@123^^^' != sa.students[0].FirstName.text()
+        assert 'Lexicon#@123^^^' != sa.students[1].FirstName.text()
+        // Make sure we just didn't blank out the name
+        assert sa.students[0].FirstName.text().length() > 0
+        assert sa.students[1].FirstName.text().length() > 0
+    }
+
     // TODO test lastName
     //
     // ------------- TEST DATA DEFINITION -------------
