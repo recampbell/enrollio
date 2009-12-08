@@ -15,5 +15,10 @@ class StudentAnonymizer {
         students.FirstName.each {
             it.value = anon.firstName()
         }
+
+        // Next, sweep all last names, main!
+        students.LastName.each {
+            it.value = anon.lastName()
+        }
     }
 }
