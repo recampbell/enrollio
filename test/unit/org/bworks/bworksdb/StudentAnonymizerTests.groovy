@@ -57,14 +57,21 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
         // Make sure we just didn't blank out the name
         assert sa.students[0].FirstName.text().length() > 0
         assert sa.students[1].FirstName.text().length() > 0
+
+        sa.students.FirstName.each { firstName ->
+            def found = sa.anon.firstNames.find {
+                it == firstName.text()
+            }
+            assert found != null
+        }
     }
 
     void testLastName() {
         def testStudent = getXmlStudents(1)
         sa = new StudentAnonymizer(testStudent)
-        def origLastName = sa.students[0].LastName.text()
+        assert 'Sprankle72.6' == sa.students[0].LastName.text()
         sa.anonymize()
-        assert origLastName != sa.students[0].LastName.text()
+        assert 'Sprankle72.6' != sa.students[0].LastName.text()
         // Make sure we just didn't blank out the name
         assert sa.students[0].LastName.text().length() > 0
         // This test might be a little too picky, but
@@ -75,6 +82,36 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
         }
         assert found != null
     }
+
+    void testMultipleLastNames() {
+        def testStudents = getXmlStudents(3)
+
+        sa = new StudentAnonymizer(testStudents)
+        def origLastNames = sa.students.collect {
+            it.LastName.text()
+        }
+
+        assert origLastNames[0] == 'Sprankle72.6'
+        assert origLastNames[1] == 'Sprankle72.6'
+        assert origLastNames[2] == 'Sprankle72.6'
+
+        sa.anonymize()
+        assert 'Sprankle72.6' != sa.students[0].LastName.text()
+        assert 'Sprankle72.6' != sa.students[1].LastName.text()
+        assert 'Sprankle72.6' != sa.students[2].LastName.text()
+        // Make sure we just didn't blank out the name
+        assert sa.students[0].LastName.text().length() > 0
+        assert sa.students[1].LastName.text().length() > 0
+        assert sa.students[2].LastName.text().length() > 0
+
+        sa.students.LastName.each { lastName ->
+            def found = sa.anon.lastNames.find {
+                it == lastName.text()
+            }
+            assert found != null
+        }
+    }
+
     // TODO test lastName
     //
     // ------------- TEST DATA DEFINITION -------------
