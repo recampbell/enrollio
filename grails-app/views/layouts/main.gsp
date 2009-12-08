@@ -48,6 +48,10 @@
                                 Admin</g:link>
                             </li>
                         </shiro:hasRole>
+                        <li class="${isCurrentTab(tabName:'help')}">
+                            <g:link controller="help" action="index"
+                            class="enr-top-menu-item">Help</g:link>
+                        </li>
                     </ul>
                 </div>
             </div>
