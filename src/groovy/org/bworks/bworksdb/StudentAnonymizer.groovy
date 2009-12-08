@@ -7,6 +7,13 @@ class StudentAnonymizer {
 
     StudentAnonymizer(String s) {
         def xml = new XmlParser().parseText(s)
-        students = xml.dataroot.children()
+        students = xml.children()
+    }
+
+    def anonymize() {
+        // First, sweep all first names, main!
+        students.FirstName.each {
+            it.value = anon.firstName()
+        }
     }
 }

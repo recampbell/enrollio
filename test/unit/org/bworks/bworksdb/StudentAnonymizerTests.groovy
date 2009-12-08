@@ -23,7 +23,22 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
         assert sa.students.size() == 7
     }
 
-    // TODO test firstName
+    void testFirstName() {
+        def testStudent = getXmlStudents(1)
+        sa = new StudentAnonymizer(testStudent)
+        def origFirstName = sa.students[0].FirstName.text()
+        sa.anonymize()
+        assert origFirstName != sa.students[0].FirstName.text()
+        // Make sure we just didn't blank out the name
+        assert sa.students[0].FirstName.text().length() > 0
+        // This test might be a little too picky, but
+        // it tries to find the new name in the list
+        // of the anonymizer's names
+        def found = sa.anon.firstNames.find {
+            it == sa.students[0].FirstName.text()
+        }
+        assert found != null
+    }
     // TODO test lastName
     //
     // ------------- TEST DATA DEFINITION -------------
@@ -32,9 +47,9 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
     // DIE DIE DIE DIE DIE DIE XML DECLARATIONS!!!!!!!!!!!!!!!!!!!
     def stupidXmlDeclaration = '<?xml version="1.0" encoding="UTF-8"?>'
     def xmlRootElementHeader = """
-<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" 
-          xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  
-          xsi:noNamespaceSchemaLocation="Student.xsd">
+          <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" 
+                    xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  
+                    xsi:noNamespaceSchemaLocation="Student.xsd">
           """
     def singleTestXML = """
 <Student>
