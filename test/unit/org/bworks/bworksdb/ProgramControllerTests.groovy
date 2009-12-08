@@ -12,6 +12,28 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
         super.tearDown()
     }
 
+    void testUpdate_NotFound() {
+        mockDomain(Program, [new Program(name:'p1', id:33)] )
+        mockParams.id = 99
+        
+        // test
+        def model = controller.update()
+        
+        assertNotNull mockFlash.message 
+        assertEquals controller.list, redirectArgs.action
+    }
+
+    void testUpdate_Green() {
+        mockDomain(Program, [new Program(name:'p1', id:33)] )
+        mockParams.id = 33
+        mockParams.description = 'fake'
+        
+        // test
+        def model = controller.update()
+        
+        assertEquals controller.show, redirectArgs.action
+    }
+    
     void testList_LessThanMax() {
         mockDomain(Program, [new Program(name:'p1'), new Program(name:'p2')] )
         mockParams.max = 3

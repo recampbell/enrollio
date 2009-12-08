@@ -104,8 +104,31 @@ class ProgramController {
             render(view:'create',model:[programInstance:programInstance])
         }
     }
+    
+    def callList = {
+        def reportData = callListReportData()
+        
+        chain(controller:'jasper',
+              action:'index',
+              model:[data:reportData],params:params)
+    }
 
-    protected def buildReportData = { interest ->
+    // Fetches new lesson dates from program specified in params.id
+    // starting at params.startDate or today
+    def nextAvailableLessonDates = {
+        def p = Program.get(params.id)
+        def startDate = new Date()
+        if (params.startDate) {
+            startDate = Date.parse('MM/dd/yyyy', params.startDate)
+        }
+        def lessonDates = programService.nextAvailableLessonDates(p, startDate)
+        render(template:'/classSession/editLessonDates',
+                  model:[lessonDates:lessonDates])
+    }
+    
+    // ---------------------------------
+    
+    def buildReportData = { interest ->
         def student = interest.student
         def contact = student.contact 
         
@@ -128,7 +151,7 @@ class ProgramController {
         ]        
     }
     
-    protected def callListReportData = {
+    def callListReportData = {
         def programInstance = Program.get(params.id)
         params['PROGRAM_NAME'] = programInstance.name
 
@@ -137,27 +160,6 @@ class ProgramController {
         def interests = programService.activeInterests(programInstance)
 
         return interests.collect(buildReportData)
-    }
-    
-    def callList = {
-        def reportData = callListReportData()
-        
-        chain(controller:'jasper',
-              action:'index',
-              model:[data:reportData],params:params)
-    }
-
-    // Fetches new lesson dates from program specified in params.id
-    // starting at params.startDate or today
-    def nextAvailableLessonDates = {
-        def p = Program.get(params.id)
-        def startDate = new Date()
-        if (params.startDate) {
-            startDate = Date.parse('MM/dd/yyyy', params.startDate)
-        }
-        def lessonDates = programService.nextAvailableLessonDates(p, startDate)
-        render(template:'/classSession/editLessonDates',
-                  model:[lessonDates:lessonDates])
     }
 
 }
