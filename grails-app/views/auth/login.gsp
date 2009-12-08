@@ -41,6 +41,7 @@
                 <div id="sidebar">
                     <g:render template="/common/sideMenu" />
                 </div>
+                <g:render template="/help/index" model="['title':'Welcome!']" />
 
             </div>
         </body>
