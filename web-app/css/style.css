@@ -446,6 +446,8 @@ form#form #button1:hover, form#form #button2:hover {
     width: 85%;
 }
 
-
+li.help  {
+    margin-left: 30px;
+}
 
 
