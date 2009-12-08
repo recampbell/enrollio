@@ -4,4 +4,7 @@ class HelpController {
     
     def index = {
     }
+
+    def example = {
+    }
 }
