@@ -52,6 +52,16 @@
                             <g:link controller="help" action="index"
                             class="enr-top-menu-item">Help</g:link>
                         </li>
+                        <shiro:isNotLoggedIn>
+                            <li style="margin-left:310px;">
+                                <g:link controller="auth" action="login">Login</g:link>
+                            </li>
+                        </shiro:isNotLoggedIn>
+                        <shiro:isLoggedIn>
+                            <li style="margin-left:310px;">
+                                <g:link controller="auth" action="signOut">Logout</g:link>
+                            </li>
+                        </shiro:isLoggedIn>
                     </ul>
                 </div>
             </div>
