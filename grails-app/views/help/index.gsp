@@ -7,5 +7,8 @@
     </head>
     <body>
         <g:render template="index" />
+        <div id="sidebar">
+            <g:render template="helpMenu" />
+        </div>
     </body>
 </html>

@@ -21,7 +21,4 @@
             </ul>
         </div>
     </div>
-    <div id="sidebar">
-        <g:render template="/common/sideMenu" />
-    </div>
 </div>
