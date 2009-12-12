@@ -1,3 +1,6 @@
+
+import org.bworks.bworksdb.auth.*; 
+
 class SecurityFilters {
     def filters = {
         // Ensure that all controllers and actions require an authenticated user,
