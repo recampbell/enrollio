@@ -1,3 +1,6 @@
+
+package org.bworks.bworksdb.auth
+
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
 import org.apache.shiro.SecurityUtils

@@ -1,3 +1,5 @@
+package org.bworks.bworksdb.auth
+
 class ShiroRolePermissionRel {
     ShiroRole role
     ShiroPermission permission

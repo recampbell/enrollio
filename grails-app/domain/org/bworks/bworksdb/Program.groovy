@@ -9,8 +9,10 @@ class Program {
     static hasMany = [ lessons:Lesson, classSessions:ClassSession, interests:Interest ]
     
     static constraints = {
+        name(nullable:false, blank:false)
+        description(nullable:false, blank:false)
     }
-
+    
     String toString() {
         name
     }

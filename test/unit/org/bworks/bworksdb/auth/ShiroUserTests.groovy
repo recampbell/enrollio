@@ -1,3 +1,5 @@
+package org.bworks.bworksdb.auth 
+
 class ShiroUserTests extends grails.test.GrailsUnitTestCase {
     void testPasswordConfirm() {
         mockDomain(ShiroUser)

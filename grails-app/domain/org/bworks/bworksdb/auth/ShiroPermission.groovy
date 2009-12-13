@@ -1,3 +1,6 @@
+
+package org.bworks.bworksdb.auth
+
 class ShiroPermission {
     String type
     String possibleActions

@@ -1,3 +1,5 @@
+package org.bworks.bworksdb.auth
+
 class ShiroUser {
     String username
     String firstName
