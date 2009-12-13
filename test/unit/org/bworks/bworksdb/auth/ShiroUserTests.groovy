@@ -36,6 +36,18 @@ class ShiroUserTests extends grails.test.GrailsUnitTestCase {
         assertFalse user.validate()
     }
 
+    void testPassword_TooShort2() {
+        mockDomain(ShiroUser)
+
+        def user = new ShiroUser(firstName:'nate',
+                                  lastName:'neff',
+                                  username:'tookelso',
+                                  password:'123')
+                                  
+        // test
+        assertFalse user.validate()
+    }
+
     void testPassword_NoDigit() {
         mockDomain(ShiroUser)
 

@@ -14,14 +14,14 @@ class ShiroUser {
         username(nullable: false, blank: false)
         firstName(nullable:false, blank:false)
         lastName(nullable:false, blank:false)
-        password(nullable:false, blank:false, length:5..10, validator: 
+        password(nullable:false, blank:false, validator: 
             { val, obj ->
-                def result = true
+                def result = 'user.password.strength.confirmation'
 
-                if(! val.equals(obj.passwordConfirm)) {
+                if (val != obj.passwordConfirm) {
                     result = 'user.password.mustmatch.confirmation'       
-                } else if (! (val =~ /.*\d.*/)) {
-                    result = 'user.password.strength.confirmation'
+                } else if (val.length() >= 5 && (val =~ /.*\d.*/)) {
+                    result = true
                 }
 
                 result
