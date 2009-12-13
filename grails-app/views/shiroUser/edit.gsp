@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Edit ShiroUser</title>
+        <title>Edit User</title>
     </head>
     <body>
 
@@ -13,7 +13,7 @@
                 <div class="rightnow">
 
         <div class="body">
-            <h1>Edit ShiroUser</h1>
+            <h1>Edit User</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>

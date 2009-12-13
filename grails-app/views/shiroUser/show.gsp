@@ -4,14 +4,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Show ShiroUser</title>
+        <title>Show User</title>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
         <div class="body">
-            <h1>Show ShiroUser</h1>
+            <h1>Show User</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
