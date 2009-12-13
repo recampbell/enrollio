@@ -71,7 +71,7 @@
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="i" in="${studentInstance.interests}">
-                                    <li><g:link controller="interest" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="interest" action="show" id="${i.id}">${i?.program?.name}</g:link></li>
                                 </g:each>
                                 </ul>
                             </td>
