@@ -89,11 +89,17 @@ class TestDataService {
             def lastName = randomLastName()
             def firstName = randomFirstName()
             def userName = firstName.substring(0,1) + lastName 
+            
+            def password = "${firstName}0"
+            if (password.length() != 5) { password = "${firstName}${firstName}0" }
+            
             def dummyUser = new ShiroUser(username: userName,
                     firstName : firstName,
                     lastName : lastName,
-                    passwordHash: new Sha1Hash(userName).toHex()
-                    )
+                    password : password,
+                    passwordConfirm : password,
+                    passwordHash: new Sha1Hash(password as String).toHex()
+            )
             if (!dummyUser.validate()) {
                 println "username : ${userName}"
                 println "User didn't validate!"

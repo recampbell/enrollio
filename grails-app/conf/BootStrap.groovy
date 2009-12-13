@@ -35,7 +35,9 @@ class BootStrap {
         def adminUser = new ShiroUser(username: "admin", 
             firstName : 'admin',
             lastName : 'admin',
-            passwordHash: new Sha1Hash("admin").toHex()
+            password : 'admin0',
+            passwordConfirm : 'admin0',
+            passwordHash: new Sha1Hash("admin0").toHex()
         )
         if (!adminUser.validate()) {
             println "User didn't validate!"
