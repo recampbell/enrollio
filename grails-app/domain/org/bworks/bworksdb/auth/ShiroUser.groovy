@@ -20,7 +20,7 @@ class ShiroUser {
 
                 if (val != obj.passwordConfirm) {
                     result = 'user.password.mustmatch.confirmation'       
-                } else if (val.length() >= 5 && (val =~ /.*\d.*/)) {
+                } else if (val.length() >= 5 && (val =~ /\d/)) {
                     result = true
                 }
 
