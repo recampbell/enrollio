@@ -1,7 +1,3 @@
-<shiro:isNotLoggedIn>
-<g:render template="/auth/loginForm" />
-</shiro:isNotLoggedIn>
-
 <shiro:isLoggedIn>
 <ul>
     <li>

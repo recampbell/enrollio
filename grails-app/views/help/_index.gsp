@@ -16,7 +16,7 @@
             </p>
             <ul>
                 <li class="help">
-                    <g:link action="example">Example of using Enrollio</g:link>
+                    <g:link controller="help" action="example">Example of using Enrollio</g:link>
                 </li>
             </ul>
         </div>
