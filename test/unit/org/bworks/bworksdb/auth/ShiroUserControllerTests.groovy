@@ -3,6 +3,7 @@ package org.bworks.bworksdb.auth
 
 import grails.test.*
 
+// TODO: need to test all cases. see Issue 66
 class ShiroUserControllerTests extends grails.test.ControllerUnitTestCase {
     
     protected void setUp() {
@@ -37,16 +38,15 @@ class ShiroUserControllerTests extends grails.test.ControllerUnitTestCase {
         assertNotNull user.errors
     }
 
-    void testUpdate_Green() {
-        def user = new ShiroUser(username:'username', firstName:'first', 
-                                    lastName:'last', id:66, password:"swordfish", passwordConfirm:"swordfish")
+    void testUpdate_HasErrors() {
+        def user = new ShiroUser(id:66)
         mockDomain(ShiroUser, [user] )
         mockParams.id = 66
         
         // test
         def model = controller.update()
 
-        assertEquals controller.show, redirectArgs.action        
+        assertEquals "edit", renderArgs.view
     }
     
 }

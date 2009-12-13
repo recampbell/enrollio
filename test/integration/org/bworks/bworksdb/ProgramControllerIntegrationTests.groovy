@@ -3,8 +3,6 @@ package org.bworks.bworksdb
 import grails.test.*
 import org.bworks.bworksdb.util.TestKeys
 
-// TODO: I don't know if we can have unit and integration tests with the same file name?
-// It seems like the JUnit report gets screwed up.
 class ProgramControllerIntegrationTests extends grails.test.ControllerUnitTestCase {
     def programService
     
@@ -35,7 +33,5 @@ class ProgramControllerIntegrationTests extends grails.test.ControllerUnitTestCa
          def thisMap = reportData[0]
          assertEquals student.fullName(), thisMap['STUDENT_NAME'] 
          assertEquals TestKeys.CONTACT_EMAIL, thisMap['CONTACT_EMAIL']
-     }
-     
-     
+     }     
 }
