@@ -13,6 +13,7 @@ import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
 import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
+import ar.com.fdvs.dj.domain.constants.Page
 import ar.com.fdvs.dj.domain.constants.Transparency;
 import ar.com.fdvs.dj.domain.constants.VerticalAlign;
 import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
@@ -36,17 +37,20 @@ class ClassSessionService {
         FastReportBuilder drb = new FastReportBuilder();
         drb = drb.addColumn("Student","studentName",String.class.getName(),30);
         classSessionInstance.lessonDates.each { ld ->
-            drb = drb.addColumn("Lesson ${ld.id}",
+            drb = drb.addColumn(ld.lesson.name.toString() + 
+                                ", " + ld.lessonDate.format('MMM. d').toString(),
                                 "attended_${ld.id}",String.class.getName(),15);
         }
+        drb.setPageSizeAndOrientation(Page.Page_A4_Landscape())
+        drb.setUseFullPageWidth(true)
 
         DynamicReport dr = 
-            drb.setTitle("Attendance Sheet for TODO").setUseFullPageWidth(true).build();
+            drb.setTitle("Attendance : ${classSessionInstance.name}")
+               .setUseFullPageWidth(true).build();
  
         JRDataSource ds = new JRBeanCollectionDataSource(reportData);   
         JasperPrint jp = DynamicJasperHelper.generateJasperPrint(dr, 
                 new ClassicLayoutManager(), ds);
- 
         def reportFormat = 'PDF';
         ReportWriter reportWriter = 
             ReportWriterFactory
