@@ -158,8 +158,8 @@ class ClassSessionController {
     def attendanceSheet = {
         def reportWriter = classSessionService.getBlankAttendanceSheet(params.id)
 
-        reportWriter.writeTo(response)
         response.addHeader('content-disposition', "attachment; filename=attendanceSheet")
+        reportWriter.writeTo(response)
     }
 
     def printGraduationCertificates = {
