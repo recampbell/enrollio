@@ -111,6 +111,9 @@
                         </g:form>
 
                         </li>
+                        <li>
+                        <g:link action="attendanceSheet" id="${classSessionInstance.id}">Attendance Sheet</g:link>
+                        </li>
                     </ul>
                 </div>
             </div>

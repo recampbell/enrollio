@@ -3,6 +3,7 @@ package org.bworks.bworksdb
 class ClassSessionController {
 
     def programService
+    def classSessionService
 
     def index = { redirect(action:list,params:params) }
 
@@ -151,6 +152,15 @@ class ClassSessionController {
         render 'ol'
     }
 
+
+    // Renders a PDF report of students/lesson dates for the
+    // Class Session ID == params.id
+    def attendanceSheet = {
+        def reportWriter = classSessionService.getBlankAttendanceSheet(params.id)
+
+        reportWriter.writeTo(response)
+        response.addHeader('content-disposition', "attachment; filename=attendanceSheet")
+    }
 
     def printGraduationCertificates = {
         def classSessionInstance = ClassSession.get( params.id )
