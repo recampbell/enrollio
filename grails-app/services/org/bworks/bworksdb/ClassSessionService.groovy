@@ -34,18 +34,28 @@ class ClassSessionService {
         def classSessionInstance = ClassSession.get(classSessionId)
         def reportData = attendanceMapForSession(classSessionInstance)
 
+        // Create thin borders for columns
+        Style columnStyle = new Style();
+        columnStyle.setBorder(Border.THIN);
+
+        Style subtitleStyle = new Style();
+        subtitleStyle.setHorizontalAlign(HorizontalAlign.CENTER)
+
         FastReportBuilder drb = new FastReportBuilder();
-        drb = drb.addColumn("Student","studentName",String.class.getName(),30);
+        drb = drb.addColumn("Student","studentName",String.class.getName(),30, columnStyle);
         classSessionInstance.lessonDates.each { ld ->
             drb = drb.addColumn(ld.lesson.name.toString() + 
                                 ", " + ld.lessonDate.format('MMM. d').toString(),
-                                "attended_${ld.id}",String.class.getName(),15);
+                                "attended_${ld.id}",String.class.getName(),15,
+                                columnStyle);
         }
         drb.setPageSizeAndOrientation(Page.Page_A4_Landscape())
         drb.setUseFullPageWidth(true)
 
         DynamicReport dr = 
             drb.setTitle("Attendance : ${classSessionInstance.name}")
+               .setSubtitle(classSessionInstance.startDate.format('MMMM d, yyyy'))
+               .setSubtitleStyle(subtitleStyle)
                .setUseFullPageWidth(true).build();
  
         JRDataSource ds = new JRBeanCollectionDataSource(reportData);   
