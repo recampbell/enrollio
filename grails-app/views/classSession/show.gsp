@@ -112,7 +112,7 @@
 
                         </li>
                         <li>
-                        <g:link action="attendanceSheet" id="${classSessionInstance.id}">Attendance Sheet</g:link>
+                            <g:link class="application_list" action="attendanceSheet" id="${classSessionInstance.id}">Attendance Sheet</g:link>
                         </li>
                     </ul>
                 </div>
