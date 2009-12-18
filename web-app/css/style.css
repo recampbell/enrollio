@@ -459,4 +459,11 @@ li.help  {
 
 .logintab {
     margin-left: 30%;
+
+}
+
+.logincurrent {
+    padding:5px 12px 5px 12px;
+    font-weight:bold;
+    
 }

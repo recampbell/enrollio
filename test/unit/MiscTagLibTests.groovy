@@ -39,4 +39,19 @@ class MiscTagLibTests extends TagLibUnitTestCase {
         assertEquals 'current', tagLib.out.toString()
 
     }
+
+     void testIsLoginTab() {
+        // pretend like a page we're viewing has a pageProperty
+        // called tabName, which returns 'program'
+        MiscTagLib.metaClass.pageProperty = { attr ->
+            return 'login'
+        }
+
+        // pretend like we're checking if we're on a
+        // page that should have a tabName == 'program'.
+        // In this case, we should get back the word 'current'
+        tagLib.isLoginTab(tabName:'login')
+        assertEquals 'logintab current', tagLib.out.toString()
+
+    }
 }

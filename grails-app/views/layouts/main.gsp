@@ -53,7 +53,7 @@
                             class="enr-top-menu-item">Help</g:link>
                         </li>
                         <shiro:isNotLoggedIn>
-                            <li class="${isCurrentTab(tabName:'login')}">
+                            <li class="${isLoginTab(tabName:'login')}">
                                 <g:link controller="auth" action="login">Login</g:link>
                             </li>
                         </shiro:isNotLoggedIn>

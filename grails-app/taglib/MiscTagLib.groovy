@@ -61,4 +61,17 @@ class MiscTagLib {
         }
         return out
     }
+
+     def isLoginTab = { attrs ->
+         if (pageProperty(name:'meta.tabName') == attrs['tabName']) {
+            out << 'logintab current'
+         }
+         else {
+            out << 'logintab'
+        }
+
+     }
+
+
+
 }
