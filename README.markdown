@@ -123,7 +123,3 @@ LessonDate.groovy
 Note.groovy
 PhoneNumber.groovy
 Program.groovy
-
-Oren was here.
-
-
