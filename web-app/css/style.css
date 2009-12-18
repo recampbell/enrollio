@@ -314,6 +314,10 @@ form{
 	padding:10px;
 	margin:0 auto;
 }
+#graduationCertificate {
+	padding:0px;
+	margin:0 auto;
+}
 form#form fieldset {
 	display:block;
 	padding:5px 10px 5px 10px;
@@ -404,6 +408,7 @@ form#form #button1:hover, form#form #button2:hover {
 .report_seo{background:transparent url(../images/icons/report_link.png) no-repeat left;}
 .modules{background:transparent url(../images/icons/bricks.png) no-repeat left;}
 .modules_manage{background:transparent url(../images/icons/bricks_gear.png) no-repeat left;}
+.graduation_cap{background:transparent url(../images/icons/graduation_cap.jpg) no-repeat left;}
 
 
 /* PAGINATION */
