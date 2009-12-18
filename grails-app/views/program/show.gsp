@@ -42,7 +42,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="infobox" class="margin-left">
+                    <div class="infobox margin-left">
                             <h3 class="reallynow">Sessions<g:link controller="classSession" 
                                 action="create" params="['program.id':programInstance.id]" class="add">New Session</g:link></h3>
                         <table>
@@ -61,7 +61,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="infobox" class="margin-left">
+                    <div class="infobox margin-left">
                         <h3>Interested Students</h3>
                         <table>
                             <tbody>
