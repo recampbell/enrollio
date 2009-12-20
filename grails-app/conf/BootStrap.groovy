@@ -23,6 +23,10 @@ class BootStrap {
         if (grails.util.GrailsUtil.environment == "test") {
             testDataService.loadIntegrationTestData()
         }
+
+        if (grails.util.GrailsUtil.environment == "production") {
+            testDataService.loadDefaultConfigSettings()
+        }
     }
 
     def destroy = {
