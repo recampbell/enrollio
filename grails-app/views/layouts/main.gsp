@@ -19,12 +19,13 @@
     <body>
         <div id="container">
             <div id="header">
+                <g:mascotIcon style="vertical-align:middle" />
                 <shiro:isLoggedIn>
-                    <h2>Welcome to Enrollio, 
-                    <shiro:principal /></h2>
+                    <h2 style="display:inline">Welcome to Enrollio, 
+                    <shiro:principal />!</h2>
                 </shiro:isLoggedIn>
                 <shiro:isNotLoggedIn>
-                    <h2>Welcome to Enrollio!</h2>
+                    <h2 style="display:inline">Welcome to Enrollio!</h2>
                 </shiro:isNotLoggedIn>
                 <div id="topmenu">
                     <ul>

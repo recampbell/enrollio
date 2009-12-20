@@ -41,7 +41,7 @@ select{
 	width:960px;
 }
 #header h2{
-margin-top:20px;
+    margin-top:20px;
 }
 #content{
 	width:740px;
@@ -92,7 +92,6 @@ margin-top:20px;
   TopMenu, Top-Panel
 *********************/
 #topmenu{
-	margin-top:33px;
 	width:900px;
 	float:left;
 	voice-family:inherit;
