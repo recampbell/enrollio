@@ -3,12 +3,16 @@ package org.bworks.bworksdb
 import org.bworks.bworksdb.auth.*
 import org.apache.shiro.crypto.hash.Sha1Hash
 import org.bworks.bworksdb.util.TestKeys
+import org.codehaus.groovy.grails.commons.*
+
+
 
 class TestDataService {
 
     boolean transactional = true
 
     def programService
+    def config = ConfigurationHolder.config
         
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
@@ -55,6 +59,7 @@ class TestDataService {
         }
         loadDummyClassSessions()
         loadDummyUsers()
+        loadDefaultConfigSettings()
     } 
 
     def loadDummyClassSessions() {
@@ -112,6 +117,14 @@ class TestDataService {
         }
     }
 
+    def loadDefaultConfigSettings() {
+
+        def s0 = new ConfigSetting(configKey:'mascotIcon',
+                                   // value:servletContext.getRealPath("/images/mascot.png"),
+                                   value:config.grails.serverURL + '/images/mascot.png',
+                                   isDefault: true,
+                                   description:'Enrollio Mascot Icon Used on every page').save()
+    }
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:TestKeys.PROGRAM_KIDS_AEC).save()
