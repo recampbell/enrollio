@@ -22,8 +22,6 @@
                     <div class="infobox">
                         <h3 class="reallynow"><span>Lessons</span>
                             <!-- For some reason, these links get added out of order (add->edit) -->
-                                <g:link class="invoices" action="editLessons" controller="program" 
-                                        params="[ 'program.id' : programInstance.id ]">Edit Lessons</g:link>
                                 <g:link class="add" action="create" controller="lesson" 
                                         params="[ 'program.id' : programInstance.id ]">Add Lesson</g:link>
                                         <br />
