@@ -13,3 +13,4 @@ web-app/index.gsp
 *.war
 *DB*
 web-app/images/mascot_real.png
+.DS_Store
