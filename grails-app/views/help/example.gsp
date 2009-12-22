@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="/common/sideMenu" />
+                <g:render template="helpMenu" />
             </div>
         </div>
     </body>
