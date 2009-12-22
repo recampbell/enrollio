@@ -4,6 +4,13 @@ class MiscTagLib {
 
     def configSettingService
 
+    def debug = { map ->
+        if (grailsApplication.config.grails.views.debug.mode == true) {
+            def msg = map['msg']
+            out << "<h2>${msg}</h2><br/>"
+        }
+    }
+    
     // Create a checkbox for all programs for this student
     // Checkboxes are named using an index 'idx' which corresponds to the student's
     // index, so that the appropriate programs/interests can be assigned to the appropriate
@@ -54,4 +61,29 @@ class MiscTagLib {
         }
         return out
     }
+
+     def isLoginTab = { attrs ->
+         if (pageProperty(name:'meta.tabName') == attrs['tabName']) {
+            out << 'logintab current'
+         }
+         else {
+            out << 'logintab'
+        }
+
+     }
+
+     // If the mascotIcon has been configured, then return an IMG tag
+     // with the icon in it, as well as any attributes that are provided
+     def mascotIcon = { attrs ->
+         def iconFile = configSettingService.getSetting('mascotIcon')
+         
+         if (iconFile) {
+             def attribs = ""
+             attrs.each { key, value ->
+                 attribs += "${key}=\"${value}\" "
+             }
+             out << "<img ${attribs}src=\"${iconFile}\" />"
+         }
+     }
+
 }

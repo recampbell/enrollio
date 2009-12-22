@@ -1,3 +1,6 @@
+
+package org.bworks.bworksdb.auth
+
 import org.apache.shiro.crypto.hash.Sha1Hash
 
 class ShiroUserController {

@@ -1,13 +1,18 @@
 package org.bworks.bworksdb
 
+import org.bworks.bworksdb.auth.*
 import org.apache.shiro.crypto.hash.Sha1Hash
 import org.bworks.bworksdb.util.TestKeys
+import org.codehaus.groovy.grails.commons.*
+
+
 
 class TestDataService {
 
     boolean transactional = true
 
     def programService
+    def config = ConfigurationHolder.config
         
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
@@ -54,6 +59,7 @@ class TestDataService {
         }
         loadDummyClassSessions()
         loadDummyUsers()
+        loadDefaultConfigSettings()
     } 
 
     def loadDummyClassSessions() {
@@ -88,11 +94,17 @@ class TestDataService {
             def lastName = randomLastName()
             def firstName = randomFirstName()
             def userName = firstName.substring(0,1) + lastName 
+            
+            def password = "${firstName}0"
+            if (password.length() != 5) { password = "${firstName}${firstName}0" }
+            
             def dummyUser = new ShiroUser(username: userName,
                     firstName : firstName,
                     lastName : lastName,
-                    passwordHash: new Sha1Hash(userName).toHex()
-                    )
+                    password : password,
+                    passwordConfirm : password,
+                    passwordHash: new Sha1Hash(password as String).toHex()
+            )
             if (!dummyUser.validate()) {
                 println "username : ${userName}"
                 println "User didn't validate!"
@@ -105,6 +117,17 @@ class TestDataService {
         }
     }
 
+    def loadDefaultConfigSettings() {
+
+        if (! ConfigSetting.findByConfigKeyAndIsDefault('mascotIcon', true)) {
+
+            def s0 = new ConfigSetting(configKey:'mascotIcon',
+                                       // value:servletContext.getRealPath("/images/mascot.png"),
+                                       value:config.grails.serverURL + '/images/mascot.png',
+                                       isDefault: true,
+                                       description:'Enrollio Mascot Icon Used on every page').save()
+        }
+    }
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:TestKeys.PROGRAM_KIDS_AEC).save()

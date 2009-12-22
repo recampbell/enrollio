@@ -57,7 +57,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="infobox" class="margin-left">
+                        <div class="infobox margin-left">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
                                 <g:link action="enroll" id="${classSessionInstance.id}">
@@ -86,30 +86,38 @@
                             <h3>
                                 <a href="#" class="house">Menu</a>
                             </h3>
-                        </li>
-                        <li>
-                        <!-- TODO Refactor this into a taglib or template -->
-                        <script type="text/javascript">
-                            function submit_graduationCertificate(link) {
-                              link.parentNode._format.value = link.title;
-                              link.parentNode.submit();
-                              return false;
-                            }
-                        </script>
-                        <g:form name="graduationCertificate" class="jasperReport" 
-                                action="printGraduationCertificates">
-                            <input type="hidden" name="_format" value="PDF" />
-                            <!-- Name shown on top of PDF report -->
-                            <input type="hidden" name="_name" value="Graduation Certificates" />
-                            <input type="hidden" name="_file" value="graduationCertificate" />
-                            <input type="hidden" name="id" value="1" />
-                            <!-- TODO The &nbsp; is a kludge find CSS way to justify image
-                            and text so it looks o.k. -->
-                            <a href="#" class="manage_page" title="PDF" onClick="return submit_graduationCertificate(this)">
-                            &nbsp;Grad. Certificates
-                            </a>
-                        </g:form>
+                            <ul>
+                                <!-- TODO Refactor this into a taglib or template -->
+                                <li>
 
+                                    <script type="text/javascript">
+                                        function submit_graduationCertificate(link) {
+                                          link.parentNode._format.value = link.title;
+                                          link.parentNode.submit();
+                                          return false;
+                                        }
+                                    </script>
+                                    <g:form name="graduationCertificate" class="sideMenuForm jasperReport" 
+                                            action="printGraduationCertificates">
+                                        <input type="hidden" name="_format" value="PDF" />
+                                        <!-- Name shown on top of PDF report -->
+                                        <input type="hidden" name="_name" value="Graduation Certificates" />
+                                        <input type="hidden" name="_file" value="graduationCertificate" />
+                                        <input type="hidden" name="id" value="1" />
+                                        <!-- TODO The &nbsp; is a kludge find CSS way to justify image
+                                        and text so it looks o.k. -->
+                                        <a href="#" class="graduation_cap" title="PDF" onClick="return submit_graduationCertificate(this)">
+                                        &nbsp;&nbsp;Grad. Certificates
+                                    </a>
+                                    </g:form>
+                                </li>
+                                <li>
+                                    <g:link class="application_list"
+                                    action="attendanceSheet"
+                                    id="${classSessionInstance.id}">&#160;Attendance
+                                    Sheet</g:link>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

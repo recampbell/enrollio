@@ -39,4 +39,45 @@ class MiscTagLibTests extends TagLibUnitTestCase {
         assertEquals 'current', tagLib.out.toString()
 
     }
+
+     void testIsLoginTab() {
+        // pretend like a page we're viewing has a pageProperty
+        // called tabName, which returns 'program'
+        MiscTagLib.metaClass.pageProperty = { attr ->
+            return 'login'
+        }
+
+        // pretend like we're checking if we're on a
+        // page that should have a tabName == 'program'.
+        // In this case, we should get back the word 'current'
+        tagLib.isLoginTab(tabName:'login')
+        assertEquals 'logintab current', tagLib.out.toString()
+
+    }
+
+    void testMascotIcon() {
+        def iconFile = 'http://monkeyboy.tx/someimage.gif' 
+        def mockConfig = [
+            getSetting: { attrs ->
+                return iconFile
+            }
+        ]
+        def tl = new MiscTagLib(configSettingService:mockConfig)
+
+        tl.mascotIcon()
+        assertEquals '<img src="' + iconFile + '" />', tagLib.out.toString()
+    }
+
+    // We shouldn't get anything back if there's no mascotIcon defined.
+    void testNoMascotIcon() {
+        def mockConfig = [
+            getSetting: { attrs ->
+                return ''
+            }
+        ]
+        def tl = new MiscTagLib(configSettingService:mockConfig)
+
+        tl.mascotIcon()
+        assertEquals '', tagLib.out.toString()
+    }
 }
