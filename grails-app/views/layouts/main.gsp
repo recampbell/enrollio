@@ -66,9 +66,6 @@
                     </ul>
                 </div>
             </div>
-            <g:if test="${flash.message}">
-                <div class="message">${flash.message}</div>
-            </g:if>
             <g:layoutBody />
         </div>
     </body>

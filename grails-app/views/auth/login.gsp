@@ -8,6 +8,9 @@
     <body>
         <div id="wrapper">
             <div id="content">
+            <g:if test="${flash.message}">
+                <div class="errors">${flash.message}</div>
+            </g:if>
                 <div class="rightnow">
                     <h3 class="reallynow">
                         <span>Log In</span>
