@@ -13,7 +13,7 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-                            <span>Class Session: ${classSessionInstance.name}</span>
+                            <span>${classSessionInstance.name}</span>
                             <br />
                         </h3>
                         <p class="youhave"></p>
@@ -22,15 +22,20 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a href="#">Program:</a>
+                                        Program:
                                     </td>
-                                    <td>${classSessionInstance.program.name}</td>
+                                    <td><g:link controller="program"
+                                                action="show"
+                                                id="${classSessionInstance.program.id}">
+                                        ${classSessionInstance.program.name}
+                                                </g:link></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="#">Start Date</a>
+                                        Start Date:
                                     </td>
-                                    <td>${classSessionInstance.startDate}</td>
+                                    <td><g:formatDate format="MMMM d, yyyy"
+                                        date="${classSessionInstance.startDate}" /></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -49,7 +54,7 @@
                                                 ${lessonDate.lesson.name}</g:link>
                                             </td>
                                             <td>
-                                                <g:formatDate format="MM/dd/yyyy"
+                                                <g:formatDate format="MMMM d, yyyy"
                                                 date="${lessonDate.lessonDate}" />
                                             </td>
                                         </tr>
@@ -84,7 +89,7 @@
                     <ul>
                         <li>
                             <h3>
-                                <a href="#" class="house">Menu</a>
+                                <a href="#" class="calendar">Class Session</a>
                             </h3>
                             <ul>
                                 <!-- TODO Refactor this into a taglib or template -->

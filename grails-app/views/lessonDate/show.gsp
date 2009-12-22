@@ -20,7 +20,7 @@
 
 
         </script>
-        <title>Something</title>
+        <title>${lessonDateInstance}</title>
     </head>
     <body>
         <div id="container">
@@ -28,9 +28,10 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-            ${lessonDateInstance.lesson.name}, ${lessonDateInstance.classSession.name}
+            ${lessonDateInstance.lesson.name}, ${formatDate(format:'MMMM d, yyyy', date:lessonDateInstance.lessonDate)}
                         </h3>
-                        <p class="youhave"> ${formatDate(format:'MM/dd/yyyy', date:lessonDateInstance.lessonDate)}</p>
+                        <p class="youhave">
+             ${lessonDateInstance.classSession.name} </p>
                     </div>
                     <div class="infowrap">
                         <div class="infobox">
@@ -62,21 +63,12 @@
                 <div id="sidebar">
                     <ul>
                         <li>
-                        <h3>
-                            <a href="#" class="house">Menu</a>
-                        </h3>
-                        <li>
-                        <g:link action="show" controller="classSession"
-                        id="${lessonDateInstance.classSession.id}">Class Session</g:link> 
-                        </li>
-                        <li>
-                        </li>%{-- lucky that we can pass the ID of the program, meow --}%
+                            <h3>
+                                <g:link class="calendar" action="show" controller="classSession"
+                                id="${lessonDateInstance.classSession.id}">Parent Session</g:link> 
+                            </h3>
                         
-                        <ul>
-                            <li>
-                                <a href="#" class="report_seo">Something</a>
-                            </li>
-                        </ul></li>
+                        </li>
                     </ul>
                 </div>
             </div>

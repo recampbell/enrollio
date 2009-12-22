@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Something</title>
+        <title>Program - ${programInstance} </title>
     </head>
     <body>
         <div id="wrapper">
@@ -53,7 +53,8 @@
                                             action="show" id="${session.id}">
                                             ${session?.encodeAsHTML()}</g:link>
                                         </td>
-                                        <td>${session.startDate}</td>
+                                        <td><g:formatDate format="MMM. d, yyyy" 
+                                            date="${session.startDate}" /></td>
                                     </tr>
                                 </g:each>
                             </tbody>

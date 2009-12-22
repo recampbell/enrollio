@@ -16,4 +16,8 @@ class LessonDate implements Comparable {
     int compareTo(obj) {
         this.lessonDate <=> obj.lessonDate
     }
+
+    String toString() {
+        this.lesson.toString() + ' ' + lessonDate.format('MMM. d, yyyy')
+    }
 }

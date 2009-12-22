@@ -7,8 +7,6 @@
         <title>Student List</title>
     </head>
     <body>
-		<g:debug msg="student list" />
-	
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
@@ -20,10 +18,7 @@
                             <tr>
                                 <g:sortableColumn property="firstName"
                                 title="Name" />
-                                <g:sortableColumn property="birthDate"
-                                title="Birth Date" />
-                                <th>Contact</th>
-                                <g:sortableColumn property="gender" title="Gender" />
+                                <g:sortableColumn property="contact" title="Contact"></g:sortableColumn>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,14 +26,11 @@
                             var="studentInstance">
                                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                     <td>
-										<g:link action="show" id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
+                                        <g:link action="show" id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
                                     </td>
-                                    <td>${fieldValue(bean:studentInstance,
-                                    field:'birthDate')}</td>
-                                    <td>${fieldValue(bean:studentInstance,
-                                    field:'contact')}</td>
-                                    <td>${fieldValue(bean:studentInstance,
-                                    field:'gender')}</td>
+                                <td><g:link controller="contact" action="show"
+                                    id="${studentInstance.contact.id}">${fieldValue(bean:studentInstance,
+                                    field:'contact')}</g:link></td>
                                 </tr>
                             </g:each>
                         </tbody>
