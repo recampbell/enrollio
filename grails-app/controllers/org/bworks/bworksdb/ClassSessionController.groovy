@@ -135,7 +135,10 @@ class ClassSessionController {
         def dateFormat = 'MM/dd/yyyy'
         def startDate = params.remove('startDate')
         def classSessionInstance = new ClassSession(params)
-        classSessionInstance.startDate = Date.parse(dateFormat, startDate)
+        try {
+            classSessionInstance.startDate = Date.parse(dateFormat, startDate)
+        } catch (Exception e) {
+        }
  
         if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
             lessonDates.each {
@@ -149,7 +152,6 @@ class ClassSessionController {
         else {
             render(view:'create',model:[classSessionInstance:classSessionInstance])
         }
-        render 'ol'
     }
 
 
