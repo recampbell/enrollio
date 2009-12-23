@@ -378,9 +378,9 @@ form#form #button1:hover, form#form #button2:hover {
 	display:inline-block;
 	line-height:20px;
 }
-
 .calendar{background:transparent url(../images/icons/calendar.png) no-repeat left;}
-.application_list{background:transparent url(../images/icons/application_view_list.png) no-repeat left;}
+.help{background:transparent url(../images/icons/help.png) no-repeat left;}
+.helpBullet{background:transparent url(../images/icons/bullet_black.png) no-repeat left;}
 .user{background:transparent url(../images/icons/user.png) no-repeat left;}
 .useradd{background:transparent url(../images/icons/user_add.png) no-repeat left;}
 .group{background:transparent url(../images/icons/group.png) no-repeat left;}

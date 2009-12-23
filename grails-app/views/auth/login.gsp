@@ -37,9 +37,9 @@
                         </div>
                 </div>
             </div>
-            <div id="sidebar">
-                <g:render template="/common/sideMenu" />
-            </div>
+            <shiro:isLoggedIn>
+                <div id="sidebar"><g:render template="/common/sideMenu"/></div>
+            </shiro:isLoggedIn>
         </div>
     </body>
 </html>
