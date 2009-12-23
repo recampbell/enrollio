@@ -23,9 +23,6 @@ p{
 h2{
 
 }
-input{
-	padding:2px;
-}
 select{
 	padding:2px;
 }
@@ -492,3 +489,33 @@ td.errors input {
     border: 1px solid red;
 }
 
+/* Taken from "CSS Mastery Advanced Web Standards Solutions */
+fieldset {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    cursor: pointer;
+    /* this is my hack, also */
+    margin: 4px 0px 0px 0px;
+}
+
+input[type="text"][type="password"][type="checkbox"] {
+    width: 20em;
+}
+
+/* this is my hack */
+.loginForm label {
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    margin: 4px 0px 0px 0px;
+}

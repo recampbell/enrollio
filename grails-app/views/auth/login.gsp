@@ -8,49 +8,33 @@
     <body>
         <div id="wrapper">
             <div id="content">
-            <g:if test="${flash.message}">
-                <div class="errors">${flash.message}</div>
-            </g:if>
+                <g:if test="${flash.message}">
+                    <div class="errors">${flash.message}</div>
+                </g:if>
                 <div class="rightnow">
-                    <h3 class="reallynow">
-                        <span>Log In</span>
-                        <br />
-                    </h3>
-                    <g:form action="signIn">
+                        <h3 class="reallynow"><span>Log In</span><br /></h3>
+                        <div class="youhave">
+                    <g:form class="loginForm" action="signIn">
                         <input type="hidden" name="targetUri" value="${targetUri}" />
-                        <table>
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td>Username:</td>
-                                    <td>
-                                        <input type="text" name="username"
-                                        value="${username}" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Password:</td>
-                                    <td>
-                                        <input type="password" name="password"
-                                        value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Remember me?:</td>
-                                    <td>
-                                        <g:checkBox name="rememberMe"
-                                        value="${rememberMe}" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td>
-                                        <input type="submit" value="Sign in" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <div>
+                                <label for="username">Username:</label>
+                                <input type="text" name="username"
+                                value="${username}" />
+                            </div>
+                            <div>
+                                <label for="password">Password:</label>
+                                <input type="password" name="password"
+                                value="" />
+                            </div>
+                            <div>
+                                <label for="rememberMe">Remember me?:</label>
+                                <g:checkBox name="rememberMe" value="${rememberMe}" />
+                            </div>
+                            <div>
+                                <input type="submit" value="Sign in" />
+                            </div>
                     </g:form>
+                        </div>
                 </div>
             </div>
             <div id="sidebar">

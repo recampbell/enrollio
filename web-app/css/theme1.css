@@ -5,9 +5,6 @@ body{
 a, a:visited{
 	color:#375b91;
 }
-input{
-	border:1px solid #d9e6f0;
-}
 select{
 	border:1px solid #d9e6f0;
 }
