@@ -310,6 +310,16 @@ form{
 	padding:10px;
 	margin:0 auto;
 }
+
+/* form.sideForm is used when two tables/colums
+ * are side by side, and the rightmost
+ * col is used as a form
+ * See enroll.gsp
+ */
+form.sideForm {
+    padding:0px;
+    margin:0 auto;
+}
 #graduationCertificate {
 	padding:0px;
 	margin:0 auto;
