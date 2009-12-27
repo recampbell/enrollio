@@ -7,6 +7,6 @@ class SecurityFiltersTests extends grails.util.WebTest {
 
    void testSecurityFiltersHelp() {
         invoke 'help'
-        verifyDocumentURL(regex:true, text:'.*/help.*', description:'Get to help files w/o login')
+        verifyTitle(regex:true, text:'.*Help.*', description:'Get to help files w/o login')
     }
 }

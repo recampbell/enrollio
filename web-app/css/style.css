@@ -251,6 +251,10 @@ thead{
 	padding: 0 10px;
 	font-size:14px;
 }
+
+.rightnow p {
+    padding:6px;
+}
 .rightnow .reallynow span {
 	display: block;
 	text-align: left;
@@ -463,6 +467,9 @@ form#form #button1:hover, form#form #button2:hover {
 
 ul.helplist li  {
     margin-left: 30px;
+    margin-bottom: 3px;
+
+    padding:2px;
 }
 
 .logintab {

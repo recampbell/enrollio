@@ -2,9 +2,8 @@ package org.bworks.bworksdb
 
 class HelpController {
     
-    def index = {
-    }
+    def index = { redirect(action:'about',params:params) }
 
-    def example = {
+    def about = {
     }
 }
