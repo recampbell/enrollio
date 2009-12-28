@@ -52,4 +52,14 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
 
     }
 
+    void testUserCannotEditUser() {
+        loginAs("bob", "bobbobbob0")
+        redirectEnabled = false
+        assertStatus 200
+        get('/shiroUser/edit/1')
+        
+        assertRedirectUrlContains "auth/unauthorized"
+    }
+
+
 }
