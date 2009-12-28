@@ -31,4 +31,24 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         
         assertRedirectUrlContains "/auth/login"
     }
+
+    void testAdminCanGoToAdmin() {
+        get('/auth/login')
+        form('loginForm') {
+            username = "admin"
+            password = "admin0"
+            click "login"
+
+    }
+    assertStatus 200
+    assertContentContains "Welcome"
+    assertContentContains "admin"
+    
+        get('/admin')
+        assertStatus 200
+       
+
+
+    }
+
 }
