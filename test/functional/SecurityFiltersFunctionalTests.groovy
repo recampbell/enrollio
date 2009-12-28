@@ -24,4 +24,11 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         get('/admin')
         assertRedirectUrlContains "auth/unauthorized"
     }
+
+    void testNonLoggedInUser() {
+        redirectEnabled = false
+        get('/contact')
+        
+        assertRedirectUrlContains "/auth/login"
+    }
 }
