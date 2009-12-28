@@ -69,4 +69,13 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         assertRedirectUrlContains "auth/unauthorized"
     }
 
+      void testUserCannotDeleteUser() {
+        loginAs("bob", "bobbobbob0")
+        redirectEnabled = false
+        assertStatus 200
+        get('/shiroUser/delete/1')
+
+        assertRedirectUrlContains "auth/unauthorized"
+    }
+
 }
