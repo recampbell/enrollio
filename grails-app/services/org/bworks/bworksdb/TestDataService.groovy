@@ -36,9 +36,32 @@ class TestDataService {
         
         // interests
         addInterest(student, Program.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
+
         addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
+        loadDummyRegularUser()
     }
-    
+
+    def loadDummyRegularUser() {
+
+        // Administrator user and role.
+        def userRole = ShiroRole.findByName("User")
+        def user = new ShiroUser(username: "bob",
+            firstName : 'Bob',
+            lastName : 'Dog',
+            password : 'bobbobbob0',
+            passwordConfirm : 'bobbobbob0',
+            passwordHash: new Sha1Hash("bobbobbob0").toHex()
+        )
+        if (!user.validate()) {
+            println "User didn't validate!"
+            println user.errors.allErrors
+        }
+        else {
+            user.save()
+            new ShiroUserRoleRel(user: user, role: userRole).save()
+        }
+
+    }
     def addInterest(student, program, isActive) {
         // add interest to program and student
         def note = new Note(text:TestKeys.NOTE).save()

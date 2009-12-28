@@ -7,4 +7,21 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         assertTitleContains "Help"
         // assertContentContains 'the expected text'
     }
+
+    void testNoAdminForRegularUser() {
+        redirectEnabled = false
+        get('/auth/login')
+        form('loginForm') {
+            username = "bob"
+            password = "bobbobbob0"
+            click "login"
+            
+        }
+        // assertRedirectUrl('/')
+        // User is logged in.
+
+        // Make sure that user cannot go to admin page
+        get('/admin')
+        assertRedirectUrlContains "auth/unauthorized"
+    }
 }

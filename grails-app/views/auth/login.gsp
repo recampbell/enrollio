@@ -14,7 +14,7 @@
                 <div class="rightnow">
                         <h3 class="reallynow"><span>Log In</span><br /></h3>
                         <div class="youhave">
-                    <g:form class="loginForm" action="signIn">
+                    <g:form name="loginForm" class="loginForm" action="signIn">
                         <input type="hidden" name="targetUri" value="${targetUri}" />
                             <div>
                                 <label for="username">Username:</label>
@@ -31,7 +31,7 @@
                                 <g:checkBox name="rememberMe" value="${rememberMe}" />
                             </div>
                             <div>
-                                <input type="submit" value="Sign in" />
+                                <input id="login" type="submit" value="Sign in" />
                             </div>
                     </g:form>
                         </div>
