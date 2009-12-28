@@ -60,6 +60,13 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         
         assertRedirectUrlContains "auth/unauthorized"
     }
+    void testUserCannotCreateUser() {
+        loginAs("bob", "bobbobbob0")
+        redirectEnabled = false
+        assertStatus 200
+        get('/shiroUser/create')
 
+        assertRedirectUrlContains "auth/unauthorized"
+    }
 
 }
