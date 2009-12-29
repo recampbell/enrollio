@@ -1,6 +1,6 @@
 class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void loginAs(userName, pass) {
-        get('/auth/login')
+        get('/login')
         form('loginForm') {
             username = userName
             password = pass
@@ -27,14 +27,14 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
 
         // Make sure that user cannot go to admin page
         get('/admin')
-        assertRedirectUrlContains "auth/unauthorized"
+        assertRedirectUrlContains "/unauthorized"
     }
 
     void testNonLoggedInUser() {
         redirectEnabled = false
         get('/contact')
         
-        assertRedirectUrlContains "/auth/login"
+        assertRedirectUrlContains "/login"
     }
 
     void testAdminCanGoToAdmin() {
@@ -56,26 +56,26 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         loginAs("bob", "bobbobbob0")
         redirectEnabled = false
         assertStatus 200
-        get('/shiroUser/edit/1')
+        get('/editUser/1')
         
-        assertRedirectUrlContains "auth/unauthorized"
+        assertRedirectUrlContains "/unauthorized"
     }
     void testUserCannotCreateUser() {
         loginAs("bob", "bobbobbob0")
         redirectEnabled = false
         assertStatus 200
-        get('/shiroUser/create')
+        get('/createUser')
 
-        assertRedirectUrlContains "auth/unauthorized"
+        assertRedirectUrlContains "/unauthorized"
     }
 
       void testUserCannotDeleteUser() {
         loginAs("bob", "bobbobbob0")
         redirectEnabled = false
         assertStatus 200
-        get('/shiroUser/delete/1')
+        get('/deleteUser/1')
 
-        assertRedirectUrlContains "auth/unauthorized"
+        assertRedirectUrlContains "/unauthorized"
     }
 
 }
