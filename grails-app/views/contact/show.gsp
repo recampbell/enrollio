@@ -12,11 +12,13 @@
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
-            <h1>Show Contact</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <g:render template="contactSearchForm" />
+                    <h3 class="reallynow">
+                        <span>Contact</span>
+                    
+                        <br />
+                    </h3>
+                </div>
+                <g:render template="contactSearchForm" />
             <div class="dialog">
                 <table>
                     <tbody>
