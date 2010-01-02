@@ -121,12 +121,12 @@
                 <g:form>
                     <input type="hidden" name="id" value="${contactInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:link controller="student" action="create" params="['contact.id':contactInstance.id]" />
+                    <span class="button"><g:link controller="student" action="create" params="['contact.id':contactInstance.id]" /></span>
                 </g:form>
             </div>
             <g:form action="saveContactAndStudents">
 
-              <br><br><h2>Contact's Students:</h2>
+              <h2>Contact's Students:</h2>
               <input type="hidden" name="id" value="${contactInstance.id}"/>
               <table id="studentList" style="width:99%;table-layout:fixed;padding:2px;margin:2px;">
                 <g:render template='studentList' />
@@ -139,7 +139,6 @@
                         value="Return to contact List"/></span>
               </div>
             </g:form>
-        </div>
         </div>
         </div><div id="sidebar">
             <g:render template="/common/sideMenu" />
