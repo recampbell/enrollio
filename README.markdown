@@ -1,4 +1,24 @@
-Enrollio is used to enroll students in the programs offered by Bworks.
+# What is Enrollio?
+
+Enrollio is an open-source application that tracks enrollment and attendance for small-to-medium size classes. Ideal for groups of up to 20 students or participants.
+
+## Features
+
+  * Maintain a list of people interested in your classes
+  * Enroll new students according to signup date
+  * Print welcome letters for new students
+  * Track attendance and print graduation certificates
+
+## Who would use Enrollio?
+
+Consider using Enrollio for the following scenarios:
+
+  * Teaching a 6-week training course
+  * Administrating summer classes
+  * Tracking enrollment/completion of safety training
+  * Tracking meeting attendance
+
+Enrollio is currently being developed for use by Bworks (http://bworks.org).
 
 Bworks is the umbrella organization for Byteworks and Bicycleworks located
 in Saint Louis, Missouri
@@ -14,7 +34,13 @@ Please see http://bworks.org for more information
 
 Enrollio's purpose is to help Bworks maintain its student database.
 
-# Installed Plugins:
+# Installation
+
+Please see INSTALL.markdown for detailed installation instructions.
+
+# Requirements
+
+  * Grails 1.2 (http://grails.org)
 
 ## PDF Plugin
 
