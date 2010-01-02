@@ -40,16 +40,12 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
     void testAdminCanGoToAdmin() {
         loginAs("admin", "admin0")
 
-    
         assertStatus 200
         assertContentContains "Welcome"
         assertContentContains "admin"
     
         get('/admin')
         assertStatus 200
-       
-
-
     }
 
     void testUserCannotEditUser() {
@@ -69,7 +65,7 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         assertRedirectUrlContains "/unauthorized"
     }
 
-      void testUserCannotDeleteUser() {
+    void testUserCannotDeleteUser() {
         loginAs("bob", "bobbobbob0")
         redirectEnabled = false
         assertStatus 200
@@ -78,4 +74,13 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         assertRedirectUrlContains "/unauthorized"
     }
 
+    void testAdminCanCreateContact() {
+        loginAs("admin", "admin0")
+        redirectEnabled = false
+        assertStatus 200
+        get('/createContact')
+
+        assertTitleContains "Create Contact"
+    }
+   
 }

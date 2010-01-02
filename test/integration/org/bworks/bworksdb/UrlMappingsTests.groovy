@@ -15,4 +15,8 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
     void testDefaultMapping() {
         assertUrlMapping("/", controller:'help', action:'about')
     }
+
+    void testContactMappings() {
+        assertUrlMapping("/createContact", controller:'contact', action:'create')
+    }
 }

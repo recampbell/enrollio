@@ -22,6 +22,7 @@ class UrlMappings {
 		'/contact'(controller: 'contact', action: 'index')
 		'/contacts'(controller: 'contact', action: 'list')
 		"/contact/$id"(controller: 'contact', action: 'show')
+		"/createContact"(controller: 'contact', action: 'create')
 
 		// help controller
 		"/"(controller:"help", action:'about')
