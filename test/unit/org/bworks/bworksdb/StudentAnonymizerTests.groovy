@@ -14,13 +14,13 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
     void testInstantiate() {
         def singleTestStudent = getXmlStudents(1)
         sa = new StudentAnonymizer(singleTestStudent)
-        assert sa
+        assertNotNull sa
     }
 
     void testStudentCount() {
         def multipleTestStudents = getXmlStudents(7)
         sa = new StudentAnonymizer(multipleTestStudents)
-        assert sa.students.size() == 7
+        assertEquals 7, sa.students.size()
     }
 
     void testFirstName() {
@@ -28,16 +28,16 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
         sa = new StudentAnonymizer(testStudent)
         def origFirstName = sa.students[0].FirstName.text()
         sa.anonymize()
-        assert origFirstName != sa.students[0].FirstName.text()
+        assertTrue origFirstName != sa.students[0].FirstName.text()
         // Make sure we just didn't blank out the name
-        assert sa.students[0].FirstName.text().length() > 0
+        assertTrue sa.students[0].FirstName.text().length() > 0
         // This test might be a little too picky, but
         // it tries to find the new name in the list
         // of the anonymizer's names
         def found = sa.anon.firstNames.find {
             it == sa.students[0].FirstName.text()
         }
-        assert found != null
+        assertNotNull found
     }
 
     void testMultipleFirstNames() {
@@ -48,39 +48,39 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
             it.FirstName.text()
         }
 
-        assert origFirstNames[0] == 'Lexicon#@#123^^^'
-        assert origFirstNames[1] == 'Lexicon#@#123^^^'
+        assertEquals 'Lexicon#@#123^^^', origFirstNames[0]
+        assertEquals 'Lexicon#@#123^^^', origFirstNames[1] 
 
         sa.anonymize()
-        assert 'Lexicon#@123^^^' != sa.students[0].FirstName.text()
-        assert 'Lexicon#@123^^^' != sa.students[1].FirstName.text()
+        assertTrue 'Lexicon#@123^^^' != sa.students[0].FirstName.text()
+		assertTrue 'Lexicon#@123^^^' != sa.students[1].FirstName.text()
         // Make sure we just didn't blank out the name
-        assert sa.students[0].FirstName.text().length() > 0
-        assert sa.students[1].FirstName.text().length() > 0
+        assertTrue sa.students[0].FirstName.text().length() > 0
+        assertTrue sa.students[1].FirstName.text().length() > 0
 
         sa.students.FirstName.each { firstName ->
             def found = sa.anon.firstNames.find {
                 it == firstName.text()
             }
-            assert found != null
+            assertNotNull found 
         }
     }
 
     void testLastName() {
         def testStudent = getXmlStudents(1)
         sa = new StudentAnonymizer(testStudent)
-        assert 'Sprankle72.6' == sa.students[0].LastName.text()
+        assertEquals 'Sprankle72.6', sa.students[0].LastName.text()
         sa.anonymize()
-        assert 'Sprankle72.6' != sa.students[0].LastName.text()
+        assertTrue 'Sprankle72.6' != sa.students[0].LastName.text()
         // Make sure we just didn't blank out the name
-        assert sa.students[0].LastName.text().length() > 0
+        assertTrue sa.students[0].LastName.text().length() > 0
         // This test might be a little too picky, but
         // it tries to find the new name in the list
         // of the anonymizer's names
         def found = sa.anon.lastNames.find {
             it == sa.students[0].LastName.text()
         }
-        assert found != null
+        assertNotNull found
     }
 
     void testMultipleLastNames() {
@@ -91,24 +91,24 @@ class StudentAnonymizerTests extends GrailsUnitTestCase {
             it.LastName.text()
         }
 
-        assert origLastNames[0] == 'Sprankle72.6'
-        assert origLastNames[1] == 'Sprankle72.6'
-        assert origLastNames[2] == 'Sprankle72.6'
+        assertEquals 'Sprankle72.6', origLastNames[0]
+		assertEquals 'Sprankle72.6', origLastNames[1]
+		assertEquals 'Sprankle72.6', origLastNames[2]
 
         sa.anonymize()
-        assert 'Sprankle72.6' != sa.students[0].LastName.text()
-        assert 'Sprankle72.6' != sa.students[1].LastName.text()
-        assert 'Sprankle72.6' != sa.students[2].LastName.text()
+        assertTrue 'Sprankle72.6' != sa.students[0].LastName.text()
+        assertTrue 'Sprankle72.6' != sa.students[1].LastName.text()
+		assertTrue 'Sprankle72.6' != sa.students[2].LastName.text()
         // Make sure we just didn't blank out the name
-        assert sa.students[0].LastName.text().length() > 0
-        assert sa.students[1].LastName.text().length() > 0
-        assert sa.students[2].LastName.text().length() > 0
+		assertTrue sa.students[0].LastName.text().length() > 0
+		assertTrue sa.students[1].LastName.text().length() > 0
+		assertTrue sa.students[2].LastName.text().length() > 0
 
         sa.students.LastName.each { lastName ->
             def found = sa.anon.lastNames.find {
                 it == lastName.text()
             }
-            assert found != null
+            assertNotNull found
         }
     }
 

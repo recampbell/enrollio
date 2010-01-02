@@ -251,6 +251,10 @@ thead{
 	padding: 0 10px;
 	font-size:14px;
 }
+
+.rightnow p {
+    padding:6px;
+}
 .rightnow .reallynow span {
 	display: block;
 	text-align: left;
@@ -309,6 +313,16 @@ thead{
 form{
 	padding:10px;
 	margin:0 auto;
+}
+
+/* form.sideForm is used when two tables/colums
+ * are side by side, and the rightmost
+ * col is used as a form
+ * See enroll.gsp
+ */
+form.sideForm {
+    padding:0px;
+    margin:0 auto;
 }
 #graduationCertificate {
 	padding:0px;
@@ -379,6 +393,7 @@ form#form #button1:hover, form#form #button2:hover {
 	line-height:20px;
 }
 .calendar{background:transparent url(../images/icons/calendar.png) no-repeat left;}
+.application_list{background:transparent url(../images/icons/application_view_list.png) no-repeat left;}
 .help{background:transparent url(../images/icons/help.png) no-repeat left;}
 .helpBullet{background:transparent url(../images/icons/bullet_black.png) no-repeat left;}
 .user{background:transparent url(../images/icons/user.png) no-repeat left;}
@@ -450,8 +465,11 @@ form#form #button1:hover, form#form #button2:hover {
     width: 85%;
 }
 
-ul.help li  {
+ul.helplist li  {
     margin-left: 30px;
+    margin-bottom: 3px;
+
+    padding:2px;
 }
 
 .logintab {
