@@ -16,6 +16,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <g:render template="contactSearchForm" />
             <div class="dialog">
                 <table>
                     <tbody>
