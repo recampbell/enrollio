@@ -8,8 +8,8 @@ Some steps need to be taken before running Enrollio:
 
 CD to the directory where you downloaded Enrollio, and run the following commands:
   
-  $ mkdir -p src/groovy
-  $ mkdir -p src/java
+    $ mkdir -p src/groovy
+    $ mkdir -p src/java
 
 ## Run the tests / fix DOMBuilder Error
 
@@ -18,7 +18,7 @@ All tests should pass before you use Enrollio.
 
 CD to the directory where you downloaded Enrollio, and run the following commands:
 
-  $ grails test-app
+    $ grails test-app
 
 If you receive the following error:
 
@@ -27,7 +27,7 @@ If you receive the following error:
 
 You merely need to run the tests again:
 
-  * grails test-app
+    $ grails test-app
 
 # Upgrading Enrollio
 
