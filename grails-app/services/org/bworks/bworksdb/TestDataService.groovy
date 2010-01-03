@@ -39,6 +39,9 @@ class TestDataService {
 
         addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
         loadDummyRegularUser()
+        // load dummy class sessions for now -- we should
+        // create more predictable test data for integration tests
+        loadDummyClassSessions()
     }
 
     def loadDummyRegularUser() {

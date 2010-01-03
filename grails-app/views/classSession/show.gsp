@@ -65,7 +65,7 @@
                         <div class="infobox margin-left">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
-                                <g:link action="enroll" id="${classSessionInstance.id}">
+                                <g:link name="editEnrollmentsLink" action="editEnrollments" id="${classSessionInstance.id}">
                                 (Add Enrollments)</g:link>
                                 <br />
                             </h3>

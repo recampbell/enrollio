@@ -38,6 +38,23 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 
     void testClassSessionMappings() {
         assertUrlMapping("/createClassSession", controller:'classSession', action:'create')
+        assertUrlMapping("/editEnrollments/73", controller:'classSession', action:'editEnrollments') {
+            id = 73
+        }
+        shouldFail(IllegalArgumentException) {
+            assertUrlMapping('/classSession/enroll', controller: 'classSession',
+                                                         action: 'enroll')
+        }
+
+        shouldFail(IllegalArgumentException) {
+            assertUrlMapping('/editEnrollments/', controller: 'classSession', action:'editEnrollments')
+        }
+
+        // absence of trailing '/' in URL shouldn't make a difference
+        shouldFail(IllegalArgumentException) {
+            assertUrlMapping('/editEnrollments', controller: 'classSession', action:'editEnrollments')
+        }
+
     }
 
     void testLessonMappings() {

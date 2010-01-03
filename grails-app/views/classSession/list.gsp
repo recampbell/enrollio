@@ -26,7 +26,8 @@
                         var="classSessionInstance">
                             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                 <td>
-                                    <g:link action="show"
+                                    <g:link name="classSessionLink${classSessionInstance.id}"
+                                          action="show"
                                     id="${classSessionInstance.id}">
                                     ${fieldValue(bean:classSessionInstance,
                                     field:'name')}</g:link>
