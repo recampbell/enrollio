@@ -1,3 +1,4 @@
+<h3 class="reallynow">Search Contacts</h3>
 <g:form url='[controller: "contact", action: "list"]' id="contactSearchForm"
        name="searchableForm" method="get">
     <g:textField name="q" value="${params.q}" size="20" />

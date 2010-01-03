@@ -10,9 +10,6 @@
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
-                        <h3 class="reallynow">Contacts
-                        <g:link action="create" class="add">Add Contact</g:link>
-                        <br /></h3>
                         <g:render template="contactSearchForm" />
                         <table>
                             <thead>
