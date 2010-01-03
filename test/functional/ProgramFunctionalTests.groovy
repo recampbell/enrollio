@@ -23,7 +23,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
         assertStatus 200
-        assertNotNull byId('programMenu')
+        assertNotNull byName('programMenu')
 
     }
 
