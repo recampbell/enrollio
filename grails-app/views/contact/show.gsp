@@ -47,11 +47,14 @@
                 <br />
             </div>
             <div id="box">
-                <h3 id="adduser">Students</h3>
+                <h3>Students</h3>
+                <g:render template='studentList' model="[contactInstance:contactInstance]" />
+                
             </div>
         </div>
         <div id="sidebar">
             <g:render template="contactMenu" />
         </div>
+
     </div>
 </html>
