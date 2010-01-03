@@ -59,6 +59,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 302
         followRedirect()
         assertStatus 200
+        assertContentType "application/pdf"
 
     }
 }
