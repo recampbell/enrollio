@@ -25,7 +25,7 @@
                             <input type="hidden" name="id" value="${programInstance.id}" />
                             <!-- TODO The &nbsp; is a kludge find CSS way to justify image
                             and text so it looks o.k. -->
-                            <a href="#" class="telephone" title="PDF" onClick="return submit_callList(this)">
+                            <a href="#" name="callListLink" class="telephone" title="PDF" onClick="return submit_callList(this)">
                             &nbsp;Call List
                             </a>
                     </g:form>
