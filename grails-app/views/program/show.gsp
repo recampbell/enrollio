@@ -80,20 +80,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="/common/sideMenu" />
-                <ul>
-                    <li>
-                     <h3>
-                        <a href="" class="modules">Program</a>
-                    </h3>                       
-                    </li>
-                    <li>
-                    <g:jasperReport controller="program" action="callList"
-                        jasper="callList" format="PDF" name="Call List" delimiter=" ">
-                        <input type="hidden" name="id" value="${programInstance.id}" />
-                    </g:jasperReport>
-                    </li>
-                </ul>
+                <g:render template="individualProgramMenu" />
             </div>
         </div>
     </body>

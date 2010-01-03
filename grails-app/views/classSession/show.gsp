@@ -102,7 +102,7 @@
                                           return false;
                                         }
                                     </script>
-                                    <g:form name="graduationCertificate" class="sideMenuForm jasperReport" 
+                                    <g:form name="graduationCertificate" class="jasperReport" 
                                             action="printGraduationCertificates">
                                         <input type="hidden" name="_format" value="PDF" />
                                         <!-- Name shown on top of PDF report -->
