@@ -26,24 +26,21 @@
                             <g:if test="${contactInstance.city}">
                             ${contactInstance.city},&#160;&#160;</g:if>
                             <g:if test="${contactInstance.state}">
-                            ${contactInstance.state}
+                            ${contactInstance.state} 
                             <br /></g:if>
                             <g:if test="${contactInstance.zipCode}">
                             ${contactInstance.zipCode}&#160;&#160;</g:if>
                             <br /></td>
                         </tr>
-                        <tr><td>Email:</td>
+                        <tr>
+                            <td>Email:</td>
                             <td>${contactInstance.emailAddress}</td>
-                        
                         </tr>
                         <g:each var="phone" in="${contactInstance.phoneNumbers}">
-                        
-                        <tr>
-                            <td>${phone.label}</td>
-                            <td>${phone.phoneNumber}</td>
-                        
-                        
-                        </tr>
+                            <tr>
+                                <td>${phone.label}</td>
+                                <td>${phone.phoneNumber}</td>
+                            </tr>
                         </g:each>
                     </tbody>
                 </table>
@@ -53,10 +50,8 @@
                 <h3 id="adduser">Students</h3>
             </div>
         </div>
-            <div id="sidebar">
-            
-                <g:render template="contactMenu" />
-            
-            </div>
+        <div id="sidebar">
+            <g:render template="contactMenu" />
+        </div>
     </div>
 </html>
