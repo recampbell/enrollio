@@ -9,7 +9,7 @@
     <g:each var="interest" in="${student.interests}">
         <g:if test="${interest.active}">
             <g:link controller="program" action="show" id="${interest.program.id}">
-                ${interest.program.name}
+                ${interest.program.name}&nbsp;
             </g:link>
         </g:if>
     </g:each>

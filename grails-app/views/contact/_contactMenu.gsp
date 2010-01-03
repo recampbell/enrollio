@@ -1,31 +1,32 @@
 <ul>
     <li>
         <h3>
-            <a href="#" class="user">Contacts</a>
+            <g:link class="user" controller="contact">Contacts</g:link>
         </h3>
         <ul>
             <li>
-                <g:link class="group" controller="shiroUser" action="list">New Contact</g:link>
+                <g:link class="useradd" controller="contact" action="create">New</g:link>
             </li>
-            <li>
-                <g:link class="useradd" controller="shiroUser" action="create">Create
-                User</g:link>
-            </li>
+            <g:if test="${contactInstance}">
+                <li>
+                    <g:link class="useredit" controller="contact" action="edit" id="${contactInstance.id}">Edit</g:link>
+                </li>
+            </g:if>
         </ul>
     </li>
+    <g:if test="${contactInstance}">
     <li>
         <h3>
-            <a href="#" class="manage">Miscellaneous</a>
+            <a href="#" class="group">Students</a>
         </h3>
         <ul class="navlist">
             <li>
-                <g:link class="invoices" controller="configSetting" action="list">
-                Settings</g:link>
+                <g:link class="groupadd" controller="contact" action="addStudent">Add Student</g:link>
             </li>
             <li>
-                <g:link controller="configSetting" action="testDataRequest">Load Test
-                Data</g:link>
+                <g:link class="groupedit" controller="contact" action="editStudents">Edit Students</g:link>
             </li>
         </ul>
     </li>
+</g:if>
 </ul>

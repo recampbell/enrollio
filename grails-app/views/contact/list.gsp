@@ -42,7 +42,7 @@
             </div>
             </div>
             <div id="sidebar">
-                <g:render template="/common/sideMenu" />
+                <g:render template="contactMenu" />
             </div>
         </div>
     </body>
