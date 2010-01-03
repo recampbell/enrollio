@@ -19,51 +19,23 @@
                     </h3>
                 </div>
                 <g:render template="contactSearchForm" />
-            <div class="dialog">
+                <div class="infowrap">
+                    <div class="infobox">
+                        <h3 class="reallynow"><span>${contactInstance}</span></h3>
                 <table>
                     <tbody>
 
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'id')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Address1:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'address1')}</td>
+                        <tr>
+                            <td>Address:</td>
+                            <td valign="top" class="value">${contactInstance.fullAddress()}</td>
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Address2:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'address2')}</td>
-                            
-                        </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Email Address:</td>
-                            
+                        <tr>
+                            <td>Email Address:</td>
                             <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'emailAddress')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">First Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'firstName')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Last Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'lastName')}</td>
-                            
                         </tr>
                     
                         <tr class="prop">
@@ -79,32 +51,6 @@
                             
                         </tr>
                 
-	                    <tr class="prop">
-	                        <td valign="top" class="name">City:</td>
-                        
-	                        <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'city')}</td>
-                        
-	                    </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">State:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:contactInstance, field:'state')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Students:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="s" in="${contactInstance.students}">
-                                    <li><g:link controller="student" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Zip Code:</td>
@@ -115,7 +61,30 @@
                     
                     </tbody>
                 </table>
-            </div>
+        </div>
+        </div>
+        <div id="box">
+                        <h3 id="adduser"><span>Students</span></h3>
+</div>
+                <div class="infowrap">
+                    <div class="infobox margin-left">
+                        <h3 class="reallynow"><span>Students</span></h3>
+                <table>
+                    <tbody>
+
+                                <g:each var="s" in="${contactInstance.students}">
+                        <tr class="prop">
+                            
+                            <td  valign="top" style="text-align:left;" class="value">
+                                    <g:link controller="student" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link>
+                            </td>
+                            
+                        </tr>
+                                </g:each>
+                    </tbody>
+                </table>
+        </div>
+        </div>
 
             <div class="buttons">
                 <g:form>
