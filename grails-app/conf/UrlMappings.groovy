@@ -13,7 +13,7 @@ class UrlMappings {
 		// classSession controller
 		'/classSessions'(controller: 'classSession', action: 'list')
 		"/classSession/$id"(controller: 'classSession', action: 'show')
-		'/createClassLesson'(controller: 'classSession', action: 'create')
+		'/createClassSession'(controller: 'classSession', action: 'create')
 
 		// configSetting controller
 		'/settings'(controller: 'configSetting', action: 'list')
