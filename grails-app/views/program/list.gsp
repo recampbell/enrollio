@@ -20,7 +20,9 @@
                                 var="programInstance">
                                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                         <td>
-                                            <g:link action="show" id="${programInstance.id}">
+                                            <g:link name="programLink${programInstance.id}" 
+                                                  action="show" 
+                                                      id="${programInstance.id}">
                                             ${fieldValue(bean:programInstance,
                                             field:'name')}</g:link>
                                         </td>
