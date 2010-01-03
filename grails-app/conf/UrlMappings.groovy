@@ -42,7 +42,7 @@ class UrlMappings {
 		'/lessons'(controller: 'lesson', action: 'list')
 
 		// lessonDate controller
-		"/lessionDate/$id"(controller: 'lessonDate', action: 'show')
+		"/lessonDate/$id"(controller: 'lessonDate', action: 'show')
 
 		// program controller
 		'/programs'(controller: 'program', action: 'list')
