@@ -5,19 +5,37 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Edit Program</title>
+        <title>Edit Program: ${programInstance}</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Program List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New Program</g:link></span>
-        </div>
-        <div class="body">
+         <div id="wrapper">
+            <div id="content">
+                <div id="box">
+                        <h3 id="adduser">Edit Program:</h3>
+                    <form id="form" action="..." method="post">
+                      <fieldset id="personal">
+                          <legend>${programInstance}</legend>
+                        <label for="name">Name : </label> 
+                        <input name="name" id="name" type="text" tabindex="1" 
+                        value="${fieldValue(bean:programInstance,field:'name')}"/>
+                        <br />
+                        <label for="description">Description : </label>
+                        <g:textArea name="description" 
+                        value="${fieldValue(bean:programInstance,field:'description')}"
+                        rows="5" cols="40"/>
+                        <br />
+                      </fieldset>
+                      <div align="center">
+                      <input id="button1" type="submit" value="Save" /> 
+                      <input id="button2" type="reset" value="Cancel" />
+                      </div>
+                    </form>
+                </div >
+
+
+                </div>
+
             <h1>Edit Program</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${programInstance}">
             <div class="errors">
                 <g:renderErrors bean="${programInstance}" as="list" />
@@ -27,32 +45,6 @@
                 <input type="hidden" name="id" value="${programInstance?.id}" />
                 <input type="hidden" name="version" value="${programInstance?.version}" />
                 <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="description">Description:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:programInstance,field:'description')}"/>
-                                </td>
-                            </tr> 
-                        
-                        
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="name">Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'name','errors')}">
-                                    <input type="text" id="name" name="name" value="${fieldValue(bean:programInstance,field:'name')}"/>
-                                </td>
-                            </tr> 
-                        
-                        </tbody>
-                    </table>
                 </div>
                 <div class="buttons">
                     <span class="button"><g:actionSubmit class="save" value="Update" /></span>
