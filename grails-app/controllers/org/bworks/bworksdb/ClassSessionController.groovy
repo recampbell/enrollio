@@ -15,7 +15,7 @@ class ClassSessionController {
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
-    def enroll = {
+    def editEnrollments = {
         def classSession = ClassSession.get(params.id)
         // TODO if programId not provided, flash message and redirect back
         def interests = Interest.findAllByProgram(classSession.program).findAll {
