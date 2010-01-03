@@ -31,7 +31,7 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         contactLink = contactLink instanceof ArrayList ? contactLink[0] : contactLink
         click(contactLink.id)
         assertStatus 200
-        assertTitleContains('Show Contact')
+        assertTitleContains('Contact:')
         // Assert that the search bar is here!
         assertContentContains('Search')
         assertNotNull byId('contactSearchButton')
@@ -52,6 +52,23 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         // Click on the link -- using its ID <evil laugh>
         click(contactLink.id)
         assertStatus 200
-        assertTitleContains('Show Contact')
+        assertTitleContains('Contact:')
+    }
+
+    void testRegularUserGoesToContactEdit() {
+        
+        loginAs('bob', 'bobbobbob0')
+        click("Contacts")
+
+        def contactLink = byXPath("//a[starts-with(@id,'contactLink')]")
+        assertNotNull contactLink
+        contactLink = contactLink instanceof ArrayList ? contactLink[0] : contactLink
+        // Click on the link -- using its ID <evil laugh>
+        click(contactLink.id)
+        assertStatus 200
+        assertTitleContains('Contact:')
+        click("Edit")
+        assertTitleContains('Edit')
+        assertStatus 200
     }
 }
