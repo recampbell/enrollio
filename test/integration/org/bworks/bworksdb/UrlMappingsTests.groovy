@@ -22,4 +22,12 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
             id = "1"
         }
     }
+
+    void testProgramMappings() {
+
+        assertUrlMapping("/editProgram/1", controller:'program', action:'edit') {
+            id = "1"
+        }
+
+    }
 }

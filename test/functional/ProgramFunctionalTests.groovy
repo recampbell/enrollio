@@ -10,6 +10,18 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
     }
 
+    // method: gotoProgramShow
+    //         utility method to do all the clicky stuff
+    //         to get to a program/show page
+    void gotoProgramShow() {
+        loginAs('bob', 'bobbobbob0')
+        click("Programs")
+        def progLink = byXPath("//a[starts-with(@name,'programLink')]")
+        // if we get > 1 link back, we have to pick 1st one.
+        progLink = progLink instanceof ArrayList ? progLink[0] : progLink
+        progLink.click()
+    }
+
     void testProgramList() {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
@@ -61,5 +73,18 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 200
         assertContentType "application/pdf"
 
+    }
+
+    void testProgramEdit() {
+        gotoProgramShow()
+        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+        assertNotNull editLink
+        editLink.click()
+        assertStatus 200
+
+        // Test an invalid URL
+        get("/editProgram")
+        assertStatus 404
+        
     }
 }

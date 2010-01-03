@@ -5,7 +5,7 @@
         </h3>
         <ul>
             <li>
-            <g:link class="module_edit" controller="program" action="edit" id="${programInstance.id}">Edit</g:link>
+            <g:link class="module_edit" name="editProgramLink" controller="program" action="edit" id="${programInstance.id}">Edit</g:link>
 
             </li>
             <li>

@@ -30,18 +30,6 @@
                     <table>
                         <tbody>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="classSessions">Class Sessions:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'classSessions','errors')}">
-                                    <g:select name="classSessions"
-from="${org.bworks.bworksdb.ClassSession.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${programInstance?.classSessions}" />
-
-                                </td>
-                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -52,31 +40,7 @@ value="${programInstance?.classSessions}" />
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="interests">Interests:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'interests','errors')}">
-                                    <g:select name="interests"
-from="${org.bworks.bworksdb.Interest.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${programInstance?.interests}" />
-
-                                </td>
-                            </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="lessons">Lessons:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'lessons','errors')}">
-                                    <g:select name="lessons"
-from="${org.bworks.bworksdb.Lesson.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${programInstance?.lessons}" />
-
-                                </td>
-                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
