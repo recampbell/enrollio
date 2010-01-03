@@ -11,7 +11,6 @@
                 <div class="rightnow">
                     <h3 class="reallynow">
                             <span>Programs</span>
-                        <g:link action="create" class="addorder">Add Program</g:link>
                         <br />
                         </h3>
                         <table>
@@ -34,7 +33,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="/common/sideMenu" />
+                <g:render template="programMenu" />
             </div>
         </div>
     </body>
