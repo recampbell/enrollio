@@ -81,6 +81,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertNotNull editLink
         editLink.click()
         assertStatus 200
+        assertTitleContains('Edit Program:')
 
         // Test an invalid URL
         get("/editProgram")
