@@ -16,6 +16,7 @@ class UrlMappings {
 		'/createClassSession'(controller: 'classSession', action: 'create')
 		"/editEnrollments/$id"(controller: 'classSession', action: 'editEnrollments')
         "/gradCerts"(controller: 'classSession', action: 'gradCerts')
+        "/attendanceSheet"(controller: 'classSession', action: 'attendanceSheet')
 
 		// configSetting controller
 		'/settings'(controller: 'configSetting', action: 'list')

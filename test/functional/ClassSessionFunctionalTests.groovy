@@ -58,4 +58,19 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertStatus 200
         assertContentType "application/pdf"
     }
+
+    // Test Attendance Sheet comes out OK
+    void testAttendanceSheet() {
+
+        gotoClassSessionPage()
+        assertStatus 200
+        // Click on sheet, and expect a PDF
+        // NOTE: For some reason (probably javascript), the tests
+        // will *not* follow the redirect, so you have to manually call followRedirect()
+        def attendanceSheetLink = byName('attendanceSheetLink')
+        assertNotNull attendanceSheetLink
+        attendanceSheetLink.click()
+        assertStatus 200
+        assertHeaderContains('Content-Disposition', 'filename=attendanceSheet')
+    }
 }

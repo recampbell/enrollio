@@ -24,7 +24,7 @@
                 </g:form>
             </li>
             <li>
-                <g:link class="application_list" action="attendanceSheet"
+                <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
                 id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
             </li>
         </ul>
