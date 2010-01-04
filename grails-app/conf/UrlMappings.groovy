@@ -53,6 +53,7 @@ class UrlMappings {
 		'/createProgram'(controller: 'program', action: 'create')
 		'/saveProgram'(controller: 'program', action: 'save')
 		"/editProgram/$id"(controller: 'program', action: 'edit')
+		"/updateProgram"(controller: 'program', action: 'update')
 
 		// shiroUser controller
 		'/createUser'(controller: 'shiroUser', action: 'create')

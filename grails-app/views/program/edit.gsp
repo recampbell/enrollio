@@ -16,7 +16,7 @@
                 </g:hasErrors>
                 <div id="box">
                     <h3 id="adduser">Edit Program: ${programInstance}</h3>
-                    <g:form method="post">
+                    <g:form action="update" name="editProgramForm" method="post">
                         <label for="name">Name : </label> 
                         <input name="id" id="id" type="hidden" 
                             value="${programInstance.id}" />
@@ -33,7 +33,7 @@
                         <!-- TODO the label below is a hack to get the 
                             save button to align w/the description and name -->
                         <label for="saveButton"></label>
-                        <g:actionSubmit name="saveButton" class="save" value="Save" />
+                        <g:submitButton class="save" name="saveButton" value="Update" />
                             or&nbsp;
                         <g:link name="cancelLink" class="cancelLink" action="show" id="${programInstance.id}" >Cancel</g:link>
                     </g:form>

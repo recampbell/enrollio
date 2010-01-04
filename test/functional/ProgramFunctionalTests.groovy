@@ -103,4 +103,24 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertTitleContains('Program:')
 
     }
+    void testProgramBadEdit() {
+        gotoProgramShow()
+        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+        assertNotNull editLink
+        editLink.click()
+        assertStatus 200
+
+        form('editProgramForm') {
+            name = ""
+            description = ""
+        }
+
+        def saveButton = byId('saveButton')
+        assertNotNull saveButton
+        saveButton.click()
+
+        assertStatus 200
+        assertTitleContains('Edit Program:')
+
+    }
 }
