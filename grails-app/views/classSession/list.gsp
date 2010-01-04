@@ -11,7 +11,6 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">Sessions
-                        <g:link name='newClassSessionLink' action="create" class="add">Add Session</g:link>
                         <br />
                     </h3>
                 <table>
@@ -44,7 +43,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="/common/sideMenu" />
+                <g:render template="classSessionMenu" />
             </div>
             <div id="footer"></div>
         </div>

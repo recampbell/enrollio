@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div id="sidebar">
-                    <g:render template="classSessionMenu" model="[classSessionInstance:classSessionInstance]" />
+                    <g:render template="individualClassSessionMenu" model="[classSessionInstance:classSessionInstance]" />
                 </div>
             </div>
         </div>

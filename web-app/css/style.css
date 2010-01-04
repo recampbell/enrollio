@@ -397,6 +397,7 @@ form #button1:hover, form #button2:hover {
 	line-height:20px;
 }
 .calendar{background:transparent url(../images/icons/calendar.png) no-repeat left;}
+.calendar_add{background:transparent url(../images/icons/calendar_add.png) no-repeat left;}
 .application_list{background:transparent url(../images/icons/application_view_list.png) no-repeat left;}
 .help{background:transparent url(../images/icons/help.png) no-repeat left;}
 .helpBullet{background:transparent url(../images/icons/bullet_black.png) no-repeat left;}
