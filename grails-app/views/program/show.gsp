@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Program - ${programInstance} </title>
+        <title>Program: ${programInstance} </title>
     </head>
     <body>
         <div id="wrapper">

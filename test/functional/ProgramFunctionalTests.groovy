@@ -87,4 +87,19 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 404
         
     }
+
+    void testProgramEditCancel() {
+        gotoProgramShow()
+        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+        assertNotNull editLink
+        editLink.click()
+        assertStatus 200
+
+        def cancelLink = byName('cancelLink')
+        assertNotNull cancelLink
+        cancelLink.click()
+        assertStatus 200
+        assertTitleContains('Program:')
+
+    }
 }

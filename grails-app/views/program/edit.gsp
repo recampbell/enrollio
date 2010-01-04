@@ -1,4 +1,3 @@
-
 <%@ page import="org.bworks.bworksdb.Program" %>
 <html>
     <head>
@@ -10,47 +9,36 @@
     <body>
          <div id="wrapper">
             <div id="content">
+                <g:hasErrors bean="${programInstance}">
+                    <div class="errors">
+                        <g:renderErrors bean="${programInstance}" as="list" />
+                    </div>
+                </g:hasErrors>
                 <div id="box">
-                        <h3 id="adduser">Edit Program:</h3>
-                    <g:form id="form" method="post">
-                      <fieldset id="personal">
-                          <legend>${programInstance}</legend>
+                    <h3 id="adduser">Edit Program: ${programInstance}</h3>
+                    <g:form method="post">
                         <label for="name">Name : </label> 
+                        <input name="id" id="id" type="hidden" 
+                            value="${programInstance.id}" />
+                        <input type="hidden" name="version" 
+                            value="${programInstance?.version}" />
                         <input name="name" id="name" type="text" tabindex="1" 
-                        value="${fieldValue(bean:programInstance,field:'name')}"/>
+                            value="${fieldValue(bean:programInstance,field:'name')}"/>
                         <br />
                         <label for="description">Description : </label>
                         <g:textArea name="description" 
-                        value="${fieldValue(bean:programInstance,field:'description')}"
-                        rows="5" cols="40"/>
+                            value="${fieldValue(bean:programInstance,field:'description')}"
+                            rows="5" cols="40"/>
                         <br />
-                      </fieldset>
-                      <div align="center">
-                      <input id="button1" type="submit" value="Save" /> 
-                      <input id="button2" type="reset" value="Cancel" />
-                      </div>
+                        <!-- TODO the label below is a hack to get the 
+                            save button to align w/the description and name -->
+                        <label for="saveButton"></label>
+                        <g:actionSubmit name="saveButton" class="save" value="Save" />
+                            or&nbsp;
+                        <g:link name="cancelLink" class="cancelLink" action="show" id="${programInstance.id}" >Cancel</g:link>
                     </g:form>
-                </div >
-
-
                 </div>
-
-            <h1>Edit Program</h1>
-            <g:hasErrors bean="${programInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${programInstance}" as="list" />
             </div>
-            </g:hasErrors>
-            <g:form method="post" >
-                <input type="hidden" name="id" value="${programInstance?.id}" />
-                <input type="hidden" name="version" value="${programInstance?.version}" />
-                <div class="dialog">
-                </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </div>
-            </g:form>
         </div>
     </body>
 </html>
