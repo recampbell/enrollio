@@ -46,10 +46,12 @@ class UrlMappings {
 		// lessonDate controller
 		"/lessonDate/$id"(controller: 'lessonDate', action: 'show')
 
+        // jasper controller
+        '/jasper/index'(controller:'jasper', action:'index')
+
 		// program controller
 		'/programs'(controller: 'program', action: 'list')
         '/program/callList'(controller: 'program', action: 'callList')
-        '/jasper/index'(controller:'jasper', action:'index')
 		"/program/$id"(controller: 'program', action: 'show')
 		'/createProgram'(controller: 'program', action: 'create')
 		'/saveProgram'(controller: 'program', action: 'save')
