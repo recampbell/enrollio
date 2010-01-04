@@ -1,8 +1,16 @@
-# Installation
+# Developer Notes
 
 Enrollio requires Grails 1.2.
 
 Some steps need to be taken before running Enrollio:
+
+## You might want to increase permgen size on your JVM
+
+This will avoid permgen out-of-memory errors when running the tests.
+
+Put the following in your .bashrc or .profile
+
+    export JAVA_OPTS=-XX:MaxPermSize=128m
 
 ## Create the src/java and src/groovy directories
 

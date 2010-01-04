@@ -34,11 +34,10 @@ Please see http://bworks.org for more information
 
 Enrollio's purpose is to help Bworks maintain its student database.
 
-# Installation
+# See Also
 
-Please see INSTALL.markdown for detailed installation instructions.
-
-# Requirements
+  * Please see DEVELOPER_NOTES.markdown for notes on how to setup,
+    test, and contribute to Enrollio.
 
   * Grails 1.2 (http://grails.org)
 
