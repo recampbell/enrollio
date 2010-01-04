@@ -63,35 +63,35 @@ thead{
 /***************
 	  Forms
 ***************/
-form#form fieldset {
+form fieldset {
 	border:1px solid #d9e6f0;
 }
-form#form legend {
+form legend {
 	border:1px solid #d9e6f0;
 	background:#fff url(../images/form_blue.gif) repeat-x center left;
 	color:#375b91;
 }
-form#form input {
+form input {
 	border:1px solid #d9e6f0;
 	background:#fff url(../images/form_blue.gif) repeat-x top left;
 }
-form#form textarea {
+form textarea {
 	border:1px solid #d9e6f0;
 	background:#fff url(../images/form_blue.gif) repeat-x bottom left;
 }
-form#form option {
+form option {
 	background:#FFF;
 }
-form#form optgroup {
+form optgroup {
 	background:#d9e6f0;
 }
-form#form optgroup option {
+form optgroup option {
 
 }
-form#form #button1, form#form #button2 {
+form #button1, form #button2 {
 	color:#375b91;
 }
-form#form #button1:hover, form#form #button2:hover {
+form #button1:hover, form #button2:hover {
 	color:#000;
 }
 /***************

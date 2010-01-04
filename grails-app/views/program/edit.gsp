@@ -12,7 +12,7 @@
             <div id="content">
                 <div id="box">
                         <h3 id="adduser">Edit Program:</h3>
-                    <form id="form" action="..." method="post">
+                    <g:form id="form" method="post">
                       <fieldset id="personal">
                           <legend>${programInstance}</legend>
                         <label for="name">Name : </label> 
@@ -29,7 +29,7 @@
                       <input id="button1" type="submit" value="Save" /> 
                       <input id="button2" type="reset" value="Cancel" />
                       </div>
-                    </form>
+                    </g:form>
                 </div >
 
 
