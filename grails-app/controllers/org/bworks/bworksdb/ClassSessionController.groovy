@@ -8,7 +8,9 @@ class ClassSessionController {
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', saveEnrollments:'POST', update:'POST']
+    static allowedMethods = [delete:'POST', save:'POST', 
+                             saveEnrollments:'POST', update:'POST',
+                             gradCerts: 'POST' ]
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
@@ -164,7 +166,7 @@ class ClassSessionController {
         reportWriter.writeTo(response)
     }
 
-    def printGraduationCertificates = {
+    def gradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
         def lastDate = classSessionInstance?.lessonDates?.last()?.lessonDate
 

@@ -103,15 +103,15 @@
                                         }
                                     </script>
                                     <g:form name="graduationCertificate" class="jasperReport" 
-                                            action="printGraduationCertificates">
+                                            action="gradCerts">
                                         <input type="hidden" name="_format" value="PDF" />
                                         <!-- Name shown on top of PDF report -->
                                         <input type="hidden" name="_name" value="Graduation Certificates" />
                                         <input type="hidden" name="_file" value="graduationCertificate" />
-                                        <input type="hidden" name="id" value="1" />
+                                        <input type="hidden" name="id" value="${classSessionInstance.id}" />
                                         <!-- TODO The &nbsp; is a kludge find CSS way to justify image
                                         and text so it looks o.k. -->
-                                        <a href="#" class="graduation_cap" title="PDF" onClick="return submit_graduationCertificate(this)">
+                                        <a name="gradCertsLink" href="#" class="graduation_cap" title="PDF" onClick="return submit_graduationCertificate(this)">
                                         &nbsp;&nbsp;Grad. Certificates
                                     </a>
                                     </g:form>
