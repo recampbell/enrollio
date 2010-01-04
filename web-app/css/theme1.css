@@ -72,11 +72,11 @@ form legend {
 	color:#375b91;
 }
 form input {
-	border:1px solid #7e9dcc;
+        border: 1px solid #c3d7d8;
 	background:#fff url(../images/form_blue.gif) repeat-x top left;
 }
 form textarea {
-	border:1px solid #7e9dcc;
+        border: 1px solid #c3d7d8;
 	background:#fff url(../images/form_blue.gif) repeat-x bottom left;
 }
 form option {
