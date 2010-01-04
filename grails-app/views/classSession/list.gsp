@@ -11,7 +11,7 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">Sessions
-                        <g:link action="create" class="add">Add Session</g:link>
+                        <g:link name='newClassSessionLink' action="create" class="add">Add Session</g:link>
                         <br />
                     </h3>
                 <table>

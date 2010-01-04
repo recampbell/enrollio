@@ -10,6 +10,13 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         }
     }
 
+    // gotoClassSessionList is a utility method
+    // that goes to the classSession/list page
+    void gotoClassSessionList() {
+        loginAs('bob', 'bobbobbob0')
+        click("Class Sessions")
+    }
+
     // gotoClassSessionPage is a utility method
     // that, um, goes to a class session page
     void gotoClassSessionPage() {
@@ -61,7 +68,6 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // Test Attendance Sheet comes out OK
     void testAttendanceSheet() {
-
         gotoClassSessionPage()
         assertStatus 200
         // Click on sheet, and expect a PDF
@@ -72,5 +78,22 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         attendanceSheetLink.click()
         assertStatus 200
         assertHeaderContains('Content-Disposition', 'filename=attendanceSheet')
+    }
+
+    void testNewClassSession() {
+        gotoClassSessionList()
+        def newLink = byName('newClassSessionLink')
+        assertNotNull newLink
+        newLink.click()
+        assertStatus 200
+        assertTitleContains('New Class Session')
+        form('newClassSessionForm') {
+            name = 'Foo Foo Zip Zap Class Session'
+            startDate = '1/1/2010'
+            click "Save"
+        }
+        assertStatus 200
+        assertTitleContains('Foo Foo Zip Zap')
+        assertContentContains('Foo Foo Zip Zap Class Session')
     }
 }

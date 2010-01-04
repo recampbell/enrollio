@@ -38,9 +38,13 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 
     void testClassSessionMappings() {
         assertUrlMapping("/createClassSession", controller:'classSession', action:'create')
+
+        assertUrlMapping("/saveClassSession",controller:'classSession', action:'save')
+
         assertUrlMapping("/editEnrollments/73", controller:'classSession', action:'editEnrollments') {
             id = 73
         }
+
         shouldFail(IllegalArgumentException) {
             assertUrlMapping('/classSession/enroll', controller: 'classSession',
                                                          action: 'enroll')
@@ -56,6 +60,7 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
         }
 
         assertUrlMapping('/gradCerts', controller:'classSession', action:'gradCerts')
+
         assertUrlMapping('/attendanceSheet', controller:'classSession', action:'attendanceSheet')
 
     }

@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
-        <title>Create ClassSession</title>
+        <title>New Class Session</title>
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
@@ -61,7 +61,7 @@
         </script>
     </head>
     <body>
-        <g:form action="save" method="post">
+        <g:form name="newClassSessionForm" action="save" method="post">
             <div id="wrapper">
                 <div id="content">
                     <div class="infobox">
@@ -120,7 +120,7 @@
             </div>
             <div id="footer">
                         <span class="button">
-                            <input class="save" type="submit" value="Create" />
+                            <input class="save" type="submit" value="Save" />
                         </span>
                     </div>
         </g:form>

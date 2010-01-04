@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
-        <title>Class Sessions - Enrollio</title>
+        <title>Class Session: ${classSessionInstance.name}</title>
     </head>
     <body>
         <div id="container">
