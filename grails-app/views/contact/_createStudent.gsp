@@ -36,20 +36,27 @@
         <label for="gender">Gender :</label>
         <g:select name="gender" from="${['Male', 'Female']}" /><br />
 
-        <label for="interests">Interests :</label>
-                   <label><input class="checkbox" id="red"
-                       name="red" type="checkbox"
-                       value="red" />Foo</label><br />
-                   <label><input class="checkbox" id="red"
-                       name="red" type="checkbox"
-                       value="red" />Foo</label><br /
-                   <label><input class="checkbox" id="blue"
-                       name="blue" type="checkbox"
-                       value="blue" />Bar</label><br /
-        <label style="clear:left;" for="saveButton"></label>
+        <fieldset id="studentInterests">
+            <legend>Interests</legend>
+            <g:each var="p" in="${programs}">
+            <label for="program_${p.id}">
+                <input class="checkbox" 
+                id="program_${p.id}" 
+                name="program_${p.id}" 
+                type="checkbox" 
+                value="${p.id}" />${p.name}
+            </label>
+            
+            
+            
+            </g:each>
+
+        </fieldset>
+        <label for="saveButton">&nbsp;</label>
         <g:submitButton class="save" name="saveButton" value="Save" /></p>
                             or&nbsp;
         <g:link url="http://yahoo.com" name="cancelLink" class="cancelLink">Cancel</g:link>
+
 
     </g:form>
 </div>
