@@ -159,8 +159,17 @@ class ContactController {
     }
 
     def saveStudent = {
-        // Available interests are all programs
+        // First, zap birthDate and reformat it.
+        def dateFormat = 'MM/dd/yyyy'
+        def birthDate = params.remove('birthDate')
         def studentInstance = new Student(params)
+
+        try {
+            studentInstance.birthDate = Date.parse(dateFormat, birthDate)
+        } catch (Exception e) {
+        }
+
+        // Find contact that student belongs to.
         def contactInstance = Contact.get(params.contact.id)
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {

@@ -5,6 +5,9 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
         <title>Contact: ${contactInstance}</title>
         <script type="text/javascript">
              $(document).ready(function(){
@@ -16,6 +19,17 @@
                  $('#cancelSaveStudentLink').click(function() {
                      $('#newStudentDiv').slideUp()
                  });
+
+                 // Birth Date picker.
+                 // We want to display from -110 years ago to today's year.
+                 // NOTE: yearRange is relative to defaultDate (hence the -100:+10)
+                 $('#newStudentBirthDate').datepicker({
+                     defaultDate: '-10y',
+                     yearRange: '-100:+10', 
+                     changeMonth: true,
+                     changeYear:  true
+                 });
+
                 // When user clicks the "Save" button,
                 // Reload the 'studentListDiv' in the parent page
                 // with the goodies that we get from this form

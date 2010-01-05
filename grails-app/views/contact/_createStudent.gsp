@@ -17,28 +17,32 @@
 
         <input type="text" id="firstName" 
         name="firstName" 
-        value="${fieldValue(bean:student,field:'firstName')}"/><br />
+        value="${fieldValue(bean:studentInstance,field:'firstName')}"/><br />
 
         <label for="middleName">Middle Name : </label> 
 
         <input type="text" id="middleName" 
         name="middleName" 
-        value="${fieldValue(bean:student,field:'middleName')}"/><br />
+        value="${fieldValue(bean:studentInstance,field:'middleName')}"/><br />
 
         <label for="lastName">Last Name : </label> 
         <input type="text" id="lastName" 
         name="lastName" 
-        value="${fieldValue(bean:student,field:'lastName')}"/><br />
+        value="${fieldValue(bean:studentInstance,field:'lastName')}"/><br />
 
         <label for="birthDate">Birth Date : </label> 
-        <input type="text" id="birthDate" 
-        name="birthDate" 
-        value="${fieldValue(bean:student,field:'birthDate')}"/><br />
+        <g:set var="existingBday"
+               value="${fieldValue(bean:studentInstance, field:'birthDate')}" />
 
+        <input type="text" id="newStudentBirthDate" 
+               name="birthDate" 
+               value="${formatDate(format:'MM/dd/yyyy', date:studentInstance?.birthDate)}"
+               />
+        <br />
         <label for="grade">Grade : </label> 
         <input type="text" id="grade" 
         name="grade" 
-        value="${fieldValue(bean:student,field:'grade')}"/><br />
+        value="${fieldValue(bean:studentInstance,field:'grade')}"/><br />
 
         <label for="gender">Gender :</label>
         <g:select name="gender" from="${['Male', 'Female']}" /><br />
