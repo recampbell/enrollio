@@ -5,9 +5,8 @@
             <g:renderErrors bean="${student}" as="list" />
         </div>
     </g:hasErrors>
-    <g:formRemote url="${[action:'saveStudent']}" 
-                  name="newStudentForm" 
-                  update="studentListDiv">
+    
+    <form id="newStudentForm" name="newStudentForm">
         <label for="firstName">First Name : </label> 
 
         <input type="hidden" id="contact.id" 
@@ -56,8 +55,8 @@
 
         </fieldset>
         <label for="saveButton">&nbsp;</label>
-        <g:submitButton class="save" name="saveButton" value="Save" /></p>
+        <g:submitButton class="save" name="saveButton" value="Save" />
                             or&nbsp;
         <g:link url="http://yahoo.com" name="cancelLink" class="cancelLink">Cancel</g:link>
-    </g:formRemote>
+    </form>
 </div>
