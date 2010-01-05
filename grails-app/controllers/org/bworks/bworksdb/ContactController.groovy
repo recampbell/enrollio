@@ -165,7 +165,8 @@ class ContactController {
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
-            flash.studentMessage = "Student ${studentInstance.id} created"
+            studentService.saveInterests(studentInstance, params['interestInProgram'])
+            flash.studentMessage = "Successfully added '${studentInstance.fullName()}'"
             // render(template:'studentList', model:[contactInstance:contactInstance])
             redirect(action:'show', id:contactInstance.id)
         }

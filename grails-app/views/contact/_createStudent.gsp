@@ -46,10 +46,10 @@
         <fieldset id="studentInterests">
             <legend>Interests</legend>
             <g:each var="p" in="${Program.list()}">
-                <label for="program_${p.id}">
+                <label for="interestInProgram_${p.id}">
                     <input class="checkbox" 
-                    id="program_${p.id}" 
-                    name="program_${p.id}" 
+                    id="interestInProgram_${p.id}" 
+                    name="interestInProgram" 
                     type="checkbox" 
                     value="${p.id}" />${p.name}
                 </label>
