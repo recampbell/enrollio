@@ -1,3 +1,5 @@
+<div class="box" id="studentListDiv">
+<h3>Students</h3>
 <table width="100%">
     <thead>
     <tr>
@@ -13,3 +15,6 @@
   <g:render template="/student/studentDetails" model="[student:student, idx:idx]" />
 </g:each></tbody>
 </table>
+<!-- placeholder for a new student -->
+<div id="createStudentDiv"></div>
+</div>

@@ -1,12 +1,18 @@
-<g:hasErrors bean="${programInstance}">
-    <div class="errors">
-        <g:renderErrors bean="${student}" as="list" />
-    </div>
-</g:hasErrors>
-<div id="box">
+<div class="box">
     <h3 id="adduser">New Student</h3>
-    <g:form action="addStudent" name="newStudentForm" method="post">
+    <g:hasErrors bean="${studentInstance}">
+        <div class="errors">
+            <g:renderErrors bean="${student}" as="list" />
+        </div>
+    </g:hasErrors>
+    <g:formRemote url="${[action:'saveStudent']}" 
+                  name="newStudentForm" 
+                  update="studentListDiv">
         <label for="firstName">First Name : </label> 
+
+        <input type="hidden" id="contact.id" 
+        name="contact.id" 
+        value="${contactInstance?.id}"/>
 
         <input type="text" id="firstName" 
         name="firstName" 
@@ -39,16 +45,13 @@
         <fieldset id="studentInterests">
             <legend>Interests</legend>
             <g:each var="p" in="${programs}">
-            <label for="program_${p.id}">
-                <input class="checkbox" 
-                id="program_${p.id}" 
-                name="program_${p.id}" 
-                type="checkbox" 
-                value="${p.id}" />${p.name}
-            </label>
-            
-            
-            
+                <label for="program_${p.id}">
+                    <input class="checkbox" 
+                    id="program_${p.id}" 
+                    name="program_${p.id}" 
+                    type="checkbox" 
+                    value="${p.id}" />${p.name}
+                </label>
             </g:each>
 
         </fieldset>
@@ -56,7 +59,5 @@
         <g:submitButton class="save" name="saveButton" value="Save" /></p>
                             or&nbsp;
         <g:link url="http://yahoo.com" name="cancelLink" class="cancelLink">Cancel</g:link>
-
-
-    </g:form>
+    </g:formRemote>
 </div>

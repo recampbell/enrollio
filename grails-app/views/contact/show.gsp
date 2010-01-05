@@ -9,11 +9,11 @@
 <html>
     <div id="wrapper">
         <div id="content">
-            <div id="box">
+            <div class="box">
                 <g:render template="contactSearchForm" />
             </div>
             <br />
-            <div id="box">
+            <div class="box">
                 <h3>Contact: ${contactInstance}</h3>
                 <table>
                     <tbody>
@@ -47,12 +47,7 @@
                 </table>
                 <br />
             </div>
-            <div id="box">
-                <h3>Students</h3>
-                <g:render template='studentList' model="[contactInstance:contactInstance]" />
-                
-            </div>
-            <div id="createStudentDiv"></div>
+            <g:render template='studentList' model="[contactInstance:contactInstance]" />
         </div>
         <div id="sidebar">
             <g:render template="contactMenu" />

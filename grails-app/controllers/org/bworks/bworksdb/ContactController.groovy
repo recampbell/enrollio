@@ -162,10 +162,33 @@ class ContactController {
     def createStudent = {
         // Available interests are all programs
         def programs = Program.findAll()
+        def contactInstance = Contact.get(params.id)
         render(template: 'createStudent', 
-                  model: ['idx': params.idx, programs:programs])
+                  model: [contactInstance:contactInstance, 'idx': params.idx, programs:programs])
     }
 
+    //Show student row for data entry
+    def saveStudent = {
+        println "*" * 100
+        println "params are: " + params
+        // Available interests are all programs
+        def studentInstance = new Student(params)
+        def contactInstance = Contact.get(params.contact.id)
+
+        println "Student instance is: " + studentInstance
+
+        if(!studentInstance.hasErrors() && studentInstance.validate()) {
+            contactInstance.addToStudents(studentInstance)
+            contactInstance.save()
+            flash.message = "Student ${studentInstance.id} created"
+            render(template:'studentList', model:[contactInstance:contactInstance])
+        }
+        else {
+            render(template:'createStudent',
+                      model:[studentInstance:studentInstance,
+                             contactInstance:contactInstance])
+        }
+    }
     //Replace inline div with "New student" button
     def cancelInlinestudent = {
         render(template: 'newInlinestudentButton', model: ['studentidx': params.studentidx])

@@ -52,10 +52,10 @@ thead{
 #footer{
 	background:#FFF;
 }
-#box{
+.box{
 	border:1px solid #e8e7e1;
 }
-#box h3{
+.box h3{
 	background:#f7f6f0;
 	border-bottom:1px solid #e8e7e1;
 	color:#a43708;

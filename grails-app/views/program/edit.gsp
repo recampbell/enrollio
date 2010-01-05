@@ -14,7 +14,7 @@
                         <g:renderErrors bean="${programInstance}" as="list" />
                     </div>
                 </g:hasErrors>
-                <div id="box">
+                <div class="box">
                     <h3 id="adduser">Edit Program: ${programInstance}</h3>
                     <g:form action="update" name="editProgramForm" method="post">
                         <label for="name">Name : </label> 

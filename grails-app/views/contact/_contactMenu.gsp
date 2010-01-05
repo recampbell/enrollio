@@ -23,6 +23,7 @@
             <li>
             <g:remoteLink class="groupadd" 
             action="createStudent"
+            id="${contactInstance.id}"
             update="createStudentDiv">Add Student</g:remoteLink>
             </li>
             <li>
