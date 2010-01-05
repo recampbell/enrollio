@@ -5,53 +5,41 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Create Program</title>         
+        <title>Create Program:</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Program List</g:link></span>
-        </div>
-        <div class="body">
-            <h1>Create Program</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${programInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${programInstance}" as="list" />
+         <div id="wrapper">
+            <div id="content">
+                <g:hasErrors bean="${programInstance}">
+                    <div class="errors">
+                        <g:renderErrors bean="${programInstance}" as="list" />
+                    </div>
+                </g:hasErrors>
+                <div class="box">
+                    <h3 id="adduser">Create Program</h3>
+                    <g:form action="save" name="newProgramForm" method="post">
+                        <label for="name">Name : </label> 
+                        <input name="id" id="id" type="hidden" 
+                            value="${programInstance.id}" />
+                        <input type="hidden" name="version" 
+                            value="${programInstance?.version}" />
+                        <input name="name" id="name" type="text" tabindex="1" 
+                            value="${fieldValue(bean:programInstance,field:'name')}"/>
+                        <br />
+                        <label for="description">Description : </label>
+                        <g:textArea name="description" 
+                            value="${fieldValue(bean:programInstance,field:'description')}"
+                            rows="5" cols="40"/>
+                        <br />
+                        <!-- TODO the label below is a hack to get the 
+                            save button to align w/the description and name -->
+                        <label for="saveButton"></label>
+                        <g:submitButton class="save" name="saveButton" value="Save" />
+                            or&nbsp;
+                        <g:link name="cancelLink" class="cancelLink" action="list" >Cancel</g:link>
+                    </g:form>
+                </div>
             </div>
-            </g:hasErrors>
-            <g:form action="save" method="post" >
-                <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="description">Description:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:programInstance,field:'description')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="name">Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:programInstance,field:'name','errors')}">
-                                    <input type="text" id="name" name="name" value="${fieldValue(bean:programInstance,field:'name')}"/>
-                                </td>
-                            </tr> 
-                        
-                        </tbody>
-                    </table>
-                </div>
-                <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
-                </div>
-            </g:form>
         </div>
     </body>
 </html>

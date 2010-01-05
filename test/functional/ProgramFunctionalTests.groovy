@@ -46,8 +46,44 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         click("newProgramLink")
         assertStatus 200
         assertTitleContains("Create Program")
+        form('newProgramForm') {
+            name = "Ricky's Program"
+            description = 'Only for Ricky (and maybe Bubbles)'
+            click 'Save'
+        }
+        assert 200
+        assertTitleContains "Program: Ricky's Program"
+        assertContentContains "Only for Ricky (and maybe Bubbles)"
+            
     }
 
+    void testNewProgramFailed() {
+        loginAs('bob', 'bobbobbob0')
+        click("Programs")
+        assertStatus 200
+        click("newProgramLink")
+        assertStatus 200
+        assertTitleContains("Create Program")
+        form('newProgramForm') {
+            name = "Invalid Program"
+            description = ''
+            click 'Save'
+        }
+        assert 200
+        assertTitleContains "Create Program"
+        assertContentContains "description must have a value"
+
+        // Now, fill in description, but not name
+        form('newProgramForm') {
+            name = ""
+            description = "Another Invalid Program, this time there's no name"
+            click 'Save'
+        }
+        assert 200
+        assertTitleContains "Create Program"
+        assertContentContains "name must have a value"
+            
+    }
     void testCallList() {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
