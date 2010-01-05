@@ -6,7 +6,7 @@ class ContactController {
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete:'POST', saveStudent:'POST', save:'POST', update:'POST']
 
     def list = {
         def contactList
@@ -169,8 +169,6 @@ class ContactController {
 
     //Show student row for data entry
     def saveStudent = {
-        println "*" * 100
-        println "params are: " + params
         // Available interests are all programs
         def studentInstance = new Student(params)
         def contactInstance = Contact.get(params.contact.id)
@@ -180,9 +178,12 @@ class ContactController {
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
             flash.message = "Student ${studentInstance.id} created"
-            render(template:'studentList', model:[contactInstance:contactInstance])
+            // render(template:'studentList', model:[contactInstance:contactInstance])
+            redirect(action:'show', id:contactInstance.id)
         }
         else {
+            // We have to figure out what to do here, 'cause the new student
+            // page is a template
             render(template:'createStudent',
                       model:[studentInstance:studentInstance,
                              contactInstance:contactInstance])

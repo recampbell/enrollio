@@ -21,12 +21,13 @@
                 // When user clicks the "Save" button,
                 // Reload the 'studentListDiv' in the parent page
                 // with the goodies that we get from this form
-                var saveUrl = "${createLink(action:'saveStudent')}";
-                $('#newStudentForm').live('submit', function() {
-                    $.post(saveUrl, $(this).serialize(), function(data) { 
-                        $('#poo').hide().html(data);
-                    });
-                });
+                // Commenting out, because the POST doesn't work w/Ajax
+                // $('#newStudentForm').live('submit', function() {
+                //     var saveUrl = "${createLink(controller:'contact', action:'saveStudent')}";
+                //     $.post(saveUrl, $(this).serialize(), function(data) { 
+                //         $('#studentListDiv').hide().html(data);
+                //     });
+                // });
            });
         </script>
     </head>
@@ -35,8 +36,10 @@
             <div id="content">
                 <div class="box">
                     <g:render template="contactSearchForm" />
+                    <g:if test="${flash.message}">
+                        <div class="message">${flash.message}</div>
+                    </g:if>
                 </div>
-        <div id="poo">foo</div>
                 <br />
                 <div class="box">
                     <h3>Contact: ${contactInstance}</h3>
