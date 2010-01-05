@@ -7,17 +7,15 @@
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
         <title>Contact: ${contactInstance}</title>
         <script type="text/javascript">
-            $(document).ready(function(){
-                // When user clicks the "Add Student" button
-                // load the createStudentDiv (located in the studentList template)
-                // with the goodies that we get from the createStudent action
-                var createUrl = "${createLink(action:'createStudent')}";
-                $('#createStudentLink').click(function() {
-                    $.get(createUrl, { 'id' : ${contactInstance.id} }, function(data) {
-                            $('#createStudentDiv').hide().html(data).slideDown('slow');
-                    });
-                });
+             $(document).ready(function(){
+                 // Show "New Student" when user clicks 'Add student'
+                 $('#createStudentLink').click(function() {
+                     $('#newStudentDiv').slideDown()
+                 });
 
+                 $('#cancelSaveStudentLink').click(function() {
+                     $('#newStudentDiv').slideUp()
+                 });
                 // When user clicks the "Save" button,
                 // Reload the 'studentListDiv' in the parent page
                 // with the goodies that we get from this form
@@ -28,17 +26,17 @@
                 //         $('#studentListDiv').hide().html(data);
                 //     });
                 // });
-           });
+            });
         </script>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="box">
-                    <g:render template="contactSearchForm" />
                     <g:if test="${flash.message}">
                         <div class="message">${flash.message}</div>
                     </g:if>
+                <div class="box">
+                    <g:render template="contactSearchForm" />
                 </div>
                 <br />
                 <div class="box">
@@ -75,6 +73,7 @@
                     </table>
                     <br />
                 </div>
+                <g:render template='createStudent' model="[contactInstance:contactInstance]" />
                 <g:render template='studentList' model="[contactInstance:contactInstance]" />
             </div>
             <div id="sidebar">

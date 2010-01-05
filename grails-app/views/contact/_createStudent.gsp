@@ -1,12 +1,13 @@
-<div class="box">
+<div id="newStudentDiv" class="box" ${studentInstance ? '' : 'style="display:none"'}>
     <h3 id="adduser">New Student</h3>
     <g:hasErrors bean="${studentInstance}">
         <div class="errors">
-            <g:renderErrors bean="${student}" as="list" />
+            <g:renderErrors bean="${studentInstance}" as="list" />
         </div>
     </g:hasErrors>
     
-    <form id="newStudentForm" name="newStudentForm">
+    <g:form action="saveStudent" method="POST"
+            name="newStudentForm">
         <label for="firstName">First Name : </label> 
 
         <input type="hidden" id="contact.id" 
@@ -57,6 +58,7 @@
         <label for="saveButton">&nbsp;</label>
         <g:submitButton class="save" name="saveButton" value="Save" />
                             or&nbsp;
-        <g:link url="http://yahoo.com" name="cancelLink" class="cancelLink">Cancel</g:link>
-    </form>
+        <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink" 
+            class="cancelLink">Cancel</a>
+    </g:form>
 </div>
