@@ -177,14 +177,15 @@ class ContactController {
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
-            flash.message = "Student ${studentInstance.id} created"
+            flash.studentMessage = "Student ${studentInstance.id} created"
             // render(template:'studentList', model:[contactInstance:contactInstance])
             redirect(action:'show', id:contactInstance.id)
         }
         else {
-            // We have to figure out what to do here, 'cause the new student
-            // page is a template
-            render(template:'createStudent',
+            // Kludge for now is to re-render the show page,
+            // which will display the new student page if there's a studentInstance
+            // in the domain model
+            render(view:'show',
                       model:[studentInstance:studentInstance,
                              contactInstance:contactInstance])
         }

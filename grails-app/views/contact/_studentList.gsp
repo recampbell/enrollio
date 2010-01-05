@@ -1,5 +1,8 @@
 <div class="box" id="studentListDiv">
 <h3>Students</h3>
+<g:if test="${flash.studentMessage}">
+  <div class="message">${flash.studentMessage}</div>
+</g:if>
 <table width="100%">
     <thead>
     <tr>
