@@ -29,11 +29,11 @@ class Student {
     // Prints 'Gerald David Buchner' or
     //        'Lee Harvey Danger'
     String fullName() {
-        def fullName = firstName
-        if (middleName) {
-            fullName += ' ' + middleName
+        def names = [ firstName, middleName, lastName ].findAll {
+            it != null
         }
-        return fullName + ' ' + lastName
+
+        return names?.join(' ') ?: ''
     }
 
     String toString(){

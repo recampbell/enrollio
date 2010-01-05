@@ -28,4 +28,27 @@ class StudentTests extends GrailsUnitTestCase {
         
         assertTrue student.validate()
     }    
+
+    void testFullName() {
+        def student = new Student()
+
+        assertEquals '', student.fullName()
+
+        student.lastName = 'Lahey'
+
+        assertEquals 'Lahey', student.fullName()
+
+        student.firstName = 'Mr'
+        assertEquals 'Mr Lahey', student.fullName()
+
+        student.middleName = 'Jim'
+        assertEquals 'Mr Jim Lahey', student.fullName()
+
+        assertEquals 'Ricky', new Student(firstName:"Ricky").fullName()
+
+        assertEquals 'Lester', new Student(middleName:"Lester").fullName()
+
+    }
+
+
 }
