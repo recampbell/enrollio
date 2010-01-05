@@ -158,11 +158,12 @@ class ContactController {
       redirect action:'show', id:contactInstance.id
     }
 
-    //Show editable student row for data entry
-    def newInlineStudent = {
+    //Show student row for data entry
+    def createStudent = {
         // Available interests are all programs
-        def interests = Program.findAll()
-        render(template: 'newInlineStudent', model: ['idx': params.idx, interests:interests])
+        def programs = Program.findAll()
+        render(template: 'createStudent', 
+                  model: ['idx': params.idx, programs:programs])
     }
 
     //Replace inline div with "New student" button

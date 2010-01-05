@@ -21,7 +21,9 @@
         </h3>
         <ul class="navlist">
             <li>
-                <g:link class="groupadd" controller="contact" action="addStudent">Add Student</g:link>
+            <g:remoteLink class="groupadd" 
+            action="createStudent"
+            update="createStudentDiv">Add Student</g:remoteLink>
             </li>
             <li>
                 <g:link class="groupedit" controller="contact" action="editStudents">Edit Students</g:link>

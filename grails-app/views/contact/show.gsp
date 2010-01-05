@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
     <meta name="tabName" content="contact" />
+    <g:javascript library="prototype" />
     <title>Contact: ${contactInstance}</title>
 </head>
 <html>
@@ -51,6 +52,7 @@
                 <g:render template='studentList' model="[contactInstance:contactInstance]" />
                 
             </div>
+            <div id="createStudentDiv"></div>
         </div>
         <div id="sidebar">
             <g:render template="contactMenu" />

@@ -346,7 +346,7 @@ form legend {
 	width:254px;
 }
 form label {
-	clear:left;
+	/* clear:left; */
 	display:block;
 	float:left;
 	width:100px;
