@@ -3,8 +3,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
     <meta name="tabName" content="contact" />
-    <g:javascript library="prototype" />
+    <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
     <title>Contact: ${contactInstance}</title>
+    <script type="text/javascript">
+        // When user clicks the "Add Student" button
+        // load the createStudentDiv (located in the studentList template)
+        // with the goodies that we get from the createStudent action
+        $(document).ready(function(){
+            var url = "${createLink(action:'createStudent')}";
+            $('#createStudentLink').click(function() {
+                $.get(url, { 'id' : ${contactInstance.id} }, 
+                    function(data) {
+                        $('#createStudentDiv').hide().html(data).slideDown('slow');
+                    }
+                );
+            });
+        });
+    </script>
 </head>
 <html>
     <div id="wrapper">
@@ -50,7 +65,7 @@
             <g:render template='studentList' model="[contactInstance:contactInstance]" />
         </div>
         <div id="sidebar">
-            <g:render template="contactMenu" />
+            <g:render template="contactMenu" model="[contactInstance:contactInstance]"/>
         </div>
 
     </div>
