@@ -1,3 +1,4 @@
+<%@ page import="org.bworks.bworksdb.Program;" %>
 <div id="newStudentDiv" class="box" ${studentInstance ? '' : 'style="display:none"'}>
     <h3 id="adduser">New Student</h3>
     <g:hasErrors bean="${studentInstance}">
@@ -44,7 +45,7 @@
 
         <fieldset id="studentInterests">
             <legend>Interests</legend>
-            <g:each var="p" in="${programs}">
+            <g:each var="p" in="${Program.list()}">
                 <label for="program_${p.id}">
                     <input class="checkbox" 
                     id="program_${p.id}" 
