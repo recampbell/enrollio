@@ -34,44 +34,22 @@
         value="${fieldValue(bean:student,field:'grade')}"/><br />
 
         <label for="gender">Gender :</label>
-        <label for="gender"><g:radio name="gender" value="Male" checked="true" />
-           Male </label> 
-        <label for="gender"> <g:radio name="gender" value="Female" />
-           Female </label>
-       <br />
-       <br />
+        <g:select name="gender" from="${['Male', 'Female']}" /><br />
 
+        <label for="interests">Interests :</label>
+                   <label><input class="checkbox" id="red"
+                       name="red" type="checkbox"
+                       value="red" />Foo</label><br />
+                   <label><input class="checkbox" id="red"
+                       name="red" type="checkbox"
+                       value="red" />Foo</label><br /
+                   <label><input class="checkbox" id="blue"
+                       name="blue" type="checkbox"
+                       value="blue" />Bar</label><br /
         <label style="clear:left;" for="saveButton"></label>
         <g:submitButton class="save" name="saveButton" value="Save" /></p>
                             or&nbsp;
         <g:link url="http://yahoo.com" name="cancelLink" class="cancelLink">Cancel</g:link>
 
-        <fieldset id="interestedPrograms">
-            <h2>Interests</h2>
-            <div class="col">
-                <label><input class="checkbox" id="red"
-                    name="red" type="checkbox"
-                    value="red" /></label>
-            
-            
-            </div><div class="col">
-                <label><input class="checkbox" id="blue"
-                    name="blue" type="checkbox"
-                    value="blue" /></label>
-            
-            
-            </div>
-            
-        </fieldset>
-
-                        
-            <g:if test="${student}">
-                <g:interestCheckBoxes student="${student}" idx="${idx}" />
-            </g:if>
-            <g:else>
-                <g:interestCheckBoxes student="${student}" idx="${idx}" checkDefaultProg="true" />
-            </g:else>
-                        
-                        
     </g:form>
 </div>

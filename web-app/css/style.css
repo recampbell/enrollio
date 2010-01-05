@@ -20,9 +20,6 @@ img{
 p{
 	padding:3px;
 }
-h2{
-
-}
 select{
 	padding:2px;
 }
@@ -358,9 +355,6 @@ form input {
 	padding:3px;
 	margin-bottom:5px;
 }
-form select {
-	margin-left:5px;
-}
 form textarea {
 	width:410px;
 	height:200px;
@@ -549,3 +543,31 @@ input[type="text"][type="password"][type="checkbox"] {
 input[type="submit"] {
     margin: 4px 6px 0px 0px;
 }
+
+
+/* studentInterests styles are taken from "CSS Mastery, Second Edition" */
+fieldset#studentInterests {
+    text-align: right;
+    margin: 4px;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+#studentInterests h2 {
+    width: 5em;
+    float: left;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#studentInterests .col {
+    width: 8em;
+    float: left;
+    clear: none;
+}
+
+#studentInterests label {
+    float: none;
+}
+
