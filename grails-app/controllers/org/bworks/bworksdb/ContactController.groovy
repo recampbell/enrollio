@@ -158,22 +158,10 @@ class ContactController {
       redirect action:'show', id:contactInstance.id
     }
 
-    //Show student row for data entry
-    def createStudent = {
-        // Available interests are all programs
-        def programs = Program.findAll()
-        def contactInstance = Contact.get(params.id)
-        render(template: 'createStudent', 
-                  model: [contactInstance:contactInstance, 'idx': params.idx, programs:programs])
-    }
-
-    //Show student row for data entry
     def saveStudent = {
         // Available interests are all programs
         def studentInstance = new Student(params)
         def contactInstance = Contact.get(params.contact.id)
-
-        println "Student instance is: " + studentInstance
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
@@ -182,12 +170,9 @@ class ContactController {
             redirect(action:'show', id:contactInstance.id)
         }
         else {
-            // Kludge for now is to re-render the show page,
-            // which will display the new student page if there's a studentInstance
-            // in the domain model
             render(view:'show',
-                      model:[studentInstance:studentInstance,
-                             contactInstance:contactInstance])
+                  model:[studentInstance:studentInstance,
+                         contactInstance:contactInstance])
         }
     }
     //Replace inline div with "New student" button
