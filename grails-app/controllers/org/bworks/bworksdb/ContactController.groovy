@@ -179,7 +179,6 @@ class ContactController {
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
-            contactInstance.save()
             flash.message = "Student ${studentInstance.id} created"
             render(template:'studentList', model:[contactInstance:contactInstance])
         }
