@@ -36,5 +36,27 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains('Interests:')
     }
 
+    void testRegularUserEditsStudent() {
+        gotoStudentShow()
+        assertStatus 200
+        
+        def editLink = byName("editStudentLink")
+        assertNotNull editLink
+        editLink.click()
+        assertStatus 200
 
+        form('editStudentForm') {
+            firstName = "Ralph"
+            lastName = "Lauren"
+            click "Save"
+        }
+
+        assertStatus 200
+        assertTitleContains('Student:')
+        assertContentContains('Updated')
+        assertContentContains('Ralph')
+        assertContentContains('Lauren')
+
+        // Make sure there's a Cancel Link
+    }
 }

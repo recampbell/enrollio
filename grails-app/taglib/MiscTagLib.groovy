@@ -18,7 +18,6 @@ class MiscTagLib {
     // If student already has an active Interest in a program, the checkbox is checked.
     def interestCheckBoxes = { attrs ->
         def student = attrs['student']
-        def idx = attrs['idx']
         def defaultProgId
         // Whether to check the default program
         def checkDefaultProg = attrs['checkDefaultProg']
@@ -30,14 +29,13 @@ class MiscTagLib {
         // def defaultProgram = configSettingService.getSetting('defaultInterestProgram')
         programs.each { prog ->
             // Note: Need to search for active == true, also
-            def checkBoxName = "studentInterests[${idx}]"
-            // TODO Find out why I can't put AndActive at the end of
-            // this dynamic query
+            def checkBoxName = "interestInProgram_${prog.id}"
             def results = Interest.withCriteria {
                 eq("student", student)
                 eq("program", prog)
                 eq("active", true)
             }
+
             // If student already has an interest in this program, or if
             // the caller wants us to check the default program automatically
             if (results || (checkDefaultProg && (prog.id.toString() == defaultProgId))) {
@@ -47,7 +45,6 @@ class MiscTagLib {
                 out << g.checkBox(value:prog.id, checked:false, name:checkBoxName)
             }
             out << "<label for='${checkBoxName}'>${prog.name}</label>"
-            out << '<br />'
         }
         return out
     }

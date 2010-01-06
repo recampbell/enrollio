@@ -6,7 +6,7 @@
         <ul>
             <g:if test="${studentInstance}">
                 <li>
-                    <g:link class="useredit" controller="student" action="edit" id="${studentInstance.id}">Edit</g:link>
+                    <g:link name="editStudentLink" class="useredit" controller="student" action="edit" id="${studentInstance.id}">Edit</g:link>
                 </li>
             </g:if>
         </ul>

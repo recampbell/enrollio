@@ -10,9 +10,8 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-        <div class="body">
-            <h1>Edit Student</h1>
+                <div class="box">
+                    <h3>Edit Student: ${studentInstance}</h3>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -21,94 +20,57 @@
                 <g:renderErrors bean="${studentInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form action="update" name="editStudentForm" method="post" >
                 <input type="hidden" name="id" value="${studentInstance?.id}" />
                 <input type="hidden" name="version" value="${studentInstance?.version}" />
-                <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="firstName">First Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'firstName','errors')}">
-                                    <input type="text" id="firstName" name="firstName" value="${fieldValue(bean:studentInstance,field:'firstName')}"/>
-                                </td>
-                            </tr> 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="middleName">Middle Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'middleName','errors')}">
-                                    <input type="text" id="middleName" name="middleName" value="${fieldValue(bean:studentInstance,field:'middleName')}"/>
-                                </td>
-                            </tr> 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="lastName">Last Name:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'lastName','errors')}">
-                                    <input type="text" id="lastName" name="lastName" value="${fieldValue(bean:studentInstance,field:'lastName')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="birthDate">Birth Date:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'birthDate','errors')}">
-                                    <g:datePicker name="birthDate" value="${studentInstance?.birthDate}" precision="minute" ></g:datePicker>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="contact">Contact:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'contact','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Contact.list()}" name="contact.id" value="${studentInstance?.contact?.id}" ></g:select>
-                                </td>
-                            </tr> 
-                        
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="gender">Gender:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'gender','errors')}">
-                                    <input type="text" id="gender" name="gender" value="${fieldValue(bean:studentInstance,field:'gender')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="middleName">Email Address:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'emailAddress','errors')}">
-                                    <input type="text" id="emailAddress" name="emailAddress" value="${fieldValue(bean:studentInstance,field:'emailAddress')}"/>
-                                </td>
-                            </tr> 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="interests">Interests:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:studentInstance,field:'interests','errors')}">
-                                    <g:select name="interests"
-from="${org.bworks.bworksdb.Interest.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${studentInstance?.interests}" />
+                <label for="firstName">First Name : </label> 
+                <input type="text" id="firstName" 
+                name="firstName" 
+                value="${fieldValue(bean:studentInstance,field:'firstName')}"/><br />
 
-                                </td>
-                            </tr> 
+                <label for="middleName">Middle Name : </label> 
+
+                <input type="text" id="middleName" 
+                name="middleName" 
+                value="${fieldValue(bean:studentInstance,field:'middleName')}"/><br />
+
+                <label for="lastName">Last Name : </label> 
+                <input type="text" id="lastName" 
+                name="lastName" 
+                value="${fieldValue(bean:studentInstance,field:'lastName')}"/><br />
+
+                <label for="birthDate">Birth Date : </label> 
+                <g:set var="existingBday"
+                       value="${fieldValue(bean:studentInstance, field:'birthDate')}" />
+
+                <input type="text" id="newStudentBirthDate" 
+                       name="birthDate" 
+                       value="${formatDate(format:'MM/dd/yyyy', date:studentInstance?.birthDate)}"
+                       />
+                <br />
+                <label for="grade">Grade : </label> 
+                <input type="text" id="grade" 
+                name="grade" 
+                value="${fieldValue(bean:studentInstance,field:'grade')}"/><br />
+
+                <label for="gender">Gender :</label>
+                <g:select name="gender" from="${['Male', 'Female']}" /><br />
+
+                <label for="contact">Contact:</label>
+                <g:select optionKey="id" from="${org.bworks.bworksdb.Contact.list()}" name="contact.id" value="${studentInstance?.contact?.id}" ></g:select><br />
                         
-                        
-                        </tbody>
-                    </table>
-                </div>
+                <label for="emailAddress">Email Address:</label>
+                <input type="text" id="emailAddress" name="emailAddress" value="${fieldValue(bean:studentInstance,field:'emailAddress')}"/>
+
+                <!-- only auto-select the default prog if we have a new student -->
+                <fieldset id="studentInterests">
+                    <legend>Interests</legend>
+                    <g:interestCheckBoxes student="${studentInstance}"  />
+                </fieldset>
                 <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    <span class="button">
+                        <input class="save" type="submit" value="Save" />
+                    </span>
                 </div>
             </g:form>
         </div>
