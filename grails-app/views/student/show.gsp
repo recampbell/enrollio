@@ -18,6 +18,18 @@
                 <table>
                     <tbody>
                         <tr class="prop">
+                            <td valign="top" class="name">Contact:</td>
+                            
+                            <td valign="top" class="value">
+                                <g:link controller="contact"
+                                          action="show"
+                                          id="$studentInstance.contact?.id">
+                                          ${studentInstance.contact}
+                                </g:link>
+                            
+                        </tr>
+                            
+                        <tr class="prop">
                             <td valign="top" class="name">Birth Date:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'birthDate')}</td>
