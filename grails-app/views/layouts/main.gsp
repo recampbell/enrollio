@@ -32,16 +32,16 @@
                         <li class="${isCurrentTab(tabName:'program')}">
                             <g:link controller="program" action="list">Programs</g:link>
                         </li>
+                        <li class="${isCurrentTab(tabName:'classSession')}">
+                            <g:link controller="classSession" action="list"
+                            class="enr-top-menu-item">Class Sessions</g:link>
+                        </li>
                         <li class="${isCurrentTab(tabName:'contact')}">
                             <g:link controller="contact" action="list">Contacts</g:link>
                         </li>
                         <li class="${isCurrentTab(tabName:'student')}">
                             <g:link controller="student" action="list"
                             class="enr-top-menu-item">Students</g:link>
-                        </li>
-                        <li class="${isCurrentTab(tabName:'classSession')}">
-                            <g:link controller="classSession" action="list"
-                            class="enr-top-menu-item">Class Sessions</g:link>
                         </li>
                         <shiro:hasRole name="Administrator">
                             <li class="${isCurrentTab(tabName:'admin')}">
