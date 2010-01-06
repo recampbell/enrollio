@@ -48,9 +48,9 @@
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
-                                <g:each var="i" in="${studentInstance.interests}">
-                                    <li><g:link controller="interest" action="show" id="${i.id}">${i?.program?.name}</g:link></li>
-                                </g:each>
+                                    <g:each var="i" in="${studentInstance.interests}">
+                                        <li><g:link controller="program" action="show" id="${i.program.id}">${i?.program?.name}</g:link></li>
+                                    </g:each>
                                 </ul>
                             </td>
                             
@@ -60,17 +60,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${studentInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
-        </div>
         </div>
         </div><div id="sidebar">
-            <g:render template="/common/sideMenu" />
+            <g:render template="studentMenu" />
+        </div>
         </div>
     </body>
 </html>
