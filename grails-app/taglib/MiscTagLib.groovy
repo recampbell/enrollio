@@ -38,13 +38,20 @@ class MiscTagLib {
 
             // If student already has an interest in this program, or if
             // the caller wants us to check the default program automatically
-            if (results || (checkDefaultProg && (prog.id.toString() == defaultProgId))) {
-                out << g.checkBox(value:prog.id, checked:true, name:checkBoxName)
-            }
-            else {
-                out << g.checkBox(value:prog.id, checked:false, name:checkBoxName)
-            }
-            out << "<label for='${checkBoxName}'>${prog.name}</label>"
+            def hasInterest = (results || 
+                              (checkDefaultProg && (prog.id.toString() == defaultProgId)))
+            def sCheckbox = """ 
+                <label for="interestInProgram_${prog.id}">
+                    <input class="checkbox" 
+                    id="interestInProgram_${prog.id}" 
+                    name="interestInProgram" 
+                    type="checkbox" 
+                    checked="${hasInterest ? 'true' : 'false'}"
+                    value="${prog.id}" />${prog.name}
+                </label>
+            """
+
+            out << sCheckbox
         }
         return out
     }
