@@ -581,3 +581,8 @@ input[type="checkbox"] {
     padding: 5px;
     border: none;
 }
+
+.prop li {
+    list-style-type: none;
+    padding-bottom: 5px;
+}
