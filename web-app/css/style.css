@@ -562,3 +562,16 @@ input[type="checkbox"] {
     padding: 10px;
 }
 
+/* Added from grails' main.css */
+.prop {
+    padding: 5px;
+}
+.prop .name {
+    text-align: left;
+    width: 15%;
+    white-space: nowrap;
+}
+.prop .value {
+    text-align: left;
+    width: 85%;
+}

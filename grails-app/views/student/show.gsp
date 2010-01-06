@@ -5,33 +5,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="student" />
-        <title>Show Student</title>
+        <title>Student: ${studentInstance}</title>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-        <div class="body">
-            <h1>Show Student</h1>
             <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
-            <div class="dialog">
+            <div class="box">
+                <h3>Student: ${studentInstance}</h3>
                 <table>
                     <tbody>
 
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'id')}</td>
-                            
-                            <td valign="top" class="name">Contact:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="contact" action="show" id="${studentInstance?.contact?.id}">${studentInstance?.contact?.encodeAsHTML()}</g:link></td>
-                        </tr>
-                        <tr class="prop">
-                            
-                        </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
                             
