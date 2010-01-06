@@ -11,7 +11,6 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">Students 
-                    <g:link action="create" controller="contact" class="add">Add Contact</g:link>
                     <br /></h3>
                     <table>
                         <thead>
@@ -26,7 +25,8 @@
                             var="studentInstance">
                                 <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                     <td>
-                                        <g:link action="show" id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
+                                        <g:link action="show" name="studentLink_${studentInstance.id}" 
+                                        id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
                                     </td>
                                 <td><g:link controller="contact" action="show"
                                     id="${studentInstance.contact.id}">${fieldValue(bean:studentInstance,
