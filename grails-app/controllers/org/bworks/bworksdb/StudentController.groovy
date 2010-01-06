@@ -69,7 +69,7 @@ class StudentController {
             }
             studentInstance.properties = params
             if(!studentInstance.hasErrors() && studentInstance.save()) {
-                flash.message = "Student ${params.id} updated"
+                flash.message = "Student ${studentInstance} updated"
                 redirect(action:show,id:studentInstance.id)
             }
             else {
