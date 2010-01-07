@@ -6,6 +6,8 @@ class StudentController {
     
     def index = { redirect(action:list,params:params) }
 
+    def studentService
+
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
@@ -69,6 +71,8 @@ class StudentController {
             }
             studentInstance.properties = params
             if(!studentInstance.hasErrors() && studentInstance.save()) {
+                studentService.saveInterests(studentInstance, params['interestInProgram'])
+                studentInstance.save()
                 flash.message = "Student ${studentInstance} updated"
                 redirect(action:show,id:studentInstance.id)
             }

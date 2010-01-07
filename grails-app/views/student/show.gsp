@@ -59,11 +59,7 @@
                             <td valign="top" class="name">Interests:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                    <g:each var="i" in="${studentInstance.interests}">
-                                        <li><g:link controller="program" action="show" id="${i.program.id}">${i?.program?.name}</g:link></li>
-                                    </g:each>
-                                </ul>
+                                ${studentInstance.activeInterestsSummary()}
                             </td>
                             
                         </tr>

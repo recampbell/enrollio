@@ -46,7 +46,7 @@ class MiscTagLib {
                     id="interestInProgram_${prog.id}" 
                     name="interestInProgram" 
                     type="checkbox" 
-                    checked="${hasInterest ? 'true' : 'false'}"
+                    ${hasInterest ? 'checked="true"' : ''}
                     value="${prog.id}" />${prog.name}
                 </label>
             """

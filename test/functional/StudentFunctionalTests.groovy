@@ -1,6 +1,9 @@
+import org.bworks.bworksdb.util.TestKeys
 class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
+
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
+
     void loginAs(userName, pass) {
         get('/login')
         form('loginForm') {
@@ -29,14 +32,14 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         def studentLink = byXPath("//a[starts-with(@name,'studentLink')]")
         assertNotNull studentLink
         studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
-        // Click on the link -- using its ID <evil laugh>
+        // click on the link -- using its id <evil laugh>
         studentLink.click()
         assertStatus 200
-        assertTitleContains('Student:')
-        assertContentContains('Interests:')
+        assertTitleContains('student:')
+        assertContentContains('interests:')
     }
 
-    void testRegularUserEditsStudent() {
+    void testEditStudentName() {
         gotoStudentShow()
         assertStatus 200
         
@@ -57,6 +60,68 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains('Ralph')
         assertContentContains('Lauren')
 
-        // Make sure there's a Cancel Link
+    }
+
+    void testEditStudentInterests() {
+        gotoStudentShow()
+        assertStatus 200
+        
+        def editLink = byName("editStudentLink")
+        assertNotNull editLink
+        editLink.click()
+        assertStatus 200
+
+        
+        def interestCheckboxen = byName('interestInProgram')
+
+        // Make sure we see three possible Programs to be interested in
+        assertEquals 3, interestCheckboxen.size()
+
+        interestCheckboxen.each {
+            println it.toString()
+        }
+
+        // Should be interested in the adult prog.
+        assertNotNull interestCheckboxen.find { 
+            it.getParentNode().getTextContent() =~ /${ TestKeys.PROGRAM_ADULT_AEC }/ &&
+            it.checked == true
+        }
+
+        // Should not be interested in mentorship program
+        // Save mentoship checkbox for later use
+        def mentorshipCheckbox = interestCheckboxen.find { 
+            it.getParentNode().getTextContent() =~ /${ TestKeys.PROGRAM_MENTORSHIP }/ &&
+            it.checked == false
+        }
+
+        assertNotNull mentorshipCheckbox
+        assertFalse mentorshipCheckbox.checked
+
+        // Should not be interested in children's prog
+        assertNotNull interestCheckboxen.find { 
+            it.getParentNode().getTextContent() =~ /${TestKeys.PROGRAM_KIDS_AEC}/ &&
+            it.checked == false
+        }
+
+
+        // We're interested in Mentorship program, so check it
+        // and Save!
+        mentorshipCheckbox.click()
+        form('editStudentForm') {
+            click "Save"
+        }
+
+        assertStatus 200
+        // Make sure interests are g00t
+        def newInterestCheckBoxen = byName('interestInProgram')
+
+        // Should now be interested in the adult prog. and mentorship.
+        assertContentContains TestKeys.PROGRAM_ADULT_AEC
+        assertContentContains TestKeys.PROGRAM_MENTORSHIP
+        // Still shouldn't be interested in kids prog.
+        shouldFail() {
+            assertContentContains TestKeys.PROGRAM_KIDS_AEC
+        }
+
     }
 }
