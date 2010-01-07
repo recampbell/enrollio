@@ -1,5 +1,7 @@
 <tr>
-    <td>${student}</td>
+    <td>
+        <g:link action="show" id="${student.id}" controller="student">${student}</g:link>
+    </td>
     <td>${student.gender ?: ""}</td>
     <td>${student.grade ?: ""}</td>
     <td><g:formatDate format="MMMM d, yyyy"
