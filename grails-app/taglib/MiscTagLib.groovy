@@ -89,5 +89,22 @@ class MiscTagLib {
              out << "<img ${attribs}src=\"${iconFile}\" />"
          }
      }
+     
+     // Create links to the student's active interests
+     def activeInterestLinks = { attrs ->
+         def student = attrs['student']
+         
+         def links = []
+         student.activeInterests().each { interest ->
+            links << g.link(controller:'program', action: 'show', id: interest.program.id, 
+                          interest.program.name)
+         }
+         
+         out << links.join(',&nbsp;')
+         
+
+     }
+     
+     
 
 }
