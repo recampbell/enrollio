@@ -61,5 +61,15 @@ class Student {
         }
         return progs ? progs.join(", ") : ''
     }
+    
+    Interest[] activeInterests() {
+        def interestList = []
+        interests.each { 
+            if (it.active) {
+                interestList << it 
+            }
+        }
+        return interestList
+    }
 
 }
