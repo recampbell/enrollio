@@ -1,3 +1,4 @@
+import org.bworks.bworksdb.util.TestKeys
 class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
@@ -15,6 +16,11 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     void gotoClassSessionList() {
         loginAs('bob', 'bobbobbob0')
         click("Class Sessions")
+        // Make sure we see our newly formatted beautiful dates
+        assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
+        assertContentContains TestKeys.SESSION_ADULT_DATE_FORMATTED
+        assertContentContains TestKeys.SESSION_MENTORSHIP_DATE_FORMATTED
+
     }
 
     // gotoClassSessionPage is a utility method

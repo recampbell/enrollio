@@ -31,8 +31,7 @@
                                     ${fieldValue(bean:classSessionInstance,
                                     field:'name')}</g:link>
                                 </td>
-                                <td><g:formatDate format="MM/dd/yyyy"
-                                                date="${classSessionInstance.startDate}" /></td>
+                                <td><enrollio:formatDate date="${classSessionInstance.startDate}" /></td>
                             </tr>
                         </g:each>
                     </tbody>
