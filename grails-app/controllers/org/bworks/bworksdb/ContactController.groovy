@@ -124,40 +124,6 @@ class ContactController {
         }
     }
 
-    /**
-     * Save the given Contact and their associated students
-     */
-    def saveContactAndStudents = {
-      def contactInstance
-
-      if (params.id) {
-        contactInstance = Contact.get(params.id)
-
-        contactInstance.properties = params
-
-        contactInstance.validate()
-
-        //Loop through students, validate and save
-        contactInstance.students.eachWithIndex {student, idx ->
-          if (student.validate()) {
-            student.save()
-            studentService.saveInterests(student, params["studentInterests[${idx}]"])
-          }
-          else {
-              student.errors.allErrors.each {
-                  println it
-              }
-          }
-        }
-
-        contactInstance.save()
-        
-        redirect action:'show', id:contactInstance.id
-        return
-      }
-      redirect action:'show', id:contactInstance.id
-    }
-
     def saveStudent = {
         // First, zap birthDate and reformat it.
         def dateFormat = 'MM/dd/yyyy'
