@@ -9,12 +9,10 @@
     <td>
     %{-- TODO create .activeInterests property on Student,
          so we don't need the g:if interest.active --}%
-    <g:each var="interest" in="${student.interests}">
-        <g:if test="${interest.active}">
+    <g:each var="interest" in="${student.activeInterests()}">
             <g:link controller="program" action="show" id="${interest.program.id}">
-                ${interest.program.name}&nbsp;
+                ${interest.program.name},&nbsp;
             </g:link>
-        </g:if>
     </g:each>
     </td>
 </tr>
