@@ -28,6 +28,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     void gotoClassSessionPage() {
         loginAs('bob', 'bobbobbob0')
         click("Class Sessions")
+        
         def csLink = byXPath("//a[starts-with(@name,'classSessionLink')]")
         // if we got multiple links, then just get 1st one
         csLink = csLink instanceof ArrayList ? csLink[0] : csLink
@@ -52,6 +53,16 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         addEnrollmentsLink.click()
         assertStatus 200
 
+    }
+
+    void testClassSessionShow() {
+        loginAs('bob', 'bobbobbob0')
+        click("Class Sessions")
+
+        assertStatus 200
+        click(TestKeys.SESSION_ADULT_NAME)
+        // Check awesome date format
+        assertContentContains TestKeys.SESSION_ADULT_DATE_FORMATTED
     }
 
     // Test that Grad. Certs come out OK

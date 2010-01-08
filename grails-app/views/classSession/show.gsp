@@ -34,8 +34,7 @@
                                     <td>
                                         Start Date:
                                     </td>
-                                    <td><g:formatDate format="MMMM d, yyyy"
-                                        date="${classSessionInstance.startDate}" /></td>
+                                    <td><enrollio:formatDate date="${classSessionInstance.startDate}" /></td>
                                 </tr>
                             </tbody>
                         </table>

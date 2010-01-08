@@ -95,15 +95,20 @@ class TestDataService {
         // for easy assignment
         def testProgs = [:]
 
-        testProgs[TestKeys.PROGRAM_MENTORSHIP] = TestKeys.SESSION_MENTORSHIP_DATE
-        testProgs[TestKeys.PROGRAM_ADULT_AEC]  = TestKeys.SESSION_ADULT_DATE
-        testProgs[TestKeys.PROGRAM_KIDS_AEC]   = TestKeys.SESSION_KIDS_DATE
+        testProgs[TestKeys.PROGRAM_MENTORSHIP] = [ 'date' : TestKeys.SESSION_MENTORSHIP_DATE,
+                                                   'sessionName' : TestKeys.SESSION_MENTORSHIP_NAME ]
 
-        testProgs.each { progName, progDate ->
-            def p = Program.findByName(progName)
-            def classSession = new ClassSession(name:"${p.name} Session",
+        testProgs[TestKeys.PROGRAM_ADULT_AEC]  = [ 'date' : TestKeys.SESSION_ADULT_DATE  ,
+                                                   'sessionName' : TestKeys.SESSION_ADULT_NAME ]
+
+        testProgs[TestKeys.PROGRAM_KIDS_AEC]   = [ 'date' : TestKeys.SESSION_KIDS_DATE,
+                                                   'sessionName' : TestKeys.SESSION_KIDS_NAME ]
+
+        testProgs.each { key, testProg ->
+            def p = Program.findByName(key)
+            def classSession = new ClassSession(name:testProg.sessionName,
                                       program:p,
-                                      startDate: progDate).save()
+                                      startDate: testProg.date).save()
             
             def nextLessonDates = 
                 programService.nextAvailableLessonDates(classSession.program, new Date())
