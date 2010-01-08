@@ -4,8 +4,7 @@
     </td>
     <td>${student.gender ?: ""}</td>
     <td>${student.grade ?: ""}</td>
-    <td><g:formatDate format="MMMM d, yyyy"
-        date="${student.birthDate}" /></td>
+    <td><enrollio:formatDate date="${student.birthDate}" /></td>
     <td>
     %{-- TODO create .activeInterests property on Student,
          so we don't need the g:if interest.active --}%
