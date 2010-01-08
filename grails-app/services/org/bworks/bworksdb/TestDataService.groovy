@@ -13,6 +13,15 @@ class TestDataService {
 
     def programService
     def config = ConfigurationHolder.config
+
+    // define start dates for the various test programs in a hash
+    // for easy assignment
+    def testDates = [
+        TestKeys.PROGRAM_MENTORSHIP : TestKeys.SESSION_MENTORSHIP_DATE,
+        TestKeys.PROGRAM_ADULT_AEC  : TestKeys.SESSION_ADULT_DATE,
+        TestKeys.PROGRAM_KIDS_AEC   : TestKeys.SESSION_KIDS_DATE
+    ]
+
         
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
@@ -91,9 +100,10 @@ class TestDataService {
     def loadDummyClassSessions() {
         def progs = Program.list()
         progs.each { prog ->
+            
             def cs = new ClassSession(name:"${prog.name} ${new Date().format('MM/dd/yyyy')}.",
                                       program:prog,
-                                      startDate: new Date()).save()
+                                      startDate: testDates[prog.name]).save()
             def nac = programService.nextAvailableLessonDates(cs.program, new Date())
             nac.each { lessonDate ->
                 cs.addToLessonDates(lessonDate)
