@@ -43,9 +43,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         gotoStudentShow()
         assertStatus 200
         
-        def editLink = byName("editStudentLink")
-        assertNotNull editLink
-        editLink.click()
+        click "Edit"
         assertStatus 200
 
         form('editStudentForm') {
@@ -68,7 +66,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         
         def editLink = byName("editStudentLink")
         assertNotNull editLink
-        editLink.click()
+        click "Edit"
         assertStatus 200
 
         
