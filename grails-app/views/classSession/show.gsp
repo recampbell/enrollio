@@ -53,8 +53,7 @@
                                                 ${lessonDate.lesson.name}</g:link>
                                             </td>
                                             <td>
-                                                <g:formatDate format="MMMM d, yyyy"
-                                                date="${lessonDate.lessonDate}" />
+                                                <enrollio:formatDate date="${lessonDate.lessonDate}" />
                                             </td>
                                         </tr>
                                     </g:each>
