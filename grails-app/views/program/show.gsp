@@ -51,10 +51,9 @@
                                         <td>
                                             <g:link controller="classSession"
                                             action="show" id="${session.id}">
-                                            ${session?.encodeAsHTML()}</g:link>
+                                            ${session?.name}</g:link>
                                         </td>
-                                        <td><g:formatDate format="MMM. d, yyyy" 
-                                            date="${session.startDate}" /></td>
+                                        <td><enrollio:formatDate date="${session.startDate}" /></td>
                                     </tr>
                                 </g:each>
                             </tbody>

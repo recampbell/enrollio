@@ -1,3 +1,4 @@
+import org.bworks.bworksdb.util.TestKeys
 class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
@@ -16,10 +17,10 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void gotoProgramShow() {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
-        def progLink = byXPath("//a[starts-with(@name,'programLink')]")
-        // if we get > 1 link back, we have to pick 1st one.
-        progLink = progLink instanceof ArrayList ? progLink[0] : progLink
-        progLink.click()
+        // Go to Children's prog, and ensure that we
+        // see the start date of the first session in our awesome format
+        click(TestKeys.PROGRAM_KIDS_AEC)
+
     }
 
     void testProgramList() {
@@ -30,6 +31,14 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains("Children's EAC")
     }
 
+    void testProgramShow() {
+        loginAs('bob', 'bobbobbob0')
+        click("Programs")
+        assertStatus 200
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
+
+    }
     // Ensure that we can create a new Program
     void testProgramMenu() {
         loginAs('bob', 'bobbobbob0')
