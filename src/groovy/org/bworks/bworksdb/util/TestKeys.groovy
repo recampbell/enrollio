@@ -13,12 +13,12 @@ class TestKeys {
     
     static public final String CONTACT_EMAIL = 'groovy@gmail.com'
 
-    static public final Date SESSION_KIDS_DATE = Date.parse('MMMM/d/yyyy', '4/20/2010')
-    static public final Date SESSION_KIDS_DATE_FORMATTED = 'April 20, 2010' 
+    static public final String SESSION_KIDS_DATE_FORMATTED = 'April 20, 2010' 
+    static public final Date SESSION_KIDS_DATE = Date.parse('MMMM d, yyyy', SESSION_KIDS_DATE_FORMATTED)
 
-    static public final Date SESSION_MENTORSHIP_DATE = Date.parse('MMMM/d/yyyy', '5/21/2010')
-    static public final Date SESSION_MENTORSHIP_DATE_FORMATTED = 'May 21, 2010' 
+    static public final String SESSION_MENTORSHIP_DATE_FORMATTED = 'May 21, 2010' 
+    static public final Date SESSION_MENTORSHIP_DATE = Date.parse('MMMM d, yyyy', SESSION_MENTORSHIP_DATE_FORMATTED)
     
-    static public final Date SESSION_ADULT_DATE = Date.parse('MMMM/d/yyyy', '6/22/2010')
-    static public final Date SESSION_ADULT_DATE_FORMATTED = 'June 22, 2010' 
+    static public final String SESSION_ADULT_DATE_FORMATTED = 'June 22, 2010' 
+    static public final Date SESSION_ADULT_DATE = Date.parse('MMMM d, yyyy', SESSION_ADULT_DATE_FORMATTED)
 }
