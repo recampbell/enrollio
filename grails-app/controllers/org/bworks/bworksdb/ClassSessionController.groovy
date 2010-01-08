@@ -168,7 +168,11 @@ class ClassSessionController {
 
     def gradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
-        def lastDate = classSessionInstance?.lessonDates?.last()?.lessonDate
+        def lessonDates = classSessionInstance?.lessonDates
+        def lastDate = classSessionInstance.startDate
+        if (lessonDates && lessonDates.size() > 0) {
+            lastDate = lessonDates.last()
+        }
 
         // Default Graduation Date to date of last class
         // TODO: Refactor to a Service, or else give classSession a graduationDate
