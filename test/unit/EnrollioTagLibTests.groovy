@@ -24,4 +24,11 @@ class EnrollioTagLibTests extends TagLibUnitTestCase {
         assertEquals 'January 1, 2009', tagLib.out.toString()
 
     }
+
+    void testFormatDateNullDay() {
+        def testDate = null
+        tagLib.formatDate(date:testDate)
+        assertEquals '', tagLib.out.toString()
+    }
+
 }
