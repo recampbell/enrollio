@@ -523,6 +523,12 @@ td.errors input {
     border: 1px solid red;
 }
 
+input.errors {
+    border: 1px solid red;
+}
+input.errors {
+    border: 1px solid red;
+}
 /* Taken from "CSS Mastery Advanced Web Standards Solutions */
 fieldset {
     margin: 1em 0;
