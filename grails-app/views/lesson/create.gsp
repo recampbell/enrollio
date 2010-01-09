@@ -27,7 +27,10 @@
                     <label for="sequence">Sequence:</label>
                     <input type="text" id="sequence" class="value ${hasErrors(bean:lessonInstance,field:'sequence','errors')}" name="sequence" value="${fieldValue(bean:lessonInstance,field:'sequence')}" /><br />
                     <label for="description">Description:</label>
-                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/><br />
+                        <g:textArea name="description" 
+                            value="${fieldValue(bean:lessonInstance,field:'description')}"
+                            rows="5" cols="40"/>
+                        <br />
                     <label for="saveButton"></label>
                     <g:submitButton class="save" name="saveButton" value="Save" />
                         or&nbsp;

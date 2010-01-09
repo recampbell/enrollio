@@ -8,54 +8,17 @@
         <title>Show Lesson</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Lesson List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New Lesson</g:link></span>
-        </div>
-        <div class="body">
-            <h1>Show Lesson</h1>
+        <div id="wrapper">
+            <div id="content">
             <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
-            <div class="dialog">
+            <div class="box">
+            <h3>Lesson: ${lessonInstance}</h3>
                 <table>
                     <tbody>
-
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:lessonInstance, field:'id')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Description:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:lessonInstance, field:'description')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Lesson Dates:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="l" in="${lessonInstance.lessonDates}">
-                                    <li><g:link controller="lessonDate" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Name:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:lessonInstance, field:'name')}</td>
-                            
-                        </tr>
+                        <enrollio:textField model="${lessonInstance}" fieldName="description" />
                     
                         <tr class="prop">
                             <td valign="top" class="name">Program:</td>
@@ -63,24 +26,40 @@
                             <td valign="top" class="value"><g:link controller="program" action="show" id="${lessonInstance?.program?.id}">${lessonInstance?.program?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Sequence:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:lessonInstance, field:'sequence')}</td>
-                            
+                        <enrollio:textField model="${lessonInstance}" fieldName="sequence" />
+                    </tbody>
+                </table
+                <div class="box">
+                <h3>Lesson Dates:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Session</td>
+                            <td>Date</td>
                         </tr>
-                    
+                    </thead>
+                    <tbody>
+                        <g:each var="l" in="${lessonInstance.lessonDates}">
+                        <tr class="prop">
+                            
+                            <td valign="top" style="text-align:left;" class="value">
+                            <g:link controller="lessonDate" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link>
+                            </td>
+                            
+                            <td valign="top" class="value">
+                                <enrollio:formatDate date="${l.lessonDate}" />
+                            
+                            </td>
+                        </tr>
+                        </g:each>
+                
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${lessonInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
         </div>
+        </div>
+            <div id="sidebar">
+                <g:render template="lessonMenu" />
+            </div>
     </body>
 </html>

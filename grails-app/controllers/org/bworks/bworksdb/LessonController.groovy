@@ -90,7 +90,10 @@ class LessonController {
 
     def save = {
         def lessonInstance = new Lesson(params)
+        def program = Program.get(params.program.id)
+
         if(!lessonInstance.hasErrors() && lessonInstance.save()) {
+            program.addToLessons(lessonInstance)
             flash.message = "Lesson ${lessonInstance.id} created"
             redirect(action:show,id:lessonInstance.id)
         }
