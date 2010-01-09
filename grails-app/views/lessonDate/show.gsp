@@ -28,7 +28,8 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-            ${lessonDateInstance.lesson.name}, ${formatDate(format:'MMMM d, yyyy', date:lessonDateInstance.lessonDate)}
+                            ${lessonDateInstance.lesson.name},
+                            <enrollio:formatDate date="${lessonDateInstance.lessonDate}" />
                         </h3>
                         <p class="youhave">
              ${lessonDateInstance.classSession.name} </p>

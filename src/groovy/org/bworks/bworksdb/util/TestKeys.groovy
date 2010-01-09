@@ -12,4 +12,17 @@ class TestKeys {
     static public final String PROGRAM_MENTORSHIP = "Mentorship Program"
     
     static public final String CONTACT_EMAIL = 'groovy@gmail.com'
+
+
+    static public final String SESSION_KIDS_DATE_FORMATTED = 'April 20, 2010' 
+    static public final Date SESSION_KIDS_DATE = Date.parse('MMMM d, yyyy', SESSION_KIDS_DATE_FORMATTED)
+    static public final String SESSION_KIDS_NAME = "Children's EAC Session" 
+
+    static public final String SESSION_MENTORSHIP_DATE_FORMATTED = 'May 21, 2010' 
+    static public final Date SESSION_MENTORSHIP_DATE = Date.parse('MMMM d, yyyy', SESSION_MENTORSHIP_DATE_FORMATTED)
+    static public final String SESSION_MENTORSHIP_NAME = "Mentorship Session" 
+    
+    static public final String SESSION_ADULT_DATE_FORMATTED = 'June 22, 2010' 
+    static public final Date SESSION_ADULT_DATE = Date.parse('MMMM d, yyyy', SESSION_ADULT_DATE_FORMATTED)
+    static public final String SESSION_ADULT_NAME = "Adult EAC Session" 
 }

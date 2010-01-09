@@ -13,6 +13,8 @@ class TestDataService {
 
     def programService
     def config = ConfigurationHolder.config
+
+
         
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
@@ -89,27 +91,44 @@ class TestDataService {
     } 
 
     def loadDummyClassSessions() {
-        def progs = Program.list()
-        progs.each { prog ->
-            def cs = new ClassSession(name:"${prog.name} ${new Date().format('MM/dd/yyyy')}.",
-                                      program:prog,
-                                      startDate: new Date()).save()
-            def nac = programService.nextAvailableLessonDates(cs.program, new Date())
-            nac.each { lessonDate ->
-                cs.addToLessonDates(lessonDate)
+        // define start dates for the various test programs in a hash
+        // for easy assignment
+        def testProgs = [:]
+
+        testProgs[TestKeys.PROGRAM_MENTORSHIP] = [ 'date' : TestKeys.SESSION_MENTORSHIP_DATE,
+                                                   'sessionName' : TestKeys.SESSION_MENTORSHIP_NAME ]
+
+        testProgs[TestKeys.PROGRAM_ADULT_AEC]  = [ 'date' : TestKeys.SESSION_ADULT_DATE  ,
+                                                   'sessionName' : TestKeys.SESSION_ADULT_NAME ]
+
+        testProgs[TestKeys.PROGRAM_KIDS_AEC]   = [ 'date' : TestKeys.SESSION_KIDS_DATE,
+                                                   'sessionName' : TestKeys.SESSION_KIDS_NAME ]
+
+        testProgs.each { key, testProg ->
+            def p = Program.findByName(key)
+            def classSession = new ClassSession(name:testProg.sessionName,
+                                      program:p,
+                                      startDate: testProg.date).save()
+            
+            def nextLessonDates = 
+                programService.nextAvailableLessonDates(classSession.program, new Date())
+
+            nextLessonDates.each { lessonDate ->
+                classSession.addToLessonDates(lessonDate)
             }
 
-            cs.save()
+            classSession.save()
 
-            prog.interests.eachWithIndex  { interest, i ->
+            // Enroll Student in this new Session
+            p.interests.eachWithIndex  { interest, i ->
                 if (i < 5) {
-                    cs.addToEnrollments(new Enrollment(student:interest.student))
+                    classSession.addToEnrollments(new Enrollment(student:interest.student))
                 }
                 else {
                     return
                 }
             }
-            cs.save()
+            classSession.save()
         }
 
    }

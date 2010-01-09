@@ -62,8 +62,7 @@
                                         <td>${interest.student}</td>
                                         <td>${interest.student.contact}</td>
                                         <td>
-                                        <g:formatDate format="MM/dd/yyyy"
-                                        date="${interest.dateCreated}" />&#160;</td>
+                                        <enrollio:formatDate date="${interest.dateCreated}" />&#160;</td>
                                     </tr>
                                 </g:each>
                             </tbody>
