@@ -228,22 +228,31 @@ thead{
 #infowrap li{
 	display:inline:
 }
+
 .infobox{
 	width:365px;
 	float:left;
 	margin-top:10px;
 }
+
 .infobox h3{
 	padding:5px;
 	font-size:14px;
 }
+
 .margin-left{
 	margin-left:5px;
 }
+
+.rightnow {
+    margin-bottom: 10px;
+}
+
 .rightnow .reallynow {
 	padding: 5px;
 	font-size:14px;
 }
+
 .rightnow h3{
 	padding:2px;
 	padding: 0 10px;
@@ -253,6 +262,7 @@ thead{
 .rightnow p {
     padding:6px;
 }
+
 .rightnow .reallynow span {
 	display: block;
 	text-align: left;
@@ -295,15 +305,12 @@ thead{
 .reallynow input {
 	text-decoration:none;
     }
-#rightnow .reallynow a:hover {
+.rightnow .reallynow a:hover {
 	text-decoration:underline;
 }
-#rightnow .youhave {
+.rightnow .youhave {
 	font-size:  12px;
 	padding: 10px;
-}
-#rightnow a {
-	font-weight: bold;
 }
 /*********************
 		Forms
