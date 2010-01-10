@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Edit Lesson</title>
+        <title>Edit Lesson:</title>
     </head>
     <body>
         <div class="nav">
@@ -14,7 +14,7 @@
             <span class="menuButton"><g:link class="create" action="create">New Lesson</g:link></span>
         </div>
         <div class="body">
-            <h1>Edit Lesson</h1>
+            <h1>Edit Lesson:</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -23,7 +23,7 @@
                 <g:renderErrors bean="${lessonInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form name="editLessonForm" action="update" method="post" >
                 <input type="hidden" name="id" value="${lessonInstance?.id}" />
                 <input type="hidden" name="version" value="${lessonInstance?.version}" />
                 <div class="dialog">
@@ -67,11 +67,9 @@
                         
                         </tbody>
                     </table>
-                </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </div>
+                        <g:submitButton class="save" name="saveButton" value="Update" />
+                            or&nbsp;
+                        <g:link name="cancelLink" class="cancelLink" action="show" id="${lessonInstance.id}" >Cancel</g:link>
             </g:form>
         </div>
     </body>

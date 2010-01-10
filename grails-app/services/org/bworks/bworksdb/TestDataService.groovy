@@ -173,14 +173,26 @@ class TestDataService {
                                        description:'Enrollio Mascot Icon Used on every page').save()
         }
     }
+
     def loadDefaultPrograms() {
         def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
                               name:TestKeys.PROGRAM_KIDS_AEC).save()
-        def eacLessons = ['Intro to Computers', 'Scratch Programming',
-                          'Word Processing', 'Presentations', 'Email and WWW', 'Graduation']
+
+        // Define sample lessons.  Use a hard-coded description for
+        // the test Earn-A-Computer lesson.
+        def eacLessons = [ 
+           [ name: TestKeys.LESSON_KIDS_AEC_INTRO, desc: TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION],
+           [ name: 'Scratch Programming' ], 
+           [ name: 'Word Processing' ], 
+           [ name: 'Presentations' ],
+           [ name: 'Email and WWW' ],
+           [ name: 'Graduation' ]
+        ]
+
         eacLessons.eachWithIndex { it, i ->
-            p0.addToLessons(new Lesson(description:it,
-                                       name:it,
+            if (!it.desc) { it.desc = it.name + 'A description of ' + it.name }
+            p0.addToLessons(new Lesson(description:it.desc,
+                                       name:it.name,
                                        sequence:i))
         }
             

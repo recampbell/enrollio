@@ -25,4 +25,10 @@ class TestKeys {
     static public final String SESSION_ADULT_DATE_FORMATTED = 'June 22, 2010' 
     static public final Date SESSION_ADULT_DATE = Date.parse('MMMM d, yyyy', SESSION_ADULT_DATE_FORMATTED)
     static public final String SESSION_ADULT_NAME = "Adult EAC Session" 
+
+    static public final String LESSON_KIDS_AEC_INTRO = "Intro to Computers" 
+    static public final String LESSON_KIDS_AEC_INTRO_DESCRIPTION = """
+    This lesson teaches the basics of computer hardware and software,
+    including how computers store information.
+    """
 }
