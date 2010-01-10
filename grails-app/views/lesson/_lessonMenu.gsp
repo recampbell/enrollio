@@ -1,7 +1,7 @@
 <ul>
     <li>
         <h3>
-            <g:link class="book_open" controller="lesson">Lessons</g:link>
+            <g:link class="book_open" controller="lesson" action="list">Lessons</g:link>
         </h3>
         <ul>
             <li>

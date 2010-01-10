@@ -11,7 +11,7 @@ class LessonController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
+        [ programInstanceList : Program.list(), lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
     }
 
     def show = {
@@ -84,8 +84,15 @@ class LessonController {
 
     def create = {
         def lessonInstance = new Lesson()
+        // If no program is specified, then pick the first Program in the list.
+        // Also, link back to lesson/list if user Cancels
+        def cancelLink
+        if (!params.program?.id) {
+            params.program = Program.list(maxResults:1)[0]
+            cancelLink = g.createLink(action:'list')
+        }
         lessonInstance.properties = params
-        return ['lessonInstance':lessonInstance]
+        return ['lessonInstance':lessonInstance, cancelLink : cancelLink ]
     }
 
     def save = {

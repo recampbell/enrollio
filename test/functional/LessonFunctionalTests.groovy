@@ -31,7 +31,20 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         
     }
 
+    void testLessonList() {
+        get('/lessons')
+        assertStatus 200
+        assertTitleContains 'Lessons'
+        assertContentContains TestKeys.PROGRAM_KIDS_AEC
+        assertContentContains TestKeys.PROGRAM_MENTORSHIP
+        assertContentContains TestKeys.PROGRAM_ADULT_AEC
+
+        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
+        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION.replace("\n", "<br />")
+    }
+
     void testLessonEdit() {
+        loginAs('bob', 'bobbobbob0')
         gotoLessonShow()
         click('Edit')
         assertStatus 200

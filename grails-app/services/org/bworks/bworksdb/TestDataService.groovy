@@ -190,7 +190,7 @@ class TestDataService {
         ]
 
         eacLessons.eachWithIndex { it, i ->
-            if (!it.desc) { it.desc = it.name + 'A description of ' + it.name }
+            if (!it.desc) { it.desc = it.name + "\n\nA description of " + it.name }
             p0.addToLessons(new Lesson(description:it.desc,
                                        name:it.name,
                                        sequence:i))
