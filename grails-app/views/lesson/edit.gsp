@@ -53,7 +53,9 @@
                                     <label for="description">Description:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:lessonInstance,field:'description')}"/>
+                                    <g:textArea name="description" 
+                                        value="${fieldValue(bean:lessonInstance,field:'description')}"
+                                        rows="5" cols="50"/>
                                 </td>
                             </tr> 
                             <tr class="prop">

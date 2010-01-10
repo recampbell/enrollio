@@ -27,7 +27,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         click(TestKeys.LESSON_KIDS_AEC_INTRO)
         assertStatus 200
 
-        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION
+        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION.replace("\n", "<br />")
         
     }
 
