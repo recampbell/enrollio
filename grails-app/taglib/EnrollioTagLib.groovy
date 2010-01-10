@@ -41,7 +41,7 @@ class EnrollioTagLib {
             ${formattedFieldName}
             </td>
             <td valign="top" class="value">
-                ${fieldValue(bean: m, field:fieldName)}
+                ${fieldValue(bean: m, field:fieldName)?.replace("\n", "<br />")}
             </td>
         </tr>
         """
