@@ -34,8 +34,13 @@
                     <label for="saveButton"></label>
                     <g:submitButton class="save" name="saveButton" value="Save" />
                         or&nbsp;
+                        <g:if test="${cancelLink}">
+                        <a href="${cancelLink}">Cancel</a>
+                        </g:if>
+                        <g:else>
                         <g:link name="cancelLink" class="cancelLink" controller="program"
                         id="${lessonInstance.program?.id}" action="show" >Cancel</g:link>
+                        </g:else>
             </g:form>
                 </div>
         </div>
