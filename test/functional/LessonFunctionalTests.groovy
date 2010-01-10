@@ -31,7 +31,35 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         
     }
 
+    void testLessonNew() {
+        loginAs('bob', 'bobbobbob0')
+        click('Programs')
+        assertStatus 200
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        assertStatus 200
+        click('Add Lesson')
+        assertStatus 200
+
+        form('newLessonForm') {
+            name = 'New Foo Lesson'
+            // Give this lesson the same seq. as another lesson
+            sequence = 123
+            click('Save')
+        }
+
+        assertStatus 200
+        assertContentContains 'created'
+        assertContentContains 'New Foo Lesson'
+        // Now, make sure our brand-new lesson belongs to the PROGRAM_KIDS_EAC
+        click('Programs')
+        assertStatus 200
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        assertStatus 200
+        assertContentContains 'New Foo Lesson'
+    }
+
     void testLessonList() {
+        loginAs('bob', 'bobbobbob0')
         get('/lessons')
         assertStatus 200
         assertTitleContains 'Lessons'
@@ -40,7 +68,15 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains TestKeys.PROGRAM_ADULT_AEC
 
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION.replace("\n", "<br />")
+
+        // Break description into parts on newline, 'cause the HTML
+        // formatting causes problems by putting in a <br />.
+        def desc_parts = TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION.split("\n") 
+        // Just make sure we see the pieces of the description.
+        desc_parts.each {
+            assertContentContains it
+        }
+        
     }
 
     void testLessonEdit() {

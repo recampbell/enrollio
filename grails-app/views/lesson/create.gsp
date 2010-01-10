@@ -17,7 +17,7 @@
                         <g:renderErrors bean="${lessonInstance}" as="list" />
                     </div>
                 </g:hasErrors>
-                <g:form action="save" method="post" >
+                <g:form action="save" method="post" name="newLessonForm">
                     <label for="name">Name : </label> 
                     <input name="id" id="id" type="hidden" value="${lessonInstance.id}" />
                     <input type="text" id="name" name="name" value="${fieldValue(bean:lessonInstance,field:'name')}"/><br />
