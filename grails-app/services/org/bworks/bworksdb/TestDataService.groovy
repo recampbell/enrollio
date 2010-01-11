@@ -303,4 +303,22 @@ class TestDataService {
         return names[seed.nextInt(names.size() - 1)]
     }
 
+    // Utility method to zap data loaded by
+    // loadIntegrationTestData()
+    def deleteIntegrationTestData() {
+        // student stuff
+        Enrollment.list()*.delete(flush:true)
+        Student.list()*.delete(flush:true)
+        LessonDate.list()*.delete(flush:true)
+        ClassSession.list()*.delete(flush:true)
+        // ConfigSetting.groovy
+        Contact.list()*.delete(flush:true)
+        // Interest.groovy
+        // Lesson.groovy
+        // Note.groovy
+        // PhoneNumber.groovy
+        Program.list()*.delete(flush:true)
+        // Attendance.list()*.delete(flush:true)
+    }
+
 }
