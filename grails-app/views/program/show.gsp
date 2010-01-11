@@ -20,10 +20,13 @@
                 </div>
                 <div class="infowrap">
                     <div class="infobox">
-                        <h3 class="reallynow"><span>Lessons</span>
+                        <h3 class="reallynow">
+                            <g:link class="headerLink book_open" 
+                            action="lessons" id="${programInstance.id}" >
+                            Lessons</g:link>
                             <!-- For some reason, these links get added out of order (add->edit) -->
-                                <g:link class="add" action="create" controller="lesson" 
-                                        params="[ 'program.id' : programInstance.id ]">Add Lesson</g:link>
+                                <g:link class="book_next" action="create" controller="lesson" 
+                                        params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
                                         <br />
                             </h3>
                         <table>
@@ -42,7 +45,8 @@
                     </div>
                     <div class="infobox margin-left">
                             <h3 class="reallynow">Sessions<g:link controller="classSession" 
-                                action="create" params="['program.id':programInstance.id]" class="add">New Session</g:link></h3>
+                                action="create" params="['program.id':programInstance.id]" 
+                                class="calendar_add">New Session</g:link></h3>
                         <table>
                             <tbody>
                                 <g:each var="session"

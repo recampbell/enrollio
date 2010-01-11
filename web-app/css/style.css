@@ -283,9 +283,15 @@ thead{
 	float: right;
 	padding:0 0 0 18px;
 	margin-left:4px;
-	font-weight:normal;
-	font-size:12px;
+	/* font-weight:normal; */
+	/* font-size:12px; */
 }
+
+.reallynow a.headerLink {
+    display: inline;
+    float: left;
+}
+
 .reallynow input {
 	float: right;
 	padding:0 0 0 18px;
