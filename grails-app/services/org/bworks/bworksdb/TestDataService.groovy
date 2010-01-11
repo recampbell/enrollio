@@ -314,11 +314,14 @@ class TestDataService {
         // ConfigSetting.groovy
         Contact.list()*.delete(flush:true)
         // Interest.groovy
-        // Lesson.groovy
+        Lesson.list()*.delete(flush:true)
         // Note.groovy
         // PhoneNumber.groovy
         Program.list()*.delete(flush:true)
         // Attendance.list()*.delete(flush:true)
+        def u = ShiroUser.findByUsername('bob')
+        ShiroUserRoleRel.findByUser(u).delete()
+        u.delete(flush:true)
     }
 
 }

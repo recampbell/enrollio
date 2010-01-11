@@ -3,6 +3,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
+    def testDataService
 
     void loginAs(userName, pass) {
         get('/login')
@@ -61,6 +62,8 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     }
 
     void testEditStudentInterests() {
+        testDataService.deleteIntegrationTestData()
+        testDataService.loadIntegrationTestData()
         gotoStudentShow()
         assertStatus 200
         
