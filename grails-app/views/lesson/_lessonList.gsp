@@ -15,6 +15,7 @@
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                 <td>
                     <g:link name="lessonLink${lessonInstance.id}" 
+                    controller="lesson"
                     action="show" 
                     id="${lessonInstance.id}">
                     ${fieldValue(bean:lessonInstance,

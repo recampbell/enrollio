@@ -23,6 +23,14 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
+    void testGotoProgramLessonShow() {
+        gotoProgramShow()
+        click('Lessons')
+        click(TestKeys.LESSON_KIDS_AEC_INTRO)
+        assertStatus 200
+        assertTitleContains('Show Lesson')
+    }
+
     void testGotoProgramLessonsList() {
         gotoProgramShow()
         assertContentContains(TestKeys.LESSON_KIDS_AEC_INTRO)

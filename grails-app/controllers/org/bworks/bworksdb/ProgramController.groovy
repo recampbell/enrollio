@@ -113,6 +113,11 @@ class ProgramController {
               model:[data:reportData],params:params)
     }
 
+    def lessons = {
+        def programInstance = Program.get(params.id)
+        [ 'programInstance' : programInstance ]
+    }
+
     // Fetches new lesson dates from program specified in params.id
     // starting at params.startDate or today
     def nextAvailableLessonDates = {

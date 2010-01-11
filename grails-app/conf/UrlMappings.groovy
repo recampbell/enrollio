@@ -47,7 +47,6 @@ class UrlMappings {
 		'/saveLesson'(controller: 'lesson', action: 'save')
 		"/editLesson/$id"(controller: 'lesson', action: 'edit')
 		"/updateLesson"(controller: 'lesson', action: 'update')
-		'/lessons'(controller: 'lesson', action: 'list')
 
 		// lessonDate controller
 		"/lessonDate/$id"(controller: 'lessonDate', action: 'show')
@@ -64,6 +63,7 @@ class UrlMappings {
 		"/editProgram/$id"(controller: 'program', action: 'edit')
 		"/updateProgram"(controller: 'program', action: 'update')
 		"/nextAvailableLessonDates"(controller: 'program', action: 'nextAvailableLessonDates')
+		"/programLessons/$id"(controller: 'program', action: 'lessons')
 
 		// shiroUser controller
 		'/createUser'(controller: 'shiroUser', action: 'create')
