@@ -36,8 +36,8 @@
         </h3>
         <ul>
             <li>
-                <g:link class="book_next" controller="lesson" action="create">New
-                Lesson</g:link>
+                <g:link class="book_next" name="newLessonLink" action="create" controller="lesson" 
+                                        params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
             </li>
             <g:if test="${lessonInstance}">
                 <li>

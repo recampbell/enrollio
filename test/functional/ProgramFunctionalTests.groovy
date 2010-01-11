@@ -23,6 +23,36 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
+    void gotoAdultEACProgram() {
+        loginAs('bob', 'bobbobbob0')
+        click("Programs")
+        // Go to Children's prog, and ensure that we
+        // see the start date of the first session in our awesome format
+        click(TestKeys.PROGRAM_ADULT_AEC)
+        
+
+    }
+    // ensure there's two links on program/show that create a new
+    // lesson for that program.
+    // Ensure that the default program of the new Lesson
+    // is same program whose 'New Lesson' link we clicked.
+    void testNewLessonForProgram() {
+        gotoAdultEACProgram()
+        assertStatus 200
+        def addLessonLinks = byName('newLessonLink')
+        if (addLessonLinks instanceof com.gargoylesoftware.htmlunit.html.HtmlElement) {
+            addLessonLinks = [ addLessonLinks ]
+        }
+
+        addLessonLinks.each {
+            it.click()
+            assertStatus 200
+            // Make sure the Adult EAC prog is the def. prog
+            def p = byXPath('//select[@id="program.id"]/option[@selected="selected"]')
+            assertEquals TestKeys.PROGRAM_ADULT_AEC, p.getText()
+        }
+    }
+
     void testGotoProgramLessonShow() {
         gotoProgramShow()
         click('Lessons')

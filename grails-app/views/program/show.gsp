@@ -25,7 +25,7 @@
                             action="lessons" id="${programInstance.id}" >
                             Lessons</g:link>
                             <!-- For some reason, these links get added out of order (add->edit) -->
-                                <g:link class="book_next" action="create" controller="lesson" 
+                                <g:link class="book_next" name="newLessonLink" action="create" controller="lesson" 
                                         params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
                                         <br />
                             </h3>
