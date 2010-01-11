@@ -47,6 +47,7 @@ class UrlMappings {
 		'/saveLesson'(controller: 'lesson', action: 'save')
 		"/editLesson/$id"(controller: 'lesson', action: 'edit')
 		"/updateLesson"(controller: 'lesson', action: 'update')
+		"/lessons"(controller: 'lesson', action: 'list')
 
 		// lessonDate controller
 		"/lessonDate/$id"(controller: 'lessonDate', action: 'show')

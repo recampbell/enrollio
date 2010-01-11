@@ -37,7 +37,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 200
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertStatus 200
-        click('Add Lesson')
+        click('New Lesson')
         assertStatus 200
 
         form('newLessonForm') {
