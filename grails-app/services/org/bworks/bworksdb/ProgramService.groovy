@@ -29,4 +29,18 @@ class ProgramService {
     def activeInterests(Program p) {
         return Interest.findAllByProgramAndActive(p, true)
     }
+
+    def sortLessons(l) {
+        def newSequence = 0;
+        def sortedL = l.sort { it.sequence }
+        println "Sorted l is: ${sortedL}"
+        l?.sort { it?.sequence }.each { lessonMap ->
+            
+            def lesson = Lesson.get(lessonMap.lessonId)
+            
+            lesson.sequence = newSequence += 100;
+            println "Assigning lesson: ${lesson} with sequence ${newSequence}"
+            lesson.save()
+        }
+    }
 }
