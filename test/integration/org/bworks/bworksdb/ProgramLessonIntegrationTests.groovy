@@ -23,6 +23,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
 
     protected void tearDown() {
         super.tearDown()
+        prog.delete(flush:true)
     }
 
     void testInitialSortOfLessons() {
@@ -36,7 +37,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
 
     }
 
-    void  testAdditionOfLesson() {
+    void testAdditionOfLesson() {
         prog.refresh()
         prog.addToLessons(new Lesson(name:'FTP Lesson 2', description: 'Foo', sequence: 2))
         def lessons = prog.lessons.collect { it.name }
@@ -46,4 +47,14 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
                       'FTP Lesson 4'], lessons)
     }
 
+    void testInsertLessonBeforeAnotherLesson() {
+        def newLesson = new Lesson(name:'FTP Lesson 3.5', description:'Foo')
+        programService.insertLesson(prog, newLesson, prog.lessons.last())
+        prog.refresh()
+        def lessons = prog.lessons.collect { it.name }
+        assertEquals(['FTP Lesson 1',
+                      'FTP Lesson 3',
+                      'FTP Lesson 3.5',
+                      'FTP Lesson 4'], lessons)
+    }
 }

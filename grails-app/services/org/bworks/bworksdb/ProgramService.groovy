@@ -30,17 +30,35 @@ class ProgramService {
         return Interest.findAllByProgramAndActive(p, true)
     }
 
-    def sortLessons(l) {
-        def newSequence = 0;
-        def sortedL = l.sort { it.sequence }
-        println "Sorted l is: ${sortedL}"
-        l?.sort { it?.sequence }.each { lessonMap ->
-            
-            def lesson = Lesson.get(lessonMap.lessonId)
-            
-            lesson.sequence = newSequence += 100;
-            println "Assigning lesson: ${lesson} with sequence ${newSequence}"
-            lesson.save()
+
+    // Utility method to make sure we have lesson sequences
+    // in a standard order (separated by 100, so that we can easily
+    // add new Lessons between other lessons w/o trampling existing sequences)
+    def sequenceLessons(Program p) {
+        def lessons = p.lessons.collect { it }
+        def newSequence = 100
+        lessons.each {
+            if (it.sequence != newSequence) {
+                it.sequence = newSequence
+                it.save()
+            }
+            newSequence += 100
         }
     }
+
+    // Inserts newLesson prior to existingLesson
+    // if existingLesson is null, or if program has no lessons, then
+    // newLesson is inserted at the end
+    def insertLesson(Program p, Lesson newLesson, Lesson existingLesson) {
+        sequenceLessons(p)
+    
+        if (existingLesson) {
+            newLesson.sequence = existingLesson.sequence - 1
+        }
+
+        p.addToLessons(newLesson).save(flush:true)
+
+        sequenceLessons(p)
+    }
+
 }
