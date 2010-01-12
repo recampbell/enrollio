@@ -10,6 +10,7 @@
     <body>
          <div id="wrapper">
             <div id="content">
+                <g:form action="save" method="post" name="newLessonForm">
                 <div class="box">
                 <h3>Create Lesson</h3>
                 <g:hasErrors bean="${lessonInstance}">
@@ -17,7 +18,6 @@
                         <g:renderErrors bean="${lessonInstance}" as="list" />
                     </div>
                 </g:hasErrors>
-                <g:form action="save" method="post" name="newLessonForm">
                     <label for="name">Name : </label> 
                     <input name="id" id="id" type="hidden" value="${lessonInstance.id}" />
                     <input type="text" id="name" name="name" value="${fieldValue(bean:lessonInstance,field:'name')}"/><br />
@@ -31,6 +31,18 @@
                             value="${fieldValue(bean:lessonInstance,field:'description')}"
                             rows="5" cols="40"/>
                         <br />
+                </div>
+                <div class="box">
+                <h3>Sequence</h3>
+                <table>
+                    <tr><td input type="hidden" name="foo">Foo Program</td></td></tr>
+                    <g:each var="l" in="${lessonInstance.program?.lessons}">
+                    <tr><td><input type="radio" name="existingLessons" value="${l.id}" />After ${l}</td></tr>
+                    </g:each>
+                </table>
+                
+                </div>
+
                     <label for="saveButton"></label>
                     <g:submitButton class="save" name="saveButton" value="Save" />
                         or&nbsp;
@@ -42,7 +54,6 @@
                         id="${lessonInstance.program?.id}" action="show" >Cancel</g:link>
                         </g:else>
             </g:form>
-                </div>
         </div>
     </div>
     </body>
