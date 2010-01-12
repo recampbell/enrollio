@@ -69,4 +69,16 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
                       'FTP Lesson 3',
                       'FTP Lesson 4'], lessons)
     }
+
+    void testInsertLessonAtEnd() {
+        def newLesson = new Lesson(name:'A Graduation Ceremony', description:'Foo')
+        def firstLesson = Lesson.findByName('FTP Lesson 1')
+        programService.insertLesson(prog, newLesson, null)
+        prog.refresh()
+        def lessons = prog.lessons.collect { it.name }
+        assertEquals(['FTP Lesson 1',
+                      'FTP Lesson 3',
+                      'FTP Lesson 4',
+                      'A Graduation Ceremony',], lessons)
+    }
 }
