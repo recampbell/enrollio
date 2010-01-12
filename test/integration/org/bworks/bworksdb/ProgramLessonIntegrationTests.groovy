@@ -3,40 +3,37 @@ package org.bworks.bworksdb
 import grails.test.*
 import org.bworks.bworksdb.util.TestKeys
 
-class ProgramServiceTests extends GroovyTestCase {
+class ProgramLessonIntegrationTests extends GroovyTestCase {
 
     ProgramService programService
 
+    Program prog
+
     protected void setUp() {
         super.setUp()
+        prog = new Program(name:'Functional Test Program', description: 'Func Test Desc.')
+        assertTrue prog.validate()
+        
+        prog.addToLessons(new Lesson(name:'FTP Lesson 4', description: 'Foo', sequence: 4))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 3', description: 'Foo', sequence: 3))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 1', description: 'Foo', sequence: 1))
+        prog.save(flush:true)
+        
     }
 
     protected void tearDown() {
         super.tearDown()
     }
 
-    void testSortLessons() {
-        def p = Program.findByName(TestKeys.PROGRAM_KIDS_AEC)
-        assertEquals 6, p.lessons.size()
-        def l
-        p.addToLessons(new Lesson(name:'New Lesson', description:'Blah', sequence: 7))
-        p.save(flush:true)
-        assertEquals 7, p.lessons.size()
+    void testInitialSortOfLessons() {
+        prog.refresh()
+        def lessons = prog.lessons.collect { it.name }
 
-        assertEquals 'New lesson is saved as last lesson', 'New Lesson', p.lessons.last().name
+        assertEquals(['FTP Lesson 1',
+                      'FTP Lesson 3',
+                      'FTP Lesson 4'], lessons)
 
-        // define a list of maps, with lesson id and its new sequence
-        // Multiply by negative one, to reverse the sequence
-        def m = p.lessons.collect {
-            [ lessonId : it.id,
-              sequence : it.sequence * -1 ]
-        }
 
-        println m
-
-        programService.sortLessons(m)
-        p = Program.findByName(TestKeys.PROGRAM_KIDS_AEC)
-
-        assertEquals 'New lesson reordered as first lesson', 'New Lesson', p.lessons.first().name
     }
+
 }
