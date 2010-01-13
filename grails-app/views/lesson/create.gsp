@@ -7,6 +7,13 @@
         <meta name="tabName" content="program" />
         <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
         <script type="text/javascript" src="js/table_drag_drop.js"></script>
+        <script type="text/javascript">
+             $(document).ready(function(){
+                 $('#name').change(function() {
+                     $('#newLessonNameInSequence').text($(this).val());
+                 });
+             });
+         </script>
         <title>Create Lesson:</title>         
     </head>
     <body>
@@ -46,8 +53,8 @@
                             </tr>
                         </g:each>
                         <tr>
-                            <td>-1</td>
-                            <td>Foo Lesson</td>
+                            <td><input type="text" name="lessonSequences_blah" value="7" /></td>
+                            <td id="newLessonNameInSequence">Foo Lesson</td>
                         </tr>
                     </tbody>
                 </table>
