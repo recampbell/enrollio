@@ -26,8 +26,7 @@
                     
                     <label for="program">Program:</label>
                     <g:select optionKey="id" from="${org.bworks.bworksdb.Program.list()}" name="program.id" value="${lessonInstance?.program?.id}" ></g:select><br />
-                    <label for="sequence">Sequence:</label>
-                    <input type="text" id="sequence" class="value ${hasErrors(bean:lessonInstance,field:'sequence','errors')}" name="sequence" value="${fieldValue(bean:lessonInstance,field:'sequence')}" /><br />
+                    <input type="hidden" id="sequence" class="value ${hasErrors(bean:lessonInstance,field:'sequence','errors')}" name="sequence" value="${fieldValue(bean:lessonInstance,field:'sequence')}" /><br />
                     <label for="description">Description:</label>
                         <g:textArea name="description" 
                             value="${fieldValue(bean:lessonInstance,field:'description')}"

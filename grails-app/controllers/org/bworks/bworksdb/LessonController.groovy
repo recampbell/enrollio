@@ -83,7 +83,8 @@ class LessonController {
     }
 
     def create = {
-        def lessonInstance = new Lesson()
+        def newSeq = new Random(20000).nextInt(20000) + 10000
+        def lessonInstance = new Lesson(sequence:newSeq)
         // If no program is specified, then pick the first Program in the list.
         // Also, link back to lesson/list if user Cancels
         def cancelLink
