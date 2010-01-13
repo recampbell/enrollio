@@ -5,6 +5,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
+        <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="js/table_drag_drop.js"></script>
         <title>Create Lesson:</title>         
     </head>
     <body>
@@ -35,10 +37,20 @@
                 <div class="box">
                 <h3>Sequence</h3>
                 <table>
-                    <tr><td input type="hidden" name="foo">Foo Program</td></td></tr>
-                    <g:each var="l" in="${lessonInstance.program?.lessons}">
-                    <tr><td><input type="radio" name="existingLessons" value="${l.id}" />After ${l}</td></tr>
-                    </g:each>
+                    <thead>
+                    </thead>
+                    <tbody class="draggable">
+                        <g:each var="l" in="${lessonInstance.program?.lessons}">
+                            <tr>
+                                <td>${l.sequence}</td>
+                                <td>${l}</td>
+                            </tr>
+                        </g:each>
+                        <tr>
+                            <td>-1</td>
+                            <td>Foo Lesson</td>
+                        </tr>
+                    </tbody>
                 </table>
                 
                 </div>

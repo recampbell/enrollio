@@ -608,3 +608,11 @@ input[type="checkbox"] {
     list-style-type: none;
     padding-bottom: 5px;
 }
+
+.draggable tr, .draggable td {
+    cursor: move;
+}
+
+.draggable tr:hover {
+    background: #F3F9FF;
+}
