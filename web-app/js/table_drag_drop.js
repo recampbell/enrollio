@@ -62,11 +62,11 @@ var need_select_workaround = typeof $(document).attr('onselectstart') != 'undefi
 		return false;
 	}).css('cursor', 'move');
 
-function reorder () {
+        function reorder () {
 		var position = 1;
 		$('table tbody tr').each(function () {
 			// Change the text of the first TD element inside this TR
-			$('td:first', $(this)).text(position);
+			$('input:first', $(this)).val(position);
 			//Now remove current row class and add the correct one
 			position += 1;
 		});

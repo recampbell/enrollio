@@ -48,7 +48,9 @@
                     <tbody class="draggable">
                         <g:each var="l" in="${lessonInstance.program?.lessons}">
                             <tr>
-                                <td>${l.sequence}</td>
+                                <td>
+                                <input type="text" name="lessonSequences_${l.id}" 
+                                value="${l.sequence}" /></td>
                                 <td>${l}</td>
                             </tr>
                         </g:each>
