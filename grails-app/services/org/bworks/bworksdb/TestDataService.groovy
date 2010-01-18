@@ -32,14 +32,18 @@ class TestDataService {
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
 
         def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
+        def student2 = new Student(lastName:TestKeys.STUDENT2, contact:contact)
 
         contact.addToStudents(student)
+        contact.addToStudents(student2)
         contact.save(flush:true)
         
         // interests
         addInterest(student, Program.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
 
         addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
+        addInterest(student2, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), true)
+
         loadDummyRegularUser()
         // load dummy class sessions for now -- we should
         // create more predictable test data for integration tests

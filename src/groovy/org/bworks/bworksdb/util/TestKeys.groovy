@@ -5,6 +5,7 @@ package org.bworks.bworksdb.util
 
 class TestKeys {
     static public final String STUDENT = 'Jim Lahey, Park Supervisor'
+    static public final String STUDENT2 = 'J-Rock'
     static public final String NOTE = 'this is a note'
     
     static public final String PROGRAM_ADULT_AEC = 'Adult EAC'
