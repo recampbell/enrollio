@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Graduation Certificate" language="groovy" pageWidth="965" pageHeight="725" orientation="Landscape" columnWidth="925" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<parameter name="backgroundImageUrlParam" class="java.lang.String"/>
+	<parameter name="graduationDateParam" class="java.lang.String"/>
 	<field name="STUDENT_NAME" class="java.lang.String"/>
 	<field name="GRADUATION_DATE" class="java.lang.String"/>
 	<background>
@@ -63,7 +64,7 @@
 				<textElement textAlignment="Right">
 					<font fontName="Sawasdee" size="24" isBold="true" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{GRADUATION_DATE}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{graduationDateParam}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

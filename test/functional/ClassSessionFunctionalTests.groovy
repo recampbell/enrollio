@@ -25,14 +25,21 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // gotoClassSessionPage is a utility method
     // that, um, goes to a class session page
-    void gotoClassSessionPage(sessionName = "Children") {
+    void gotoClassSessionPage(sessionName) {
         loginAs('bob', 'bobbobbob0')
         click("Class Sessions")
-        
-        def csLink = byXPath("//a[starts-with(@name,'classSessionLink')][starts-with(.,${sessionName})]")
-        // if we got multiple links, then just get 1st one
-        csLink = csLink instanceof ArrayList ? csLink[0] : csLink
-        csLink.click()
+
+        if (sessionName) {
+            // select explicit session
+            click(sessionName)
+        }
+        else {
+            def xpathExpr = "//a[starts-with(@name,'classSessionLink')]"
+            def csLink = byXPath(xpathExpr)
+            // if we got multiple links, then just get 1st one
+            csLink = csLink instanceof ArrayList ? csLink[0] : csLink
+            csLink.click()
+        }
     }
     
     // Make sure we can get to the add/edit enrollments page
@@ -86,8 +93,10 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     // Test that Grad. Certs come out OK
     void testGradCerts() {
 
-        gotoClassSessionPage()
+        gotoClassSessionPage(TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
+        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
+        assertContentContains 'Scratch Programming' 
         // Click on grad list, and expect a PDF
         // NOTE: For some reason (probably javascript), the tests
         // will *not* follow the redirect, so you have to manually call followRedirect()
@@ -103,7 +112,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // Test grad certs for a class session w/no lesson dates
     void testGradCertsNoLessons() {
-        gotoClassSessionPage('Adult')
+        gotoClassSessionPage(TestKeys.SESSION_ADULT_NAME)
         assertStatus(200)
         redirectEnabled = false
         def gradCertsLink = byName('gradCertsLink')
