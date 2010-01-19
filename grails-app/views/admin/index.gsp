@@ -6,12 +6,19 @@
     </head>
     <body>
         <div id="wrapper">
-            <div id="content">&#160;</div>
-        </div>
+            <div id="content">
+                 <div class="rightnow">
+                    <h3 class="reallynow">
+                            <span>Admin</span>
+                        <br />
+                        </h3>
+                        <p>Use the menu on the right to administer Enrollio.</p>
+                </div>
+            </div>
         <div id="sidebar">
-            <g:render template="/common/sideMenu" />
             <g:render template="/admin/adminMenu" />
-        </div>
+    </div>
+</div>
     </body>
 </html>
       

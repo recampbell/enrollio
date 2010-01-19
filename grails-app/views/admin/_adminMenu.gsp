@@ -16,16 +16,12 @@
     </li>
     <li>
         <h3>
-            <a href="#" class="manage">Miscellaneous</a>
+            <a href="#" class="manage">Misc</a>
         </h3>
         <ul class="navlist">
             <li>
                 <g:link class="invoices" controller="configSetting" action="list">
                 Settings</g:link>
-            </li>
-            <li>
-                <g:link controller="configSetting" action="testDataRequest">Load Test
-                Data</g:link>
             </li>
         </ul>
     </li>
