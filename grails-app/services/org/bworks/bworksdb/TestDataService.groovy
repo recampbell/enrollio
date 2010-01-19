@@ -85,6 +85,7 @@ class TestDataService {
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
         loadDefaultPrograms()
+        loadDummyRegularUser()
  
         numContacts.times {
             loadDummyContactAndStudents()
