@@ -39,4 +39,13 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains 'Username'
     }
     
+    void testCreateUserLink() {
+        loginAdmin()
+        click('Admin')
+        click('Create User')
+        assertStatus 200
+        assertContentContains "Create User"
+        assertContentContains "Username"
+        assertContentContains "Password"
+    }
 }
