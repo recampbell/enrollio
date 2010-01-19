@@ -125,4 +125,16 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
 
     }
+
+    void testStudentContactLink() {
+        gotoStudentShow()
+        def studentsContactLink = byName('contactLink')
+        assertNotNull studentsContactLink
+        studentsContactLink.click()
+        assertStatus 200
+        assertTitleContains 'Contact'
+        assertContentContains TestKeys.CONTACT_EMAIL
+        assertContentContains TestKeys.CONTACT1_FIRST_NAME
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
+    }
 }

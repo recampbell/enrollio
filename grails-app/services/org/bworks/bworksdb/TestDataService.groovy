@@ -22,8 +22,8 @@ class TestDataService {
         loadDefaultPrograms()
                 
         // build contact, student
-        def contact = new Contact(firstName:'first',
-                            lastName:'last',
+        def contact = new Contact(firstName:TestKeys.CONTACT1_FIRST_NAME,
+                            lastName:TestKeys.CONTACT1_LAST_NAME,
                             address1:'add1',
                             address2:'add2',
                             city:'Saint Louis',
@@ -71,6 +71,7 @@ class TestDataService {
         }
 
     }
+
     def addInterest(student, program, isActive) {
         // add interest to program and student
         def note = new Note(text:TestKeys.NOTE).save()
