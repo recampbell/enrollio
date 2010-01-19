@@ -32,10 +32,9 @@ class SecurityFilters {
                 }
             }
         }
-        adminOnlyForConfig(controller:"configSettings", action:"*") {
+        adminOnlyForConfig(controller:"configSetting", action:"*") {
             before = {
                 accessControl {
-                     // Only admins
                      role("Administrator")
                 }
             }

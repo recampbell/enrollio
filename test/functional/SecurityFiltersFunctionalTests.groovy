@@ -17,6 +17,15 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         // assertContentContains 'the expected text'
     }
 
+    void testNoSettingsListForRegularUser() {
+        redirectEnabled = false
+        loginAs("bob", "bobbobbob0")
+        
+        // Make sure that user cannot go to any settings action
+        get('/settings')
+        assertRedirectUrlContains "/unauthorized"
+
+    }
     void testNoAdminForRegularUser() {
         redirectEnabled = false
         loginAs("bob", "bobbobbob0")
