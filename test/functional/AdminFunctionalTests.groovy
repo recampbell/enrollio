@@ -27,5 +27,16 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains 'Settings'
     }
 
+    // The settings list test could be refactored
+    // later to a SettingsFunctionalTests.groovy file
+    void testUsersLink() {
+        loginAdmin()
+        click('Admin')
+        click('List Users')
+        assertStatus 200
 
+        assertTitleContains 'User List'
+        assertContentContains 'Username'
+    }
+    
 }
