@@ -14,4 +14,12 @@
             </g:link>
     </g:each>
     </td>
+    <td>
+        <g:link 
+        title="Edit ${student}"
+        name="editStudent${student.id}" 
+        action="edit" controller="student" 
+        id="${student.id}"><img src="../images/icons/user_edit.png" alt="Edit Student" />
+        </g:link>
+    </td>
 </tr>
