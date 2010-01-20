@@ -33,7 +33,9 @@
                         <tr class="prop">
                             <td valign="top" class="name">Birth Date:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'birthDate')}</td>
+                            <td valign="top" class="value">
+                                <enrollio:formatDate date="${studentInstance.birthDate}" />
+                            </td>
                             
                         </tr>
                     

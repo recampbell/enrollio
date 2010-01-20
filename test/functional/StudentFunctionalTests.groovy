@@ -61,6 +61,24 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
+    void testEditStudentBirthDate() {
+        gotoStudentShow()
+        assertStatus 200
+        
+        click "Edit"
+        assertStatus 200
+
+        form('editStudentForm') {
+            birthDate = '1/1/2000'
+            click "Save"
+        }
+
+        assertStatus 200
+        assertTitleContains('Student:')
+        assertContentContains('Updated')
+        assertContentContains('January 1, 2000')
+    }
+
     void testEditStudentInterests() {
         testDataService.deleteIntegrationTestData()
         testDataService.loadIntegrationTestData()

@@ -69,6 +69,14 @@ class StudentController {
                     return
                 }
             }
+            // First, zap birthDate and reformat it.
+            def dateFormat = 'MM/dd/yyyy'
+            def birthDate = params.remove('birthDate')
+
+            try {
+                studentInstance.birthDate = Date.parse(dateFormat, birthDate)
+            } catch (Exception e) {
+            }
             studentInstance.properties = params
             if(!studentInstance.hasErrors() && studentInstance.save()) {
                 studentService.saveInterests(studentInstance, params['interestInProgram'])
