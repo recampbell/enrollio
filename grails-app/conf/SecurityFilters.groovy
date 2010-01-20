@@ -6,8 +6,8 @@ class SecurityFilters {
         // Ensure that all controllers and actions require an authenticated user,
         auth(controller: "*", action: "*") {
             before = {
-                // except for the "help" controller
-                if (controllerName == "help") {
+                // except for the "help" controller and the "error" controller
+                if (controllerName == "help" || controllerName == "error") {
                     return true
                 }
                 // This just means that the user must be authenticated. He does 

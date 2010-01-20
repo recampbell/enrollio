@@ -80,5 +80,6 @@ class UrlMappings {
 
 		// response codes
 		"500"(view:'/error')
+		"404"(controller:'error', action:'pageNotFound')
 	}
 }
