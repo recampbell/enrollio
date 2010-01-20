@@ -1,4 +1,7 @@
+import org.bworks.bworksdb.util.TestKeys
 class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
+
+    def testDataService
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
     void loginAs(userName, pass) {
@@ -70,5 +73,45 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         click("Edit")
         assertTitleContains('Edit')
         assertStatus 200
+    }
+
+    void testContactsShownOnContactsPage() {
+        loginAs('bob', 'bobbobbob0')
+        click("Contacts")
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
+
+    }
+
+    void testStudentEditLinkFromContactPage() {
+        // Purify test data.  There's an issue to use setup and teardown
+        // methods, so don't whine.
+        loginAs('bob', 'bobbobbob0')
+        click("Contacts")
+        assertStatus 200
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
+
+        def contactLink = byXPath('//a[starts-with(@id, "contactLink")]')
+        if (contactLink instanceof ArrayList) {
+            contactLink = contactLink.find {
+                println "text content is: " + it.getTextContent()
+                it.getTextContent() =~ TestKeys.CONTACT1_LAST_NAME
+            }
+        }
+        assertNotNull contactLink
+        contactLink.click()
+
+        def studentLink = byXPath('//a[starts-with(@name, "editStudent")]')
+
+        if (studentLink instanceof ArrayList) {
+            studentLink = studentLink.find {
+                it.getAttribute('title') =~ TestKeys.STUDENT
+            }
+        }
+        assertNotNull studentLink
+        studentLink.click()
+
+        assertStatus 200
+        assertTitleContains 'Edit Student'
+        assertContentContains TestKeys.STUDENT
     }
 }

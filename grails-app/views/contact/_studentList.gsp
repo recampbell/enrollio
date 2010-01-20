@@ -11,6 +11,7 @@
         <th width="10%">Grade</th>
         <th>Birth Date</th>
         <th>Interests</th>
+        <th>Action</th>
 </tr>
 </thead>
 <tbody>

@@ -61,6 +61,24 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
+    void testEditStudentBirthDate() {
+        gotoStudentShow()
+        assertStatus 200
+        
+        click "Edit"
+        assertStatus 200
+
+        form('editStudentForm') {
+            birthDate = '1/1/2000'
+            click "Save"
+        }
+
+        assertStatus 200
+        assertTitleContains('Student:')
+        assertContentContains('Updated')
+        assertContentContains('January 1, 2000')
+    }
+
     void testEditStudentInterests() {
         testDataService.deleteIntegrationTestData()
         testDataService.loadIntegrationTestData()
@@ -124,5 +142,17 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
             assertContentContains TestKeys.PROGRAM_KIDS_AEC
         }
 
+    }
+
+    void testStudentContactLink() {
+        gotoStudentShow()
+        def studentsContactLink = byName('contactLink')
+        assertNotNull studentsContactLink
+        studentsContactLink.click()
+        assertStatus 200
+        assertTitleContains 'Contact'
+        assertContentContains TestKeys.CONTACT_EMAIL
+        assertContentContains TestKeys.CONTACT1_FIRST_NAME
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
     }
 }

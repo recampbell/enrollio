@@ -22,8 +22,8 @@ class TestDataService {
         loadDefaultPrograms()
                 
         // build contact, student
-        def contact = new Contact(firstName:'first',
-                            lastName:'last',
+        def contact = new Contact(firstName:TestKeys.CONTACT1_FIRST_NAME,
+                            lastName:TestKeys.CONTACT1_LAST_NAME,
                             address1:'add1',
                             address2:'add2',
                             city:'Saint Louis',
@@ -32,14 +32,18 @@ class TestDataService {
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
 
         def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
+        def student2 = new Student(lastName:TestKeys.STUDENT2, contact:contact)
 
         contact.addToStudents(student)
+        contact.addToStudents(student2)
         contact.save(flush:true)
         
         // interests
         addInterest(student, Program.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
 
         addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
+        addInterest(student2, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), true)
+
         loadDummyRegularUser()
         // load dummy class sessions for now -- we should
         // create more predictable test data for integration tests
@@ -67,6 +71,7 @@ class TestDataService {
         }
 
     }
+
     def addInterest(student, program, isActive) {
         // add interest to program and student
         def note = new Note(text:TestKeys.NOTE).save()
@@ -81,6 +86,7 @@ class TestDataService {
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
         loadDefaultPrograms()
+        loadDummyRegularUser()
  
         numContacts.times {
             loadDummyContactAndStudents()

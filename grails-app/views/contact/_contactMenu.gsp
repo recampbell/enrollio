@@ -23,9 +23,6 @@
             <li>
             <a href="#" id="createStudentLink" class="groupadd">Add Student</a>
             </li>
-            <li>
-                <g:link class="groupedit" controller="contact" action="editStudents">Edit Students</g:link>
-            </li>
         </ul>
     </li>
 </g:if>

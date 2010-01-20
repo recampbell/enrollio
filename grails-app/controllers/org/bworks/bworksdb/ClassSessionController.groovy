@@ -169,16 +169,18 @@ class ClassSessionController {
     def gradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
         def lessonDates = classSessionInstance?.lessonDates
-        def lastDate = classSessionInstance.startDate
+
+        def graduationDate = classSessionInstance.startDate
         if (lessonDates && lessonDates.size() > 0) {
-            lastDate = lessonDates.last()
+            graduationDate = lessonDates.last().lessonDate
         }
+
+        params['graduationDateParam'] = enrollio.formatDate(date:graduationDate)
 
         // Default Graduation Date to date of last class
         // TODO: Refactor to a Service, or else give classSession a graduationDate
         def students = classSessionInstance.enrollments.collect { 
-            [STUDENT_NAME:it.student.fullName(),
-             GRADUATION_DATE:lastDate.format('MMMM d, yyyy')]
+            [STUDENT_NAME:it.student.fullName()]
         }
 
         // Set the background picture for the report using absolute URL

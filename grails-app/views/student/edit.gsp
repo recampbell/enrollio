@@ -4,7 +4,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <meta name="tabName" content="student" />
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                 // Birth Date picker.
+                 // We want to display from -110 years ago to today's year.
+                 // NOTE: yearRange is relative to defaultDate (hence the -100:+10)
+                 $('#birthDate').datepicker({
+                     defaultDate: '-10y',
+                     yearRange: '-100:+10', 
+                     changeMonth: true,
+                     changeYear:  true
+                 });
+            });
+
+          </script>
+                <meta name="tabName" content="student" />
         <title>Edit Student</title>
     </head>
     <body>
@@ -43,7 +61,7 @@
                 <g:set var="existingBday"
                        value="${fieldValue(bean:studentInstance, field:'birthDate')}" />
 
-                <input type="text" id="newStudentBirthDate" 
+                <input type="text" id="birthDate" 
                        name="birthDate" 
                        value="${formatDate(format:'MM/dd/yyyy', date:studentInstance?.birthDate)}"
                        />

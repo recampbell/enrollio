@@ -22,8 +22,9 @@
                             
                             <td valign="top" class="value">
                                 <g:link controller="contact"
+                                          name="contactLink"
                                           action="show"
-                                          id="$studentInstance.contact?.id">
+                                          id="${studentInstance.contact?.id}">
                                           ${studentInstance.contact}
                                 </g:link>
                             
@@ -32,7 +33,9 @@
                         <tr class="prop">
                             <td valign="top" class="name">Birth Date:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:studentInstance, field:'birthDate')}</td>
+                            <td valign="top" class="value">
+                                <enrollio:formatDate date="${studentInstance.birthDate}" />
+                            </td>
                             
                         </tr>
                     

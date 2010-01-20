@@ -5,14 +5,16 @@ package org.bworks.bworksdb.util
 
 class TestKeys {
     static public final String STUDENT = 'Jim Lahey, Park Supervisor'
+    static public final String STUDENT2 = 'J-Rock'
     static public final String NOTE = 'this is a note'
     
     static public final String PROGRAM_ADULT_AEC = 'Adult EAC'
     static public final String PROGRAM_KIDS_AEC = "Children's EAC" 
     static public final String PROGRAM_MENTORSHIP = "Mentorship Program"
     
-    static public final String CONTACT_EMAIL = 'groovy@gmail.com'
-
+    static public final String CONTACT_EMAIL = 'barb.lahey@gmail.com'
+    static public final String CONTACT1_FIRST_NAME = 'Barb'
+    static public final String CONTACT1_LAST_NAME = 'Lahey'
 
     static public final String SESSION_KIDS_DATE_FORMATTED = 'April 20, 2010' 
     static public final Date SESSION_KIDS_DATE = Date.parse('MMMM d, yyyy', SESSION_KIDS_DATE_FORMATTED)
