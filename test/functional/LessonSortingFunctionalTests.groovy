@@ -75,4 +75,41 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         }
     }
 
+    void testLessonSortPage() {
+        loginAs('bob', 'bobbobbob0')
+        click('Programs')
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        click('Sort Lessons')
+        assertStatus 200
+        assertTitleContains 'Sort Lessons - Children'
+
+        def lessonNodes = byXPath("//td[starts-with(@name, 'lessonName_')]")
+        assertEquals 'Intro to Computers', lessonNodes[0].getTextContent()
+
+        def lessonNames = lessonNodes.collect {
+            it.getTextContent()
+        }
+
+        def lessonSequences = byXPath("//input[starts-with(@name, 'lessonId_')]")
+        lessonSequences.each {
+            it.setAttribute('value', '-' + it.getValueAttribute())    
+        }
+
+        // TODO: assert that we saved o.k.
+        click('Save')
+
+        // Should be re-directed back to lessons page
+        assertTitleContains "Lessons - Children's"
+
+        // Make sure our lessons are reversed.
+        def expectedLessons = lessonNames.reverse()
+
+        def shownLessonNodes = byXPath("//a[starts-with(@name, 'lessonLink')]")
+        def shownLessons = shownLessonNodes.collect {
+            it.getTextContent()
+        }
+        assertEquals expectedLessons, shownLessons
+
+    }
+
 }

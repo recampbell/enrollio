@@ -39,9 +39,9 @@
                 <li>
                     <g:link class="book_next" 
                             name="sortLessonsLink" 
-                            action="showSort" 
-                            controller="lesson" 
-                            params="[ 'program.id' : programInstance.id ]">Sort Lessons</g:link>
+                            action="sortLessons" 
+                            controller="program" 
+                            params="[ 'id' : programInstance.id ]">Sort Lessons</g:link>
                 </li>
             </g:if>
             <li>

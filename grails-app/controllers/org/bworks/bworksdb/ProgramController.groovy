@@ -3,6 +3,7 @@ package org.bworks.bworksdb
 class ProgramController {
     
     def index = { redirect(action:list,params:params) }
+
     def programService
 
     // the delete, save and update actions only accept POST requests
@@ -21,6 +22,8 @@ class ProgramController {
     }
 
     def sortLessons = {
+        def programInstance = Program.get( params.id )
+        [ programInstance : programInstance ]
     }
 
     def show = {
