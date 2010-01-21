@@ -20,6 +20,9 @@ class ProgramController {
         [ programInstanceList: Program.list( params ), programInstanceTotal: Program.count() ]
     }
 
+    def sortLessons = {
+    }
+
     def show = {
         def programInstance = Program.get( params.id )
 
