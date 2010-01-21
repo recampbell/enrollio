@@ -96,8 +96,16 @@ class ProgramService extends GrailsUnitTestCase {
     }
 
     def nextAvailSequence(Program p) {
-        def l = p.lessons?.last()
-        return l ? l.sequence + sequenceIncr : sequenceIncr
+        def lesson
+        try {
+            lesson = p.lessons?.last()
+        } catch (Exception e) {
+            // for some reason, programs with no
+            // lessons get here in the functional tests,
+            // but not integration tests.  See testNextAvailSequence -
+            // it doesn't fail, but testNewLessonForProgram does. :-/
+        }
+        return lesson ? lesson.sequence + sequenceIncr : sequenceIncr
     }
 
 }
