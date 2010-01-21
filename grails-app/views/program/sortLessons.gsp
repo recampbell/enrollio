@@ -10,7 +10,7 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <g:render template="/lesson/lessonList" 
+                <g:render template="sortLessons" 
                 model="[programInstance:programInstance]" />
             </div>
         </div>
