@@ -17,9 +17,7 @@
                     <g:link name="lessonLink${lessonInstance.id}" 
                     controller="lesson"
                     action="show" 
-                    id="${lessonInstance.id}">
-                    ${fieldValue(bean:lessonInstance,
-                    field:'name')}</g:link>
+                    id="${lessonInstance.id}">${fieldValue(bean:lessonInstance, field:'name')}</g:link>
                 </td>
                 <td>${fieldValue(bean:lessonInstance,
                     field:'description')}</td>

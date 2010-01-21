@@ -24,7 +24,6 @@ class ProgramService extends GrailsUnitTestCase {
         def prog = Program.get(id)
         if (!prog) return null;
         def interests = prog.interests.findAll { it.active == true }
-        println interests
         def students = interests.collect { it.student }
         def contacts = students.collect { it.contact }
     }
@@ -38,23 +37,22 @@ class ProgramService extends GrailsUnitTestCase {
     // in a standard order (separated by sequenceIncr, so that we can easily
     // add new Lessons between other lessons w/o trampling existing sequences)
     def sequenceLessons(Program p) {
+        p.refresh()
         def lessons = p.lessons.collect { it }
         def newSequence = sequenceIncr
         lessons.each {
             if (it.sequence != newSequence) {
                 it.sequence = newSequence
-                it.save()
+                it.save(flush:true)
             }
             newSequence += sequenceIncr
         }
     }
 
     def sortLessons(Program p, params) {
-        sequenceLessons(p)
         def seq = sequenceIncr
         def lessonIdList = sortedLessonIdList(params)
         lessonIdList.each {
-            println "Assigning ${it} ${seq}"
             def lesson = Lesson.get(it)
             if ( lesson.sequence != seq ) {
                 lesson.sequence = seq
@@ -89,7 +87,6 @@ class ProgramService extends GrailsUnitTestCase {
         } 
 
         // Rip the xx from 'lessonId_xx'
-        println "sorted lessons are: " + sortedLessonIds
         sortedLessonIds = sortedLessonIds.collect {
             it.split('_')[1].toInteger()
         }

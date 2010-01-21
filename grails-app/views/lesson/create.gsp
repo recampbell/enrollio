@@ -49,13 +49,15 @@
                         <g:each var="l" in="${lessonInstance.program?.lessons}">
                             <tr>
                                 <td>
-                                <input type="text" name="lessonSequences_${l.id}" 
+                                <input type="text" name="lessonId_${l.id}" 
                                 value="${l.sequence}" /></td>
-                                <td>${l}</td>
+                                <td name="lessonName_${l.id}">${l}</td>
                             </tr>
                         </g:each>
                         <tr>
-                            <td><input type="text" name="lessonSequences_blah" value="7" /></td>
+                            <td><input type="text" 
+                                name="lessonId_NEW_KID_ON_THE_BLOCK" 
+                                value="${lessonInstance.sequence}" /></td>
                             <td id="newLessonNameInSequence">Foo Lesson</td>
                         </tr>
                     </tbody>

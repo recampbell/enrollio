@@ -3,6 +3,8 @@
 package org.bworks.bworksdb
 
 class LessonController {
+
+    def programService
     
     def index = { redirect(action:list,params:params) }
 
@@ -83,8 +85,6 @@ class LessonController {
     }
 
     def create = {
-        def newSeq = new Random(20000).nextInt(20000) + 10000
-        def lessonInstance = new Lesson(sequence:newSeq)
         // If no program is specified, then pick the first Program in the list.
         // Also, link back to lesson/list if user Cancels
         def cancelLink
@@ -92,16 +92,26 @@ class LessonController {
             params.program = Program.list(maxResults:1)[0]
             cancelLink = g.createLink(action:'list')
         }
+        def p = Program.get(params.program.id)
+        def newSeq = programService.nextAvailSequence(p)
+        def lessonInstance = new Lesson(sequence:newSeq)
         lessonInstance.properties = params
         return ['lessonInstance':lessonInstance, cancelLink : cancelLink ]
     }
 
     def save = {
+        println "params are: " + params
         def lessonInstance = new Lesson(params)
-        def program = Program.get(params.program.id)
+        def programInstance = Program.get(params.program.id)
 
         if(!lessonInstance.hasErrors() && lessonInstance.save()) {
-            program.addToLessons(lessonInstance)
+            programInstance.addToLessons(lessonInstance)
+            def newId = lessonInstance.id
+            params["lessonId_${newId}"] = params.remove('lessonId_NEW_KID_ON_THE_BLOCK')
+            println "Boo yah" + params["lessonId_${newId}"]
+            println "Boo yah == new id is" + newId
+            programService.sortLessons(programInstance, params)
+
             flash.message = "Lesson ${lessonInstance.id} created"
             redirect(action:show,id:lessonInstance.id)
         }
