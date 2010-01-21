@@ -47,27 +47,6 @@ class ProgramService extends GrailsUnitTestCase {
         }
     }
 
-    // Inserts newLesson prior to existingLesson
-    // if existingLesson is null, or if program has no lessons, then
-    // newLesson is inserted at the end
-    def insertLesson(Program p, Lesson newLesson, Lesson existingLesson) {
-        sequenceLessons(p)
-    
-        if (existingLesson) {
-            newLesson.sequence = existingLesson.sequence - 1
-        }
-        else {
-            def last = p.lessons.last()
-            // If program has a lesson, get the last lesson's sequence and add 100.
-            // Otherwise, we have an empty list of lessons, so just use 100
-            newLesson.sequence = last ? last.sequence + 100 : 100
-        }
-
-        p.addToLessons(newLesson).save(flush:true)
-
-        sequenceLessons(p)
-    }
-
     def sortLessons(Program p, params) {
         sequenceLessons(p)
         def seq = 100

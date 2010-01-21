@@ -33,8 +33,6 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
         assertEquals(['FTP Lesson 1',
                       'FTP Lesson 3',
                       'FTP Lesson 4'], lessons)
-
-
     }
 
     void testAdditionOfLesson() {
@@ -47,49 +45,18 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
                       'FTP Lesson 4'], lessons)
     }
 
-    void testInsertLessonBeforeAnotherLesson() {
-        def newLesson = new Lesson(name:'FTP Lesson 3.5', description:'Foo')
-        programService.insertLesson(prog, newLesson, prog.lessons.last())
-        prog.refresh()
-        def lessons = prog.lessons.collect { it.name }
-        assertEquals(['FTP Lesson 1',
-                      'FTP Lesson 3',
-                      'FTP Lesson 3.5',
-                      'FTP Lesson 4'], lessons)
-    }
-
-    void testInsertLessonBeforeFirstLesson() {
-        def newLesson = new Lesson(name:'FTP Lesson 3.5 but really 1st lesson', description:'Foo')
-        def firstLesson = Lesson.findByName('FTP Lesson 1')
-        programService.insertLesson(prog, newLesson, firstLesson)
-        prog.refresh()
-        def lessons = prog.lessons.collect { it.name }
-        assertEquals(['FTP Lesson 3.5 but really 1st lesson',
-                      'FTP Lesson 1',
-                      'FTP Lesson 3',
-                      'FTP Lesson 4'], lessons)
-    }
-
-    void testInsertLessonAtEnd() {
-        def newLesson = new Lesson(name:'A Graduation Ceremony', description:'Foo')
-        def firstLesson = Lesson.findByName('FTP Lesson 1')
-        programService.insertLesson(prog, newLesson, null)
-        prog.refresh()
-        def lessons = prog.lessons.collect { it.name }
-        assertEquals(['FTP Lesson 1',
-                      'FTP Lesson 3',
-                      'FTP Lesson 4',
-                      'A Graduation Ceremony',], lessons)
-    }
-
     void testSortLessons() {
-        def lessonIds = prog.lessons.collect { it.id }
-        println "lesson ids are: ${lessonIds}"
-        lessonIds = lessonIds.reverse()
-        println "reversed lesson ids are: ${lessonIds}"
+        // create params-like map of 
+        // 'lessonId_3' : sequence
+        // 'lessonId_4' : sequence
+        // except, multiply by -1 to reverse the order.
+        def params = prog.lessons.inject([:]) { map, lesson -> 
+            map["lessonId_${lesson.id}"] = lesson.sequence * -1 ; map
+        }
 
-        programService.sortLessons(prog, lessonIds)
+        programService.sortLessons(prog, params)
         prog.refresh()
+        // make sure that order of lessons is reversed from orig. order.
         def lessons = prog.lessons.collect { it.name }
         assertEquals(['FTP Lesson 4',
                       'FTP Lesson 3',
