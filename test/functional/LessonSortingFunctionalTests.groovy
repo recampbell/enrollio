@@ -16,14 +16,6 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         }
     }
 
-    protected void setUp() {
-        super.setUp()
-        sessionFactory.currentSession.flush()
-        sessionFactory.currentSession.clear()
-        testDataService.loadIntegrationTestData()
-
-    }
-
     // TODO: Should probably use hard-coded data
     // for the lesson names, and not fish it from the HTML pages
     void testNewLessonWithResort() {
