@@ -81,4 +81,33 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
                       'FTP Lesson 4',
                       'A Graduation Ceremony',], lessons)
     }
+
+    void testSortLessons() {
+        def lessonIds = prog.lessons.collect { it.id }
+        println "lesson ids are: ${lessonIds}"
+        lessonIds = lessonIds.reverse()
+        println "reversed lesson ids are: ${lessonIds}"
+
+        programService.sortLessons(prog, lessonIds)
+        prog.refresh()
+        def lessons = prog.lessons.collect { it.name }
+        assertEquals(['FTP Lesson 4',
+                      'FTP Lesson 3',
+                      'FTP Lesson 1'], lessons)
+    }
+
+    void testSortedLessonIds() {
+        def params = [
+                        'lesson' : [ 'some', 'worhtless', 'param'],
+                        'lessonId_32' : '-1',
+                        'lessonId_1' : '100',
+                        'lessonId_69' : '702',
+                        'lessonId_3' : '8000',
+                        'lessonId_42' : '1000',
+                        'lessonId_123' : '900',
+                        'lessonId_17' : '10000'
+        ]
+        def sortedLessonIds = programService.sortedLessonIdList(params)
+        assertEquals([32, 1, 69, 123, 42, 3, 17], sortedLessonIds)
+    }
 }
