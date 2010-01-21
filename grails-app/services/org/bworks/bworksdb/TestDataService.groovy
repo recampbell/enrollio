@@ -12,6 +12,7 @@ class TestDataService {
     boolean transactional = true
 
     def programService
+    def sessionFactory
     def config = ConfigurationHolder.config
 
 
@@ -48,6 +49,11 @@ class TestDataService {
         // load dummy class sessions for now -- we should
         // create more predictable test data for integration tests
         loadDummyClassSessions()
+
+        sessionFactory.currentSession.flush()
+        sessionFactory.currentSession.clear()
+
+
     }
 
     def loadDummyRegularUser() {

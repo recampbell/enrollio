@@ -24,7 +24,7 @@ class BootStrap {
 				testDataService.loadDevData()
 			}
 			test {
-				testDataService.loadIntegrationTestData()
+				// testDataService.loadIntegrationTestData()
 			}
 		}
 	}
