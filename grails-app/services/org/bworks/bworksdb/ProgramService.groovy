@@ -5,6 +5,8 @@ class ProgramService extends GrailsUnitTestCase {
 
     boolean transactional = true
 
+    def sequenceIncr = 100
+
     // Go through Programs's Lessons, and create dummy
     // LessonDates, starting with startDate
     def nextAvailableLessonDates(Program p, Date startDate) {
@@ -33,23 +35,23 @@ class ProgramService extends GrailsUnitTestCase {
 
 
     // Utility method to make sure we have lesson sequences
-    // in a standard order (separated by 100, so that we can easily
+    // in a standard order (separated by sequenceIncr, so that we can easily
     // add new Lessons between other lessons w/o trampling existing sequences)
     def sequenceLessons(Program p) {
         def lessons = p.lessons.collect { it }
-        def newSequence = 100
+        def newSequence = sequenceIncr
         lessons.each {
             if (it.sequence != newSequence) {
                 it.sequence = newSequence
                 it.save()
             }
-            newSequence += 100
+            newSequence += sequenceIncr
         }
     }
 
     def sortLessons(Program p, params) {
         sequenceLessons(p)
-        def seq = 100
+        def seq = sequenceIncr
         def lessonIdList = sortedLessonIdList(params)
         lessonIdList.each {
             println "Assigning ${it} ${seq}"
@@ -58,7 +60,7 @@ class ProgramService extends GrailsUnitTestCase {
                 lesson.sequence = seq
                 lesson.save(flush:true)
             }
-            seq = seq + 100
+            seq = seq + sequenceIncr
             
         }
         // clean up any lessons that might have been saved
@@ -70,11 +72,11 @@ class ProgramService extends GrailsUnitTestCase {
     // suggested sequence
     // Takes a map consisting of data like this:
     // [ 
-    //     'lessonId_42' : 100,
-    //     'lessonId_64' : 200,
-    //     'lessonId_1'  : 400,
-    //     'lessonId_76' : 300,
-    //     'lessonId_2'  : '1600' 
+    //     'lessonId_42' : 1,
+    //     'lessonId_64' : 2,
+    //     'lessonId_1'  : 4,
+    //     'lessonId_76' : 3,
+    //     'lessonId_2'  : '16' 
     // ]
     //  And returns this : [ 42, 64, 76, 1, 2 ]
     def sortedLessonIdList(params) {
@@ -98,7 +100,7 @@ class ProgramService extends GrailsUnitTestCase {
 
     def nextAvailSequence(Program p) {
         def l = p.lessons.last()
-        return l ? l.sequence + 100 : 100
+        return l ? l.sequence + sequenceIncr : sequenceIncr
     }
 
 }

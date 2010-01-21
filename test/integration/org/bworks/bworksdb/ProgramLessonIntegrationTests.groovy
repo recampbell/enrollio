@@ -14,9 +14,9 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
         prog = new Program(name:'Functional Test Program', description: 'Func Test Desc.')
         assertTrue prog.validate()
         
-        prog.addToLessons(new Lesson(name:'FTP Lesson 4', description: 'Foo', sequence: 4))
-        prog.addToLessons(new Lesson(name:'FTP Lesson 3', description: 'Foo', sequence: 3))
-        prog.addToLessons(new Lesson(name:'FTP Lesson 1', description: 'Foo', sequence: 1))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 4', description: 'Foo', sequence: 300))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 3', description: 'Foo', sequence: 200))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 1', description: 'Foo', sequence: 100))
         prog.save(flush:true)
         
     }
@@ -37,7 +37,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
 
     void testAdditionOfLesson() {
         prog.refresh()
-        prog.addToLessons(new Lesson(name:'FTP Lesson 2', description: 'Foo', sequence: 2))
+        prog.addToLessons(new Lesson(name:'FTP Lesson 2', description: 'Foo', sequence: 150))
         def lessons = prog.lessons.collect { it.name }
         assertEquals(['FTP Lesson 1',
                       'FTP Lesson 2',
@@ -61,6 +61,11 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
         assertEquals(['FTP Lesson 4',
                       'FTP Lesson 3',
                       'FTP Lesson 1'], lessons)
+    }
+
+    void testNextAvailSequence() {
+        def nas = programService.nextAvailSequence(prog)
+        assertEquals 400, nas
     }
 
     void testSortedLessonIds() {
