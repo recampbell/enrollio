@@ -35,6 +35,15 @@
             id="${programInstance.id}">Lessons</g:link>
         </h3>
         <ul>
+            <g:if test="${programInstance.lessons}">
+                <li>
+                    <g:link class="book_next" 
+                            name="sortLessonsLink" 
+                            action="showSort" 
+                            controller="lesson" 
+                            params="[ 'program.id' : programInstance.id ]">Sort Lessons</g:link>
+                </li>
+            </g:if>
             <li>
                 <g:link class="book_next" name="newLessonLink" action="create" controller="lesson" 
                                         params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
