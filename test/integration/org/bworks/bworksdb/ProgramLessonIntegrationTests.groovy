@@ -68,6 +68,12 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
         assertEquals 400, nas
     }
 
+    void testNextAvailSequenceWithNewProg() {
+        def p = new Program(name:"Lahey", description:"desc")
+        def nas = programService.nextAvailSequence(p)
+        assertEquals 100, nas
+    }
+
     void testSortedLessonIds() {
         def params = [
                         'lesson' : [ 'some', 'worhtless', 'param'],

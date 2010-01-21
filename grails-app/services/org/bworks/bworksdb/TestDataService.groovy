@@ -199,7 +199,7 @@ class TestDataService {
             if (!it.desc) { it.desc = it.name + "\n\nA description of " + it.name }
             p0.addToLessons(new Lesson(description:it.desc,
                                        name:it.name,
-                                       sequence:i))
+                                       sequence:programService.nextAvailSequence(p0)))
         }
             
         new Program(description:"Byteworks Adult Earn-A-Computer Program", name:TestKeys.PROGRAM_ADULT_AEC).save()

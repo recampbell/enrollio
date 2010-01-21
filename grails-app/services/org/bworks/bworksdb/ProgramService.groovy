@@ -99,7 +99,7 @@ class ProgramService extends GrailsUnitTestCase {
     }
 
     def nextAvailSequence(Program p) {
-        def l = p.lessons.last()
+        def l = p.lessons?.last()
         return l ? l.sequence + sequenceIncr : sequenceIncr
     }
 
