@@ -26,11 +26,11 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         assertStatus 200
 
 
-        def lessonNodes = byXPath("//td[starts-with(@name, 'lessonName_')]")
-        assertEquals 'Intro to Computers', lessonNodes[0].getTextContent()
+        def lessonNodes = byXPath("//*[starts-with(@name, 'lessonName_')]")
+        assertEquals 'Intro to Computers', lessonNodes[0].getTextContent().trim()
 
         def lessonNames = lessonNodes.collect {
-            it.getTextContent()
+            it.getTextContent().trim()
         }
 
         def lessonSequences = byXPath("//input[starts-with(@name, 'lessonId_')]")
@@ -56,7 +56,7 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
 
         def shownLessonNodes = byXPath("//a[starts-with(@name, 'lessonLink')]")
         def shownLessons = shownLessonNodes.collect {
-            it.getTextContent()
+            it.getTextContent().trim()
         }
         assertEquals expectedLessons, shownLessons
 
@@ -83,11 +83,11 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         assertStatus 200
         assertTitleContains 'Sort Lessons - Children'
 
-        def lessonNodes = byXPath("//td[starts-with(@name, 'lessonName_')]")
+        def lessonNodes = byXPath("//*[starts-with(@name, 'lessonName_')]")
         // assertEquals 'Intro to Computers', lessonNodes[0].getTextContent()
 
         def lessonNames = lessonNodes.collect {
-            it.getTextContent()
+            it.getTextContent().trim()
         }
 
         def lessonSequences = byXPath("//input[starts-with(@name, 'lessonId_')]")
@@ -107,7 +107,7 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
 
         def shownLessonNodes = byXPath("//a[starts-with(@name, 'lessonLink')]")
         def shownLessons = shownLessonNodes.collect {
-            it.getTextContent()
+            it.getTextContent().trim()
         }
         assertEquals expectedLessons, shownLessons
 
