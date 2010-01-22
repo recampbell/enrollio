@@ -109,8 +109,8 @@ class LessonController {
             params["lessonId_${newId}"] = params.remove('lessonId_NEW_KID_ON_THE_BLOCK')
             programService.sortLessons(programInstance, params)
 
-            flash.message = "Lesson ${lessonInstance.id} created"
-            redirect(action:show,id:lessonInstance.id)
+            flash.message = "Lesson \"${lessonInstance.name}\" created"
+            redirect(controller:'program', action:'lessons' ,id:programInstance.id)
         }
         else {
             render(view:'create',model:[lessonInstance:lessonInstance])
