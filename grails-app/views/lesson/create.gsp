@@ -6,7 +6,6 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
         <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="js/table_drag_drop.js"></script>
         <script type="text/javascript">
              $(document).ready(function(){
                  $('#name').change(function() {
