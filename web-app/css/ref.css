@@ -3,80 +3,42 @@
 	font-family: Tahoma, Verdana, Arial;
 	font-size:95%;
 }  
-#header .images {         
-	padding-bottom:40px;
-} 
-#header .message {
-	font-family:"Century Gothic", "Trebuchet MS", "Arial Narrow", Arial, sans-serif;
-	font-size:15px;
-	text-transform:uppercase;
-	text-align:right;
-	font-weight:normal;	
-	margin:0;
-	padding:0;
-	margin-right:40px;	
-	color:#000000;
-	border-bottom:1px solid #eeeeee;					
-}  
 
-.warning {
-  background-image: url(../img/warning.gif);
-  background-repeat: no-repeat;
-  background-position: 7 7;
-  border: 1px solid #CC0000;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 10px;
-  padding-left: 40px;
-  line-height: 100%;
-  width: 80%;	
-  background-color: #FFCCCC;
-}
+h1 {
+	font-family: Arial, Verdana, Tahoma;
+	border-bottom:1px solid #eeeeee;  
+	font-size:1.2em;
+	margin-left:30px;
+	margin-top:50px;
+}                
 
-.note {
-  background-image: url(../img/note.gif);
-  background-repeat: no-repeat;
-  background-position: 7 7;
-  border: 1px solid #F0C000;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 10px;
-  padding-left: 40px;
-  line-height: 100%;
-  width: 80%;	
-  background-color: #FFFFCE;
+h2 {
+	font-family: Arial, Verdana, Tahoma;
+	font-weight:normal;
+	font-style: italic;
+	font-size:1.0em;
+	margin-left:30px;	
+}                
+
+p {
+	margin-left:50px;
+}     
+
+ul {
+
+	margin-left:50px;
+}                    
+
+ol {
+
+	margin-left:50px;
+}                    
+
+
+blockquote {
+	margin-left:50px;
 }
 
-pre .code {
-	border: 1px solid black;
-	padding-bottom:10px;
-	background-color: lightgrey;    
-	padding-left:20px;  	
-}    
-.bq {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 5px 5px 5px 5px;
-  padding-bottom: 15px;
-  color: inherit;
-  background-color: #F0F0F0;
-  border: 1px dashed black;
-  font-family: courier, courier new, monospace;
-  font-size: 12px;
-  line-height: 100%;
-  white-space: pre;
-  width: 90%;
-  overflow: auto;
-  overflow: scroll -moz-scrollbars-horizontal;
-  overflow-x: auto;
-}
-#footer {
-	border-top:1px solid #eeeeee;										
-	text-align:center;
-} 
-.tocItem {
-	padding-bottom: 4px;
-}
 /**
  * Wiki text stylesheet definitions.
  * @author Matthias L. Jugel
@@ -152,11 +114,59 @@ img.float-right {
   font-size: inherit;
 }
 
+.warning {
+  background-image: url(../img/warning.gif);
+  background-repeat: no-repeat;
+  background-position: 7 7;
+  border: 1px solid #CC0000;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left:50px;
+  padding: 10px;
+  padding-left: 40px;
+  line-height: 100%;
+  width: 85%;	
+  background-color: #FFCCCC;
+}
+
+.note {
+  background-image: url(../img/note.gif);
+  background-repeat: no-repeat;
+  background-position: 7 7;
+  border: 1px solid #F0C000;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left:50px;
+  padding: 10px;
+  padding-left: 40px;
+  line-height: 100%;
+  width: 85%;	
+  background-color: #FFFFCE;
+}
 /************************************************/
 /* code formatting */
+.bq {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left:40px;
+  padding: 5px 5px 5px 5px;
+  padding-bottom: 15px;
+  color: inherit;
+  background-color: #F0F0F0;
+  border: 1px dashed black;
+  font-family: courier, courier new, monospace;
+  font-size: 12px;
+  line-height: 100%;
+  white-space: pre;
+  width: 90%;
+  overflow: auto;
+  overflow: scroll -moz-scrollbars-horizontal;
+  overflow-x: auto;
+}
 .code {
   margin-top: 4px;
   margin-bottom: 4px;
+  margin-left:40px;
   padding: 5px 5px 5px 5px;
   color: inherit;
   background-color: #F0F0F0;
@@ -165,12 +175,18 @@ img.float-right {
   font-size: 12px;
   line-height: 100%;
   white-space: pre;
-  width: 98%;
+  width: 90%;
   overflow: auto;
   overflow: scroll -moz-scrollbars-horizontal;
   overflow-x: auto;
 }
-
+/* Paragraphs are created inside code blocks after blank lines */
+.code p {
+	margin-left: 0px;
+}
+table .code {
+	margin-left:0px;
+}
 
 .java-keyword {
   font-weight: bold;
