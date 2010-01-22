@@ -37,7 +37,7 @@
         <ul>
             <g:if test="${programInstance.lessons}">
                 <li>
-                    <g:link class="book_next" 
+                    <g:link class="number_list" 
                             name="sortLessonsLink" 
                             action="sortLessons" 
                             controller="program" 
