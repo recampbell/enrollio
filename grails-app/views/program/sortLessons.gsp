@@ -6,18 +6,35 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js', file:'table_drag_drop.js')}"></script>
+        <script type="text/javascript"
+                    src="${resource(dir:'js', file:'jquery-ui-1.7.2.custom.min.js')}"></script>
         <title>Sort Lessons - ${programInstance}</title>
+        <style type="text/css">
+	</style>
+	<script type="text/javascript">
+	$(function() {
+                $("#sortable").sortable({
+                    update: function(event, ui) {
+                    $('input[name^=lessonId_]').each(
+                        function(i) {
+                          $(this).val((i + 1) * 100);
+                        });
+                    }
+                });
+		$("#sortable").disableSelection();
+	});
+	</script>
+
     </head>
+
     <body>
         <div id="wrapper">
             <div id="content">
                 <g:form action="saveLessonSort" method="post" name="sortLessonsForm">
                 <input type="hidden" name="id" value="${programInstance.id}" />
-            <div class="box">
-                <g:render template="sortLessons" 
-                model="[programInstance:programInstance]" />
-            </div>
+                    <g:render template="sortLessons"
+                              model="[programInstance : programInstance,
+                              lessonInstance  : lessonInstance]" />
              <label for="saveButton"></label>
                     <g:submitButton class="save" name="saveButton" value="Save" />
                         or&nbsp;

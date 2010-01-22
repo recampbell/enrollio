@@ -1,26 +1,21 @@
-<h3>${programInstance} : Sort Lessons</h3>
-<table>
-    <thead>
-    </thead>
-    <tbody class="draggable">
+<div class="box">
+    <h3>${programInstance} : Sort Lessons</h3>
+    <ul id="sortable">
         <g:each var="l" in="${programInstance.lessons}">
-            <tr>
-                <td name="lessonName_${l.id}">${l}</td>
-                <td>
-                    <input class="sequenceReadOnly" type="text" readonly="true" name="lessonId_${l.id}" 
-                    value="${l.sequence}" />
-                </td>
-            </tr>
+        <li class="ui-state-default" name="lessonName_${l.id}">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${l} 
+                <input class="sequenceReadOnly" type="hidden" readonly="true"
+                        name="lessonId_${l.id}" value="${l.sequence}" />
         </g:each>
+        <!-- Create another list item <li> for new Lesson, if we're creating a 
+        new Lesson -->
         <g:if test="${lessonInstance}">
-            <tr>
-                <td id="newLessonNameInSequence">Foo Lesson</td>
-                <td>
-                    <input class="sequenceReadOnly" readonly="true" type="text" 
-                        name="lessonId_NEW_KID_ON_THE_BLOCK" 
-                        value="${lessonInstance.sequence}" />
-                </td>
-            </tr>
+            <li id="newLessonNameInSequence" class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Foo Lesson</li>
+                    <input class="sequenceReadOnly" readonly="true" type="hidden"
+                            name="lessonId_NEW_KID_ON_THE_BLOCK"
+                            value="${lessonInstance.sequence}" />
+            </li>
         </g:if>
-    </tbody>
-</table>
+    </ul>
+</div>
