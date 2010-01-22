@@ -41,7 +41,7 @@ table{
 	background:none;
 }
 td, th{
-	border:1px solid #d9e6f0;
+        border:1px dotted #d9e6f0;
 } 
 thead{
 	background:#f3f9ff;

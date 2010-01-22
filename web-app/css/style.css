@@ -217,7 +217,7 @@ table{
         border: none;
 }
 td, th{
-	padding: 2px;
+	padding: 4px;
 } 
 thead{
 
@@ -260,7 +260,8 @@ thead{
 }
 
 .rightnow p {
-    padding:6px;
+    /* margin: 3px; */
+    padding:10px;
 }
 
 .rightnow .reallynow span {
@@ -492,10 +493,12 @@ form #button1:hover, form #button2:hover {
     width: 85%;
 }
 
+ul.helplist {
+}
+
 ul.helplist li  {
     margin-left: 30px;
-    margin-bottom: 3px;
-
+    margin-bottom: 5px;
     padding:2px;
 }
 
