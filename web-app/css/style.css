@@ -612,10 +612,15 @@ input[type="checkbox"] {
     padding-bottom: 5px;
 }
 
-.draggable tr, .draggable td {
+.draggable tr, .draggable td, .draggable input {
     cursor: move;
 }
 
 .draggable tr:hover {
     background: #F3F9FF;
+}
+
+input.sequenceReadOnly {
+    background: none;
+    border: none;
 }
