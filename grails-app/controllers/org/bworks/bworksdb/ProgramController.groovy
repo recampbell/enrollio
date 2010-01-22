@@ -11,7 +11,6 @@ class ProgramController {
 
     def pdfCallList = {
         def contactInstanceList = programService.getCallList(1)
-        println "Contact instances are: " + contactInstanceList
 
         [ contactInstanceList: contactInstanceList, contactInstanceTotal: Contact.count() ]
 

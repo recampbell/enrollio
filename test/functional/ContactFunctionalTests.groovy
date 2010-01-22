@@ -93,7 +93,6 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         def contactLink = byXPath('//a[starts-with(@id, "contactLink")]')
         if (contactLink instanceof ArrayList) {
             contactLink = contactLink.find {
-                println "text content is: " + it.getTextContent()
                 it.getTextContent() =~ TestKeys.CONTACT1_LAST_NAME
             }
         }

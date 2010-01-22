@@ -13,11 +13,8 @@ class AttendanceService {
                 enrollment.student
         }
 
-        println "Enrolled Students are: " + enrolledStudents
-
         enrolledStudents.each { student ->
             if(! ld.attendees.find { it.student.id == student.id }) {
-                println "Adding Student attendance: to ld: ${ld} ${student}"
                 ld.addToAttendees(student : student, status:'absent')
                 ld.save()
             }

@@ -133,7 +133,6 @@ class ClassSessionController {
             params.remove(it.key)
         }
        
-        println lessonDates
         def dateFormat = 'MM/dd/yyyy'
         def startDate = params.remove('startDate')
         def classSessionInstance = new ClassSession(params)

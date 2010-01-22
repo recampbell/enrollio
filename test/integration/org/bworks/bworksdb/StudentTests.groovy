@@ -20,7 +20,6 @@ class StudentTests extends GroovyTestCase {
                            zipCode:'63153',
                            emailAddress:'jack.sprat@crazynate.com').save()
         def s = new Student(firstName:"Groovy in Action", lastName:"Foo", contact:c)
-        if (!s.validate())  s.errors.allErrors.each { println it }
         
         assert s.validate()
         c.addToStudents(s)

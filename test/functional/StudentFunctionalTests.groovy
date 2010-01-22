@@ -96,10 +96,6 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         // Make sure we see three possible Programs to be interested in
         assertEquals 3, interestCheckboxen.size()
 
-        interestCheckboxen.each {
-            println it.toString()
-        }
-
         // Should be interested in the adult prog.
         assertNotNull interestCheckboxen.find { 
             it.getParentNode().getTextContent() =~ /${ TestKeys.PROGRAM_ADULT_AEC }/ &&

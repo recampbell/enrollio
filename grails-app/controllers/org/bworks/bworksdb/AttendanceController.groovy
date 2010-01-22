@@ -27,7 +27,6 @@ class AttendanceController {
     def updateStatus = {
         def attendanceInstance = Attendance.get( params.id )
         if(attendanceInstance) {
-            println "Setting ${attendanceInstance.student} attendance to ${params.status}"
 
             attendanceInstance.status = params.status
             attendanceInstance.save()

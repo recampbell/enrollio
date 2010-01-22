@@ -100,7 +100,6 @@ class LessonController {
     }
 
     def save = {
-        println "params are: " + params
         def lessonInstance = new Lesson(params)
         def programInstance = Program.get(params.program.id)
 
@@ -108,8 +107,6 @@ class LessonController {
             programInstance.addToLessons(lessonInstance)
             def newId = lessonInstance.id
             params["lessonId_${newId}"] = params.remove('lessonId_NEW_KID_ON_THE_BLOCK')
-            println "Boo yah" + params["lessonId_${newId}"]
-            println "Boo yah == new id is" + newId
             programService.sortLessons(programInstance, params)
 
             flash.message = "Lesson ${lessonInstance.id} created"
