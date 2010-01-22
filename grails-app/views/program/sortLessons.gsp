@@ -13,6 +13,7 @@
         <div id="wrapper">
             <div id="content">
                 <g:form action="saveLessonSort" method="post" name="sortLessonsForm">
+                <input type="hidden" name="id" value="${programInstance.id}" />
             <div class="box">
                 <g:render template="sortLessons" 
                 model="[programInstance:programInstance]" />

@@ -23,7 +23,19 @@ class ProgramController {
 
     def saveLessonSort = {
         def programInstance = Program.get( params.id )
-        [ programInstance : programInstance ]
+
+        if(!programInstance) {
+            flash.message = "Program not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else {
+
+            programService.sortLessons(programInstance, params)
+
+            flash.message = "Lessons successfully sorted."
+
+            redirect(action:lessons,id:programInstance.id)
+        }
     }
 
     def sortLessons = {
