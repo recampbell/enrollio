@@ -4,6 +4,7 @@ class HelpController {
     
     def index = { redirect(action:'about',params:params) }
 
-    def about = {
-    }
+    def about = { }
+
+    def thanks = { }
 }

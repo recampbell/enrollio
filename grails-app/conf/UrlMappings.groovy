@@ -33,7 +33,8 @@ class UrlMappings {
 
 		// help controller
 		"/"(controller:"help", action:'about')
-		'/help'(controller: 'help', action: 'index')
+        '/help'(controller: 'help', action: 'index')
+        '/thanks'(controller: 'help', action: 'thanks')
 
 		// home controller
 		'/home'(controller: 'home', action: 'index')
