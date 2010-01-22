@@ -66,52 +66,6 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void testLessonResort() {
     }
 
-    // TODO: Should probably use hard-coded data
-    // for the lesson names, and not fish it from the HTML pages
-    void testNewLessonWithSort() {
-        loginAs('bob', 'bobbobbob0')
-        click('Programs')
-        click(TestKeys.PROGRAM_KIDS_AEC)
-        click('New Lesson')
-        assertStatus 200
-
-
-        def lessonNodes = byXPath("//*[starts-with(@name, 'lessonName_')]")
-        // assertEquals 'Intro to Computers', lessonNodes[0].getTextContent()
-
-        def lessonNames = lessonNodes.collect {
-            it.getTextContent().trim()
-        }
-
-        def lessonSequences = byXPath("//input[starts-with(@name, 'lessonId_')]")
-        lessonSequences.each {
-            it.setAttribute('value', '-' + it.getValueAttribute())    
-        }
-
-        form('newLessonForm') {
-            name = 'Re-sort Foo Lesson'
-            // Give this lesson the same seq. as another lesson
-            sequence = 123
-            click('Save')
-        }
-
-        // TODO: assert that we saved o.k.
-
-        // Whew!  Now, click 'Lessons'
-        click('Lessons')
-
-        // Make sure our lessons are reversed.
-        def expectedLessons = lessonNames.reverse()
-        expectedLessons.add(0, 'Re-sort Foo Lesson')
-
-        def shownLessonNodes = byXPath("//a[starts-with(@name, 'lessonLink')]")
-        def shownLessons = shownLessonNodes.collect {
-            it.getTextContent().trim()
-        }
-        assertEquals expectedLessons, shownLessons
-
-    }
-
     void testLessonList() {
         loginAs('bob', 'bobbobbob0')
         get('/lessons')

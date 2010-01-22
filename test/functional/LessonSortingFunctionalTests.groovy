@@ -18,7 +18,7 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
 
     // TODO: Should probably use hard-coded data
     // for the lesson names, and not fish it from the HTML pages
-    void testNewLessonWithResort() {
+    void testNewLessonWithSort() {
         loginAs('bob', 'bobbobbob0')
         click('Programs')
         click(TestKeys.PROGRAM_KIDS_AEC)
