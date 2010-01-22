@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>User List</title>
+        <title>Users</title>
     </head>
     <body>
         <div id="wrapper">
@@ -35,7 +35,12 @@
                     <g:each in="${shiroUserInstanceList}" status="i" var="shiroUserInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${shiroUserInstance.id}">${fieldValue(bean:shiroUserInstance, field:'id')}</g:link></td>
+                            <td><g:link action="show" 
+                                          name="userLink_${shiroUserInstance.username}"
+                                          params="[username:shiroUserInstance.username]">
+                                          ${fieldValue(bean:shiroUserInstance, field:'id')}
+                                          </g:link>
+                                      </td>
                         
                             <td>${fieldValue(bean:shiroUserInstance, field:'username')}</td>
                         

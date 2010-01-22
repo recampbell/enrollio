@@ -37,8 +37,8 @@ class BootStrap {
 		// Administrator user and role. 
 		def adminRole = ShiroRole.findByName("Administrator")
 		def adminUser = new ShiroUser(username: "admin", 
-				firstName : 'admin',
-				lastName : 'admin',
+				firstName : 'Bert',
+				lastName : 'Adminbadboy',
 				password : 'admin0',
 				passwordConfirm : 'admin0',
 				passwordHash: new Sha1Hash("admin0").toHex()

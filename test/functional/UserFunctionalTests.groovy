@@ -17,35 +17,30 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     // The settings list test could be refactored
     // later to a SettingsFunctionalTests.groovy file
-    void testSettingsPage() {
-        loginAdmin()
-        click('Admin')
-        click('Settings')
-        assertStatus 200
-
-        assertTitleContains 'Settings'
-        assertContentContains 'Settings'
-    }
-
-    // The settings list test could be refactored
-    // later to a SettingsFunctionalTests.groovy file
-    void testUsersLink() {
+    void testListUsersPage() {
         loginAdmin()
         click('Admin')
         click('List Users')
         assertStatus 200
 
-        assertTitleContains 'User List'
-        assertContentContains 'Username'
+        assertTitleContains 'Users'
+        assertContentContains 'bob'
+        assertContentContains 'admin'
     }
-    
-    void testCreateUserLink() {
+
+    void testShowUserPage() {
         loginAdmin()
         click('Admin')
-        click('Create User')
+        click('List Users')
+
+        def adminLink = byName('userLink_admin')
+        assertNotNull adminLink
+        adminLink.click()
         assertStatus 200
-        assertContentContains "Create User"
-        assertContentContains "Username"
-        assertContentContains "Password"
+
+        assertTitleContains "Show User: admin"
+        assertContentContains "Bert"
+        assertContentContains "Adminbadboy"
+
     }
 }
