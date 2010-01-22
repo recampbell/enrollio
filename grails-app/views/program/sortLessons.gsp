@@ -6,24 +6,11 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
-        <script type="text/javascript"
-                    src="${resource(dir:'js', file:'jquery-ui-1.7.2.custom.min.js')}"></script>
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-ui-1.7.2.custom.min.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'lessonSort.js')}"></script>
         <title>Sort Lessons - ${programInstance}</title>
         <style type="text/css">
 	</style>
-	<script type="text/javascript">
-	$(function() {
-                $("#sortable").sortable({
-                    update: function(event, ui) {
-                    $('input[name^=lessonId_]').each(
-                        function(i) {
-                          $(this).val((i + 1) * 100);
-                        });
-                    }
-                });
-		$("#sortable").disableSelection();
-	});
-	</script>
 
     </head>
 

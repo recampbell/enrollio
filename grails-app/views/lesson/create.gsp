@@ -6,13 +6,9 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
         <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript">
-             $(document).ready(function(){
-                 $('#name').change(function() {
-                     $('#newLessonNameInSequence').text($(this).val());
-                 });
-             });
-         </script>
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-ui-1.7.2.custom.min.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'lessonSort.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'lessonCreate.js')}"></script>
         <title>Create Lesson:</title>         
     </head>
     <body>
