@@ -1,7 +1,7 @@
 package org.bworks.bworksdb
 import grails.test.*
 
-class ProgramService extends GrailsUnitTestCase {
+class ProgramService {
 
     boolean transactional = true
 
