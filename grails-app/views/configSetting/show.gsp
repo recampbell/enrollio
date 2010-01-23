@@ -55,7 +55,7 @@
         </div>
         </div>
         <div id="sidebar">
-            <g:render template="/admin/settingsMenu" />
+            <g:render template="/admin/adminMenu" />
         </div>
     </body>
 </html>
