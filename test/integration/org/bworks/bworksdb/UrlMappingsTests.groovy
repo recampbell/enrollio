@@ -110,8 +110,11 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
     }
     
     void testSettingMappings() {
-    assertUrlMapping("/showSetting/5", controller:'configSetting', action:'show') {
-        id = "5"
+        assertUrlMapping("/editSetting/50", controller:'configSetting', action:'edit') {
+            id = "50"
+        }
+        assertUrlMapping("/showSetting/5", controller:'configSetting', action:'show') {
+            id = "5"
+        }
     }
-}
 }
