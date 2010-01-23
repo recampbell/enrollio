@@ -28,6 +28,23 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains 'admin'
     }
 
+    // The settings list test could be refactored
+    // later to a SettingsFunctionalTests.groovy file
+    void testEditUser() {
+        loginAdmin()
+        click('Admin')
+        click('Users')
+        assertStatus 200
+
+        def bobLink = byName('editUserLink_bob')
+        assertNotNull bobLink
+        bobLink.click()
+        assertTitleContains('Edit User: bob')
+        assertContentContains(TestKeys.USER_BOB_LASTNAME)
+        assertContentContains(TestKeys.USER_BOB_FIRSTNAME)
+        assertContentContains(TestKeys.USER_BOB_USERNAME)
+    }
+
     void testShowUserPage() {
         loginAdmin()
         click('Admin')
@@ -43,6 +60,20 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains "Adminbadboy"
 
     }
+
+    // test the Edit User link on the Admin Menu
+    // Should only show up when viewing a user
+    // void testEditUserLinkOnAdminMenu() {
+    //     loginAdmin()
+    //     click('Admin')
+    //     click('Users')
+    //     assertStatus 200
+
+    //     // Shouldn't see this link when viewing a LIST of users
+    //     def bobLink = bXPath('//a[starts-with(@name, "editUserLink_")]')
+    //     assertNull bobLink
+
+    // }
 
 
     void testCreateUserPage() {

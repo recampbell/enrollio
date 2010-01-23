@@ -54,9 +54,10 @@ class TestDataService {
 
         // Administrator user and role.
         def userRole = ShiroRole.findByName("User")
-        def user = new ShiroUser(username: "bob",
-            firstName : 'Bob',
-            lastName : 'Dog',
+        def user = new ShiroUser(
+            username: TestKeys.USER_BOB_USERNAME,
+            firstName : TestKeys.USER_BOB_FIRSTNAME,
+            lastName : TestKeys.USER_BOB_LASTNAME,
             password : 'bobbobbob0',
             passwordConfirm : 'bobbobbob0',
             passwordHash: new Sha1Hash("bobbobbob0").toHex()

@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Edit User</title>
+        <title>Edit User: ${shiroUserInstance.username}</title>
     </head>
     <body>
 

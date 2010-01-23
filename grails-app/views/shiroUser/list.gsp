@@ -46,7 +46,13 @@
                             <td>${fieldValue(bean:shiroUserInstance, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:shiroUserInstance, field:'lastName')}</td>
-                            <td><g:link action="edit" id="${shiroUserInstance.id}">Edit User</g:link></td>
+                            <td>
+                                <!-- TODO refactor this link, and the link
+                                in the adminMenu into a taglib -->
+                                <g:link action="edit" 
+                                name="editUserLink_${shiroUserInstance.username}"
+                                params="[username:shiroUserInstance.username]">Edit User</g:link>
+                            </td>
                         
                         
                         </tr>
