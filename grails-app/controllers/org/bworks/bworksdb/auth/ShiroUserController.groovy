@@ -35,7 +35,7 @@ class ShiroUserController {
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "ShiroUser ${params.id} could not be deleted"
-                redirect(action:show,id:params.id)
+                redirect(action:show, params:[username:shiroUserInstance.username])
             }
         }
         else {
@@ -79,7 +79,7 @@ class ShiroUserController {
                 }
                 shiroUserInstance.save()
                 flash.message = "ShiroUser ${params.id} updated"
-                redirect(action:show,id:shiroUserInstance.id)
+                redirect(action:show, params:[username:shiroUserInstance.username])
             }
             else {
                 render(view:'edit',model:[shiroUserInstance:shiroUserInstance])
@@ -103,7 +103,7 @@ class ShiroUserController {
         shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
         if(!shiroUserInstance.hasErrors() && shiroUserInstance.save()) {
             flash.message = "ShiroUser ${shiroUserInstance.id} created"
-            redirect(action:show,id:shiroUserInstance.id)
+            redirect(action:show, params:[username:shiroUserInstance.username])
         }
         else {
             render(view:'create',model:[shiroUserInstance:shiroUserInstance])

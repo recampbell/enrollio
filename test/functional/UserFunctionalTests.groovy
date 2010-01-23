@@ -43,4 +43,38 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains "Adminbadboy"
 
     }
+
+
+    void testCreateUserPage() {
+        loginAdmin()
+        click('Admin')
+        click('Create User')
+        assertStatus 200
+
+        assertTitleContains 'Create User'
+
+        form('newUserForm') {
+            username = "bazooka"
+            firstName = "Joe"
+            lastName = "Banana"
+
+            // password must be 5 char and contain digit!
+            password = "superserial0"
+            passwordConfirm = "superserial0"
+
+            click('Save')
+            
+        }
+
+        assertStatus 200
+        assertTitleContains "User: bazooka"
+        assertContentContains "Banana"
+        assertContentContains "Joe"
+
+        // No password should be in the show page.
+        shouldFail() {
+            assertContentContains "superserial"
+        }
+
+    }
 }

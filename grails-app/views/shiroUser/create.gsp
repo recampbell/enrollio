@@ -19,7 +19,7 @@
                 <g:renderErrors bean="${shiroUserInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="save" method="post" >
+            <g:form name="newUserForm" action="save" method="post" >
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -73,9 +73,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
-                </div>
+                <label for="saveButton"></label>
+                <g:submitButton class="save" name="saveButton" value="Save" />
+                    or&nbsp;
+                <g:link name="cancelLink" class="cancelLink" action="list" >Cancel</g:link>
             </g:form>
         </div>
         </div>
