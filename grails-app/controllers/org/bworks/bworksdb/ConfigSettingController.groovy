@@ -122,20 +122,4 @@ class ConfigSettingController {
         }
     }
 
-    def create = {
-        def configSettingInstance = new ConfigSetting()
-        configSettingInstance.properties = params
-        return ['configSettingInstance':configSettingInstance]
-    }
-
-    def save = {
-        def configSettingInstance = new ConfigSetting(params)
-        if(!configSettingInstance.hasErrors() && configSettingInstance.save()) {
-            flash.message = "ConfigSetting ${configSettingInstance.id} created"
-            redirect(action:show,id:configSettingInstance.id)
-        }
-        else {
-            render(view:'create',model:[configSettingInstance:configSettingInstance])
-        }
-    }
 }
