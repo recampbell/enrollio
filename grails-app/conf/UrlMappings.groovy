@@ -21,6 +21,7 @@ class UrlMappings {
 
 		// configSetting controller
 		'/settings'(controller: 'configSetting', action: 'list')
+		"/showSetting/$id"(controller: 'configSetting', action: 'show')
 
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
