@@ -19,18 +19,15 @@ class BootStrap {
 
 		environments {
 			production {
-                System.err.println "TRACER prod"
 				testDataService.loadDefaultConfigSettings()
 			}
 			development {
-                System.err.println "TRACER dev"
 				testDataService.loadDevData()
 			}
 			test {
-                System.err.println "TRACER test"
                 ExpandoMetaClass.enableGlobally()
+                
                 functionaltestplugin.FunctionalTestCase.metaClass.loginAs = { userName, pass ->
-                    System.err.println "TRACER cp 51"
                     get('/login')
                     form('loginForm') {
                         username = userName
@@ -38,6 +35,7 @@ class BootStrap {
                         click "login"
                     }                    
                 }
+                
 				testDataService.loadIntegrationTestData()
 			}
 		}

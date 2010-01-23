@@ -6,9 +6,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     // gotoClassSessionList is a utility method
     // that goes to the classSession/list page
     void gotoClassSessionList() {
-        System.err.println "TRACER cp 1"
         loginAs('bob', 'bobbobbob0')
-        System.err.println "TRACER cp 2"
         click("Class Sessions")
         // Make sure we see our newly formatted beautiful dates
         assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
