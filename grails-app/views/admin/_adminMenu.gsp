@@ -1,6 +1,9 @@
 <ul>
     <li>
         <h3>
+            <g:link class="wrench" controller="admin">Admin</g:link>
+        </h3>
+        <h3>
             <a href="#" class="user">Users</a>
         </h3>
         <ul>

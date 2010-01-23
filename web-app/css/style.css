@@ -449,6 +449,10 @@ form #button1:hover, form #button2:hover {
 .module_add{background:transparent url(../images/icons/brick_add.png) no-repeat left;}
 .graduation_cap{background:transparent url(../images/icons/graduation_cap.jpg) no-repeat left;}
 .telephone{background:transparent url(../images/icons/telephone.png) no-repeat left;}
+.app_form_add{background:transparent url(../images/icons/application_form_add.png) no-repeat left;}
+.app_form_edit{background:transparent url(../images/icons/application_form_edit.png) no-repeat left;}
+.app_form{background:transparent url(../images/icons/application_form.png) no-repeat left;}
+.wrench{background:transparent url(../images/icons/wrench.png) no-repeat left;}
 
 
 /* PAGINATION */
