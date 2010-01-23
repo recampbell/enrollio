@@ -10,18 +10,14 @@
             <div id="content">
                 <div class="rightnow">
                     <h1 class="reallynow">Settings
-                        <g:link action="create" class="add">Add Setting</g:link>
                         <br /></h1>
                         <table>
                             <thead>
                                 <tr>
-                                    <g:sortableColumn property="id" title="Id" />
-                                    <g:sortableColumn property="value" title="Value" />
+                                    <g:sortableColumn property="configKey" title="Key" />
                                     <g:sortableColumn property="description"
                                     title="Description" />
-                                    <g:sortableColumn property="isDefault"
-                                    title="Is Default" />
-                                    <g:sortableColumn property="configKey" title="Key" />
+                                    <g:sortableColumn property="value" title="Value" />
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,16 +29,12 @@
                                             name="settingLink_${configSettingInstance.id}"
                                             id="${configSettingInstance.id}">
                                             ${fieldValue(bean:configSettingInstance,
-                                            field:'id')}</g:link>
+                                            field:'configKey')}</g:link>
                                         </td>
-                                        <td>${fieldValue(bean:configSettingInstance,
-                                        field:'value')}</td>
                                         <td>${fieldValue(bean:configSettingInstance,
                                         field:'description')}</td>
                                         <td>${fieldValue(bean:configSettingInstance,
-                                        field:'isDefault')}</td>
-                                        <td>${fieldValue(bean:configSettingInstance,
-                                        field:'configKey')}</td>
+                                        field:'value')}</td>
                                     </tr>
                                 </g:each>
                             </tbody>
@@ -54,7 +46,7 @@
             </div>
         </div>
         <div id="sidebar">
-            <g:render template="/admin/settingsMenu" />
+            <g:render template="/admin/adminMenu" />
         </div>
     </body>
 </html>
