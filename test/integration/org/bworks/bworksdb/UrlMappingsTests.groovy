@@ -26,6 +26,9 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
             username = "bob"
         }
 
+        assertUrlMapping("/editUser/doug", controller:'shiroUser', action:'show') {
+            username = "doug"
+        }
 
         assertUrlMapping("/updateUser", controller:'shiroUser', action:'update')
         assertUrlMapping("/saveUser", controller:'shiroUser', action:'save')

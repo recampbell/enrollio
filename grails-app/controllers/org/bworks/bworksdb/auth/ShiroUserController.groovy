@@ -45,7 +45,7 @@ class ShiroUserController {
     }
 
     def edit = {
-        def shiroUserInstance = ShiroUser.get( params.id )
+        def shiroUserInstance = ShiroUser.findByUsername( params.username )
 
         if(!shiroUserInstance) {
             flash.message = "ShiroUser not found with id ${params.id}"

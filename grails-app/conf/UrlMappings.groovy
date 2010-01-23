@@ -75,7 +75,7 @@ class UrlMappings {
 		// shiroUser controller
 		'/createUser'(controller: 'shiroUser', action: 'create')
 		'/users'(controller: 'shiroUser', action: 'list')
-		"/editUser/$id"(controller: 'shiroUser', action: 'edit')
+		"/editUser/$username"(controller: 'shiroUser', action: 'edit')
 		"/deleteUser/$id"(controller: 'shiroUser', action: 'delete')
 		"/showUser/$username"(controller: 'shiroUser', action: 'show')
         "/updateUser"(controller: 'shiroUser', action: 'update')
