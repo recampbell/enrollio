@@ -61,6 +61,37 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
+    void testCancelEdit() {
+        gotoStudentShow()
+        assertStatus 200
+        
+        click "Edit"
+        assertStatus 200
+
+        form('editStudentForm') {
+            lastName = "Baggins"
+            birthDate = '4/20/1914'
+        }
+        // clicking 'cancel' must be outside the form,
+        // if it's an href?
+        click "Cancel"
+
+        assertStatus 200
+        assertTitleContains('Student:')
+
+        shouldFail() {
+            assertContentContains('Baggins')
+        }
+
+        shouldFail() {
+            assertContentContains('Updated')
+        }
+
+        shouldFail() {
+            assertContentContains('April 20, 1914')
+        }
+    }
+
     void testEditStudentBirthDate() {
         gotoStudentShow()
         assertStatus 200

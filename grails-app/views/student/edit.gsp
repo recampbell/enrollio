@@ -89,6 +89,8 @@
                     <span class="button">
                         <input class="save" type="submit" value="Save" />
                     </span>
+                    or&nbsp;
+                    <g:link name="cancelLink" class="cancelLink" action="show" id="${studentInstance.id}" >Cancel</g:link>
                 </div>
             </g:form>
         </div>
