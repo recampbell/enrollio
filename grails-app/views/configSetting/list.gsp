@@ -30,6 +30,7 @@
                                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                         <td>
                                             <g:link action="show"
+                                            name="settingLink_${configSettingInstance.id}"
                                             id="${configSettingInstance.id}">
                                             ${fieldValue(bean:configSettingInstance,
                                             field:'id')}</g:link>
