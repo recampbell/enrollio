@@ -10,10 +10,9 @@
 
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
 
-        <div class="body">
-            <h1>Edit User</h1>
+        <div class="box">
+            <h3>Edit User: ${shiroUserInstance.username}</h3>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -22,7 +21,7 @@
                 <g:renderErrors bean="${shiroUserInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form action="update" method="post" >
                 <input type="hidden" name="id" value="${shiroUserInstance?.id}" />
                 <input type="hidden" name="version" value="${shiroUserInstance?.version}" />
                 <div class="dialog">
@@ -78,16 +77,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </div>
+                <label for="saveButton"></label>
+                <g:submitButton class="save" name="saveButton" value="Update" />
+                    or&nbsp;
+                <g:link name="cancelLink" class="cancelLink" action="list" >Cancel</g:link>
             </g:form>
         </div>
         </div>
-        </div>
         <div id="sidebar">
-            <g:render template="/common/sideMenu" />
             <g:render template="/admin/adminMenu" />
         </div>
     </body>
