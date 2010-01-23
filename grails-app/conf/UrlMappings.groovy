@@ -23,6 +23,7 @@ class UrlMappings {
         '/settings'(controller: 'configSetting', action: 'list')
         "/showSetting/$id"(controller: 'configSetting', action: 'show')
         "/editSetting/$id"(controller: 'configSetting', action: 'edit')
+        "/updateSetting"(controller: 'configSetting', action: 'update')
 
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
