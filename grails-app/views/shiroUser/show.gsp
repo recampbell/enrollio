@@ -9,24 +9,14 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-        <div class="body">
-            <h1>Show User</h1>
+                <div class="box">
+            <h3>Show User</h3>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
             <div class="dialog">
                 <table>
                     <tbody>
-
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:shiroUserInstance, field:'id')}</td>
-                            
-                        </tr>
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Username:</td>
                             
@@ -47,21 +37,9 @@
                             <td valign="top" class="value">${fieldValue(bean:shiroUserInstance, field:'lastName')}</td>
                             
                         </tr>
-                    
-                    
-                    
-                    
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${shiroUserInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
-        </div>
         </div>
         </div>
         <div id="sidebar">

@@ -32,7 +32,7 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void testUsersLink() {
         loginAdmin()
         click('Admin')
-        click('List Users')
+        click('Users')
         assertStatus 200
 
         assertTitleContains 'Users'

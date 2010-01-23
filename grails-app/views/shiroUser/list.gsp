@@ -9,9 +9,8 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-        <div class="body">
-            <h1>User List</h1>
+                <div class="box">
+            <h3>Users</h3>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -60,9 +59,7 @@
             </div>
         </div>
         </div>
-        </div>
         <div id="sidebar">
-            <g:render template="/common/sideMenu" />
             <g:render template="/admin/adminMenu" />
         </div>
     </body>
