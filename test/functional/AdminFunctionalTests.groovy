@@ -35,7 +35,7 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         click('List Users')
         assertStatus 200
 
-        assertTitleContains 'User List'
+        assertTitleContains 'Users'
         assertContentContains 'Username'
     }
     
