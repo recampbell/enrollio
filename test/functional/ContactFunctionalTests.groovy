@@ -1,17 +1,10 @@
 import org.bworks.bworksdb.util.TestKeys
+
+// Note: BootStrap adds methods to FunctionalTestCase
+
 class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     def testDataService
-    // TODO loginAs should be refactored into a
-    // common method -- it's also used in SecurityFiltersFunctionalTests
-    void loginAs(userName, pass) {
-        get('/login')
-        form('loginForm') {
-            username = userName
-            password = pass
-            click "login"
-        }
-    }
 
     void testContactSearchBarOnContactList() {
         // Contact search bar should be on the /contacts and the /contact/(some id) pages

@@ -1,20 +1,14 @@
 import org.bworks.bworksdb.util.TestKeys
-class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCase {
-    // TODO loginAs should be refactored into a
-    // common method -- it's also used in SecurityFiltersFunctionalTests
-    void loginAs(userName, pass) {
-        get('/login')
-        form('loginForm') {
-            username = userName
-            password = pass
-            click "login"
-        }
-    }
 
+// Note: BootStrap adds methods to FunctionalTestCase
+
+class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // gotoClassSessionList is a utility method
     // that goes to the classSession/list page
     void gotoClassSessionList() {
+        System.err.println "TRACER cp 1"
         loginAs('bob', 'bobbobbob0')
+        System.err.println "TRACER cp 2"
         click("Class Sessions")
         // Make sure we see our newly formatted beautiful dates
         assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
