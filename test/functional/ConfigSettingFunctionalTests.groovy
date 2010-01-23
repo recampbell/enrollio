@@ -22,6 +22,7 @@ class ConfigSettingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         settingLink.click()
         assertStatus 200
         assertTitleContains "Setting: "
+        assertContentContains "Setting:"
 
     }
     

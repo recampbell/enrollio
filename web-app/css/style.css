@@ -553,6 +553,11 @@ td.errors input {
 input.errors {
     border: 1px solid red;
 }
+
+/* See also form textarea for 410 px width thingys */ 
+input.a_bit_wider {
+    width:410px;
+}
 input.errors {
     border: 1px solid red;
 }

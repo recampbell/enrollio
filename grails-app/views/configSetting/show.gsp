@@ -10,30 +10,23 @@
 
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-
-            <h1>Show ConfigSetting</h1>
             <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
-            <div class="dialog">
+            <div class="rightnow">
+
+                    <h3 class="reallynow">Setting: ${configSettingInstance}</h3>
                 <table>
                     <tbody>
 
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
+                            <td valign="top" class="name">Key:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'id')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'configKey')}</td>
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Value:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'value')}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Description:</td>
@@ -43,22 +36,21 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Is Default:</td>
+                            <td valign="top" class="name">Value:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'value')}</td>
+                            
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Default?</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'isDefault')}</td>
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Key:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:configSettingInstance, field:'configKey')}</td>
-                            
-                        </tr>
                     
                     </tbody>
                 </table>
-            </div>
         </div>
         </div>
         </div>

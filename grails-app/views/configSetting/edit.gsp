@@ -9,8 +9,8 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
-            <h1>Edit ConfigSetting</h1>
+                <div class="box">
+                    <h3>Edit Setting: ${configSettingInstance}</h3>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -25,13 +25,21 @@
                 <div class="dialog">
                     <table>
                         <tbody>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="configKey">Key:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'configKey','errors')}">
+                                    <input type="text" id="configKey" name="configKey" value="${fieldValue(bean:configSettingInstance,field:'configKey')}"/>
+                                </td>
+                            </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="value">Value:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'value','errors')}">
-                                    <input type="text" id="value" name="value" value="${fieldValue(bean:configSettingInstance,field:'value')}"/>
+                                    <input class="a_bit_wider" type="text" id="value" name="value" value="${fieldValue(bean:configSettingInstance,field:'value')}"/>
                                 </td>
                             </tr> 
                         
@@ -40,10 +48,12 @@
                                     <label for="description">Description:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:configSettingInstance,field:'description')}"/>
+                                    <g:textArea name="description" 
+                                        value="${fieldValue(bean:configSettingInstance,field:'description')}"
+                                        rows="3" cols="30"/>
+                                </td>                       
                                 </td>
                             </tr> 
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="isDefault">Is Default:</label>
@@ -53,14 +63,6 @@
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="configKey">Key:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:configSettingInstance,field:'configKey','errors')}">
-                                    <input type="text" id="configKey" name="configKey" value="${fieldValue(bean:configSettingInstance,field:'configKey')}"/>
-                                </td>
-                            </tr> 
                         
                         </tbody>
                     </table>
@@ -75,8 +77,7 @@
         </div>
         </div>
         <div id="sidebar">
-            <g:render template="/common/sideMenu" />
-            <g:render template="/admin/adminMenu" />
+            <g:render template="/admin/settingsMenu" />
         </div>
     </body>
 </html>
