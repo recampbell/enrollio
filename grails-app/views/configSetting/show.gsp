@@ -59,19 +59,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${configSettingInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
         </div>
         </div>
         </div>
         <div id="sidebar">
-            <g:render template="/common/sideMenu" />
-            <g:render template="/admin/adminMenu" />
+            <g:render template="/admin/settingsMenu" />
         </div>
     </body>
 </html>

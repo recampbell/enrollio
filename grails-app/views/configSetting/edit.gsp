@@ -19,7 +19,7 @@
                 <g:renderErrors bean="${configSettingInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:form action="update" name="editSettingForm" method="post" >
                 <input type="hidden" name="id" value="${configSettingInstance?.id}" />
                 <input type="hidden" name="version" value="${configSettingInstance?.version}" />
                 <div class="dialog">
@@ -64,11 +64,12 @@
                         
                         </tbody>
                     </table>
-                </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </div>
+            </div>
+                    <label for="saveButton"></label>
+                        <g:submitButton class="save" name="saveButton" value="Update" />
+                            or&nbsp;
+                        <g:link name="cancelLink" class="cancelLink" action="show" id="${configSettingInstance.id}" >Cancel</g:link>
+
             </g:form>
         </div>
         </div>
