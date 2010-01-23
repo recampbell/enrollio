@@ -78,6 +78,8 @@ class UrlMappings {
 		"/editUser/$id"(controller: 'shiroUser', action: 'edit')
 		"/deleteUser/$id"(controller: 'shiroUser', action: 'delete')
 		"/showUser/$username"(controller: 'shiroUser', action: 'show')
+        "/updateUser"(controller: 'shiroUser', action: 'update')
+        "/saveUser"(controller: 'shiroUser', action: 'save')
 
 		// student controller
 		'/students'(controller: 'student', action: 'list')
