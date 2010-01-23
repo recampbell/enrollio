@@ -20,7 +20,7 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void testListUsersPage() {
         loginAdmin()
         click('Admin')
-        click('List Users')
+        click('Users')
         assertStatus 200
 
         assertTitleContains 'Users'
@@ -31,7 +31,7 @@ class UserFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void testShowUserPage() {
         loginAdmin()
         click('Admin')
-        click('List Users')
+        click('Users')
 
         def adminLink = byName('userLink_admin')
         assertNotNull adminLink
