@@ -1,7 +1,7 @@
 <ul name="programMenu">
     <li>
         <h3>
-            <g:link class="modules" controller="contact">Programs</g:link>
+            <g:link class="modules" controller="program" action="list">Programs</g:link>
         </h3>
         <ul>
             <li>

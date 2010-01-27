@@ -1,12 +1,7 @@
+
+// Note: BootStrap adds methods to FunctionalTestCase
+
 class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTestCase {
-    void loginAs(userName, pass) {
-        get('/login')
-        form('loginForm') {
-            username = userName
-            password = pass
-            click "login"
-        }
-    }
 
     void testHelpNoLogin() {
         // Here call get(uri) or post(uri) to start the session

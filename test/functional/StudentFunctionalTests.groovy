@@ -1,18 +1,10 @@
 import org.bworks.bworksdb.util.TestKeys
+
+// Note: BootStrap adds methods to FunctionalTestCase
+
 class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
-    // TODO loginAs should be refactored into a
-    // common method -- it's also used in SecurityFiltersFunctionalTests
     def testDataService
-
-    void loginAs(userName, pass) {
-        get('/login')
-        form('loginForm') {
-            username = userName
-            password = pass
-            click "login"
-        }
-    }
 
     // utility method for going to student/show page
     void gotoStudentShow() {

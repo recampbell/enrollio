@@ -1,16 +1,10 @@
 import org.bworks.bworksdb.util.TestKeys
+
+// Note: BootStrap adds methods to FunctionalTestCase
+
 class MiscFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     def testDataService
-
-    void loginAs(userName, pass) {
-        get('/login')
-        form('loginForm') {
-            username = userName
-            password = pass
-            click "login"
-        }
-    }
 
     void testPageNotFoundAdmin() {
         loginAs('admin', 'admin0')

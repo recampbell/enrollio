@@ -16,6 +16,7 @@ class BootStrap {
 			loadAdminUser()
 		}
 
+
 		environments {
 			production {
 				testDataService.loadDefaultConfigSettings()
@@ -24,6 +25,17 @@ class BootStrap {
 				testDataService.loadDevData()
 			}
 			test {
+                ExpandoMetaClass.enableGlobally()
+                
+                functionaltestplugin.FunctionalTestCase.metaClass.loginAs = { userName, pass ->
+                    get('/login')
+                    form('loginForm') {
+                        username = userName
+                        password = pass
+                        click "login"
+                    }                    
+                }
+                
 				testDataService.loadIntegrationTestData()
 			}
 		}
