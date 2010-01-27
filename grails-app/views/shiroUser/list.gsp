@@ -19,8 +19,7 @@
                     <thead>
                         <tr>
                         
-                   	        <g:sortableColumn property="id" title="Id" />
-                        
+                   	                             
                    	        <g:sortableColumn property="username" title="Username" />
                         
                    	        <g:sortableColumn property="firstName" title="First Name" />
@@ -37,12 +36,11 @@
                             <td><g:link action="show" 
                                           name="userLink_${shiroUserInstance.username}"
                                           params="[username:shiroUserInstance.username]">
-                                          ${fieldValue(bean:shiroUserInstance, field:'id')}
+                                          ${fieldValue(bean:shiroUserInstance, field:'username')}
                                           </g:link>
                                       </td>
                         
-                            <td>${fieldValue(bean:shiroUserInstance, field:'username')}</td>
-                        
+                                             
                             <td>${fieldValue(bean:shiroUserInstance, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:shiroUserInstance, field:'lastName')}</td>
