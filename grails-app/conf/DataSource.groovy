@@ -23,12 +23,18 @@ environments {
 			url = "jdbc:hsqldb:mem:testDb"
 		}
 	}
+    schemaSpy {
+		dataSource {
+			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+			url = "jdbc:hsqldb:file:enrollioDb"
+		}
+    }
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:mysql://localhost/enrollioProd"
+			url = "jdbc:mysql://localhost/enrollioprod"
 			driverClassName="com.mysql.jdbc.Driver"
-			username=""
+			username="root"
 			password=''
 		}
 	}
