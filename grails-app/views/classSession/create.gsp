@@ -44,13 +44,13 @@
                    }
                    });  
                  
-                 // When user changes the program, then fetch
-                 // the classes for the selected program, and
+                 // When user changes the course, then fetch
+                 // the classes for the selected course, and
                  // re-populate the "Lesson Dates" section
                  // If user has already specified a startDate, then
                  // use that startDate for the 1st Lesson Date
-                var url = "${createLink(action:'nextAvailableLessonDates', controller:'program')}";
-                $('#programId').change(function() {
+                var url = "${createLink(action:'nextAvailableLessonDates', controller:'course')}";
+                $('#courseId').change(function() {
                     $.get(url, { 'id' : $(this).attr('value'),
                                  'startDate' : $('#startDate').val()
                         }, function(data) {
@@ -80,9 +80,9 @@
                                     </td>
                                     <td valign="top"
                                     class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
-                <g:select id="programId" name="program.id"
+                <g:select id="courseId" name="course.id"
           from="${Course.list()}"
-          value="${classSessionInstance?.program.id}"
+          value="${classSessionInstance?.course.id}"
           optionKey="id" />
                                     </td>
                                 </tr>

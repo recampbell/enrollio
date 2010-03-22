@@ -4,15 +4,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <title>Create Course:</title>
     </head>
     <body>
          <div id="wrapper">
             <div id="content">
-                <g:hasErrors bean="${programInstance}">
+                <g:hasErrors bean="${courseInstance}">
                     <div class="errors">
-                        <g:renderErrors bean="${programInstance}" as="list" />
+                        <g:renderErrors bean="${courseInstance}" as="list" />
                     </div>
                 </g:hasErrors>
                 <div class="box">
@@ -20,15 +20,15 @@
                     <g:form action="save" name="newCourseForm" method="post">
                         <label for="name">Name : </label> 
                         <input name="id" id="id" type="hidden" 
-                            value="${programInstance.id}" />
+                            value="${courseInstance.id}" />
                         <input type="hidden" name="version" 
-                            value="${programInstance?.version}" />
+                            value="${courseInstance?.version}" />
                         <input name="name" id="name" type="text" tabindex="1" 
-                            value="${fieldValue(bean:programInstance,field:'name')}"/>
+                            value="${fieldValue(bean:courseInstance,field:'name')}"/>
                         <br />
                         <label for="description">Description : </label>
                         <g:textArea name="description" 
-                            value="${fieldValue(bean:programInstance,field:'description')}"
+                            value="${fieldValue(bean:courseInstance,field:'description')}"
                             rows="5" cols="40"/>
                         <br />
                         <!-- TODO the label below is a hack to get the 

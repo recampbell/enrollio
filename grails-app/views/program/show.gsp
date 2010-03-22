@@ -4,34 +4,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
-        <title>Course: ${programInstance} </title>
+        <meta name="tabName" content="course" />
+        <title>Course: ${courseInstance} </title>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">
-                        <span>${programInstance}</span>
+                        <span>${courseInstance}</span>
                     
                         <br />
                     </h3>
-                    <p class="youhave">${programInstance.description}</p>
+                    <p class="youhave">${courseInstance.description}</p>
                 </div>
                 <div class="infowrap">
                     <div class="infobox">
                         <h3 class="reallynow">
                             <g:link class="headerLink book_open" 
-                            action="lessons" id="${programInstance.id}" >
+                            action="lessons" id="${courseInstance.id}" >
                             Lessons</g:link>
                             <!-- For some reason, these links get added out of order (add->edit) -->
                                 <g:link class="book_next" name="newLessonLink" action="create" controller="lesson" 
-                                        params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
+                                        params="[ 'course.id' : courseInstance.id ]">New Lesson</g:link>
                                         <br />
                             </h3>
                         <table>
                             <tbody>
-                                <g:each var="lesson" in="${programInstance.lessons}">
+                                <g:each var="lesson" in="${courseInstance.lessons}">
                                     <tr>
                                         <td>
                                             <g:link controller="lesson" action="show"
@@ -45,12 +45,12 @@
                     </div>
                     <div class="infobox margin-left">
                             <h3 class="reallynow">Sessions<g:link controller="classSession" 
-                                action="create" params="['program.id':programInstance.id]" 
+                                action="create" params="['course.id':courseInstance.id]" 
                                 class="calendar_add">New Session</g:link></h3>
                         <table>
                             <tbody>
                                 <g:each var="session"
-                                in="${programInstance.classSessions}">
+                                in="${courseInstance.classSessions}">
                                     <tr>
                                         <td>
                                             <g:link controller="classSession"
@@ -67,7 +67,7 @@
                         <h3>Interested Students</h3>
                         <table>
                             <tbody>
-                                <g:each var="interest" in="${programInstance.interests}">
+                                <g:each var="interest" in="${courseInstance.interests}">
                                     <tr>
                                         <td>
                                             ${interest.dateCreated}

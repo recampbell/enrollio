@@ -1,7 +1,7 @@
 <div class="box">
-    <h3>${programInstance} : Sort Lessons</h3>
+    <h3>${courseInstance} : Sort Lessons</h3>
     <ul id="sortable">
-        <g:each var="l" in="${programInstance.lessons}">
+        <g:each var="l" in="${courseInstance.lessons}">
             <li class="ui-state-default" name="lessonName_${l.id}">
                     <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>${l} 
                     <input class="sequenceReadOnly" type="hidden" readonly="true"

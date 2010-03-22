@@ -1,6 +1,6 @@
 <div class="rightnow">
     <h3 class="reallynow">
-        <span>${programInstance} Lessons</span>
+        <span>${courseInstance} Lessons</span>
         <br />
     </h3>
     <table>
@@ -10,7 +10,7 @@
             <g:sortableColumn property="sequence" title="Sequence" />
         </thead>
         <tbody>
-            <g:each in="${programInstance.lessons}" status="i"
+            <g:each in="${courseInstance.lessons}" status="i"
             var="lessonInstance">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                 <td>

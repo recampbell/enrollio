@@ -46,10 +46,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="program">Course:</label>
+                                    <label for="course">Course:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'program','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="program.id" value="${interestInstance?.program?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean:interestInstance,field:'course','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="course.id" value="${interestInstance?.course?.id}" ></g:select>
                                 </td>
                             </tr> 
                         

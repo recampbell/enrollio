@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <title>Lessons</title>
     </head>
     <body>
@@ -14,10 +14,10 @@
                         <span>Lessons</span>
                         <br />
                     </h3>
-                        <p class="youhave">List of programs/lessons taught.</p>
+                        <p class="youhave">List of courses/lessons taught.</p>
                 </div>
-                <g:each in="${programInstanceList}" status="i" var="programInstance">
-                    <g:render template="lessonList" model="[programInstance:programInstance]" />
+                <g:each in="${courseInstanceList}" status="i" var="courseInstance">
+                    <g:render template="lessonList" model="[courseInstance:courseInstance]" />
                 </g:each>
             </div>
         </div>

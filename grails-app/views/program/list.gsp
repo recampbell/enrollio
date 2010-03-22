@@ -2,7 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <title>Courses</title>
     </head>
     <body>
@@ -16,17 +16,17 @@
                         <table>
                             <thead></thead>
                             <tbody>
-                                <g:each in="${programInstanceList}" status="i"
-                                var="programInstance">
+                                <g:each in="${courseInstanceList}" status="i"
+                                var="courseInstance">
                                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                         <td>
-                                            <g:link name="programLink${programInstance.id}" 
+                                            <g:link name="courseLink${courseInstance.id}" 
                                                   action="show" 
-                                                      id="${programInstance.id}">
-                                            ${fieldValue(bean:programInstance,
+                                                      id="${courseInstance.id}">
+                                            ${fieldValue(bean:courseInstance,
                                             field:'name')}</g:link>
                                         </td>
-                                        <td>${fieldValue(bean:programInstance,
+                                        <td>${fieldValue(bean:courseInstance,
                                         field:'description')}</td>
                                     </tr>
                                 </g:each>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="programMenu" />
+                <g:render template="courseMenu" />
             </div>
         </div>
     </body>

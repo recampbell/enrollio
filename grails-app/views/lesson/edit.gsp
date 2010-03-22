@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <title>Edit Lesson:</title>
     </head>
     <body>
@@ -41,10 +41,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="program">Course:</label>
+                                    <label for="course">Course:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'program','errors')}">
-                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="program.id" value="${lessonInstance?.program?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean:lessonInstance,field:'course','errors')}">
+                                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="course.id" value="${lessonInstance?.course?.id}" ></g:select>
                                 </td>
                             </tr> 
                         

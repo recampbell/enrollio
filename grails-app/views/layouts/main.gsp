@@ -29,8 +29,8 @@
                 </shiro:isNotLoggedIn>
                 <div id="topmenu">
                     <ul>
-                        <li class="${isCurrentTab(tabName:'program')}">
-                            <g:link controller="program" action="list">Courses</g:link>
+                        <li class="${isCurrentTab(tabName:'course')}">
+                            <g:link controller="course" action="list">Courses</g:link>
                         </li>
                         <li class="${isCurrentTab(tabName:'classSession')}">
                             <g:link controller="classSession" action="list"

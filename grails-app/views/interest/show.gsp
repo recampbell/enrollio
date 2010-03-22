@@ -46,7 +46,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Course:</td>
                             
-                            <td valign="top" class="value"><g:link controller="program" action="show" id="${interestInstance?.program?.id}">${interestInstance?.program?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="course" action="show" id="${interestInstance?.course?.id}">${interestInstance?.course?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

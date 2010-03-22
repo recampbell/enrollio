@@ -14,7 +14,7 @@
                 <div id="topmenu">
                     <ul>
                         <li class="enr-top-menu-item">
-                            <g:link controller="program" action="list">Courses</g:link>
+                            <g:link controller="course" action="list">Courses</g:link>
                         </li>
                         <li class="enr-top-menu-item">
                             <g:link controller="classSession" action="list"

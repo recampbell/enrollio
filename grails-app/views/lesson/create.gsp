@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-ui-1.7.2.custom.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'lessonSort.js')}"></script>
@@ -26,8 +26,8 @@
                     <input name="id" id="id" type="hidden" value="${lessonInstance.id}" />
                     <input type="text" id="name" name="name" value="${fieldValue(bean:lessonInstance,field:'name')}"/><br />
                     
-                    <label for="program">Course:</label>
-                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="program.id" value="${lessonInstance?.program?.id}" ></g:select><br />
+                    <label for="course">Course:</label>
+                    <g:select optionKey="id" from="${org.bworks.bworksdb.Course.list()}" name="course.id" value="${lessonInstance?.course?.id}" ></g:select><br />
                     <input type="hidden" id="sequence" class="value ${hasErrors(bean:lessonInstance,field:'sequence','errors')}" name="sequence" value="${fieldValue(bean:lessonInstance,field:'sequence')}" /><br />
                     <label for="description">Description:</label>
                         <g:textArea name="description" 
@@ -36,8 +36,8 @@
                         <br />
                 </div>
                 <div class="box">
-                    <g:render template="/program/sortLessons"
-                              model="[programInstance : lessonInstance.program,
+                    <g:render template="/course/sortLessons"
+                              model="[courseInstance : lessonInstance.course,
                               lessonInstance  : lessonInstance]" />
                 </div>
 
@@ -48,8 +48,8 @@
                         <a href="${cancelLink}">Cancel</a>
                         </g:if>
                         <g:else>
-                        <g:link name="cancelLink" class="cancelLink" controller="program"
-                        id="${lessonInstance.program?.id}" action="show" >Cancel</g:link>
+                        <g:link name="cancelLink" class="cancelLink" controller="course"
+                        id="${lessonInstance.course?.id}" action="show" >Cancel</g:link>
                         </g:else>
             </g:form>
         </div>

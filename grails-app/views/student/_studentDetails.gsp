@@ -9,8 +9,8 @@
     %{-- TODO create .activeInterests property on Student,
          so we don't need the g:if interest.active --}%
     <g:each var="interest" in="${student.activeInterests()}">
-            <g:link controller="program" action="show" id="${interest.program.id}">
-                ${interest.program.name},&nbsp;
+            <g:link controller="course" action="show" id="${interest.course.id}">
+                ${interest.course.name},&nbsp;
             </g:link>
     </g:each>
     </td>

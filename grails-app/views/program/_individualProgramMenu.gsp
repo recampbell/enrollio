@@ -1,15 +1,15 @@
 <ul>
     <li>
         <h3>
-            <g:link class="module" controller="program" 
+            <g:link class="module" controller="course" 
                    action="show"
-                   id="${programInstance.id}">${programInstance}
+                   id="${courseInstance.id}">${courseInstance}
             </g:link>
         </h3>
         <ul>
             <li>
-                <g:link class="module_edit" name="editCourseLink" controller="program"
-                action="edit" id="${programInstance.id}">Edit</g:link>
+                <g:link class="module_edit" name="editCourseLink" controller="course"
+                action="edit" id="${courseInstance.id}">Edit</g:link>
             </li>
             <li>
                 <script type="text/javascript">function submit_callList(link) {
@@ -20,7 +20,7 @@
                     <!-- Name shown on top of PDF report -->
                     <input type="hidden" name="_name" value="Call List" />
                     <input type="hidden" name="_file" value="callList" />
-                    <input type="hidden" name="id" value="${programInstance.id}" />
+                    <input type="hidden" name="id" value="${courseInstance.id}" />
                     <!-- TODO The &nbsp; is a kludge find CSS way to justify image
                             and text so it looks o.k. -->
                     <a href="#" name="callListLink" class="telephone" title="PDF"
@@ -31,22 +31,22 @@
     </li>
     <li>
         <h3>
-            <g:link class="book_open" controller="program" action="lessons"
-            id="${programInstance.id}">Lessons</g:link>
+            <g:link class="book_open" controller="course" action="lessons"
+            id="${courseInstance.id}">Lessons</g:link>
         </h3>
         <ul>
-            <g:if test="${programInstance.lessons}">
+            <g:if test="${courseInstance.lessons}">
                 <li>
                     <g:link class="number_list" 
                             name="sortLessonsLink" 
                             action="sortLessons" 
-                            controller="program" 
-                            params="[ 'id' : programInstance.id ]">Sort Lessons</g:link>
+                            controller="course" 
+                            params="[ 'id' : courseInstance.id ]">Sort Lessons</g:link>
                 </li>
             </g:if>
             <li>
                 <g:link class="book_next" name="newLessonLink" action="create" controller="lesson" 
-                                        params="[ 'program.id' : programInstance.id ]">New Lesson</g:link>
+                                        params="[ 'course.id' : courseInstance.id ]">New Lesson</g:link>
             </li>
             <g:if test="${lessonInstance}">
                 <li>

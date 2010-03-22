@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <meta name="tabName" content="program" />
+        <meta name="tabName" content="course" />
         <title>Show Lesson</title>
     </head>
     <body>
@@ -23,7 +23,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Course:</td>
                             
-                            <td valign="top" class="value"><g:link controller="program" action="show" id="${lessonInstance?.program?.id}">${lessonInstance?.program?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="course" action="show" id="${lessonInstance?.course?.id}">${lessonInstance?.course?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                         <enrollio:textField model="${lessonInstance}" fieldName="sequence" />

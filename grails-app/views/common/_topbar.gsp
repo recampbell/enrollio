@@ -7,7 +7,7 @@
         </span>
         <br />
         <div class="enr-main-menu">
-            <g:link controller="program" action="list" 
+            <g:link controller="course" action="list" 
                 class="enr-top-menu-item">Courses</g:link>&nbsp;|&nbsp;
 
             <g:link controller="contact" action="list" 

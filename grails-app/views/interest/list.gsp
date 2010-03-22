@@ -4,8 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <g:if test="${programInstance}">
-            <title>Interest List for ${programInstance}</title>
+        <g:if test="${courseInstance}">
+            <title>Interest List for ${courseInstance}</title>
         </g:if>
         <g:else>
             <title>Interest List</title>
@@ -17,8 +17,8 @@
             <span class="menuButton"><g:link class="create" action="create">New Interest</g:link></span>
         </div>
         <div class="body">
-        <g:if test="${programInstance}">
-            <h1>Interest List for ${programInstance}<h1>
+        <g:if test="${courseInstance}">
+            <h1>Interest List for ${courseInstance}<h1>
         </g:if>
         <g:else>
             <h1>Interest List</h1>

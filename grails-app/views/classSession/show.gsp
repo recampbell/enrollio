@@ -24,10 +24,10 @@
                                     <td>
                                         Course:
                                     </td>
-                                    <td><g:link controller="program"
+                                    <td><g:link controller="course"
                                                 action="show"
-                                                id="${classSessionInstance.program.id}">
-                                        ${classSessionInstance.program.name}
+                                                id="${classSessionInstance.course.id}">
+                                        ${classSessionInstance.course.name}
                                                 </g:link></td>
                                 </tr>
                                 <tr>
