@@ -12,9 +12,9 @@ class MiscTagLibTests extends TagLibUnitTestCase {
     
     void testIsNotCurrentTab() {
         // pretend like a page we're viewing has a pageProperty
-        // called tabName, which returns 'program'
+        // called tabName, which returns 'course'
         MiscTagLib.metaClass.pageProperty = { tabName ->
-            return 'program'
+            return 'course'
         }
 
         // pretend like we're checking if the tab
@@ -27,28 +27,28 @@ class MiscTagLibTests extends TagLibUnitTestCase {
 
     void testIsCurrentTab() {
         // pretend like a page we're viewing has a pageProperty
-        // called tabName, which returns 'program'
+        // called tabName, which returns 'course'
         MiscTagLib.metaClass.pageProperty = { attr ->
-            return 'program'
+            return 'course'
         }
 
         // pretend like we're checking if we're on a
-        // page that should have a tabName == 'program'.
+        // page that should have a tabName == 'course'.
         // In this case, we should get back the word 'current'
-        tagLib.isCurrentTab(tabName:'program') 
+        tagLib.isCurrentTab(tabName:'course') 
         assertEquals 'current', tagLib.out.toString()
 
     }
 
      void testIsLoginTab() {
         // pretend like a page we're viewing has a pageProperty
-        // called tabName, which returns 'program'
+        // called tabName, which returns 'course'
         MiscTagLib.metaClass.pageProperty = { attr ->
             return 'login'
         }
 
         // pretend like we're checking if we're on a
-        // page that should have a tabName == 'program'.
+        // page that should have a tabName == 'course'.
         // In this case, we should get back the word 'current'
         tagLib.isLoginTab(tabName:'login')
         assertEquals 'logintab current', tagLib.out.toString()

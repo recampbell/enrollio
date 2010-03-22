@@ -100,7 +100,7 @@ class ProgramService {
         try {
             lesson = p.lessons?.last()
         } catch (Exception e) {
-            // for some reason, programs with no
+            // for some reason, courses with no
             // lessons get here in the functional tests,
             // but not integration tests.  See testNextAvailSequence -
             // it doesn't fail, but testNewLessonForProgram does. :-/

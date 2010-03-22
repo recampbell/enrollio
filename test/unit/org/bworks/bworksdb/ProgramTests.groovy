@@ -13,28 +13,28 @@ class ProgramTests extends GrailsUnitTestCase {
     void testConstraints_Green() {
         mockDomain(Program)
 
-        def program = new Program(name:"Lahey", description:"desc")
+        def course = new Program(name:"Lahey", description:"desc")
 
         // test
-        assertTrue program.validate()
+        assertTrue course.validate()
     }    
 
     void testConstraints_Red_NameBlank() {
         mockDomain(Program)
 
-        def program = new Program(name:"", description:"desc")
+        def course = new Program(name:"", description:"desc")
 
         // test
-        assertFalse program.validate()
+        assertFalse course.validate()
     }    
 
     void testConstraints_Red_NoDescription() {
         mockDomain(Program)
 
-        def program = new Program(name:"Lahey")
+        def course = new Program(name:"Lahey")
                 
         // test
-        assertFalse program.validate()
+        assertFalse course.validate()
     }    
 
 }

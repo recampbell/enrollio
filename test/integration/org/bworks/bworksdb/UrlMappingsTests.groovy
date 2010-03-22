@@ -43,26 +43,26 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
 
     void testProgramMappings() {
 
-        assertUrlMapping("/editProgram/1", controller:'program', action:'edit') {
+        assertUrlMapping("/editProgram/1", controller:'course', action:'edit') {
             id = "1"
         }
 
-        assertUrlMapping("/nextAvailableLessonDates", controller:'program', action:'nextAvailableLessonDates')
+        assertUrlMapping("/nextAvailableLessonDates", controller:'course', action:'nextAvailableLessonDates')
 
         // Ensure that /editProgram needs to be passed an ID
         shouldFail(IllegalArgumentException) {
-            assertUrlMapping('/editProgram', controller: 'program',
+            assertUrlMapping('/editProgram', controller: 'course',
                                                   action: 'edit')
         }
 
-        assertUrlMapping("/programLessons/1", controller:'program', action:'lessons') {
+        assertUrlMapping("/courseLessons/1", controller:'course', action:'lessons') {
             id = 1
         }
 
-        assertUrlMapping("/sortLessons/1", controller:'program', action:'sortLessons') {
+        assertUrlMapping("/sortLessons/1", controller:'course', action:'sortLessons') {
             id = "1"
         }
-        assertUrlMapping("/saveLessonSort", controller:'program', action:'saveLessonSort')
+        assertUrlMapping("/saveLessonSort", controller:'course', action:'saveLessonSort')
 
     }
 

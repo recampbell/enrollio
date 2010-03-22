@@ -5,7 +5,7 @@ import org.bworks.bworksdb.util.TestKeys
 
 class ProgramLessonIntegrationTests extends GroovyTestCase {
 
-    ProgramService programService
+    ProgramService courseService
 
     Program prog
 
@@ -54,7 +54,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
             map["lessonId_${lesson.id}"] = lesson.sequence * -1 ; map
         }
 
-        programService.sortLessons(prog, params)
+        courseService.sortLessons(prog, params)
         prog.refresh()
         // make sure that order of lessons is reversed from orig. order.
         def lessons = prog.lessons.collect { it.name }
@@ -64,13 +64,13 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
     }
 
     void testNextAvailSequence() {
-        def nas = programService.nextAvailSequence(prog)
+        def nas = courseService.nextAvailSequence(prog)
         assertEquals 400, nas
     }
 
     void testNextAvailSequenceWithNewProg() {
         def p = new Program(name:"Lahey", description:"desc")
-        def nas = programService.nextAvailSequence(p)
+        def nas = courseService.nextAvailSequence(p)
         assertEquals 100, nas
     }
 
@@ -85,7 +85,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
                         'lessonId_123' : '900',
                         'lessonId_17' : '10000'
         ]
-        def sortedLessonIds = programService.sortedLessonIdList(params)
+        def sortedLessonIds = courseService.sortedLessonIdList(params)
         assertEquals([32, 1, 69, 123, 42, 3, 17], sortedLessonIds)
     }
 }

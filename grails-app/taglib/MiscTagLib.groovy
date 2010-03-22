@@ -11,33 +11,33 @@ class MiscTagLib {
         }
     }
     
-    // Create a checkbox for all programs for this student
+    // Create a checkbox for all courses for this student
     // Checkboxes are named using an index 'idx' which corresponds to the student's
-    // index, so that the appropriate programs/interests can be assigned to the appropriate
+    // index, so that the appropriate courses/interests can be assigned to the appropriate
     // student.
-    // If student already has an active Interest in a program, the checkbox is checked.
+    // If student already has an active Interest in a course, the checkbox is checked.
     def interestCheckBoxes = { attrs ->
         def student = attrs['student']
         def defaultProgId
-        // Whether to check the default program
+        // Whether to check the default course
         def checkDefaultProg = attrs['checkDefaultProg']
         if (checkDefaultProg) {
             defaultProgId = configSettingService.getSetting('defaultInterestProgram')
             if (defaultProgId) defaultProgId = defaultProgId.value;
         }
-        def programs = Program.findAll()
+        def courses = Program.findAll()
         // def defaultProgram = configSettingService.getSetting('defaultInterestProgram')
-        programs.each { prog ->
+        courses.each { prog ->
             // Note: Need to search for active == true, also
             def checkBoxName = "interestInProgram_${prog.id}"
             def results = Interest.withCriteria {
                 eq("student", student)
-                eq("program", prog)
+                eq("course", prog)
                 eq("active", true)
             }
 
-            // If student already has an interest in this program, or if
-            // the caller wants us to check the default program automatically
+            // If student already has an interest in this course, or if
+            // the caller wants us to check the default course automatically
             def hasInterest = (results || 
                               (checkDefaultProg && (prog.id.toString() == defaultProgId)))
             def sCheckbox = """ 
@@ -96,8 +96,8 @@ class MiscTagLib {
          
          def links = []
          student.activeInterests().each { interest ->
-            links << g.link(controller:'program', action: 'show', id: interest.program.id, 
-                          interest.program.name)
+            links << g.link(controller:'course', action: 'show', id: interest.course.id, 
+                          interest.course.name)
          }
          
          out << links.join(',&nbsp;')

@@ -25,15 +25,15 @@ class StudentService {
 
         def selectedInterests = buildSelectedIds(interests)
         
-        Program.findAll().each { program ->
-            def interest = Interest.findWhere(student:student, program:program)
-            def isSelected = selectedInterests.contains(program.id.toString())
+        Program.findAll().each { course ->
+            def interest = Interest.findWhere(student:student, course:course)
+            def isSelected = selectedInterests.contains(course.id.toString())
 
             if (! interest) {
                 if (isSelected) {
                     def note = new Note().save()
-                    def newInterest = new Interest(active:true, student:student, program:program, note:note).save()        
-                    program.addToInterests(newInterest)
+                    def newInterest = new Interest(active:true, student:student, course:course, note:note).save()        
+                    course.addToInterests(newInterest)
                     student.addToInterests(newInterest)
                 }
             }

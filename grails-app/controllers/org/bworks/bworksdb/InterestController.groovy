@@ -11,10 +11,10 @@ class InterestController {
 
     def list = {
         def interestInstanceList
-        def programInstance
-        if (params.program) {
-            programInstance = Program.get(params.program.id)
-            interestInstanceList = Interest.findAllByProgram(programInstance)
+        def courseInstance
+        if (params.course) {
+            courseInstance = Program.get(params.course.id)
+            interestInstanceList = Interest.findAllByProgram(courseInstance)
         }
         else {
             interestInstanceList = Interest.list( params )
@@ -23,7 +23,7 @@ class InterestController {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ interestInstanceList : interestInstanceList ,
           interestInstanceTotal: interestInstanceList.count(),
-          programInstance : programInstance ]
+          courseInstance : courseInstance ]
     }
 
     def show = {

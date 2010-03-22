@@ -17,7 +17,7 @@ class InterestTests extends GrailsUnitTestCase {
         def p = new Program()
         
         // test
-        def interest = new Interest(active:false, student:s, program:p)
+        def interest = new Interest(active:false, student:s, course:p)
         
         assertTrue interest.validate()
     }    

@@ -125,7 +125,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
             it.checked == true
         }
 
-        // Should not be interested in mentorship program
+        // Should not be interested in mentorship course
         // Save mentoship checkbox for later use
         def mentorshipCheckbox = interestCheckboxen.find { 
             it.getParentNode().getTextContent() =~ /${ TestKeys.PROGRAM_MENTORSHIP }/ &&
@@ -142,7 +142,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
 
 
-        // We're interested in Mentorship program, so check it
+        // We're interested in Mentorship course, so check it
         // and Save!
         mentorshipCheckbox.click()
         form('editStudentForm') {

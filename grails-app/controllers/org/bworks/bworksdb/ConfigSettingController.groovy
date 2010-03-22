@@ -50,7 +50,7 @@ class ConfigSettingController {
     // TODO: Make this error message friendlier
     def generateTestPrograms = {
         testDataService.loadDefaultPrograms()
-        flash.message = "Test programs were successfully generated."
+        flash.message = "Test courses were successfully generated."
         redirect(uri:'/')
     }
 

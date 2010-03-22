@@ -13,7 +13,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     // method: gotoProgramShow
     //         utility method to do all the clicky stuff
-    //         to get to a program/show page
+    //         to get to a course/show page
     void gotoProgramShow() {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
@@ -32,10 +32,10 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         
 
     }
-    // ensure there's two links on program/show that create a new
-    // lesson for that program.
-    // Ensure that the default program of the new Lesson
-    // is same program whose 'New Lesson' link we clicked.
+    // ensure there's two links on course/show that create a new
+    // lesson for that course.
+    // Ensure that the default course of the new Lesson
+    // is same course whose 'New Lesson' link we clicked.
     void testNewLessonForProgram() {
         gotoAdultEACProgram()
         assertStatus 200
@@ -48,7 +48,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
             it.click()
             assertStatus 200
             // Make sure the Adult EAC prog is the def. prog
-            def p = byXPath('//select[@id="program.id"]/option[@selected="selected"]')
+            def p = byXPath('//select[@id="course.id"]/option[@selected="selected"]')
             assertEquals TestKeys.PROGRAM_ADULT_AEC, p.getText()
         }
     }
@@ -91,7 +91,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
         assertStatus 200
-        assertNotNull byName('programMenu')
+        assertNotNull byName('courseMenu')
 
     }
 
@@ -144,13 +144,13 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         loginAs('bob', 'bobbobbob0')
         click("Programs")
         assertStatus 200
-        // find first a>href that starts with programLink
+        // find first a>href that starts with courseLink
         // -- it's a link to a Program.
-        def progLink = byXPath("//a[starts-with(@name,'programLink')]")
+        def progLink = byXPath("//a[starts-with(@name,'courseLink')]")
         assertNotNull progLink
         // if we get > 1 link back, we have to pick 1st one.
         progLink = progLink instanceof ArrayList ? progLink[0] : progLink
-        // click the link to go to program/show
+        // click the link to go to course/show
         progLink.click()
         assertStatus 200
         def callListLink = byName('callListLink')

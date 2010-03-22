@@ -86,15 +86,15 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 200
         assertTitleContains 'Edit Lesson:'
         assertContentContains 'Edit Lesson:'
-        // Should belong to kids Earn-A-Computer program
+        // Should belong to kids Earn-A-Computer course
         assertContentContains TestKeys.PROGRAM_KIDS_AEC
         form('editLessonForm') {
             name = 'This is a Lesson in Politics'
             description = 'You ain\'t seen nothin\' yet'
             // Select Mentorship Program
-            // TODO: See if we can select program by name, like the
+            // TODO: See if we can select course by name, like the
             // user would.
-            selects['program.id'].select "3"
+            selects['course.id'].select "3"
             sequence = 12345
             click ('Update')
         }

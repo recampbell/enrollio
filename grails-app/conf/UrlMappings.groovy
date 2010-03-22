@@ -59,18 +59,18 @@ class UrlMappings {
         // jasper controller
         '/jasper/index'(controller:'jasper', action:'index')
 
-		// program controller
-		'/programs'(controller: 'program', action: 'list')
-        '/program/callList'(controller: 'program', action: 'callList')
-		"/program/$id"(controller: 'program', action: 'show')
-		'/createProgram'(controller: 'program', action: 'create')
-		'/saveProgram'(controller: 'program', action: 'save')
-		"/editProgram/$id"(controller: 'program', action: 'edit')
-		"/updateProgram"(controller: 'program', action: 'update')
-		"/nextAvailableLessonDates"(controller: 'program', action: 'nextAvailableLessonDates')
-		"/programLessons/$id"(controller: 'program', action: 'lessons')
-        "/sortLessons/$id"(controller: 'program', action: 'sortLessons')
-        "/saveLessonSort"(controller: 'program', action: 'saveLessonSort')
+		// course controller
+		'/courses'(controller: 'course', action: 'list')
+        '/course/callList'(controller: 'course', action: 'callList')
+		"/course/$id"(controller: 'course', action: 'show')
+		'/createCourse'(controller: 'course', action: 'create')
+		'/saveProgram'(controller: 'course', action: 'save')
+		"/editProgram/$id"(controller: 'course', action: 'edit')
+		"/updateProgram"(controller: 'course', action: 'update')
+		"/nextAvailableLessonDates"(controller: 'course', action: 'nextAvailableLessonDates')
+		"/courseLessons/$id"(controller: 'course', action: 'lessons')
+        "/sortLessons/$id"(controller: 'course', action: 'sortLessons')
+        "/saveLessonSort"(controller: 'course', action: 'saveLessonSort')
 
 		// shiroUser controller
 		'/createUser'(controller: 'shiroUser', action: 'create')

@@ -11,14 +11,14 @@ class TestDataService {
 
     boolean transactional = true
 
-    def programService
+    def courseService
     def config = ConfigurationHolder.config
 
 
         
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
-        // get programs
+        // get courses
         loadDefaultPrograms()
                 
         // build contact, student
@@ -73,15 +73,15 @@ class TestDataService {
 
     }
 
-    def addInterest(student, program, isActive) {
-        // add interest to program and student
+    def addInterest(student, course, isActive) {
+        // add interest to course and student
         def note = new Note(text:TestKeys.NOTE).save()
-        def interest = new Interest(active:isActive, student:student, program:program, note:note).save()        
-        program.addToInterests(interest)
+        def interest = new Interest(active:isActive, student:student, course:course, note:note).save()        
+        course.addToInterests(interest)
         student.addToInterests(interest)        
 
         student.save(flush:true)
-        program.save(flush:true)
+        course.save(flush:true)
     }
     
     // Git some test data in these here parts
@@ -98,7 +98,7 @@ class TestDataService {
     } 
 
     def loadDummyClassSessions() {
-        // define start dates for the various test programs in a hash
+        // define start dates for the various test courses in a hash
         // for easy assignment
         def testProgs = [:]
 
@@ -114,11 +114,11 @@ class TestDataService {
         testProgs.each { key, testProg ->
             def p = Program.findByName(key)
             def classSession = new ClassSession(name:testProg.sessionName,
-                                      program:p,
+                                      course:p,
                                       startDate: testProg.date).save()
             
             def nextLessonDates = 
-                programService.nextAvailableLessonDates(classSession.program, new Date())
+                courseService.nextAvailableLessonDates(classSession.course, new Date())
 
             nextLessonDates.each { lessonDate ->
                 classSession.addToLessonDates(lessonDate)
@@ -200,7 +200,7 @@ class TestDataService {
             if (!it.desc) { it.desc = it.name + "\n\nA description of " + it.name }
             p0.addToLessons(new Lesson(description:it.desc,
                                        name:it.name,
-                                       sequence:programService.nextAvailSequence(p0)))
+                                       sequence:courseService.nextAvailSequence(p0)))
         }
             
         new Program(description:"Byteworks Adult Earn-A-Computer Program", name:TestKeys.PROGRAM_ADULT_AEC).save()
@@ -209,7 +209,7 @@ class TestDataService {
         def s0 = new ConfigSetting(configKey:'defaultInterestProgram',
                                    value:1,
                                    isDefault: true,
-                                   description:'When entering Students, this program will be the default program they\'re interested in').save()
+                                   description:'When entering Students, this course will be the default course they\'re interested in').save()
     }
 
     def loadDummyContacts(numContacts = 100) {
@@ -220,7 +220,7 @@ class TestDataService {
     }
  
     // Method used to create a dummy contact, student and an interest
-    // in a program
+    // in a course
     def loadDummyContactAndStudents() {
         def seed = new Random()
         def randAddress = seed.nextInt(1000) 
@@ -261,17 +261,17 @@ class TestDataService {
             c0.addToStudents(stud)
             c0.save(flush:true)
            
-            // Add a random amount of interests to random programs :-)
-            def programs = Program.findAll().collect { it.id }
-            def availProgs = programs.clone()
+            // Add a random amount of interests to random courses :-)
+            def courses = Program.findAll().collect { it.id }
+            def availProgs = courses.clone()
             // Get 0 .. numPrograms -- some students might not have interests
-            def numProgsForStudent = seed.nextInt(programs.size() + 1)
+            def numProgsForStudent = seed.nextInt(courses.size() + 1)
             numProgsForStudent.times {
                 
                 def randomProg = seed.nextInt(availProgs.size())
                
                 def prog = availProgs.remove(randomProg)
-                stud.addToInterests(new Interest(program:Program.get(prog), active:true))
+                stud.addToInterests(new Interest(course:Program.get(prog), active:true))
             }
         }
  

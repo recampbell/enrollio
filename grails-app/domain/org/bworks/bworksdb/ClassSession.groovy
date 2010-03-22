@@ -3,7 +3,7 @@ package org.bworks.bworksdb
 class ClassSession {
     Date startDate
     String name
-    Program program
+    Program course
     static belongsTo = [ Program ] 
     static hasMany = [ lessonDates:LessonDate, enrollments:Enrollment ]
 
@@ -13,6 +13,6 @@ class ClassSession {
     }
 
     String toString() {
-        program.name + ", " + name
+        course.name + ", " + name
     }
 }

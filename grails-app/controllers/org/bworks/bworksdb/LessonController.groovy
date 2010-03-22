@@ -4,7 +4,7 @@ package org.bworks.bworksdb
 
 class LessonController {
 
-    def programService
+    def courseService
     
     def index = { redirect(action:list,params:params) }
 
@@ -13,7 +13,7 @@ class LessonController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ programInstanceList : Program.list(), lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
+        [ courseInstanceList : Program.list(), lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
     }
 
     def show = {
@@ -85,15 +85,15 @@ class LessonController {
     }
 
     def create = {
-        // If no program is specified, then pick the first Program in the list.
+        // If no course is specified, then pick the first Program in the list.
         // Also, link back to lesson/list if user Cancels
         def cancelLink
-        if (!params.program?.id) {
-            params.program = Program.list(maxResults:1)[0]
+        if (!params.course?.id) {
+            params.course = Program.list(maxResults:1)[0]
             cancelLink = g.createLink(action:'list')
         }
-        def p = Program.get(params.program.id)
-        def newSeq = programService.nextAvailSequence(p)
+        def p = Program.get(params.course.id)
+        def newSeq = courseService.nextAvailSequence(p)
         def lessonInstance = new Lesson(sequence:newSeq)
         lessonInstance.properties = params
         return ['lessonInstance':lessonInstance, cancelLink : cancelLink ]
@@ -101,16 +101,16 @@ class LessonController {
 
     def save = {
         def lessonInstance = new Lesson(params)
-        def programInstance = Program.get(params.program.id)
+        def courseInstance = Program.get(params.course.id)
 
         if(!lessonInstance.hasErrors() && lessonInstance.save()) {
-            programInstance.addToLessons(lessonInstance)
+            courseInstance.addToLessons(lessonInstance)
             def newId = lessonInstance.id
             params["lessonId_${newId}"] = params.remove('lessonId_NEW_KID_ON_THE_BLOCK')
-            programService.sortLessons(programInstance, params)
+            courseService.sortLessons(courseInstance, params)
 
             flash.message = "Lesson \"${lessonInstance.name}\" created"
-            redirect(controller:'program', action:'lessons' ,id:programInstance.id)
+            redirect(controller:'course', action:'lessons' ,id:courseInstance.id)
         }
         else {
             render(view:'create',model:[lessonInstance:lessonInstance])

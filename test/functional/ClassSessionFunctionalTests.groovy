@@ -61,7 +61,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         click(TestKeys.SESSION_ADULT_NAME)
         // Check awesome date format
         assertContentContains TestKeys.SESSION_ADULT_DATE_FORMATTED
-        // Ensure that STUDENT is enrolled in this program.
+        // Ensure that STUDENT is enrolled in this course.
         assertContentContains TestKeys.STUDENT
     }
 
@@ -77,7 +77,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertContentContains 'Presentations'
         assertContentContains 'Email and WWW'
         assertContentContains 'Graduation'
-        // Ensure that STUDENT2 is enrolled in this program
+        // Ensure that STUDENT2 is enrolled in this course
         assertContentContains TestKeys.STUDENT2
     }
 

@@ -41,8 +41,8 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
         // test
         def model = controller.list()
         
-        assertEquals 2, model.programInstanceList.size()
-        assertEquals 2, model.programInstanceTotal
+        assertEquals 2, model.courseInstanceList.size()
+        assertEquals 2, model.courseInstanceTotal
     }
 
     void testList_MoreThanMax() {
@@ -52,8 +52,8 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
         // test
         def model = controller.list()
         
-        assertEquals 2, model.programInstanceList.size()
-        assertEquals 3, model.programInstanceTotal
+        assertEquals 2, model.courseInstanceList.size()
+        assertEquals 3, model.courseInstanceTotal
     }
     
     void testShow_Found() {
@@ -63,7 +63,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
         // test
         def model = controller.show()
         
-        assertEquals 88, model.programInstance.id
+        assertEquals 88, model.courseInstance.id
     }
     
     void testShow_NotFound() {

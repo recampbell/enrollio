@@ -2,7 +2,7 @@ package org.bworks.bworksdb
 
 class ClassSessionController {
 
-    def programService
+    def courseService
     def classSessionService
 
     def index = { redirect(action:list,params:params) }
@@ -19,8 +19,8 @@ class ClassSessionController {
 
     def editEnrollments = {
         def classSession = ClassSession.get(params.id)
-        // TODO if programId not provided, flash message and redirect back
-        def interests = Interest.findAllByProgram(classSession.program).findAll {
+        // TODO if courseId not provided, flash message and redirect back
+        def interests = Interest.findAllByProgram(classSession.course).findAll {
             it.active == true
         }
         [ interests : interests , classSession:classSession ]
@@ -107,11 +107,11 @@ class ClassSessionController {
     def create = {
         def classSessionInstance = new ClassSession()
         classSessionInstance.properties = params
-        if (!classSessionInstance.program) {
-            classSessionInstance.program = Program.list([sort:'id', max:1, order:'asc'])[0]
+        if (!classSessionInstance.course) {
+            classSessionInstance.course = Program.list([sort:'id', max:1, order:'asc'])[0]
         }
         
-        def nac = programService.nextAvailableLessonDates(classSessionInstance.program, new Date())
+        def nac = courseService.nextAvailableLessonDates(classSessionInstance.course, new Date())
         nac.each {
             classSessionInstance.addToLessonDates(it)
         }

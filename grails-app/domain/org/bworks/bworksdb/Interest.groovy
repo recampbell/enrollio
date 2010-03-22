@@ -5,7 +5,7 @@ class Interest {
     Boolean active
     Note note
     Student student
-    Program program
+    Program course
     Date dateCreated
     Date lastUpdated
 

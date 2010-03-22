@@ -56,7 +56,7 @@ class Student {
         def progs = []
         interests.each { 
             if (it.active) {
-                progs << it.program.name 
+                progs << it.course.name 
             }
         }
         return progs ? progs.join(", ") : ''

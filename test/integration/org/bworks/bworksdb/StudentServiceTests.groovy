@@ -14,8 +14,8 @@ class StudentServiceTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void assertInterestSelection(student, programName, isSelected) {
-        def result = student.interests.find { it.program.name == programName }
+    void assertInterestSelection(student, courseName, isSelected) {
+        def result = student.interests.find { it.course.name == courseName }
         assertEquals isSelected, result.active        
     }
     
@@ -63,7 +63,7 @@ class StudentServiceTests extends GrailsUnitTestCase {
     
     void testSaveInterests_SelectNone() {
         // see TestDataService for preloaded data
-        def program = Program.findByName(TestKeys.PROGRAM_KIDS_AEC)
+        def course = Program.findByName(TestKeys.PROGRAM_KIDS_AEC)
         def student = Student.findByLastName(TestKeys.STUDENT)
         
         // test
