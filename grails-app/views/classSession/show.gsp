@@ -22,7 +22,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        Program:
+                                        Course:
                                     </td>
                                     <td><g:link controller="program"
                                                 action="show"

@@ -8,7 +8,7 @@
         </h3>
         <ul>
             <li>
-                <g:link class="module_edit" name="editProgramLink" controller="program"
+                <g:link class="module_edit" name="editCourseLink" controller="program"
                 action="edit" id="${programInstance.id}">Edit</g:link>
             </li>
             <li>

@@ -1,12 +1,12 @@
 <ul name="programMenu">
     <li>
         <h3>
-            <g:link class="modules" controller="program" action="list">Programs</g:link>
+            <g:link class="modules" controller="program" action="list">Courses</g:link>
         </h3>
         <ul>
             <li>
                 <g:link url="${[controller:'program', action:'create']}"
-                         id="newProgramLink"
+                         id="newCourseLink"
                       class="module_add">&nbsp;New</g:link>
             </li>
             <g:if test="${programInstance}">

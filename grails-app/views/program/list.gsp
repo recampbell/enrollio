@@ -3,14 +3,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Programs</title>
+        <title>Courses</title>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">
-                            <span>Programs</span>
+                            <span>Courses</span>
                         <br />
                         </h3>
                         <table>

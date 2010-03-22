@@ -21,7 +21,7 @@
                         <enrollio:textField model="${lessonInstance}" fieldName="description" />
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Program:</td>
+                            <td valign="top" class="name">Course:</td>
                             
                             <td valign="top" class="value"><g:link controller="program" action="show" id="${lessonInstance?.program?.id}">${lessonInstance?.program?.encodeAsHTML()}</g:link></td>
                             

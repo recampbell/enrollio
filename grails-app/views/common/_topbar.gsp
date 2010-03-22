@@ -8,7 +8,7 @@
         <br />
         <div class="enr-main-menu">
             <g:link controller="program" action="list" 
-                class="enr-top-menu-item">Programs</g:link>&nbsp;|&nbsp;
+                class="enr-top-menu-item">Courses</g:link>&nbsp;|&nbsp;
 
             <g:link controller="contact" action="list" 
                 class="enr-top-menu-item">Contacts</g:link>&nbsp;|&nbsp;

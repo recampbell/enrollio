@@ -1,4 +1,4 @@
-<%@ page import="org.bworks.bworksdb.ClassSession;org.bworks.bworksdb.Program" %>
+<%@ page import="org.bworks.bworksdb.ClassSession;org.bworks.bworksdb.Course" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -76,12 +76,12 @@
                             <tbody>
                                 <tr class="prop">
                                     <td valign="top" class="name">
-                                        <label for="name">Program:</label>
+                                        <label for="name">Course:</label>
                                     </td>
                                     <td valign="top"
                                     class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
                 <g:select id="programId" name="program.id"
-          from="${Program.list()}"
+          from="${Course.list()}"
           value="${classSessionInstance?.program.id}"
           optionKey="id" />
                                     </td>

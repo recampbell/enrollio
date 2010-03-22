@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Program: ${programInstance} </title>
+        <title>Course: ${programInstance} </title>
     </head>
     <body>
         <div id="wrapper">
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="individualProgramMenu" />
+                <g:render template="individualCourseMenu" />
             </div>
         </div>
     </body>

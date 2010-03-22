@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="body">
-            <h1>Call List for Program: DUH!</h1>
+            <h1>Call List for Course: DUH!</h1>
             <div class="list">
                     <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                 <table>

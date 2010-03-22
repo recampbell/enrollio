@@ -1,10 +1,10 @@
-<%@ page import="org.bworks.bworksdb.Program" %>
+<%@ page import="org.bworks.bworksdb.Course" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Edit Program: ${programInstance}</title>
+        <title>Edit Course: ${programInstance}</title>
     </head>
     <body>
          <div id="wrapper">
@@ -15,8 +15,8 @@
                     </div>
                 </g:hasErrors>
                 <div class="box">
-                    <h3 id="adduser">Edit Program: ${programInstance}</h3>
-                    <g:form action="update" name="editProgramForm" method="post">
+                    <h3 id="adduser">Edit Course: ${programInstance}</h3>
+                    <g:form action="update" name="editCourseForm" method="post">
                         <label for="name">Name : </label> 
                         <input name="id" id="id" type="hidden" 
                             value="${programInstance.id}" />

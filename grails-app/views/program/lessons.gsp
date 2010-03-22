@@ -15,7 +15,7 @@
             model="[programInstance:programInstance]" />
         </div>
         <div id="sidebar">
-            <g:render template="individualProgramMenu" />
+            <g:render template="individualCourseMenu" />
         </div>
     </body>
 </html>

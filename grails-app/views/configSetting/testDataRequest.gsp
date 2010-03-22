@@ -33,13 +33,13 @@
                 </span>
             </div>
         </g:form>
-        <g:form action="generateTestPrograms" method="post">
+        <g:form action="generateTestCourses" method="post">
             <div class="dialog">
-                <h1>Create Default Programs (EAC, Adult, Mentorship)</h1>
+                <h1>Create Default Courses (EAC, Adult, Mentorship)</h1>
             </div>
             <div class="buttons">
                 <span class="button">
-                    <input class="save" type="submit" value="Create Default Programs" />
+                    <input class="save" type="submit" value="Create Default Courses" />
                 </span>
             </div>
         </g:form>

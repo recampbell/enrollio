@@ -1,11 +1,11 @@
 
-<%@ page import="org.bworks.bworksdb.Program" %>
+<%@ page import="org.bworks.bworksdb.Course" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="program" />
-        <title>Create Program:</title>
+        <title>Create Course:</title>
     </head>
     <body>
          <div id="wrapper">
@@ -16,8 +16,8 @@
                     </div>
                 </g:hasErrors>
                 <div class="box">
-                    <h3 id="adduser">Create Program</h3>
-                    <g:form action="save" name="newProgramForm" method="post">
+                    <h3 id="adduser">Create Course</h3>
+                    <g:form action="save" name="newCourseForm" method="post">
                         <label for="name">Name : </label> 
                         <input name="id" id="id" type="hidden" 
                             value="${programInstance.id}" />
