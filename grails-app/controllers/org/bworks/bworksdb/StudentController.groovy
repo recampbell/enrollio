@@ -79,7 +79,7 @@ class StudentController {
             }
             studentInstance.properties = params
             if(!studentInstance.hasErrors() && studentInstance.save()) {
-                studentService.saveInterests(studentInstance, params['interestInProgram'])
+                studentService.saveInterests(studentInstance, params['interestInCourse'])
                 studentInstance.save()
                 flash.message = "Student ${studentInstance} updated"
                 redirect(action:show,id:studentInstance.id)

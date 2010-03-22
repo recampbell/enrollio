@@ -3,7 +3,7 @@ package org.bworks.bworksdb
 import grails.test.*
 import org.bworks.bworksdb.util.TestKeys
 
-class ProgramControllerIntegrationTests extends grails.test.ControllerUnitTestCase {
+class CourseControllerIntegrationTests extends grails.test.ControllerUnitTestCase {
     def courseService
     
     protected void setUp() {
@@ -17,7 +17,7 @@ class ProgramControllerIntegrationTests extends grails.test.ControllerUnitTestCa
     void testCallListReportData() {
          controller.courseService = courseService 
 
-         def course = Program.findByName(TestKeys.PROGRAM_ADULT_AEC)
+         def course = Course.findByName(TestKeys.PROGRAM_ADULT_AEC)
          assertEquals TestKeys.PROGRAM_ADULT_AEC, course.name
        
          def student = Student.findByLastName(TestKeys.STUDENT)

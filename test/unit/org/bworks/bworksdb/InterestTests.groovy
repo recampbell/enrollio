@@ -14,7 +14,7 @@ class InterestTests extends GrailsUnitTestCase {
         mockDomain(Interest)
         
         def s = new Student()
-        def p = new Program()
+        def p = new Course()
         
         // test
         def interest = new Interest(active:false, student:s, course:p)

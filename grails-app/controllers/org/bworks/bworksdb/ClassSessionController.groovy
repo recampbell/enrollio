@@ -20,7 +20,7 @@ class ClassSessionController {
     def editEnrollments = {
         def classSession = ClassSession.get(params.id)
         // TODO if courseId not provided, flash message and redirect back
-        def interests = Interest.findAllByProgram(classSession.course).findAll {
+        def interests = Interest.findAllByCourse(classSession.course).findAll {
             it.active == true
         }
         [ interests : interests , classSession:classSession ]
@@ -108,7 +108,7 @@ class ClassSessionController {
         def classSessionInstance = new ClassSession()
         classSessionInstance.properties = params
         if (!classSessionInstance.course) {
-            classSessionInstance.course = Program.list([sort:'id', max:1, order:'asc'])[0]
+            classSessionInstance.course = Course.list([sort:'id', max:1, order:'asc'])[0]
         }
         
         def nac = courseService.nextAvailableLessonDates(classSessionInstance.course, new Date())

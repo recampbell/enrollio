@@ -22,7 +22,7 @@ class StudentServiceTests extends GrailsUnitTestCase {
     void testSaveInterests_NewInterest() {
         // see TestDataService for preloaded data
         def student = Student.findByLastName(TestKeys.STUDENT)
-        def selection = Program.findByName(TestKeys.PROGRAM_MENTORSHIP).id.toString()
+        def selection = Course.findByName(TestKeys.PROGRAM_MENTORSHIP).id.toString()
         
         // test
         studentService.saveInterests(student, selection)
@@ -35,7 +35,7 @@ class StudentServiceTests extends GrailsUnitTestCase {
     void testSaveInterests_SelectInterest() {
         // see TestDataService for preloaded data
         def student = Student.findByLastName(TestKeys.STUDENT)
-        def selection = Program.findByName(TestKeys.PROGRAM_KIDS_AEC).id.toString()
+        def selection = Course.findByName(TestKeys.PROGRAM_KIDS_AEC).id.toString()
         
         // test
         studentService.saveInterests(student, selection)
@@ -49,9 +49,9 @@ class StudentServiceTests extends GrailsUnitTestCase {
         def student = Student.findByLastName(TestKeys.STUDENT)
         def selections = []
         
-        selections << Program.findByName(TestKeys.PROGRAM_KIDS_AEC).id.toString()
-        selections << Program.findByName(TestKeys.PROGRAM_ADULT_AEC).id.toString()
-        selections << Program.findByName(TestKeys.PROGRAM_MENTORSHIP).id.toString()
+        selections << Course.findByName(TestKeys.PROGRAM_KIDS_AEC).id.toString()
+        selections << Course.findByName(TestKeys.PROGRAM_ADULT_AEC).id.toString()
+        selections << Course.findByName(TestKeys.PROGRAM_MENTORSHIP).id.toString()
         
         // test
         studentService.saveInterests(student, selections)
@@ -63,7 +63,7 @@ class StudentServiceTests extends GrailsUnitTestCase {
     
     void testSaveInterests_SelectNone() {
         // see TestDataService for preloaded data
-        def course = Program.findByName(TestKeys.PROGRAM_KIDS_AEC)
+        def course = Course.findByName(TestKeys.PROGRAM_KIDS_AEC)
         def student = Student.findByLastName(TestKeys.STUDENT)
         
         // test

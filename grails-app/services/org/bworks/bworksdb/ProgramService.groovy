@@ -1,15 +1,15 @@
 package org.bworks.bworksdb
 import grails.test.*
 
-class ProgramService {
+class CourseService {
 
     boolean transactional = true
 
     def sequenceIncr = 100
 
-    // Go through Programs's Lessons, and create dummy
+    // Go through Courses's Lessons, and create dummy
     // LessonDates, starting with startDate
-    def nextAvailableLessonDates(Program p, Date startDate) {
+    def nextAvailableLessonDates(Course p, Date startDate) {
         def d = startDate
         def proposedClasses = []
         p.lessons.each {
@@ -21,22 +21,22 @@ class ProgramService {
     }
 
     def getCallList(id) {
-        def prog = Program.get(id)
+        def prog = Course.get(id)
         if (!prog) return null;
         def interests = prog.interests.findAll { it.active == true }
         def students = interests.collect { it.student }
         def contacts = students.collect { it.contact }
     }
 
-    def activeInterests(Program p) {
-        return Interest.findAllByProgramAndActive(p, true)
+    def activeInterests(Course p) {
+        return Interest.findAllByCourseAndActive(p, true)
     }
 
 
     // Utility method to make sure we have lesson sequences
     // in a standard order (separated by sequenceIncr, so that we can easily
     // add new Lessons between other lessons w/o trampling existing sequences)
-    def sequenceLessons(Program p) {
+    def sequenceLessons(Course p) {
         p.refresh()
         def lessons = p.lessons.collect { it }
         def newSequence = sequenceIncr
@@ -49,7 +49,7 @@ class ProgramService {
         }
     }
 
-    def sortLessons(Program p, params) {
+    def sortLessons(Course p, params) {
         def seq = sequenceIncr
         def lessonIdList = sortedLessonIdList(params)
         lessonIdList.each {
@@ -95,7 +95,7 @@ class ProgramService {
         
     }
 
-    def nextAvailSequence(Program p) {
+    def nextAvailSequence(Course p) {
         def lesson
         try {
             lesson = p.lessons?.last()
@@ -103,7 +103,7 @@ class ProgramService {
             // for some reason, courses with no
             // lessons get here in the functional tests,
             // but not integration tests.  See testNextAvailSequence -
-            // it doesn't fail, but testNewLessonForProgram does. :-/
+            // it doesn't fail, but testNewLessonForCourse does. :-/
         }
         return lesson ? lesson.sequence + sequenceIncr : sequenceIncr
     }

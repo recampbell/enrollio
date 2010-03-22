@@ -1,5 +1,5 @@
 import org.bworks.bworksdb.util.TestKeys
-import org.bworks.bworksdb.Program
+import org.bworks.bworksdb.Course
 
 // Note: BootStrap adds methods to FunctionalTestCase
 
@@ -9,14 +9,14 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     void gotoLessonShow() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         click(TestKeys.PROGRAM_KIDS_AEC)
         click(TestKeys.LESSON_KIDS_AEC_INTRO)
     }
 
     void testLessonShow() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         assertStatus 200
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertStatus 200
@@ -29,7 +29,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     void testLessonNew() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         assertStatus 200
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertStatus 200
@@ -47,7 +47,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains 'created'
         assertContentContains 'New Foo Lesson'
         // Now, make sure our brand-new lesson belongs to the PROGRAM_KIDS_EAC
-        click('Programs')
+        click('Courses')
         assertStatus 200
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertStatus 200
@@ -91,7 +91,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         form('editLessonForm') {
             name = 'This is a Lesson in Politics'
             description = 'You ain\'t seen nothin\' yet'
-            // Select Mentorship Program
+            // Select Mentorship Course
             // TODO: See if we can select course by name, like the
             // user would.
             selects['course.id'].select "3"

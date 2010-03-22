@@ -1,5 +1,5 @@
 import org.bworks.bworksdb.util.TestKeys
-import org.bworks.bworksdb.Program
+import org.bworks.bworksdb.Course
 class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     def testDataService
@@ -20,7 +20,7 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
     // for the lesson names, and not fish it from the HTML pages
     void testNewLessonWithSort() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         click(TestKeys.PROGRAM_KIDS_AEC)
         click('New Lesson')
         assertStatus 200
@@ -64,11 +64,11 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
 
     void testLessonSortLink() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertContentContains('Sort Lessons')
 
-        click('Programs')
+        click('Courses')
         click(TestKeys.PROGRAM_ADULT_AEC)
         shouldFail() {
             assertContentContains('Sort Lessons')
@@ -77,7 +77,7 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
 
     void testLessonSortPage() {
         loginAs('bob', 'bobbobbob0')
-        click('Programs')
+        click('Courses')
         click(TestKeys.PROGRAM_KIDS_AEC)
         click('Sort Lessons')
         assertStatus 200

@@ -72,7 +72,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertStatus 200
         click(TestKeys.SESSION_KIDS_NAME)
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains 'Scratch Programming' 
+        assertContentContains 'Scratch Courseming' 
         assertContentContains 'Word Processing'
         assertContentContains 'Presentations'
         assertContentContains 'Email and WWW'
@@ -88,7 +88,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         gotoClassSessionPage(TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains 'Scratch Programming' 
+        assertContentContains 'Scratch Courseming' 
         // Click on grad list, and expect a PDF
         // NOTE: For some reason (probably javascript), the tests
         // will *not* follow the redirect, so you have to manually call followRedirect()

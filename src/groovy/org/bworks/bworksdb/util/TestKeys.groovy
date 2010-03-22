@@ -10,7 +10,7 @@ class TestKeys {
     
     static public final String PROGRAM_ADULT_AEC = 'Adult EAC'
     static public final String PROGRAM_KIDS_AEC = "Children's EAC" 
-    static public final String PROGRAM_MENTORSHIP = "Mentorship Program"
+    static public final String PROGRAM_MENTORSHIP = "Mentorship Course"
     
     static public final String CONTACT_EMAIL = 'barb.lahey@gmail.com'
     static public final String CONTACT1_FIRST_NAME = 'Barb'

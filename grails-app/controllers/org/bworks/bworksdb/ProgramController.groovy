@@ -1,6 +1,6 @@
 package org.bworks.bworksdb
 
-class ProgramController {
+class CourseController {
     
     def index = { redirect(action:list,params:params) }
 
@@ -17,14 +17,14 @@ class ProgramController {
     }
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ courseInstanceList: Program.list( params ), courseInstanceTotal: Program.count() ]
+        [ courseInstanceList: Course.list( params ), courseInstanceTotal: Course.count() ]
     }
 
     def saveLessonSort = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
 
         if(!courseInstance) {
-            flash.message = "Program not found with id ${params.id}"
+            flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
         else {
@@ -38,44 +38,44 @@ class ProgramController {
     }
 
     def sortLessons = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
         [ courseInstance : courseInstance ]
     }
 
     def show = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
 
         if(!courseInstance) {
-            flash.message = "Program not found with id ${params.id}"
+            flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
         else { return [ courseInstance : courseInstance ] }
     }
 
     def delete = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
         if(courseInstance) {
             try {
                 courseInstance.delete(flush:true)
-                flash.message = "Program ${params.id} deleted"
+                flash.message = "Course ${params.id} deleted"
                 redirect(action:list)
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "Program ${params.id} could not be deleted"
+                flash.message = "Course ${params.id} could not be deleted"
                 redirect(action:show,id:params.id)
             }
         }
         else {
-            flash.message = "Program not found with id ${params.id}"
+            flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
     }
 
     def edit = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
 
         if(!courseInstance) {
-            flash.message = "Program not found with id ${params.id}"
+            flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
         else {
@@ -84,20 +84,20 @@ class ProgramController {
     }
 
     def update = {
-        def courseInstance = Program.get( params.id )
+        def courseInstance = Course.get( params.id )
         if(courseInstance) {
             if(params.version) {
                 def version = params.version.toLong()
                 if(courseInstance.version > version) {
                     
-                    courseInstance.errors.rejectValue("version", "course.optimistic.locking.failure", "Another user has updated this Program while you were editing.")
+                    courseInstance.errors.rejectValue("version", "course.optimistic.locking.failure", "Another user has updated this Course while you were editing.")
                     render(view:'edit',model:[courseInstance:courseInstance])
                     return
                 }
             }
             courseInstance.properties = params
             if(!courseInstance.hasErrors() && courseInstance.save()) {
-                flash.message = "Program ${params.id} updated"
+                flash.message = "Course ${params.id} updated"
                 redirect(action:show,id:courseInstance.id)
             }
             else {
@@ -105,21 +105,21 @@ class ProgramController {
             }
         }
         else {
-            flash.message = "Program not found with id ${params.id}"
+            flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
     }
 
     def create = {
-        def courseInstance = new Program()
+        def courseInstance = new Course()
         courseInstance.properties = params
         return ['courseInstance':courseInstance]
     }
 
     def save = {
-        def courseInstance = new Program(params)
+        def courseInstance = new Course(params)
         if(!courseInstance.hasErrors() && courseInstance.save()) {
-            flash.message = "Program ${courseInstance.id} created"
+            flash.message = "Course ${courseInstance.id} created"
             redirect(action:show,id:courseInstance.id)
         }
         else {
@@ -136,14 +136,14 @@ class ProgramController {
     }
 
     def lessons = {
-        def courseInstance = Program.get(params.id)
+        def courseInstance = Course.get(params.id)
         [ 'courseInstance' : courseInstance ]
     }
 
     // Fetches new lesson dates from course specified in params.id
     // starting at params.startDate or today
     def nextAvailableLessonDates = {
-        def p = Program.get(params.id)
+        def p = Course.get(params.id)
         def startDate = new Date()
         if (params.startDate) {
             startDate = Date.parse('MM/dd/yyyy', params.startDate)
@@ -179,7 +179,7 @@ class ProgramController {
     }
     
     def callListReportData = {
-        def courseInstance = Program.get(params.id)
+        def courseInstance = Course.get(params.id)
         params['PROGRAM_NAME'] = courseInstance.name
 
         // Default Graduation Date to date of last class

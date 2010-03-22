@@ -13,8 +13,8 @@ class InterestController {
         def interestInstanceList
         def courseInstance
         if (params.course) {
-            courseInstance = Program.get(params.course.id)
-            interestInstanceList = Interest.findAllByProgram(courseInstance)
+            courseInstance = Course.get(params.course.id)
+            interestInstanceList = Interest.findAllByCourse(courseInstance)
         }
         else {
             interestInstanceList = Interest.list( params )

@@ -13,7 +13,7 @@ class LessonController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ courseInstanceList : Program.list(), lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
+        [ courseInstanceList : Course.list(), lessonInstanceList: Lesson.list( params ), lessonInstanceTotal: Lesson.count() ]
     }
 
     def show = {
@@ -85,14 +85,14 @@ class LessonController {
     }
 
     def create = {
-        // If no course is specified, then pick the first Program in the list.
+        // If no course is specified, then pick the first Course in the list.
         // Also, link back to lesson/list if user Cancels
         def cancelLink
         if (!params.course?.id) {
-            params.course = Program.list(maxResults:1)[0]
+            params.course = Course.list(maxResults:1)[0]
             cancelLink = g.createLink(action:'list')
         }
-        def p = Program.get(params.course.id)
+        def p = Course.get(params.course.id)
         def newSeq = courseService.nextAvailSequence(p)
         def lessonInstance = new Lesson(sequence:newSeq)
         lessonInstance.properties = params
@@ -101,7 +101,7 @@ class LessonController {
 
     def save = {
         def lessonInstance = new Lesson(params)
-        def courseInstance = Program.get(params.course.id)
+        def courseInstance = Course.get(params.course.id)
 
         if(!lessonInstance.hasErrors() && lessonInstance.save()) {
             courseInstance.addToLessons(lessonInstance)

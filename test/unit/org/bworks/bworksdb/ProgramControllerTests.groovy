@@ -2,7 +2,7 @@ package org.bworks.bworksdb
 
 import grails.test.*
 
-class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
+class CourseControllerTests extends grails.test.ControllerUnitTestCase {
     
     protected void setUp() {
         super.setUp()
@@ -13,7 +13,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
 
     void testUpdate_NotFound() {
-        mockDomain(Program, [new Program(name:'p1', id:33)] )
+        mockDomain(Course, [new Course(name:'p1', id:33)] )
         mockParams.id = 99
         
         // test
@@ -24,7 +24,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
 
     void testUpdate_Green() {
-        mockDomain(Program, [new Program(name:'p1', id:33)] )
+        mockDomain(Course, [new Course(name:'p1', id:33)] )
         mockParams.id = 33
         mockParams.description = 'fake'
         
@@ -35,7 +35,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
     
     void testList_LessThanMax() {
-        mockDomain(Program, [new Program(name:'p1'), new Program(name:'p2')] )
+        mockDomain(Course, [new Course(name:'p1'), new Course(name:'p2')] )
         mockParams.max = 3
         
         // test
@@ -46,7 +46,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
 
     void testList_MoreThanMax() {
-        mockDomain(Program, [new Program(name:'p1'), new Program(name:'p2'), new Program(name:'p3')] )
+        mockDomain(Course, [new Course(name:'p1'), new Course(name:'p2'), new Course(name:'p3')] )
         mockParams.max = 2
         
         // test
@@ -57,7 +57,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
     
     void testShow_Found() {
-        mockDomain(Program, [new Program(id:88)] )
+        mockDomain(Course, [new Course(id:88)] )
         mockParams.id = 88
         
         // test
@@ -67,7 +67,7 @@ class ProgramControllerTests extends grails.test.ControllerUnitTestCase {
     }
     
     void testShow_NotFound() {
-        mockDomain(Program, [new Program(id:77)] )
+        mockDomain(Course, [new Course(id:77)] )
         mockParams.id = 88
         
         // test

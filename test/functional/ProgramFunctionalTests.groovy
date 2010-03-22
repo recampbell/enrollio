@@ -1,5 +1,5 @@
 import org.bworks.bworksdb.util.TestKeys
-class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
+class CourseFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // TODO loginAs should be refactored into a
     // common method -- it's also used in SecurityFiltersFunctionalTests
     void loginAs(userName, pass) {
@@ -11,21 +11,21 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
     }
 
-    // method: gotoProgramShow
+    // method: gotoCourseShow
     //         utility method to do all the clicky stuff
     //         to get to a course/show page
-    void gotoProgramShow() {
+    void gotoCourseShow() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         // Go to Children's prog, and ensure that we
         // see the start date of the first session in our awesome format
         click(TestKeys.PROGRAM_KIDS_AEC)
 
     }
 
-    void gotoAdultEACProgram() {
+    void gotoAdultEACCourse() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         // Go to Children's prog, and ensure that we
         // see the start date of the first session in our awesome format
         click(TestKeys.PROGRAM_ADULT_AEC)
@@ -36,8 +36,8 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // lesson for that course.
     // Ensure that the default course of the new Lesson
     // is same course whose 'New Lesson' link we clicked.
-    void testNewLessonForProgram() {
-        gotoAdultEACProgram()
+    void testNewLessonForCourse() {
+        gotoAdultEACCourse()
         assertStatus 200
         def addLessonLinks = byName('newLessonLink')
         if (addLessonLinks instanceof com.gargoylesoftware.htmlunit.html.HtmlElement) {
@@ -53,16 +53,16 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
     }
 
-    void testGotoProgramLessonShow() {
-        gotoProgramShow()
+    void testGotoCourseLessonShow() {
+        gotoCourseShow()
         click('Lessons')
         click(TestKeys.LESSON_KIDS_AEC_INTRO)
         assertStatus 200
         assertTitleContains('Show Lesson')
     }
 
-    void testGotoProgramLessonsList() {
-        gotoProgramShow()
+    void testGotoCourseLessonsList() {
+        gotoCourseShow()
         assertContentContains(TestKeys.LESSON_KIDS_AEC_INTRO)
         click('Lessons')
         assertStatus 200
@@ -70,82 +70,82 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains(TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION)
     }
 
-    void testProgramList() {
+    void testCourseList() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
-        assertTitleContains("Programs")
+        assertTitleContains("Courses")
         assertContentContains("Children's EAC")
     }
 
-    void testProgramShow() {
+    void testCourseShow() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
         click(TestKeys.PROGRAM_KIDS_AEC)
         assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
 
     }
-    // Ensure that we can create a new Program
-    void testProgramMenu() {
+    // Ensure that we can create a new Course
+    void testCourseMenu() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
         assertNotNull byName('courseMenu')
 
     }
 
-    void testNewProgram() {
+    void testNewCourse() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
-        click("newProgramLink")
+        click("newCourseLink")
         assertStatus 200
-        assertTitleContains("Create Program")
-        form('newProgramForm') {
-            name = "Ricky's Program"
+        assertTitleContains("Create Course")
+        form('newCourseForm') {
+            name = "Ricky's Course"
             description = 'Only for Ricky (and maybe Bubbles)'
             click 'Save'
         }
         assert 200
-        assertTitleContains "Program: Ricky's Program"
+        assertTitleContains "Course: Ricky's Course"
         assertContentContains "Only for Ricky (and maybe Bubbles)"
             
     }
 
-    void testNewProgramFailed() {
+    void testNewCourseFailed() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
-        click("newProgramLink")
+        click("newCourseLink")
         assertStatus 200
-        assertTitleContains("Create Program")
-        form('newProgramForm') {
-            name = "Invalid Program"
+        assertTitleContains("Create Course")
+        form('newCourseForm') {
+            name = "Invalid Course"
             description = ''
             click 'Save'
         }
         assert 200
-        assertTitleContains "Create Program"
+        assertTitleContains "Create Course"
         assertContentContains "description must have a value"
 
         // Now, fill in description, but not name
-        form('newProgramForm') {
+        form('newCourseForm') {
             name = ""
-            description = "Another Invalid Program, this time there's no name"
+            description = "Another Invalid Course, this time there's no name"
             click 'Save'
         }
         assert 200
-        assertTitleContains "Create Program"
+        assertTitleContains "Create Course"
         assertContentContains "name must have a value"
             
     }
     void testCallList() {
         loginAs('bob', 'bobbobbob0')
-        click("Programs")
+        click("Courses")
         assertStatus 200
         // find first a>href that starts with courseLink
-        // -- it's a link to a Program.
+        // -- it's a link to a Course.
         def progLink = byXPath("//a[starts-with(@name,'courseLink')]")
         assertNotNull progLink
         // if we get > 1 link back, we have to pick 1st one.
@@ -167,23 +167,23 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     }
 
-    void testProgramEdit() {
-        gotoProgramShow()
-        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+    void testCourseEdit() {
+        gotoCourseShow()
+        def editLink = byXPath("//a[starts-with(@name,'editCourseLink')]")
         assertNotNull editLink
         editLink.click()
         assertStatus 200
-        assertTitleContains('Edit Program:')
+        assertTitleContains('Edit Course:')
 
         // Test an invalid URL
-        get("/editProgram")
+        get("/editCourse")
         assertStatus 404
         
     }
 
-    void testProgramEditCancel() {
-        gotoProgramShow()
-        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+    void testCourseEditCancel() {
+        gotoCourseShow()
+        def editLink = byXPath("//a[starts-with(@name,'editCourseLink')]")
         assertNotNull editLink
         editLink.click()
         assertStatus 200
@@ -192,17 +192,17 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertNotNull cancelLink
         cancelLink.click()
         assertStatus 200
-        assertTitleContains('Program:')
+        assertTitleContains('Course:')
 
     }
-    void testProgramBadEdit() {
-        gotoProgramShow()
-        def editLink = byXPath("//a[starts-with(@name,'editProgramLink')]")
+    void testCourseBadEdit() {
+        gotoCourseShow()
+        def editLink = byXPath("//a[starts-with(@name,'editCourseLink')]")
         assertNotNull editLink
         editLink.click()
         assertStatus 200
 
-        form('editProgramForm') {
+        form('editCourseForm') {
             name = ""
             description = ""
         }
@@ -212,7 +212,7 @@ class ProgramFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         saveButton.click()
 
         assertStatus 200
-        assertTitleContains('Edit Program:')
+        assertTitleContains('Edit Course:')
 
     }
 }

@@ -19,7 +19,7 @@ class TestDataService {
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
         // get courses
-        loadDefaultPrograms()
+        loadDefaultCourses()
                 
         // build contact, student
         def contact = new Contact(firstName:TestKeys.CONTACT1_FIRST_NAME,
@@ -39,10 +39,10 @@ class TestDataService {
         contact.save(flush:true)
         
         // interests
-        addInterest(student, Program.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
+        addInterest(student, Course.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
 
-        addInterest(student, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
-        addInterest(student2, Program.findByName(TestKeys.PROGRAM_KIDS_AEC), true)
+        addInterest(student, Course.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
+        addInterest(student2, Course.findByName(TestKeys.PROGRAM_KIDS_AEC), true)
 
         loadDummyRegularUser()
         // load dummy class sessions for now -- we should
@@ -86,7 +86,7 @@ class TestDataService {
     
     // Git some test data in these here parts
     def loadDevData(numContacts = 100) {
-        loadDefaultPrograms()
+        loadDefaultCourses()
         loadDummyRegularUser()
  
         numContacts.times {
@@ -112,7 +112,7 @@ class TestDataService {
                                                    'sessionName' : TestKeys.SESSION_KIDS_NAME ]
 
         testProgs.each { key, testProg ->
-            def p = Program.findByName(key)
+            def p = Course.findByName(key)
             def classSession = new ClassSession(name:testProg.sessionName,
                                       course:p,
                                       startDate: testProg.date).save()
@@ -181,15 +181,15 @@ class TestDataService {
         }
     }
 
-    def loadDefaultPrograms() {
-        def p0 = new Program(description:"Byteworks Children's Earn-A-Computer Program",
+    def loadDefaultCourses() {
+        def p0 = new Course(description:"Byteworks Children's Earn-A-Computer Course",
                               name:TestKeys.PROGRAM_KIDS_AEC).save()
 
         // Define sample lessons.  Use a hard-coded description for
         // the test Earn-A-Computer lesson.
         def eacLessons = [ 
            [ name: TestKeys.LESSON_KIDS_AEC_INTRO, desc: TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION],
-           [ name: 'Scratch Programming' ], 
+           [ name: 'Scratch Courseming' ], 
            [ name: 'Word Processing' ], 
            [ name: 'Presentations' ],
            [ name: 'Email and WWW' ],
@@ -203,10 +203,10 @@ class TestDataService {
                                        sequence:courseService.nextAvailSequence(p0)))
         }
             
-        new Program(description:"Byteworks Adult Earn-A-Computer Program", name:TestKeys.PROGRAM_ADULT_AEC).save()
-        new Program(description:"Byteworks Mentorship Program", name:TestKeys.PROGRAM_MENTORSHIP).save()
+        new Course(description:"Byteworks Adult Earn-A-Computer Course", name:TestKeys.PROGRAM_ADULT_AEC).save()
+        new Course(description:"Byteworks Mentorship Course", name:TestKeys.PROGRAM_MENTORSHIP).save()
  
-        def s0 = new ConfigSetting(configKey:'defaultInterestProgram',
+        def s0 = new ConfigSetting(configKey:'defaultInterestCourse',
                                    value:1,
                                    isDefault: true,
                                    description:'When entering Students, this course will be the default course they\'re interested in').save()
@@ -262,16 +262,16 @@ class TestDataService {
             c0.save(flush:true)
            
             // Add a random amount of interests to random courses :-)
-            def courses = Program.findAll().collect { it.id }
+            def courses = Course.findAll().collect { it.id }
             def availProgs = courses.clone()
-            // Get 0 .. numPrograms -- some students might not have interests
+            // Get 0 .. numCourses -- some students might not have interests
             def numProgsForStudent = seed.nextInt(courses.size() + 1)
             numProgsForStudent.times {
                 
                 def randomProg = seed.nextInt(availProgs.size())
                
                 def prog = availProgs.remove(randomProg)
-                stud.addToInterests(new Interest(course:Program.get(prog), active:true))
+                stud.addToInterests(new Interest(course:Course.get(prog), active:true))
             }
         }
  
@@ -324,7 +324,7 @@ class TestDataService {
         Lesson.list()*.delete(flush:true)
         // Note.groovy
         // PhoneNumber.groovy
-        Program.list()*.delete(flush:true)
+        Course.list()*.delete(flush:true)
         // Attendance.list()*.delete(flush:true)
         def u = ShiroUser.findByUsername('bob')
         ShiroUserRoleRel.findByUser(u).delete()

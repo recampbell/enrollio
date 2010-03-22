@@ -1,7 +1,7 @@
 package org.bworks.bworksdb
 import grails.test.*
 
-class ProgramTests extends GrailsUnitTestCase {
+class CourseTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -11,27 +11,27 @@ class ProgramTests extends GrailsUnitTestCase {
     }
 
     void testConstraints_Green() {
-        mockDomain(Program)
+        mockDomain(Course)
 
-        def course = new Program(name:"Lahey", description:"desc")
+        def course = new Course(name:"Lahey", description:"desc")
 
         // test
         assertTrue course.validate()
     }    
 
     void testConstraints_Red_NameBlank() {
-        mockDomain(Program)
+        mockDomain(Course)
 
-        def course = new Program(name:"", description:"desc")
+        def course = new Course(name:"", description:"desc")
 
         // test
         assertFalse course.validate()
     }    
 
     void testConstraints_Red_NoDescription() {
-        mockDomain(Program)
+        mockDomain(Course)
 
-        def course = new Program(name:"Lahey")
+        def course = new Course(name:"Lahey")
                 
         // test
         assertFalse course.validate()

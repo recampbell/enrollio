@@ -25,7 +25,7 @@ class StudentService {
 
         def selectedInterests = buildSelectedIds(interests)
         
-        Program.findAll().each { course ->
+        Course.findAll().each { course ->
             def interest = Interest.findWhere(student:student, course:course)
             def isSelected = selectedInterests.contains(course.id.toString())
 

@@ -3,8 +3,8 @@ package org.bworks.bworksdb
 class ClassSession {
     Date startDate
     String name
-    Program course
-    static belongsTo = [ Program ] 
+    Course course
+    static belongsTo = [ Course ] 
     static hasMany = [ lessonDates:LessonDate, enrollments:Enrollment ]
 
     SortedSet lessonDates

@@ -1,6 +1,6 @@
 package org.bworks.bworksdb
 
-class Program {
+class Course {
 
     String name
     String description

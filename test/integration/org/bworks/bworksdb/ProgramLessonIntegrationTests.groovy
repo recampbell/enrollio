@@ -3,15 +3,15 @@ package org.bworks.bworksdb
 import grails.test.*
 import org.bworks.bworksdb.util.TestKeys
 
-class ProgramLessonIntegrationTests extends GroovyTestCase {
+class CourseLessonIntegrationTests extends GroovyTestCase {
 
-    ProgramService courseService
+    CourseService courseService
 
-    Program prog
+    Course prog
 
     protected void setUp() {
         super.setUp()
-        prog = new Program(name:'Functional Test Program', description: 'Func Test Desc.')
+        prog = new Course(name:'Functional Test Course', description: 'Func Test Desc.')
         assertTrue prog.validate()
         
         prog.addToLessons(new Lesson(name:'FTP Lesson 4', description: 'Foo', sequence: 300))
@@ -69,7 +69,7 @@ class ProgramLessonIntegrationTests extends GroovyTestCase {
     }
 
     void testNextAvailSequenceWithNewProg() {
-        def p = new Program(name:"Lahey", description:"desc")
+        def p = new Course(name:"Lahey", description:"desc")
         def nas = courseService.nextAvailSequence(p)
         assertEquals 100, nas
     }

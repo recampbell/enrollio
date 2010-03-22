@@ -22,14 +22,14 @@ class MiscTagLib {
         // Whether to check the default course
         def checkDefaultProg = attrs['checkDefaultProg']
         if (checkDefaultProg) {
-            defaultProgId = configSettingService.getSetting('defaultInterestProgram')
+            defaultProgId = configSettingService.getSetting('defaultInterestCourse')
             if (defaultProgId) defaultProgId = defaultProgId.value;
         }
-        def courses = Program.findAll()
-        // def defaultProgram = configSettingService.getSetting('defaultInterestProgram')
+        def courses = Course.findAll()
+        // def defaultCourse = configSettingService.getSetting('defaultInterestCourse')
         courses.each { prog ->
             // Note: Need to search for active == true, also
-            def checkBoxName = "interestInProgram_${prog.id}"
+            def checkBoxName = "interestInCourse_${prog.id}"
             def results = Interest.withCriteria {
                 eq("student", student)
                 eq("course", prog)
@@ -41,10 +41,10 @@ class MiscTagLib {
             def hasInterest = (results || 
                               (checkDefaultProg && (prog.id.toString() == defaultProgId)))
             def sCheckbox = """ 
-                <label for="interestInProgram_${prog.id}">
+                <label for="interestInCourse_${prog.id}">
                     <input class="checkbox" 
-                    id="interestInProgram_${prog.id}" 
-                    name="interestInProgram" 
+                    id="interestInCourse_${prog.id}" 
+                    name="interestInCourse" 
                     type="checkbox" 
                     ${hasInterest ? 'checked="true"' : ''}
                     value="${prog.id}" />${prog.name}

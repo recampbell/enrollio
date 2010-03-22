@@ -114,9 +114,9 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertStatus 200
 
         
-        def interestCheckboxen = byName('interestInProgram')
+        def interestCheckboxen = byName('interestInCourse')
 
-        // Make sure we see three possible Programs to be interested in
+        // Make sure we see three possible Courses to be interested in
         assertEquals 3, interestCheckboxen.size()
 
         // Should be interested in the adult prog.
@@ -151,7 +151,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
         assertStatus 200
         // Make sure interests are g00t
-        def newInterestCheckBoxen = byName('interestInProgram')
+        def newInterestCheckBoxen = byName('interestInCourse')
 
         // Should now be interested in the adult prog. and mentorship.
         assertContentContains TestKeys.PROGRAM_ADULT_AEC

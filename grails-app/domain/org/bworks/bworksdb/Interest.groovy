@@ -5,11 +5,11 @@ class Interest {
     Boolean active
     Note note
     Student student
-    Program course
+    Course course
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [Student, Program]
+    static belongsTo = [Student, Course]
 
     static constraints = {
         note(nullable:true, blank:true)

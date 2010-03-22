@@ -20,7 +20,7 @@ class MiscTagLibTests extends TagLibUnitTestCase {
         // pretend like we're checking if the tab
         // we're evaluating should have a class called 'current', 
         // or the default class of 'enr-top-menu-itme' 
-        tagLib.isCurrentTab(tabName:'thisAintTheProgramTabName') 
+        tagLib.isCurrentTab(tabName:'thisAintTheCourseTabName') 
         assertEquals 'enr-top-menu-item', tagLib.out.toString()
 
     }

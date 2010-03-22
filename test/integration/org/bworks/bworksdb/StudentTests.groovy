@@ -25,7 +25,7 @@ class StudentTests extends GroovyTestCase {
         c.addToStudents(s)
         s.save()
 
-        def p = new Program(description:"Byteworks Children's Earn-A-Computer Program",
+        def p = new Course(description:"Byteworks Children's Earn-A-Computer Course",
                              name:"Children's EAC").save()
         def i = new Interest(active:true, course:p, student:s).save()
         s.addToInterests(i)
