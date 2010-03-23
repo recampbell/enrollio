@@ -128,7 +128,7 @@ class ContactController {
     }
 
     def saveStudent = {
-        ef studentInstance = new Student(params)
+        def studentInstance = new Student(params)
 
         // Find contact that student belongs to.
         def contactInstance = Contact.get(params.contact.id)
