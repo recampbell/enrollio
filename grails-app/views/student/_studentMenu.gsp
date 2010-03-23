@@ -4,6 +4,13 @@
             <g:link class="group" controller="student" action="list">Students</g:link>
         </h3>
         <ul>
+            <li>
+            
+                    <g:link name="newStudentLink" class="useradd" 
+                    controller="contact" 
+                    action="create" 
+                    id="${studentInstance.id}">New Student</g:link>
+            </li>
             <g:if test="${studentInstance}">
                 <li>
                     <g:link name="editStudentLink" class="useredit" controller="student" action="edit" id="${studentInstance.id}">Edit</g:link>
