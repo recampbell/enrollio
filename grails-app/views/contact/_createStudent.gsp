@@ -1,36 +1,33 @@
 <%@ page import="org.bworks.bworksdb.Course;" %>
-<div id="newStudentDiv" class="box" ${studentInstance ? '' : 'style="display:none"'}>
+<div id="newStudentDiv" class="box">
     <h3 id="adduser">New Student</h3>
     <g:hasErrors bean="${studentInstance}">
         <div class="errors">
             <g:renderErrors bean="${studentInstance}" as="list" />
         </div>
     </g:hasErrors>
-<table width="100%">
-
     <g:form action="saveStudent" method="POST"
             name="newStudentForm">
-
-        <input type="hidden" id="contact.id" 
-        name="contact.id" 
-        value="${contactInstance?.id}"/>
-
-
+<table width="100%">
 
     <thead>
         <tr>
             <th width="20%">First</th>
             <th width="20%">Middle</th>
             <th width="30%">Last</th>
-            <th>Interests
-            
-            <a href="#" class="selector" >&nbsp;Edit</a>
-            
-            
+            <th>
+                <a href="#" id="interestsSelector" >Interests</a>
             </th>
         </tr>
     </thead>
+
+
+
     <tbody>
+
+        <input type="hidden" id="contact.id" 
+        name="contact.id" 
+        value="${contactInstance?.id}"/>
         <tr>
              <td>
             <input class="foo" type="text" id="firstName" name="firstName" value="${fieldValue(bean:studentInstance,field:'firstName')}"/>
