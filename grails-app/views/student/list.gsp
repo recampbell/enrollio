@@ -10,6 +10,10 @@
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
+                        <g:render template="/contact/contactSearchForm" />
+                    </div>
+                    
+             <div class="rightnow">
                     <h3 class="reallynow">Students 
                     <br /></h3>
                     <table>
