@@ -12,16 +12,22 @@
             // apply qtip selector to the "Edit" link
             // that shows possible Interests that a new student has.
              $(document).ready(function(){
-                $('#interestsSelector').qtip({
+                $('.interestsSelector').qtip({
                    // remove() is important, otherwise qtip creates a clone
                    // of the newStudentInterests, and everything is double-clicked
                    content: $('#newStudentInterests').remove(),
                    // position/container is important, otherwise
                    // student interests are not submitted in newStudentForm
-                   position: { container: $('#newStudentForm') },
+                   position: { 
+                       container: $('#newStudentForm'),
+                       corner: {
+                           target: "topRight",
+                           tooltip:"bottomMiddle"
+                           }
+                   },
                    hide: {
-                      delay: 1000,
-                      fixed: true
+                       delay: 500,
+                       fixed : true
                    }
                 });
             });

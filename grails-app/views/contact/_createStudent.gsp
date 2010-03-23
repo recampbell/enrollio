@@ -32,7 +32,6 @@
                 <th width="25%">Last</th>
                 <th>
                     Interests
-                    <a href="#" id="interestsSelector">(edit)</a>
                 </th>
                 <th></th>
             </tr>
@@ -54,11 +53,10 @@
                     value="${fieldValue(bean:studentInstance,field:'lastName')}" />
                 </td>
                 <td>
-                    <input readonly="readonly" id="interestNames" />
+                    <input  class="interestsSelector" readonly="readonly" id="interestNames" />
                 </td>
                 <td>
-                
-    <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />
+                    <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />
                 </td>
             </tr>
             
