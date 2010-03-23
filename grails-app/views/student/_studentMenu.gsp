@@ -5,6 +5,11 @@
         </h3>
         <ul>
             <li>
+                <g:link class="search" name="searchStudentsLink" 
+                action="list" 
+                controller="student" >Search</g:link>
+            </li>
+            <li>
             
                     <g:link name="newStudentLink" class="useradd" 
                     controller="contact" 
