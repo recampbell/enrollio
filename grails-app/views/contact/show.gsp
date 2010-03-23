@@ -15,49 +15,16 @@
         
         <title>Contact: ${contactInstance}</title>
         <script type="text/javascript">
+            // apply qtip selector to the "Edit" link
+            // that shows possible Interests that a new student has.
              $(document).ready(function(){
-
-
-$('.selector').qtip({
-   content: $('#tableplug'),
-   hide: {
-      delay: 1000,
-      fixed: true
-   }
-});
-
-
-
-
-                 // Show "New Student" when user clicks 'Add student'
-                 $('#createStudentLink').click(function() {
-                     $('#newStudentDiv').slideDown()
-                 });
-
-                 $('#cancelSaveStudentLink').click(function() {
-                     $('#newStudentDiv').slideUp()
-                 });
-
-                 // Birth Date picker.
-                 // We want to display from -110 years ago to today's year.
-                 // NOTE: yearRange is relative to defaultDate (hence the -100:+10)
-                 $('#newStudentBirthDate').datepicker({
-                     defaultDate: '-10y',
-                     yearRange: '-100:+10', 
-                     changeMonth: true,
-                     changeYear:  true
-                 });
-
-                // When user clicks the "Save" button,
-                // Reload the 'studentListDiv' in the parent page
-                // with the goodies that we get from this form
-                // Commenting out, because the POST doesn't work w/Ajax
-                // $('#newStudentForm').live('submit', function() {
-                //     var saveUrl = "${createLink(controller:'contact', action:'saveStudent')}";
-                //     $.post(saveUrl, $(this).serialize(), function(data) { 
-                //         $('#studentListDiv').hide().html(data);
-                //     });
-                // });
+                $('#interestsSelector').qtip({
+                   content: $('#newStudentInterests'),
+                   hide: {
+                      delay: 1000,
+                      fixed: true
+                   }
+                });
             });
         </script>
     </head>

@@ -18,5 +18,3 @@
 </table>
 
 </div>
-<!-- placeholder for a new student -->
-<div id="createStudentDiv"></div>
