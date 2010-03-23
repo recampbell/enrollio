@@ -2,9 +2,6 @@
     <td>
         <g:link action="show" id="${student.id}" controller="student">${student}</g:link>
     </td>
-    <td>${student.gender ?: ""}</td>
-    <td>${student.grade ?: ""}</td>
-    <td><enrollio:formatDate date="${student.birthDate}" /></td>
     <td>
     %{-- TODO create .activeInterests property on Student,
          so we don't need the g:if interest.active --}%

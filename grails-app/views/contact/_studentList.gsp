@@ -6,14 +6,9 @@
 </g:if>
 <table width="100%">
 <tbody>
-        <!-- <g:each in="${contactInstance.students}" var="student" status="idx"> -->
-        <!-- <g:render template="/student/studentDetails" model="[student:student, idx:idx]" /> -->
-        <!-- </g:each> -->
-    <tr>
-        <td>Mary Parker</td>
-        <td>foo, earn-a-computer program, something else</td>
-        <td>edit remove</td>
-    </tr>
+        <g:each in="${contactInstance.students}" var="student" status="idx">
+            <g:render template="/student/studentDetails" model="[student:student, idx:idx]" />
+        </g:each>
 </tbody>
 </table>
 

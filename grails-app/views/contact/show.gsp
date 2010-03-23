@@ -6,14 +6,8 @@
         <meta name="tabName" content="contact" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'comboCheckboxSelectbox.css')}" />
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
-        <script type="text/javascript" src="${resource(dir:'js', file:'comboCheckboxSelectbox.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.qtip-1.0.0-rc3.min.js')}"></script>
-
         
-        <title>Contact: ${contactInstance}</title>
         <script type="text/javascript">
             // apply qtip selector to the "Edit" link
             // that shows possible Interests that a new student has.
@@ -26,7 +20,24 @@
                    }
                 });
             });
+
+            function updateInterests() {
+                // Collect the labels of each of the selected Interests
+                // and put them into the "Interests" section of the newStudentForm
+                // from http://groups.google.com/group/jquery-en/browse_thread/thread/6bbc26e14a59526c
+                var selectedInterestLabels = $('input[name=interestInCourse]:checked').map(function() {
+                        // Need to use HTML instead of .text() to get label text
+                        // if .text() is used, then you get LabelLabel or FooFoo 
+                        //  instead of Label and Foo
+                        return $('label[for=' + this.id + ']').html()
+                }).get();
+                $('#interestNames').text(selectedInterestLabels.join(", "))
+
+                            
+            }
         </script>
+
+        <title>Contact: ${contactInstance}</title>
     </head>
     <body>
         <div id="wrapper">

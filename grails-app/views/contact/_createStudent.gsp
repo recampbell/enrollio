@@ -14,7 +14,8 @@
                 <th width="20%">Middle</th>
                 <th width="30%">Last</th>
                 <th>
-                    <a href="#" id="interestsSelector">Interests</a>
+                    Interests
+                    <a href="#" id="interestsSelector">(edit)</a>
                 </th>
             </tr>
         </thead>
@@ -34,13 +35,17 @@
                     <input class="foo" type="text" id="lastName" name="lastName"
                     value="${fieldValue(bean:studentInstance,field:'lastName')}" />
                 </td>
-                <td></td>
+                <td id="interestNames">
+
+                
+                </td>
             </tr>
             <div style="display:none" id="newStudentInterests">
-                <g:each var="p" in="${Course.list()}">
-                    <label for="interestInCourse_${p.id}">${p.name}</label>
-                    <input type="checkbox" name="interestInCourse" id="bad" value="bad"
-                    class="checkbox" id="interestInCourse_${p.id}" value="${p.id}" />
+                <g:each var="c" in="${Course.list()}">
+                    <label for="interestInCourse_${c.id}">${c.name}</label>
+                    <input type="checkbox" name="interestInCourse" 
+                    id="interestInCourse_${c.id}"
+                    class="checkbox" onClick="updateInterests();" id="interestInCourse_${c.id}" value="${c.id}" />
                 </g:each>
             </div>
         </tbody>
