@@ -119,7 +119,7 @@ class ContactController {
     def save = {
         def contactInstance = new Contact(params)
         if(!contactInstance.hasErrors() && contactInstance.save()) {
-            flash.message = "Contact ${contactInstance.id} created"
+            flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
             redirect(action:show,id:contactInstance.id)
         }
         else {
