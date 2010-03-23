@@ -1,5 +1,3 @@
-
-
 package org.bworks.bworksdb
 
 class StudentController {
@@ -16,9 +14,12 @@ class StudentController {
         def studentInstanceTotal
         println "params are: " + params
         if(params.q){
-            studentInstanceList = Student.search( params.q + "*", offset:params.offset ).results
-            studentInstanceTotal = Student.countHits( params.q + "*" )
-        }
+            studentInstanceList = 
+                 Contact.search( "*" + params.q + "*", offset:params.offset ).results.collect {
+                     it.students
+                 }.flatten()
+                 studentInstanceTotal = studentInstanceList.size()
+            }
         else {
             studentInstanceList = Student.list( params )
             studentInstanceTotal = Student.count()

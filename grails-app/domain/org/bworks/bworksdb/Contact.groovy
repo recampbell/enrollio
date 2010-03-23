@@ -1,7 +1,10 @@
 package org.bworks.bworksdb
 
 class Contact {
-    static searchable = true
+    static searchable = {
+        phoneNumbers component:true
+        students component:true
+    }
     String firstName
     String lastName
     String address1
