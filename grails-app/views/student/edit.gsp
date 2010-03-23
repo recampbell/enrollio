@@ -95,8 +95,9 @@
             </g:form>
         </div>
         </div>
-        </div><div id="sidebar">
-            <g:render template="/common/sideMenu" />
+        </div>
+        <div id="sidebar">
+                <g:render template="studentMenu" />
         </div>
     </body>
 </html>

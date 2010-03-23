@@ -8,8 +8,7 @@
             
                     <g:link name="newStudentLink" class="useradd" 
                     controller="contact" 
-                    action="create" 
-                    id="${studentInstance.id}">New Student</g:link>
+                    action="create">New Student</g:link>
             </li>
             <g:if test="${studentInstance}">
                 <li>
