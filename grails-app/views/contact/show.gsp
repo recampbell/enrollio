@@ -49,15 +49,11 @@
     <body>
         <div id="wrapper">
             <div id="content">
+                <div class="rightnow">
                     <g:if test="${flash.message}">
                         <div class="message">${flash.message}</div>
                     </g:if>
-                <div class="box">
-                    <g:render template="contactSearchForm" />
-                </div>
-                <br />
-                <div class="box">
-                    <h3>Contact: ${contactInstance}</h3>
+                    <h3 class="reallynow">Contact: ${contactInstance}</h3>
                     <table>
                         <tbody>
                             <tr>
