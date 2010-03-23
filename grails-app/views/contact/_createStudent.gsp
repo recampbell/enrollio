@@ -6,78 +6,46 @@
             <g:renderErrors bean="${studentInstance}" as="list" />
         </div>
     </g:hasErrors>
-    <g:form action="saveStudent" method="POST"
-            name="newStudentForm">
-<table width="100%">
-
-    <thead>
-        <tr>
-            <th width="20%">First</th>
-            <th width="20%">Middle</th>
-            <th width="30%">Last</th>
-            <th>
-                <a href="#" id="interestsSelector" >Interests</a>
-            </th>
-        </tr>
-    </thead>
-
-
-
-    <tbody>
-
-        <input type="hidden" id="contact.id" 
-        name="contact.id" 
-        value="${contactInstance?.id}"/>
-        <tr>
-             <td>
-            <input class="foo" type="text" id="firstName" name="firstName" value="${fieldValue(bean:studentInstance,field:'firstName')}"/>
-        </td>
-             <td>
-            <input class="foo"  type="text" id="middleName" name="middleName" value="${fieldValue(bean:studentInstance,field:'middleName')}"/>
-        </td>
-             <td>
-            <input class="foo" type="text" id="lastName" name="lastName" value="${fieldValue(bean:studentInstance,field:'lastName')}"/>
-        </td>
-            
-
-
-        <td>
-
-        </td>
-
-
-
-        </tr>
-        <div style="display:none" id="newStudentInterests">
-        
-
+    <g:form action="saveStudent" method="POST" name="newStudentForm">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th width="20%">First</th>
+                <th width="20%">Middle</th>
+                <th width="30%">Last</th>
+                <th>
+                    <a href="#" id="interestsSelector">Interests</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <input type="hidden" id="contact.id" name="contact.id"
+            value="${contactInstance?.id}" />
+            <tr>
+                <td>
+                    <input class="foo" type="text" id="firstName" name="firstName"
+                    value="${fieldValue(bean:studentInstance,field:'firstName')}" />
+                </td>
+                <td>
+                    <input class="foo" type="text" id="middleName" name="middleName"
+                    value="${fieldValue(bean:studentInstance,field:'middleName')}" />
+                </td>
+                <td>
+                    <input class="foo" type="text" id="lastName" name="lastName"
+                    value="${fieldValue(bean:studentInstance,field:'lastName')}" />
+                </td>
+                <td></td>
+            </tr>
+            <div style="display:none" id="newStudentInterests">
                 <g:each var="p" in="${Course.list()}">
-
-			
-                
-                
-                
-                <label for="interestInCourse_${p.id}">  ${p.name}
-					</label>
-						
-		 <input type="checkbox" name="interestInCourse" id="bad" value="bad" class="checkbox"
-                 id="interestInCourse_${p.id}" 
-                 
-                    value="${p.id}" />  
-                 
-						
-                
+                    <label for="interestInCourse_${p.id}">${p.name}</label>
+                    <input type="checkbox" name="interestInCourse" id="bad" value="bad"
+                    class="checkbox" id="interestInCourse_${p.id}" value="${p.id}" />
                 </g:each>
-
-        
-        </div>
-    </tbody>
-
-</table>
-
-        <g:submitButton class="save" name="saveButton" value="Save" />
-                            or&nbsp;
-        <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink" 
-            class="cancelLink">Clear</a>
-    </g:form>
+            </div>
+        </tbody>
+    </table>
+    <g:submitButton class="save" name="saveButton" value="Save" />or&#160; 
+    <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink"
+    class="cancelLink">Clear</a></g:form>
 </div>
