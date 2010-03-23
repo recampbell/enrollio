@@ -14,16 +14,4 @@
             </g:if>
         </ul>
     </li>
-    <g:if test="${contactInstance}">
-    <li>
-        <h3>
-            <a href="#" class="group">Students</a>
-        </h3>
-        <ul class="navlist">
-            <li>
-            <a href="#" id="createStudentLink" class="groupadd">Add Student</a>
-            </li>
-        </ul>
-    </li>
-</g:if>
 </ul>
