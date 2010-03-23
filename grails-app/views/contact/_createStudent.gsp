@@ -48,12 +48,7 @@
 
 
         </tr>
-    </tbody>
-        <g:submitButton class="save" name="saveButton" value="Save" />
-                            or&nbsp;
-        <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink" 
-            class="cancelLink">Cancel</a>
-        <div style="display:none" id="tableplug">
+        <div style="display:none" id="newStudentInterests">
         
 
                 <g:each var="p" in="${Course.list()}">
@@ -76,38 +71,13 @@
 
         
         </div>
-    </g:form>
+    </tbody>
+
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-<!--
-        <fieldset id="studentInterests">
-            <legend>Interests</legend>
-            <g:each var="p" in="${Course.list()}">
-                <label for="interestInCourse_${p.id}">
-                    <input class="checkbox" 
-                    id="interestInCourse_${p.id}" 
-                    name="interestInCourse" 
-                    type="checkbox" 
-                    value="${p.id}" />${p.name}
-                </label>
-            </g:each>
-
-        </fieldset>
-        <label for="saveButton">&nbsp;</label>
-            -->
-
+        <g:submitButton class="save" name="saveButton" value="Save" />
+                            or&nbsp;
+        <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink" 
+            class="cancelLink">Clear</a>
+    </g:form>
 </div>
