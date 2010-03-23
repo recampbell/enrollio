@@ -10,18 +10,28 @@
     <body>
         <div id="wrapper">
         <div id="content">
-        <div class="rightnow">
-            <h3>Create Contact</h3>
+            <div class="rightnow">
+                <h3 class="reallynow">New Student</h3>
+                <p>
+                All students need parent or contact info.  
+                Please fill out Parent info, or search for an existing contact.
+                </p>
+            </div>
+
+        <div class="infobox">
+            <g:render template="contactSearchForm" />
+        </div>
+        <div class="infobox">
+            <h3 class="reallynow">New Parent/Contact</h3>
             <g:hasErrors bean="${contactInstance}">
                 <div class="errors">
                     <g:renderErrors bean="${contactInstance}" as="list" />
                 </div>
             </g:hasErrors>
-            <g:form  method="post" >
+            <g:form method="post" >
                 <div class="dialog">
                     <table>
                         <tbody>
-                          
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="firstName">First Name:</label>
@@ -98,7 +108,7 @@
                     </table>
                 </div>
                 <div class="buttons">
-                <g:actionSubmit value="Create" action="save" />
+                    <g:actionSubmit value="Create Contact" action="save" />
                 </div>
             </g:form>
         </div>
