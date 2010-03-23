@@ -42,15 +42,15 @@
             value="${contactInstance?.id}" />
             <tr class="dataEntry">
                 <td>
-                    <input class="foo" type="text" id="firstName" name="firstName"
+                    <input  type="text" id="firstName" name="firstName"
                     value="${fieldValue(bean:studentInstance,field:'firstName')}" />
                 </td>
                 <td>
-                    <input class="foo" type="text" id="middleName" name="middleName"
+                    <input  type="text" id="middleName" name="middleName"
                     value="${fieldValue(bean:studentInstance,field:'middleName')}" />
                 </td>
                 <td>
-                    <input class="foo" type="text" id="lastName" name="lastName"
+                    <input  type="text" id="lastName" name="lastName"
                     value="${fieldValue(bean:studentInstance,field:'lastName')}" />
                 </td>
                 <td>
