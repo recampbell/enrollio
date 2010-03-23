@@ -189,7 +189,7 @@ class TestDataService {
         // the test Earn-A-Computer lesson.
         def eacLessons = [ 
            [ name: TestKeys.LESSON_KIDS_AEC_INTRO, desc: TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION],
-           [ name: 'Scratch Courseming' ], 
+           [ name: 'Scratch Programming' ], 
            [ name: 'Word Processing' ], 
            [ name: 'Presentations' ],
            [ name: 'Email and WWW' ],
