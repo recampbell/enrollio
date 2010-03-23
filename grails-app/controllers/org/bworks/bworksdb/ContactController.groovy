@@ -25,12 +25,15 @@ class ContactController {
 
     def show = {
         def contactInstance = Contact.get( params.id )
+        // Create a stub new student, in case user wants to create one.
+        def studentInstance = new Student(lastName:contactInstance.lastName,
+                                          contact:contactInstance)
 
         if(!contactInstance) {
             flash.message = "Contact not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ contactInstance : contactInstance ] }
+        else { return [ contactInstance : contactInstance, studentInstance : studentInstance ] }
     }
 
     def delete = {
@@ -125,15 +128,7 @@ class ContactController {
     }
 
     def saveStudent = {
-        // First, zap birthDate and reformat it.
-        def dateFormat = 'MM/dd/yyyy'
-        def birthDate = params.remove('birthDate')
-        def studentInstance = new Student(params)
-
-        try {
-            studentInstance.birthDate = Date.parse(dateFormat, birthDate)
-        } catch (Exception e) {
-        }
+        ef studentInstance = new Student(params)
 
         // Find contact that student belongs to.
         def contactInstance = Contact.get(params.contact.id)
