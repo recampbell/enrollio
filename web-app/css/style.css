@@ -649,3 +649,39 @@ input.sequenceReadOnly {
 }
 #sortable li span { position: absolute; margin-left: -1.3em; }
 
+tr.dataEntry td {
+    padding: 0px; 
+}
+
+td input, td input[type="submit"] {
+    padding: 1px;
+    margin: 1px 1px 1px 1px;
+    width:95%;
+}
+
+#newStudentInterests {
+    border: 1px;
+}
+#newStudentInterests ul {
+     list-style: none;
+}
+
+#newStudentInterests li {
+    float: left;
+}
+
+
+#newStudentInterests {
+    clear: both;
+}
+
+#newStudentInterests input {
+    width:auto;
+}
+#newStudentInterests label {
+    float:none;
+    clear:left;
+    width:10em;
+    text-align:left;
+}
+

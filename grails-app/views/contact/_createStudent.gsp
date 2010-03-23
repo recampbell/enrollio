@@ -7,22 +7,40 @@
         </div>
     </g:hasErrors>
     <g:form action="saveStudent" method="POST" name="newStudentForm">
+            <div style="display:none" id="newStudentInterests">
+                <g:each var="c" in="${Course.list()}">
+                <div class="col">
+                
+                <label for="interestInCourse_${c.id}">
+                        
+                    <input class="checkbox" type="checkbox" name="interestInCourse" 
+                    courseName="${c.name}"
+                    id="interestInCourse_${c.id}"
+                    class="checkbox" onClick="updateInterests();" 
+                    value="${c.id}" />
+                    ${c.name}
+                </label>
+                </div>
+                </g:each>
+                
+            </div>
     <table width="100%">
         <thead>
             <tr>
                 <th width="20%">First</th>
-                <th width="20%">Middle</th>
-                <th width="30%">Last</th>
+                <th width="15%">Middle</th>
+                <th width="25%">Last</th>
                 <th>
                     Interests
                     <a href="#" id="interestsSelector">(edit)</a>
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <input type="hidden" id="contact.id" name="contact.id"
             value="${contactInstance?.id}" />
-            <tr>
+            <tr class="dataEntry">
                 <td>
                     <input class="foo" type="text" id="firstName" name="firstName"
                     value="${fieldValue(bean:studentInstance,field:'firstName')}" />
@@ -35,22 +53,17 @@
                     <input class="foo" type="text" id="lastName" name="lastName"
                     value="${fieldValue(bean:studentInstance,field:'lastName')}" />
                 </td>
-                <td id="interestNames">
-
+                <td>
+                    <input readonly="readonly" id="interestNames" />
+                </td>
+                <td>
                 
+    <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />
                 </td>
             </tr>
-            <div style="display:none" id="newStudentInterests">
-                <g:each var="c" in="${Course.list()}">
-                    <label for="interestInCourse_${c.id}">${c.name}</label>
-                    <input type="checkbox" name="interestInCourse" 
-                    id="interestInCourse_${c.id}"
-                    class="checkbox" onClick="updateInterests();" id="interestInCourse_${c.id}" value="${c.id}" />
-                </g:each>
-            </div>
+            
+            
         </tbody>
     </table>
-    <g:submitButton class="save" name="saveButton" value="Save" />or&#160; 
-    <a href="#" id="cancelSaveStudentLink" name="cancelSaveStudentLink"
-    class="cancelLink">Clear</a></g:form>
+    </g:form>
 </div>
