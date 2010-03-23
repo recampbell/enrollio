@@ -82,6 +82,11 @@ form textarea {
 form option {
 	background:#FFF;
 }
+
+input.foo {
+    width:100%;
+
+}
 form optgroup {
 	background:#e8e7e1;
 }
