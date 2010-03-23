@@ -11,6 +11,24 @@ class AuthController {
 
     def index = { redirect(action: "login", params: params) }
 
+    static navigation = [
+        [
+            group:'mainMenu',
+            action:'login',
+            title:'Login',
+            isVisible: { !SecurityUtils.subject?.isAuthenticated() },
+            order:300
+        ],
+        [
+        
+            group:'mainMenu',
+            action:'signOut',
+            title:'Logout',
+            isVisible: { SecurityUtils.subject?.isAuthenticated() },
+            order:300
+        ]
+    ]
+
     def login = {
         return [ username: params.username, rememberMe: (params.rememberMe != null), targetUri: params.targetUri ]
     }

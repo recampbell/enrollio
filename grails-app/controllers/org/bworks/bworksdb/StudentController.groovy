@@ -1,10 +1,19 @@
 package org.bworks.bworksdb
+import org.apache.shiro.SecurityUtils
 
 class StudentController {
     
     def index = { redirect(action:list,params:params) }
 
     def studentService
+
+    static navigation = [
+        group:'mainMenu',
+        action:'list',
+        title:'Students',
+		isVisible: { SecurityUtils.subject?.isAuthenticated() },
+        order:20
+    ]
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']

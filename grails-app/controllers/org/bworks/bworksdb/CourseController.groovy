@@ -1,8 +1,17 @@
 package org.bworks.bworksdb
+import org.apache.shiro.SecurityUtils
 
 class CourseController {
     
     def index = { redirect(action:list,params:params) }
+
+    static navigation = [
+        group:'mainMenu',
+        action:'list',
+        title:'Courses',
+		isVisible: { SecurityUtils.subject?.isAuthenticated() },
+        order:10
+    ]
 
     def courseService
 
