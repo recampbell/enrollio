@@ -16,8 +16,15 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         studentLink.click()
     }
 
+    void testSearchBarOnStudentList() {
+        // Contact search bar should be on the /contacts and the /contact/(some id) pages
+        loginAs('bob', 'bobbobbob0')
+        click("Students")
+        assertNotNull byId('studentSearchButton')
+        assertContentContains('Search')
+    }
+  
     void testRegularUserGoesToStudentShow() {
-        
         loginAs('bob', 'bobbobbob0')
         click("Students")
         assertStatus 200

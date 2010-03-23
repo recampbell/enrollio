@@ -1,6 +1,6 @@
 <h3 class="reallynow">Search Students/Contacts</h3>
-<g:form url='[controller: "contact", action: "list"]' id="contactSearchForm"
+<g:form url='[controller: "student", action: "list"]' id="studentSearchForm"
        name="searchableForm" method="get">
     <g:textField name="q" value="${params.q}" size="20" />
-    <input id="contactSearchButton" type="submit" value="Search" />
+    <input id="studentSearchButton" type="submit" value="Search" />
 </g:form>

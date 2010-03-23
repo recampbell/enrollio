@@ -17,9 +17,8 @@
                 Please fill out Parent info, or search for an existing contact.
                 </p>
             </div>
-
         <div class="infobox">
-            <g:render template="contactSearchForm" />
+            <g:render template="/student/studentSearchForm" />
         </div>
         <div class="infobox">
             <h3 class="reallynow">New Parent/Contact</h3>

@@ -12,8 +12,19 @@ class StudentController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
+        def studentInstanceList
+        def studentInstanceTotal
+        println "params are: " + params
+        if(params.q){
+            studentInstanceList = Student.search( params.q + "*", offset:params.offset ).results
+            studentInstanceTotal = Student.countHits( params.q + "*" )
+        }
+        else {
+            studentInstanceList = Student.list( params )
+            studentInstanceTotal = Student.count()
+        }
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ studentInstanceList: Student.list( params ), studentInstanceTotal: Student.count() ]
+        [ studentInstanceList: studentInstanceList, studentInstanceTotal: studentInstanceTotal ]
     }
 
     def show = {

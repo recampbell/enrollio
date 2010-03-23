@@ -10,7 +10,7 @@
         <div id="wrapper">
             <div id="content">
                 <div class="rightnow">
-                        <g:render template="/contact/contactSearchForm" />
+                        <g:render template="studentSearchForm" />
                     </div>
                     
              <div class="rightnow">

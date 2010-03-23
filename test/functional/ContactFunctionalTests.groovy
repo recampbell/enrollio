@@ -6,35 +6,6 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     def testDataService
 
-    void testContactSearchBarOnContactList() {
-        // Contact search bar should be on the /contacts and the /contact/(some id) pages
-        loginAs('bob', 'bobbobbob0')
-        click("Contacts")
-        assertNotNull byId('contactSearchButton')
-        assertNotNull byId('contactSearchForm')
-        assertContentContains('Search')
-    }
-  
-    // TODO: This test is a bit long, and really tests two things:
-    // going to the contact/show page, and asserting that the search bar is there.
-    void testContactSearchBarOnContactShow() {
-        // Contact search bar should be on the /contacts and the /contact/(some id) pages
-        loginAs('bob', 'bobbobbob0')
-        click("Contacts")
-        // Find any link that goes to a contact
-        def contactLink = byXPath("//a[starts-with(@id,'contactLink')]")
-        assertNotNull contactLink
-        contactLink = contactLink instanceof ArrayList ? contactLink[0] : contactLink
-        click(contactLink.id)
-        assertStatus 200
-        assertTitleContains('Contact:')
-        // Assert that the search bar is here!
-        assertContentContains('Search')
-        assertNotNull byId('contactSearchButton')
-        assertNotNull byId('contactSearchForm')
-    }
-
-    
     void testRegularUserGoesToContactShow() {
         
         loginAs('bob', 'bobbobbob0')
