@@ -21,7 +21,7 @@ class StudentController {
     def list = {
         def studentInstanceList
         def studentInstanceTotal
-        println "params are: " + params
+        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         if(params.q){
             studentInstanceList = 
                  Contact.search( "*" + params.q + "*", offset:params.offset ).results.collect {
@@ -33,7 +33,6 @@ class StudentController {
             studentInstanceList = Student.list( params )
             studentInstanceTotal = Student.count()
         }
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ studentInstanceList: studentInstanceList, studentInstanceTotal: studentInstanceTotal ]
     }
 
