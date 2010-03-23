@@ -13,7 +13,12 @@
             // that shows possible Interests that a new student has.
              $(document).ready(function(){
                 $('#interestsSelector').qtip({
-                   content: $('#newStudentInterests'),
+                   // remove() is important, otherwise qtip creates a clone
+                   // of the newStudentInterests, and everything is double-clicked
+                   content: $('#newStudentInterests').remove(),
+                   // position/container is important, otherwise
+                   // student interests are not submitted in newStudentForm
+                   position: { container: $('#newStudentForm') },
                    hide: {
                       delay: 1000,
                       fixed: true
@@ -25,15 +30,11 @@
                 // Collect the labels of each of the selected Interests
                 // and put them into the "Interests" section of the newStudentForm
                 // from http://groups.google.com/group/jquery-en/browse_thread/thread/6bbc26e14a59526c
-                var selectedInterestLabels = $('input[name=interestInCourse]:checked').map(function() {
-                        // Need to use HTML instead of .text() to get label text
-                        // if .text() is used, then you get LabelLabel or FooFoo 
-                        //  instead of Label and Foo
-                        return $('label[for=' + this.id + ']').html()
+                var selectedInterestLabels = 
+                    $('input[name=interestInCourse]:checked').map(function() {
+                        return $(this).attr("courseName")
                 }).get();
-                $('#interestNames').text(selectedInterestLabels.join(", "))
-
-                            
+                $('#interestNames').val(selectedInterestLabels.join(", "))
             }
         </script>
 
@@ -84,7 +85,7 @@
                     <br />
                 </div>
                 <g:render template='studentList' model="[contactInstance:contactInstance]" />
-                <g:render template='createStudent' model="[contactInstance:contactInstance]" />
+                <g:render template='createStudent' model="[contactInstance:contactInstance, studentInstance : studentInstance]" />
             </div>
             <div id="sidebar">
                 <g:render template="contactMenu" model="[contactInstance:contactInstance]"/>
