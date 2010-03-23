@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'style.css')}" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme1.css')}" />
         <g:layoutHead />
+        <nav:resources override="true" />
         <g:javascript library="application" />
     </head>
     <body>
@@ -27,43 +28,9 @@
                 <shiro:isNotLoggedIn>
                     <h2 style="display:inline">Welcome to Enrollio!</h2>
                 </shiro:isNotLoggedIn>
+    
                 <div id="topmenu">
-                    <ul>
-                        <li class="${isCurrentTab(tabName:'course')}">
-                            <g:link controller="course" action="list">Courses</g:link>
-                        </li>
-                        <li class="${isCurrentTab(tabName:'classSession')}">
-                            <g:link controller="classSession" action="list"
-                            class="enr-top-menu-item">Class Sessions</g:link>
-                        </li>
-                        <li class="${isCurrentTab(tabName:'contact')}">
-                            <g:link controller="contact" action="list">Contacts</g:link>
-                        </li>
-                        <li class="${isCurrentTab(tabName:'student')}">
-                            <g:link controller="student" action="list"
-                            class="enr-top-menu-item">Students</g:link>
-                        </li>
-                        <shiro:hasRole name="Administrator">
-                            <li class="${isCurrentTab(tabName:'admin')}">
-                                <g:link controller="admin" class="enr-top-menu-item">
-                                Admin</g:link>
-                            </li>
-                        </shiro:hasRole>
-                        <li class="${isCurrentTab(tabName:'help')}">
-                            <g:link controller="help" action="index"
-                            class="enr-top-menu-item">Help</g:link>
-                        </li>
-                        <shiro:isNotLoggedIn>
-                            <li class="${isLoginTab(tabName:'login')}">
-                                <g:link controller="auth" action="login">Login</g:link>
-                            </li>
-                        </shiro:isNotLoggedIn>
-                        <shiro:isLoggedIn>
-                            <li class="logintab">
-                                <g:link controller="auth" action="signOut">Logout</g:link>
-                            </li>
-                        </shiro:isLoggedIn>
-                    </ul>
+                    <nav:render group="mainMenu" /> 
                 </div>
             </div>
             <g:layoutBody />

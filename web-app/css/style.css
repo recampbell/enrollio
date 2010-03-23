@@ -96,16 +96,20 @@ select{
 }
 #topmenu li{
 	display:inline;
+        padding:3px;
 }
-#topmenu a,#topmenu a:visited{
+#topmenu a,#topmenu a:visited {
 	padding:5px 12px 5px 12px;
 	text-decoration:none;
 }
-#topmenu .current a, #topmenu .current a:hover, #topmenu .current a:visited{
+
+#topmenu .navigation_active a, 
+#topmenu .navigation_active a:hover, 
+#topmenu .navigation_active a:visited {
 	padding:5px 12px 5px 12px;
 	font-weight:bold;
-	
 }
+
 #top-panel{
 	background:#FFF;
 	padding:5px;
