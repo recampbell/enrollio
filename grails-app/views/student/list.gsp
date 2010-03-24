@@ -33,7 +33,9 @@
                                     id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
                                 </td>
                                 <td>
-                                    <g:link controller="contact" action="show" id="${studentInstance.contact.id}">
+                                    <g:link controller="contact" action="show" 
+                                    name="contactLink_${studentInstance.contact.id}"
+                                    id="${studentInstance.contact.id}">
                                     ${studentInstance.contact.fullName()}
                                     </g:link>
                                 </td>

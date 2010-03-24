@@ -6,55 +6,11 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     def testDataService
 
-    void testRegularUserGoesToContactShow() {
-        
+    def gotoSomeContactShow() {
         loginAs('bob', 'bobbobbob0')
-        click("Contacts")
+        click("Students")
+        def contactLink = byXPath('//a[starts-with(@name, "contactLink")]')
 
-        // this doesn't work:
-        // def contactLink = byXPath("//a[matches(@href,'/contact')]")
-        def contactLink = byXPath("//a[starts-with(@id,'contactLink')]")
-        assertNotNull contactLink
-        contactLink = contactLink instanceof ArrayList ? contactLink[0] : contactLink
-        // Click on the link -- using its ID <evil laugh>
-        click(contactLink.id)
-        assertStatus 200
-        assertTitleContains('Contact:')
-    }
-
-    void testRegularUserGoesToContactEdit() {
-        
-        loginAs('bob', 'bobbobbob0')
-        click("Contacts")
-
-        def contactLink = byXPath("//a[starts-with(@id,'contactLink')]")
-        assertNotNull contactLink
-        contactLink = contactLink instanceof ArrayList ? contactLink[0] : contactLink
-        // Click on the link -- using its ID <evil laugh>
-        click(contactLink.id)
-        assertStatus 200
-        assertTitleContains('Contact:')
-        click("Edit")
-        assertTitleContains('Edit')
-        assertStatus 200
-    }
-
-    void testContactsShownOnContactsPage() {
-        loginAs('bob', 'bobbobbob0')
-        click("Contacts")
-        assertContentContains TestKeys.CONTACT1_LAST_NAME
-
-    }
-
-    void testStudentEditLinkFromContactPage() {
-        // Purify test data.  There's an issue to use setup and teardown
-        // methods, so don't whine.
-        loginAs('bob', 'bobbobbob0')
-        click("Contacts")
-        assertStatus 200
-        assertContentContains TestKeys.CONTACT1_LAST_NAME
-
-        def contactLink = byXPath('//a[starts-with(@id, "contactLink")]')
         if (contactLink instanceof ArrayList) {
             contactLink = contactLink.find {
                 it.getTextContent() =~ TestKeys.CONTACT1_LAST_NAME
@@ -62,6 +18,29 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         }
         assertNotNull contactLink
         contactLink.click()
+        assertStatus 200
+    }
+
+    void testRegularUserGoesToContactShow() {
+        gotoSomeContactShow()
+        assertTitleContains('Contact:')
+    }
+
+    void testRegularUserGoesToContactEdit() {
+        gotoSomeContactShow() 
+        click("Edit Contact")
+        assertTitleContains('Edit Contact')
+        assertStatus 200
+    }
+
+    void testContactsShownOnStudentsPage() {
+        gotoSomeContactShow()
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
+    }
+
+    void testStudentEditLinkFromContactPage() {
+        gotoSomeContactShow()
+        assertContentContains TestKeys.CONTACT1_LAST_NAME
 
         def studentLink = byXPath('//a[starts-with(@name, "editStudent")]')
 
