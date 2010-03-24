@@ -17,7 +17,7 @@
                         Search&#160;</g:link>by phone numbers, address, student, and
                         contact from one page!</li>
                         <li>
-                        <b>Awesome</b>improvements when 
+                        <b>Awesome</b>&nbsp;improvements when 
                         <g:link action="create" controller="contact">creating
                         students</g:link>
                         <ul>
@@ -34,9 +34,9 @@
                         Contacts)</li>
                         <li>Editing 
                         <g:link controller="contact" action="edit" id="1">
-                        contacts</g:link>and 
+                        contacts</g:link>&nbsp;and 
                         <g:link controller="student" action="edit" id="1">
-                        students</g:link>is much prettier</li>
+                        students</g:link>&nbsp;is much prettier</li>
                     </ul>
                 </div>
             </div>
