@@ -1,7 +1,9 @@
 package org.bworks.bworksdb
 
 class Student {
-    static searchable = true 
+    static searchable = {
+        contact component:true
+    }
     String firstName
     String lastName
     String middleName
