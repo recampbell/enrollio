@@ -206,7 +206,7 @@ a#mixswitch {
 	display:inline-block;
 }
 #credits{
-clear:both;
+        clear:both;
 	width:200px;
 	float:left;
 }
@@ -660,6 +660,10 @@ td input, td input[type="submit"] {
     padding: 1px;
     margin: 1px 1px 1px 1px;
     width:95%;
+}
+
+td input.statusSwitcher {
+    width: 5%;
 }
 
 #newStudentInterests {

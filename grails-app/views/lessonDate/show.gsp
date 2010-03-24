@@ -34,9 +34,8 @@
                         <p class="youhave">
              ${lessonDateInstance.classSession.name} </p>
                     </div>
-                    <div class="infowrap">
-                        <div class="infobox">
-                            <h3>Attendees </h3>
+                    <div class="rightnow">
+                            <h3 class="reallynow">Attendees </h3>
                             <table>
                                 <tbody>
                                     <g:each var="a" 
@@ -58,7 +57,6 @@
                                 </g:each>
                                 </tbody>
                             </table>
-                        </div>
                     </div>
                 </div>
                 <div id="sidebar">
