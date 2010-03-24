@@ -63,23 +63,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="infobox margin-left">
-                        <h3>Interested Students</h3>
-                        <table>
-                            <tbody>
-                                <g:each var="interest" in="${courseInstance.interests}">
-                                    <tr>
-                                        <td>
-                                            ${interest.dateCreated}
-                                        </td>
-                                        <td>
-                                            ${interest.student}
-                                        </td>
-                                    </tr>
-                                </g:each>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
             <div id="sidebar">
