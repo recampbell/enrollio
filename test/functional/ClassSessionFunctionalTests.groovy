@@ -3,49 +3,23 @@ import org.bworks.bworksdb.util.TestKeys
 // Note: BootStrap adds methods to FunctionalTestCase
 
 class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCase {
-    // gotoClassSessionList is a utility method
-    // that goes to the classSession/list page
-    void gotoClassSessionList() {
-        loginAs('bob', 'bobbobbob0')
-        click("Class Sessions")
-        // Make sure we see our newly formatted beautiful dates
-        assertContentContains TestKeys.SESSION_KIDS_DATE_FORMATTED
-        assertContentContains TestKeys.SESSION_ADULT_DATE_FORMATTED
-        assertContentContains TestKeys.SESSION_MENTORSHIP_DATE_FORMATTED
-
-    }
 
     // gotoClassSessionPage is a utility method
     // that, um, goes to a class session page
-    void gotoClassSessionPage(sessionName) {
+    void gotoClassSessionPage(courseName, sessionName) {
         loginAs('bob', 'bobbobbob0')
-        click("Class Sessions")
+        click('Courses')
+        click(courseName)
+        assertStatus 200
 
-        if (sessionName) {
-            // select explicit session
-            click(sessionName)
-        }
-        else {
-            def xpathExpr = "//a[starts-with(@name,'classSessionLink')]"
-            def csLink = byXPath(xpathExpr)
-            // if we got multiple links, then just get 1st one
-            csLink = csLink instanceof ArrayList ? csLink[0] : csLink
-            csLink.click()
-        }
+        // select explicit session
+        click(sessionName)
     }
     
     // Make sure we can get to the add/edit enrollments page
     // for a Class Session
     void testAddEnrollments() {
-        loginAs('bob', 'bobbobbob0')
-        click("Class Sessions")
-        assertStatus 200
-        def csLink = byXPath("//a[starts-with(@name,'classSessionLink')]")
-        assertNotNull csLink
-        // if we got multiple links, then just get 1st one
-        csLink = csLink instanceof ArrayList ? csLink[0] : csLink
-        csLink.click()
-        assertStatus 200
+        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         def addEnrollmentsLink = byName('editEnrollmentsLink')
         assertNotNull addEnrollmentsLink
         addEnrollmentsLink.click()
@@ -54,11 +28,8 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     }
 
     void testClassSessionShow() {
-        loginAs('bob', 'bobbobbob0')
-        click("Class Sessions")
+        gotoClassSessionPage(TestKeys.PROGRAM_ADULT_AEC, TestKeys.SESSION_ADULT_NAME)
 
-        assertStatus 200
-        click(TestKeys.SESSION_ADULT_NAME)
         // Check awesome date format
         assertContentContains TestKeys.SESSION_ADULT_DATE_FORMATTED
         // Ensure that STUDENT is enrolled in this course.
@@ -66,13 +37,10 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     }
 
     void testLessonDatesShown() {
-        loginAs('bob', 'bobbobbob0')
-        click("Class Sessions")
+        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
 
-        assertStatus 200
-        click(TestKeys.SESSION_KIDS_NAME)
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains 'Scratch Courseming' 
+        assertContentContains 'Scratch Programming' 
         assertContentContains 'Word Processing'
         assertContentContains 'Presentations'
         assertContentContains 'Email and WWW'
@@ -85,10 +53,10 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     // Test that Grad. Certs come out OK
     void testGradCerts() {
 
-        gotoClassSessionPage(TestKeys.SESSION_KIDS_NAME)
+        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains 'Scratch Courseming' 
+        assertContentContains 'Scratch Programming' 
         // Click on grad list, and expect a PDF
         // NOTE: For some reason (probably javascript), the tests
         // will *not* follow the redirect, so you have to manually call followRedirect()
@@ -104,7 +72,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // Test grad certs for a class session w/no lesson dates
     void testGradCertsNoLessons() {
-        gotoClassSessionPage(TestKeys.SESSION_ADULT_NAME)
+        gotoClassSessionPage(TestKeys.PROGRAM_ADULT_AEC, TestKeys.SESSION_ADULT_NAME)
         assertStatus(200)
         redirectEnabled = false
         def gradCertsLink = byName('gradCertsLink')
@@ -118,7 +86,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // Test Attendance Sheet comes out OK
     void testAttendanceSheet() {
-        gotoClassSessionPage()
+        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
         // Click on sheet, and expect a PDF
         // NOTE: For some reason (probably javascript), the tests
@@ -131,10 +99,12 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     }
 
     void testNewClassSession() {
-        gotoClassSessionList()
-        def newLink = byName('newClassSessionLink')
-        assertNotNull newLink
-        newLink.click()
+        loginAs('bob', 'bobbobbob0')
+        click("Courses")
+        // Go to Children's prog, and ensure that we
+        // see the start date of the first session in our awesome format
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        click('New Session')
         assertStatus 200
         assertTitleContains('New Class Session')
         form('newClassSessionForm') {
