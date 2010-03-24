@@ -42,9 +42,7 @@
                         </table>
                     </div>
                     <div class="infobox margin-left">
-                            <h3 class="reallynow">Sessions<g:link controller="classSession" 
-                                action="create" params="['course.id':courseInstance.id]" 
-                                class="calendar_add">New Session</g:link></h3>
+                            <h3 class="reallynow">Sessions</h3>
                         <table>
                             <tbody>
                                 <g:each var="session"
