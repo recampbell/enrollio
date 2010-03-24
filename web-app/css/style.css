@@ -365,11 +365,21 @@ form label {
 	/* clear:left; */
 	display:block;
 	float:left;
-	width:100px;
 	text-align:right;
 	padding-right:10px;
 	margin-bottom:5px;
+	width:100px;
 }
+
+form label.ui-corner-all {
+	display:block;
+	float:left;
+	text-align:left;
+	padding-right:10px;
+	margin-bottom:5px;
+	width:150px;
+}
+
 form input {
 	padding:3px;
 	margin-bottom:5px;
@@ -659,6 +669,9 @@ tr.dataEntry td {
 td input, td input[type="submit"] {
     padding: 1px;
     margin: 1px 1px 1px 1px;
+}
+
+td input.squishy {
     width:95%;
 }
 

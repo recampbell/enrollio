@@ -11,9 +11,9 @@
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.multiselect.min.js')}"></script>
         <script type="text/javascript">
              $(document).ready(function(){
-            
                 $("select.multiselect").multiSelect({
-                    showHeader : false
+                    showHeader : false,
+                    state : 'open'
                 });
             });
             function updateInterests() {
