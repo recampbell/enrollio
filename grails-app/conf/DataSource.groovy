@@ -32,7 +32,7 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:mysql://localhost/enrollioprod"
+			url = "jdbc:mysql://localhost/enrollioProd"
 			driverClassName="com.mysql.jdbc.Driver"
 			username="root"
 			password=''
