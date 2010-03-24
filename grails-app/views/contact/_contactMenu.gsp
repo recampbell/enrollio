@@ -1,7 +1,7 @@
 <ul>
     <li>
         <h3>
-            <g:link class="user" controller="contact">Contacts</g:link>
+            <g:link class="user" controller="student">Students</g:link>
         </h3>
         <ul>
             <li>
@@ -9,7 +9,7 @@
             </li>
             <g:if test="${contactInstance}">
                 <li>
-                    <g:link class="useredit" controller="contact" action="edit" id="${contactInstance.id}">Edit</g:link>
+                    <g:link class="useredit" controller="contact" action="edit" id="${contactInstance.id}">Edit Contact</g:link>
                 </li>
             </g:if>
         </ul>
