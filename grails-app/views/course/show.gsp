@@ -17,6 +17,7 @@
                         <br />
                     </h3>
                     <p class="youhave">${courseInstance.description}</p>
+                    <p class="youhave">${activeInterestCount} interested Students</p>
                 </div>
                 <div class="infowrap">
                     <div class="infobox">

@@ -58,7 +58,8 @@ class CourseController {
             flash.message = "Course not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ courseInstance : courseInstance ] }
+        else { return [ courseInstance : courseInstance, 
+            activeInterestCount : courseService.activeInterests(courseInstance).size() ] }
     }
 
     def delete = {
