@@ -412,6 +412,7 @@ form #button1:hover, form #button2:hover {
 
 /* icons */
 .number_list{background:transparent url(../images/icons/text_list_numbers.png) no-repeat left;}
+.whatsnew{background:transparent url(../images/icons/new.png) no-repeat left;}
 .grin{background:transparent url(../images/icons/emoticon_grin.png) no-repeat left;}
 .book_open{background:transparent url(../images/icons/book_open.png) no-repeat left;}
 .book_edit{background:transparent url(../images/icons/book_edit.png) no-repeat left;}
@@ -500,9 +501,6 @@ form #button1:hover, form #button2:hover {
 .prop .value {
     text-align: left;
     width: 85%;
-}
-
-ul.helplist {
 }
 
 ul.helplist li  {

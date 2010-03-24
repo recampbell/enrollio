@@ -6,6 +6,7 @@
         <ul>
             <li>
                 <g:link class="grin" controller="help" action="thanks">Credits</g:link>
+                <g:link class="whatsnew" controller="help" action="whatsnew">What's New</g:link>
             </li>
         </ul>
     </li>

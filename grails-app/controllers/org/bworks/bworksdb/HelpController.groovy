@@ -13,5 +13,7 @@ class HelpController {
 
     def about = { }
 
+    def whatsnew = { }
+
     def thanks = { }
 }

@@ -39,6 +39,7 @@ class UrlMappings {
 		"/"(controller:"help", action:'about')
         '/help'(controller: 'help', action: 'index')
         '/thanks'(controller: 'help', action: 'thanks')
+        '/whatsnew'(controller: 'help', action: 'whatsnew')
 
 		// home controller
 		'/home'(controller: 'home', action: 'index')
