@@ -19,28 +19,37 @@
                     <table>
                         <thead>
                             <tr>
-                                <g:sortableColumn property="firstName"
-                                title="Name" />
-                                <g:sortableColumn property="contact" title="Contact"></g:sortableColumn>
+                                <g:sortableColumn property="firstName" title="Student" />
+                                <g:sortableColumn property="contact" title="Contact" />
+                                <th>Info</th>
                             </tr>
                         </thead>
                         <tbody>
                             <g:each in="${studentInstanceList}" status="i"
                             var="studentInstance">
-                                <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                                    <td>
-                                        <g:link action="show" name="studentLink_${studentInstance.id}" 
-                                        id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
-                                    </td>
-                                <td><g:link controller="contact" action="show"
-                                    id="${studentInstance.contact.id}">${fieldValue(bean:studentInstance,
-                                    field:'contact')}</g:link></td>
-                                </tr>
+                            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                                <td>
+                                    <g:link action="show" name="studentLink_${studentInstance.id}" 
+                                    id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
+                                </td>
+                                <td>
+                                    <g:link controller="contact" action="show" id="${studentInstance.contact.id}">
+                                    ${studentInstance.contact.fullName()}
+                                    </g:link>
+                                </td>
+                                <td>${studentInstance.contact.fullAddress() + ' ' +
+                                    studentInstance.contact.abbrevPhoneNumbers()}</td>
+                            </tr>
                             </g:each>
                         </tbody>
                     </table>
                     <div class="paginateButtons">
-                        <g:paginate total="${studentInstanceTotal}" />
+                        <g:if test="prevQuery">
+                            <g:paginate params="[q:prevQuery]" total="${studentInstanceTotal}" />
+                        </g:if>
+                        <g:else>
+                            <g:paginate total="${studentInstanceTotal}" />
+                        </g:else>
                     </div>
                 </div>
             </div>

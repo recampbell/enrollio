@@ -5,6 +5,7 @@ class Contact {
         phoneNumbers component:true
         students component:true
     }
+
     String firstName
     String lastName
     String address1
@@ -54,9 +55,22 @@ class Contact {
         }
     }
 
+    String fullName() {
+        def names = [ firstName, lastName ].findAll {
+            it != null
+        }
+
+        return names?.join(' ') ?: ''
+    }
+
     String allPhoneNumbers() {
         phoneNumbers?.join(", ")
     }
 
+    String abbrevPhoneNumbers() {
+        phoneNumbers?.collect {
+            it.phoneNumber
+        }.join(", ")
+    }
 
 }

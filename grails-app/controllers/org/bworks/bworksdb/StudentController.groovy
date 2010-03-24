@@ -24,7 +24,7 @@ class StudentController {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         if(params.q){
             studentInstanceList = 
-                 Contact.search( "*" + params.q + "*", offset:params.offset ).results.collect {
+                 Contact.search("*" + params.q + "*", offset:params.offset ).results.collect {
                      it.students
                  }.flatten()
                  studentInstanceTotal = studentInstanceList.size()
@@ -33,7 +33,8 @@ class StudentController {
             studentInstanceList = Student.list( params )
             studentInstanceTotal = Student.count()
         }
-        [ studentInstanceList: studentInstanceList, studentInstanceTotal: studentInstanceTotal ]
+
+        [ prevQuery:params.q, studentInstanceList: studentInstanceList, studentInstanceTotal: studentInstanceTotal ]
     }
 
     def show = {
