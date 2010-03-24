@@ -41,5 +41,10 @@
                 </li>
             </g:if>
         </ul>
+        </li>
+        <li>
+        <h3>
+            <g:link class="group" controller="configSetting" action="testDataRequest">Test Data</g:link>
+        </h3>
     </li>
 </ul>

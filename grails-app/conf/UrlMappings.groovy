@@ -24,6 +24,10 @@ class UrlMappings {
         "/showSetting/$id"(controller: 'configSetting', action: 'show')
         "/editSetting/$id"(controller: 'configSetting', action: 'edit')
         "/updateSetting"(controller: 'configSetting', action: 'update')
+        "/testData"(controller:'configSetting', action:'testDataRequest')
+        "/generateTestSessions"(controller:'configSetting', action:'generateTestSessions')
+        "/generateTestCourses"(controller:'configSetting', action:'generateTestCourses')
+        "/generateTestContacts"(controller:'configSetting', action:'generateTestContacts')
 
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
