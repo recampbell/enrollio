@@ -7,23 +7,6 @@
         </div>
     </g:hasErrors>
     <g:form action="saveStudent" method="POST" name="newStudentForm">
-            <div style="display:none" id="newStudentInterests">
-                <g:each var="c" in="${Course.list()}">
-                <div class="col">
-                
-                <label for="interestInCourse_${c.id}">
-                        
-                    <input class="checkbox" type="checkbox" name="interestInCourse" 
-                    courseName="${c.name}"
-                    id="interestInCourse_${c.id}"
-                    class="checkbox" onClick="updateInterests();" 
-                    value="${c.id}" />
-                    ${c.name}
-                </label>
-                </div>
-                </g:each>
-                
-            </div>
     <table width="100%">
         <thead>
             <tr>
@@ -53,15 +36,21 @@
                     value="${fieldValue(bean:studentInstance,field:'lastName')}" />
                 </td>
                 <td>
-                    <input  class="interestsSelector" readonly="readonly" id="interestNames" />
-                </td>
+                    <td>
+		<select name="example1" class="multiselect" multiple="multiple" size="5">
+                    <g:each var="course" in="${Course.list()}">
+                        <option value="${course.id}">${course.name}</option>
+                    </g:each>
+                </select>
+                    </td>
                 <td>
                     <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />
                 </td>
             </tr>
-            
-            
         </tbody>
     </table>
+
+
+
     </g:form>
 </div>

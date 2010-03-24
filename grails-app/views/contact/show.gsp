@@ -4,34 +4,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'comboCheckboxSelectbox.css')}" />
-        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
-	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.qtip-1.0.0-rc3.min.js')}"></script>
-        
+        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'jquery.multiselect.css')}" />
+        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'jquery-ui-1.8rc3.custom.css')}" />
+
+	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.multiselect.min.js')}"></script>
         <script type="text/javascript">
-            // apply qtip selector to the "Edit" link
-            // that shows possible Interests that a new student has.
              $(document).ready(function(){
-                $('.interestsSelector').qtip({
-                   // remove() is important, otherwise qtip creates a clone
-                   // of the newStudentInterests, and everything is double-clicked
-                   content: $('#newStudentInterests').remove(),
-                   // position/container is important, otherwise
-                   // student interests are not submitted in newStudentForm
-                   position: { 
-                       container: $('#newStudentForm'),
-                       corner: {
-                           target: "topRight",
-                           tooltip:"bottomMiddle"
-                           }
-                   },
-                   hide: {
-                       delay: 500,
-                       fixed : true
-                   }
+            
+                $("select.multiselect").multiSelect({
+                    showHeader : false
                 });
             });
-
             function updateInterests() {
                 // Collect the labels of each of the selected Interests
                 // and put them into the "Interests" section of the newStudentForm
