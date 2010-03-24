@@ -26,11 +26,28 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertTitleContains('Contact:')
     }
 
-    void testRegularUserGoesToContactEdit() {
+    void testRegularUserEditsContact() {
         gotoSomeContactShow() 
         click("Edit Contact")
         assertTitleContains('Edit Contact')
         assertStatus 200
+        shouldFail() { assertContentContains('Frodo') }
+        shouldFail() { assertContentContains('Bung Street') }
+
+        form('editContactForm') {
+            firstName = "Frodo"
+            // Don't change last name -- other tests depend on it :o(
+            // lastName = "Baggins"
+            address1 = "Bung Street"
+            click('Update')
+        }
+
+        assertStatus 200
+        assertTitleContains "Contact"
+        assertTitleContains "Frodo"
+        assertTitleContains TestKeys.CONTACT1_LAST_NAME
+        assertContentContains "Frodo"
+        assertContentContains "Bung Street"
     }
 
     void testContactsShownOnStudentsPage() {
