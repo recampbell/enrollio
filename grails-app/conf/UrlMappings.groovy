@@ -33,6 +33,7 @@ class UrlMappings {
 		"/createStudent"(controller: 'contact', action: 'createStudent')
 		"/saveStudent"(controller: 'contact', action: 'saveStudent')
 		"/editContact/$id"(controller: 'contact', action: 'edit')
+		"/updateContact"(controller: 'contact', action: 'update')
 
 		// help controller
 		"/"(controller:"help", action:'about')
