@@ -1,4 +1,14 @@
 <div class="dialog">
+    <g:if test="${flash.message}">
+        <div class="message">${flash.message}</div>
+    </g:if>
+    <g:hasErrors bean="${contactInstance}">
+    <div class="errors">
+        <g:renderErrors bean="${contactInstance}" as="list" />
+    </div>
+    </g:hasErrors>
+    <input type="hidden" name="id" value="${contactInstance?.id}" />
+    <input type="hidden" name="version" value="${contactInstance?.version}" />
     <table>
         <tbody>
             <tr class="prop">
