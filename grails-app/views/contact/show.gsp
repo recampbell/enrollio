@@ -13,7 +13,8 @@
              $(document).ready(function(){
                 $("select.multiselect").multiSelect({
                     showHeader : false,
-                    state : 'open'
+                    noneSelectedText : 'Select Interests',
+                    selectedList:2   // selectedList shows the names of the selected interests!
                 });
             });
             function updateInterests() {

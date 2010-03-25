@@ -16,7 +16,7 @@
                 <th width="20%">
                     Interests
                 </th>
-                <th width="20%"></th>
+                <th width="10%"></th>
             </tr>
         </thead>
         <tbody>
