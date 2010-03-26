@@ -28,11 +28,9 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         dataLoadingService.loadClassSessions(xml)
         existingSession = ClassSession.findByNameIlike("%2006-03-11%")
         assertNotNull "Class session should have been saved.", existingSession
-        def comment = existingSession.comments.findAll {
-            it.body =~ /Imported./ && it.body =~ /Original ID was :1:/
-        }
 
-        assertNotNull "Comment about original ID was saved.", comment
+        assertNotNull "Comment about original ID was saved.", 
+             getCommentAboutThisThingy(existingSession, "1")
     }
 
     void testLoadMultipleClassSessions() {
@@ -125,6 +123,19 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 </dataroot>
 '''
         return xml
+    }
+
+    // Utility method to search for comments that match
+    // this thingy's origId
+    def getCommentAboutThisThingy(thingy, id) {
+
+        def comment = thingy.comments.find {
+            def matchString = "Original ID was :${id}"
+            println "body" + it.body
+            it.body =~ /Imported./ && it.body =~ /Original ID was :${id}:/
+        }
+
+        return comment
     }
 
 
