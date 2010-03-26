@@ -61,7 +61,6 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         def torten = Contact.findByLastName("Tortenweasel")
         assertNull "Should not be Tortenweasel", torten
 
-
         def xml = fixtureMultipleContacts()
         dataLoadingService.loadContacts(xml)
 
@@ -169,6 +168,24 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertNotNull "Date of signup comment", schmitz.comments.find {
                           it.body =~ '2006-01-21'
                       }
+    }
+
+    void testContactCannotBeReached() {
+        def schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNull "Should not be schmitzenbaumer", schmitz
+
+        def torten = Contact.findByLastName("Tortenweasel")
+        assertNull "Should not be Tortenweasel", torten
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        torten = Contact.findByLastName("Tortenweasel")
+        assertFalse 'Torten cannotreach should be false', torten.cannotReach
+        
+        schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertTrue 'Schmitz cannot reach should be true', schmitz.cannotReach
+
     }
 
     def fixtureSingleClassSession() {

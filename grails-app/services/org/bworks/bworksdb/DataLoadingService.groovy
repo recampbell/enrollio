@@ -56,6 +56,7 @@ class DataLoadingService {
                 con.emailAddress = xmlCon.ParentEmail.text()
             }
 
+            con.cannotReach = xmlCon.CouldNotReach.text() == '1' ? true : false
 
             if (con.validate() && con.save()) {
                 addCommentAboutId(con, xmlCon.ParentID.text())
