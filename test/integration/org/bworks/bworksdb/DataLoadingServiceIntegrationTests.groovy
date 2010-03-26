@@ -92,6 +92,29 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals "Theresa", schmitz.firstName
     }
 
+    void testContactAddresses() {
+        def malachi = Contact.findByLastName("Malachi")
+        assertNull "Should not be Malachi", malachi
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        malachi = Contact.findByLastName("Malachi")
+        assertNotNull "malachi should exist", malachi
+
+        assertEquals "Import address 1", "Level 1", malachi.address1
+        assertEquals "Import address 2", "Level Nine", malachi.address2
+        assertEquals "Import zip", "63666", malachi.zipCode
+        assertEquals "Import city", "St. Elmo", malachi.city
+        assertEquals "Import state", "MA", malachi.state
+    }
+
+    def loadContactPhones() {
+// <PrimaryPhone>(314) 588-7080</PrimaryPhone>
+// <SecondPhone>(314) 769-9875</SecondPhone>
+        
+    }
+
     def fixtureSingleClassSession() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">
@@ -171,14 +194,15 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 <ParentID>1</ParentID>
 <LastName>Malachi</LastName>
 <FirstName>Satanya</FirstName>
-<PrimaryPhone>(666) 222-4444</PrimaryPhone>
+<PrimaryPhone>(123) 222-4444</PrimaryPhone>
 <DateOfSignUp>2009-10-10T00:00:00</DateOfSignUp>
-<City>St. Louis</City>
-<State>MO</State>
+<City>St. Elmo</City>
+<State>MA</State>
 <BroadbandAtHome>0</BroadbandAtHome>
 <CouldNotReach>0</CouldNotReach>
 <Address1>Level 1</Address1>
-<Address2>Level 9</Address2>
+<Address2>Level Nine</Address2>
+<Zip>63666</Zip>
 </Parent>
 <Parent>
 <ParentID>3</ParentID>

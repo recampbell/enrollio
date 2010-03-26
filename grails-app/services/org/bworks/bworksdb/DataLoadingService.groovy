@@ -36,6 +36,12 @@ class DataLoadingService {
         contacts.each { xmlCon ->
             def con = new Contact(lastName:xmlCon.LastName.text(),
                                   firstName:xmlCon.FirstName.text())
+
+            con.address1 = xmlCon.Address1.text()
+            con.address2 = xmlCon.Address2.text()
+            con.city = xmlCon.City.text()
+            con.zipCode = xmlCon.Zip.text()
+            con.state = xmlCon.State.text()
             if (con.validate() && con.save()) {
                 log.info("Imported contact ${con} id: ${con.id}")
             }
