@@ -1,5 +1,7 @@
 package org.bworks.bworksdb
 import org.bworks.bworksdb.auth.*
+import org.grails.comments.*
+import grails.util.*
 
 class DataLoadingService {
 
@@ -30,6 +32,35 @@ class DataLoadingService {
         }
     }
 
+    def loadStudents(xmlString) {
+        def xml = new XmlSlurper().parseText(xmlString)
+		def students = xml.children()
+        students.each { xmlStu ->
+            def stu = new Student(firstName : xmlStu.FirstName.text(),
+                                  lastName  : xmlStu.LastName.text())
+            println xmlStu.LastName.text()
+            println xmlStu.email.text()
+            println xmlStu.Grade.text()
+            println xmlStu.Gender.text()
+            println xmlStu.BirthDate.text()
+
+            def con = findContactByOldId(xmlStu.ParentID.text())
+            if (con) {
+                con.addToStudents(stu)
+            }
+
+            if (stu.validate() && stu.save()) {
+                log.info("Student ${stu} imported.")
+            }
+            else {
+                log.error("Couldn't import student.  Errors are: ")
+                stu.errors.allErrors.each {
+                    log.error("Error: ${it}")
+                }
+            }
+        }
+    }
+        
     def loadContacts(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
 		def contacts = xml.children()
