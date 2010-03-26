@@ -30,7 +30,7 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertNotNull "Class session should have been saved.", existingSession
 
         assertNotNull "Comment about original ID was saved.", 
-             getCommentAboutThisThingy(existingSession, "1")
+             getCommentWithImportInfo(existingSession, "1")
     }
 
     void testLoadMultipleClassSessions() {
@@ -69,13 +69,9 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
         schmitz = Contact.findByLastName("Schmitzenbaumer")
         assertNotNull "Schmitzenbaumer should exist", schmitz
-        // assertNotNull "Comment about Schmitzenbaumer's ID was saved.", 
-             // getCommentAboutThisThingy(schmitz, 7771111)
 
         torten = Contact.findByLastName("Tortenweasel")
         assertNotNull "Tortenweasel should exist", torten
-        // assertNotNull "Comment about Tortenweasel's ID was saved.", 
-             // getCommentAboutThisThingy(torten, 696969)
 
     }
 
@@ -127,7 +123,38 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         }
 
         assertEquals "Contact email imported", 'schmitzenblitzen@donner.com', chateau.emailAddress
+
+        // torten should *not* have an "Other" phone loaded, nor an e-mail
+        def torten = Contact.findByLastName("Tortenweasel")
+        assertNull "NO Secondary phone loaded for Torten", torten.phoneNumbers.find {
+            it.label == "Other"
+        }
         
+        assertNull "NO Contact email imported", torten.emailAddress
+    }
+
+    // test that "InfoTakenBy" field is recorded,
+    // as well as a note about where the contact was loaded from.
+    void testContactCommentAndNotes() {
+        def schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNull "Should not be schmitzenbaumer", schmitz
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNotNull "schmitz should exist", schmitz
+
+        assertNotNull "Contact's Origin should be saved in a comment",
+                      getCommentWithImportInfo(schmitz, '8675309')
+
+        assertNotNull "Contact 'Info Taken By' should be saved ", schmitz.comments.find {
+                          it.body == 'Info taken by: Herr Cookie Monster'
+                      }
+
+        assertNotNull "Contact Note should be saved ", schmitz.comments.find {
+                          it.body == 'Some note that we should save.'
+                      }
     }
 
     def fixtureSingleClassSession() {
@@ -249,7 +276,7 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 <CouldNotReach>0</CouldNotReach>
 </Parent>
 <Parent>
-<ParentID>5</ParentID>
+<ParentID>8675309</ParentID>
 <LastName>Schmitzenbaumer</LastName>
 <FirstName>Theresa</FirstName>
 <PrimaryPhone>(314) 555-4444</PrimaryPhone>
@@ -270,7 +297,7 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
  
     // Utility method to search for comments that match
     // this thingy's origId
-    def getCommentAboutThisThingy(thingy, id) {
+    def getCommentWithImportInfo(thingy, id) {
 
         def comment = thingy.comments.find {
             def matchString = "Original ID was :${id}"

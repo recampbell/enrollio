@@ -1,6 +1,7 @@
 package org.bworks.bworksdb
+import org.grails.comments.*
 
-class Contact {
+class Contact implements Commentable {
     static searchable = {
         phoneNumbers component:true
         students component:true

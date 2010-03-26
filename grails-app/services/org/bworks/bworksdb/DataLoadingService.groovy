@@ -43,18 +43,30 @@ class DataLoadingService {
             con.zipCode = xmlCon.Zip.text()
             con.state = xmlCon.State.text()
 
-            if (xmlCon.PrimaryPhone) {
+            if (xmlCon.PrimaryPhone != '') {
                 con.addToPhoneNumbers(new PhoneNumber(label:"Home", phoneNumber:xmlCon.PrimaryPhone.text()))
             }
 
-            if (xmlCon.SecondPhone) {
+            if (xmlCon.SecondPhone != '') {
+                log.error("found second phone for ${con.lastName} ${xmlCon.SecondPhone}")
                 con.addToPhoneNumbers(new PhoneNumber(label:"Other", phoneNumber:xmlCon.SecondPhone.text()))
             }
 
-            if (xmlCon.ParentEmail) {
+            if (xmlCon.ParentEmail != '') {
                 con.emailAddress = xmlCon.ParentEmail.text()
             }
+
+
             if (con.validate() && con.save()) {
+                addCommentAboutId(con, xmlCon.ParentID.text())
+
+                if (xmlCon.Note != '') {
+                    addComment(con, xmlCon.Note?.text())
+                }
+                if (xmlCon.InfoTakenBy != '') {
+                    log.error("Adding infotakenby: ${xmlCon.InfoTakenBy?.text()}")
+                    addComment(con, 'Info taken by: ' + xmlCon.InfoTakenBy.text())
+                }
                 log.info("Imported contact ${con} id: ${con.id}")
             }
             else {
@@ -77,7 +89,11 @@ class DataLoadingService {
     }
 
     def addCommentAboutId(thingy, id) {
-        thingy.addComment(ShiroUser.findByUsername("admin"), "Imported.  Original ID was :${id}:")
+        addComment(thingy,  "Imported.  Original ID was :${id}:")
+    }
+
+    def addComment(thingy, comment) {
+        thingy.addComment(ShiroUser.findByUsername("admin"), comment) 
     }
 
 }
