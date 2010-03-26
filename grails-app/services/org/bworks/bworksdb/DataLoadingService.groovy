@@ -27,7 +27,25 @@ class DataLoadingService {
                     log.error("Error: ${it}")
                 }
             }
-            addCommentAboutId(cs, xmlSess.ClassId.text())
+        }
+    }
+
+    def loadContacts(xmlString) {
+        def xml = new XmlSlurper().parseText(xmlString)
+		def contacts = xml.children()
+        contacts.each { xmlCon ->
+            def con = new Contact(lastName:xmlCon.LastName.text(),
+                                  firstName:xmlCon.FirstName.text())
+            if (con.validate() && con.save()) {
+                log.info("Imported contact ${con} id: ${con.id}")
+            }
+            else {
+                log.error("Couldn't import contact.  Errors are: ")
+                con.errors.allErrors.each {
+                    log.error("Error: ${it}")
+                }
+            }
+
         }
     }
 

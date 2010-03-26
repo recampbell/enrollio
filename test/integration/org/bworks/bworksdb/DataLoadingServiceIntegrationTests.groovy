@@ -48,8 +48,34 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals "Four more class sessions should now exist.", 4 + initClassSessionCount, ClassSession.count()
 
         assertNotNull "Should have saved 09-09 class session", ClassSession.findByNameIlike("%2006-09-09%")
-
         assertNotNull "Should have saved 7-22 class session also", ClassSession.findByNameIlike("%2006-07-22%")
+
+    }
+
+    void testLoadContacts() {
+        def initContactCount = Contact.count()
+
+        def schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNull "Should not be Schmitzenbaumer", schmitz
+
+        def torten = Contact.findByLastName("Tortenweasel")
+        assertNull "Should not be Tortenweasel", torten
+
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        assertEquals "Four more contacts should now exist.", 4 + initContactCount, Contact.count()
+
+        schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNotNull "Schmitzenbaumer should exist", schmitz
+        // assertNotNull "Comment about Schmitzenbaumer's ID was saved.", 
+             // getCommentAboutThisThingy(schmitz, 7771111)
+
+        torten = Contact.findByLastName("Tortenweasel")
+        assertNotNull "Tortenweasel should exist", torten
+        // assertNotNull "Comment about Tortenweasel's ID was saved.", 
+             // getCommentAboutThisThingy(torten, 696969)
 
     }
 
@@ -125,6 +151,73 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         return xml
     }
 
+    def fixtureMultipleContacts() {
+        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Parent.xsd">
+<Parent>
+<ParentID>1</ParentID>
+<LastName>Malachi</LastName>
+<FirstName>Satanya</FirstName>
+<PrimaryPhone>(666) 222-4444</PrimaryPhone>
+<DateOfSignUp>2009-10-10T00:00:00</DateOfSignUp>
+<City>St. Louis</City>
+<State>MO</State>
+<BroadbandAtHome>0</BroadbandAtHome>
+<CouldNotReach>0</CouldNotReach>
+<Address1>Level 1</Address1>
+<Address2>Level 9</Address2>
+</Parent>
+<Parent>
+<ParentID>3</ParentID>
+<LastName>Chateaubolognese</LastName>
+<ParentEmail>schmitzenblitzen@donner.com</ParentEmail>
+<FirstName>Cherise</FirstName>
+<PrimaryPhone>(314) 111-3333</PrimaryPhone>
+<SecondPhone>(314) 111-2222</SecondPhone>
+<DateOfSignUp>2006-01-02T00:00:00</DateOfSignUp>
+<Address1>123 Chateaubolognese Street</Address1>
+<Address2>Unit A</Address2>
+<City>St. Louis</City>
+<State>MO</State>
+<Zip>63110</Zip>
+<BroadbandAtHome>0</BroadbandAtHome>
+<CouldNotReach>0</CouldNotReach>
+</Parent>
+<Parent>
+<ParentID>4</ParentID>
+<LastName>Tortenweasel</LastName>
+<FirstName>Smitty</FirstName>
+<PrimaryPhone>(314) 777-1111</PrimaryPhone>
+<DateOfSignUp>2006-01-14T00:00:00</DateOfSignUp>
+<Address1>789 Descending Street</Address1>
+<City>St. Louis</City>
+<State>MO</State>
+<Zip>63104</Zip>
+<BroadbandAtHome>0</BroadbandAtHome>
+<CouldNotReach>0</CouldNotReach>
+</Parent>
+<Parent>
+<ParentID>5</ParentID>
+<LastName>Schmitzenbaumer</LastName>
+<FirstName>Theresa</FirstName>
+<PrimaryPhone>(314) 555-4444</PrimaryPhone>
+<SecondPhone>(314) 333-2222</SecondPhone>
+<DateOfSignUp>2006-01-21T00:00:00</DateOfSignUp>
+<Address1>314 Phone Street</Address1>
+<Address2>Unit Bevel Street</Address2>
+<City>St. Louis</City>
+<State>MO</State>
+<Zip>63107</Zip>
+<Note>Some note that we should save.</Note>
+<InfoTakenBy>Herr Cookie Monster</InfoTakenBy>
+<BroadbandAtHome>0</BroadbandAtHome>
+<CouldNotReach>1</CouldNotReach>
+</Parent>
+</dataroot>
+'''
+        return xml
+    }
+ 
     // Utility method to search for comments that match
     // this thingy's origId
     def getCommentAboutThisThingy(thingy, id) {
