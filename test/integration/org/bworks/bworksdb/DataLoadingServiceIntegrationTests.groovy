@@ -21,6 +21,20 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testClassSesssionOrigIdIsPreserved() {
+        def existingSession = ClassSession.findByNameIlike("%2006-03-11%")
+        assertNull "Should not be a class session", existingSession
+        def xml = fixtureSingleClassSession()
+        dataLoadingService.loadClassSessions(xml)
+        existingSession = ClassSession.findByNameIlike("%2006-03-11%")
+        assertNotNull "Class session should have been saved.", existingSession
+        def comment = existingSession.comments.findAll {
+            it.body =~ /Imported./ && it.body =~ /Original ID was :1:/
+        }
+
+        assertNotNull "Comment about original ID was saved.", comment
+    }
+
     void testLoadMultipleClassSessions() {
         def initClassSessionCount = ClassSession.count()
 

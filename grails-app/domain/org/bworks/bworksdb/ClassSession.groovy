@@ -1,6 +1,7 @@
 package org.bworks.bworksdb
+import org.grails.comments.*
 
-class ClassSession {
+class ClassSession implements Commentable {
     Date startDate
     String name
     Course course

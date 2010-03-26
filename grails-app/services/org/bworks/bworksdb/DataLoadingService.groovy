@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.bworks.bworksdb.auth.*
 
 class DataLoadingService {
 
@@ -25,6 +26,7 @@ class DataLoadingService {
                     log.error("Error: ${it}")
                 }
             }
+            addCommentAboutId(cs, xmlSess.ClassId.text())
         }
     }
 
@@ -35,6 +37,10 @@ class DataLoadingService {
     def getDefaultCourse() {
         def c = Course.findByNameIlike("chil") ?: Course.get(1)
         return c
+    }
+
+    def addCommentAboutId(thingy, id) {
+        thingy.addComment(ShiroUser.findByUsername("admin"), "Imported.  Original ID was :${id}:")
     }
 
 }
