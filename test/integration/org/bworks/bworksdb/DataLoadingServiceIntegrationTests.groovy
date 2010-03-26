@@ -79,6 +79,19 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testContactNames() {
+        def schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNull "Should not be Schmitzenbaumer", schmitz
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        // Last name loaded successfully if we find the contact.
+        schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNotNull "Schmitzenbaumer should exist", schmitz
+        assertEquals "Theresa", schmitz.firstName
+    }
+
     def fixtureSingleClassSession() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">
