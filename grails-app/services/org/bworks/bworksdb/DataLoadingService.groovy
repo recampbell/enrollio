@@ -19,6 +19,7 @@ class DataLoadingService {
             def cs = new ClassSession(course:course, name:sessionName, startDate:new Date())
             if (cs.validate() && cs.save()) {
                 log.info("Imported class session ${cs.name} id: ${cs.id}")
+                addCommentAboutId(cs, xmlSess.ClassID.text())
             }
             else {
                 log.error("Couldn't import class session.  Errors are: ")
