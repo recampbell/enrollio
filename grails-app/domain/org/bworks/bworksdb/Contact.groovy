@@ -18,6 +18,9 @@ class Contact implements Commentable {
     Date dateCreated
     Date lastUpdated
 
+    // Contacts who can't be reached are excluded from calling Lists, etc.
+    Boolean cannotReach = false
+
     // Declared to assist w/adding phoneNumbers to class easily
     // http://lxisoft.com/web/guest/grails
     List phoneNumbers = new ArrayList()
