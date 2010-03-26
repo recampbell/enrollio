@@ -6,17 +6,21 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
     def dataLoadingService
 
     void testLoadClassSession() {
+        def initClassSessionCount = ClassSession.count()
+
         def existingSession = ClassSession.findByNameIlike("%2006-03-11%")
         assertNull "Should not be a class session", existingSession
 
         def xml = fixtureClassSession()
         dataLoadingService.loadClassSessions(xml)
 
+        assertEquals "One more class session should now exist.", 1 + initClassSessionCount, ClassSession.count()
+
         existingSession = ClassSession.findByNameIlike("%2006-03-11%")
         assertNotNull "Class session should have been saved.", existingSession
 
         assertTrue "Class session name should have first class session date in it",
-                   existingSession.name =~ /2006-03-11/
+                   (existingSession.name =~ /2006-03-11/).matches()
 
                      
     }
