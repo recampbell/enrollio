@@ -109,9 +109,24 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals "Import state", "MA", malachi.state
     }
 
-    def loadContactPhones() {
-// <PrimaryPhone>(314) 588-7080</PrimaryPhone>
-// <SecondPhone>(314) 769-9875</SecondPhone>
+    void testContactPhonesEmail() {
+        def chateau = Contact.findByLastName("Chateaubolognese")
+        assertNull "Should not be chateau", chateau
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+
+        chateau = Contact.findByLastName("Chateaubolognese")
+        assertNotNull "chateau should exist", chateau
+        assertNotNull "Primary phone loaded", chateau.phoneNumbers.find {
+            it.label == "Home" && it.phoneNumber =="(314) 111-3333"
+        }
+
+        assertNotNull "Secondary phone loaded", chateau.phoneNumbers.find {
+            it.label == "Other" && it.phoneNumber == "(314) 111-2222"
+        }
+
+        assertEquals "Contact email imported", 'schmitzenblitzen@donner.com', chateau.emailAddress
         
     }
 
@@ -242,9 +257,7 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 <DateOfSignUp>2006-01-21T00:00:00</DateOfSignUp>
 <Address1>314 Phone Street</Address1>
 <Address2>Unit Bevel Street</Address2>
-<City>St. Louis</City>
 <State>MO</State>
-<Zip>63107</Zip>
 <Note>Some note that we should save.</Note>
 <InfoTakenBy>Herr Cookie Monster</InfoTakenBy>
 <BroadbandAtHome>0</BroadbandAtHome>

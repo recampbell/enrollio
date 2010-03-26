@@ -42,6 +42,18 @@ class DataLoadingService {
             con.city = xmlCon.City.text()
             con.zipCode = xmlCon.Zip.text()
             con.state = xmlCon.State.text()
+
+            if (xmlCon.PrimaryPhone) {
+                con.addToPhoneNumbers(new PhoneNumber(label:"Home", phoneNumber:xmlCon.PrimaryPhone.text()))
+            }
+
+            if (xmlCon.SecondPhone) {
+                con.addToPhoneNumbers(new PhoneNumber(label:"Other", phoneNumber:xmlCon.SecondPhone.text()))
+            }
+
+            if (xmlCon.ParentEmail) {
+                con.emailAddress = xmlCon.ParentEmail.text()
+            }
             if (con.validate() && con.save()) {
                 log.info("Imported contact ${con} id: ${con.id}")
             }
