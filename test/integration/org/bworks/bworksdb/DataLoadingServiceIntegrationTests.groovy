@@ -157,6 +157,20 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
                       }
     }
 
+    // for now, just set the dateCreated()
+    void testContactDateCreated() {
+        def schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNull "Should not be schmitzenbaumer", schmitz
+
+        def xml = fixtureMultipleContacts()
+        dataLoadingService.loadContacts(xml)
+        schmitz = Contact.findByLastName("Schmitzenbaumer")
+        assertNotNull "schmitz should exist", schmitz
+        assertNotNull "Date of signup comment", schmitz.comments.find {
+                          it.body =~ '2006-01-21'
+                      }
+    }
+
     def fixtureSingleClassSession() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">

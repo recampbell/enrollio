@@ -67,6 +67,8 @@ class DataLoadingService {
                     log.error("Adding infotakenby: ${xmlCon.InfoTakenBy?.text()}")
                     addComment(con, 'Info taken by: ' + xmlCon.InfoTakenBy.text())
                 }
+
+                addComment(con, 'Signup Date:' + xmlCon.DateOfSignUp.text().split('T')[0])
                 log.info("Imported contact ${con} id: ${con.id}")
             }
             else {
