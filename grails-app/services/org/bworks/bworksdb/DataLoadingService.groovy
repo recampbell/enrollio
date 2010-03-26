@@ -99,4 +99,23 @@ class DataLoadingService {
         thingy.addComment(ShiroUser.findByUsername("admin"), comment) 
     }
 
+    def findContactByOldId(oldContactId) {
+        // go through contacts' notes, and find this oldContactId
+        def c = CommentLink.createCriteria()
+        def links = c.list {
+            eq('type', GrailsNameUtils.getPropertyName(Contact.class))
+            comment {
+                like('body', "%:${oldContactId}:%")
+            }
+        }
+
+        if (links) {
+            return Contact.findById(links[0].commentRef)
+        }
+        else {
+            return null
+        }
+        
+    }
+
 }
