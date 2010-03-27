@@ -17,8 +17,10 @@ class DataLoadingService {
             // Take first class date and put it into the name of the session
             // Date format looks like this:  
             //     <Class1Date>2006-03-11T00:00:00</Class1Date>
-            def sessionName = xmlSess.Class1Date.text().split('T')[0]
-            def cs = new ClassSession(course:course, name:sessionName, startDate:new Date())
+            def xmlStartDate = xmlSess.Class1Date.text().split('T')[0]
+            def cs = new ClassSession(course:course, 
+                name:xmlStartDate, 
+                startDate: Date.parse('yyyy-MM-dd', xmlStartDate))
             if (cs.validate() && cs.save()) {
                 log.info("Imported class session ${cs.name} id: ${cs.id}")
                 addCommentAboutId(cs, xmlSess.ClassID.text())

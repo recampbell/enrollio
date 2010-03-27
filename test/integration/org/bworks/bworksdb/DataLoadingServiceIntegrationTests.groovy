@@ -21,6 +21,13 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testClassSesssionStartDate() {
+        def xml = fixtureSingleClassSession()
+        dataLoadingService.loadClassSessions(xml)
+        def cs = ClassSession.findByNameIlike("%2006-03-11%")
+        assertEquals "Start date imported correctly", '2006-03-11', cs.startDate?.format('yyyy-MM-dd')
+    }
+
     void testClassSesssionOrigIdIsPreserved() {
         def existingSession = ClassSession.findByNameIlike("%2006-03-11%")
         assertNull "Should not be a class session", existingSession
