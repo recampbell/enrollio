@@ -48,14 +48,17 @@ class DataLoadingService {
                 stu.birthDate = Date.parse("yyyy-MM-dd",xmlStu.BirthDate.text() )
             }
             
-
             def con = findContactByOldId(xmlStu.ParentID.text())
             if (con) {
                 con.addToStudents(stu)
             }
 
             if (stu.validate() && stu.save()) {
+                if (xmlStu.Notes.text()) {
+                    addComment(stu, xmlStu.Notes.text())
+                }
                 log.info("Student ${stu} imported.")
+
             }
             else {
                 log.error("Couldn't import student.  Errors are: ")
