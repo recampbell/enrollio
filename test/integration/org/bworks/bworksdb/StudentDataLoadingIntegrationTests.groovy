@@ -45,6 +45,46 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
         
 
     }
+
+ // <ParentID>8675309</ParentID>
+ // <ParentID>1010101</ParentID>
+ // <ParentID>1</ParentID>
+ // <ParentID>1010101</ParentID>
+
+ // <ParentID>1</ParentID>
+ // <ParentID>3</ParentID>
+ // <ParentID>1010101</ParentID>
+ // <ParentID>8675309</ParentID>
+
+   void testStudentContacts() {
+        def bandit = Student.findByLastName("Bandit")
+        assertNull "No Bandit students", bandit
+
+        // must load contacts before loading students
+        dataLoadingService.loadContacts(fixtureMultipleContacts())
+
+        def xml = fixtureMultipleStudents()
+        dataLoadingService.loadStudents(xml)
+
+        // Firstname and lastname are tested here
+        bandit = Student.findByLastNameAndFirstName("Bandit", "Smokey" )
+        assertNotNull "Smokey student loaded", bandit
+
+        assertEquals 'Smokey assigned to correct parent', 'Theresa', bandit.contact.firstName
+        assertEquals 'Smokey assigned to correct parent', 'Schmitzenbaumer', bandit.contact.lastName
+
+        def smittyContact = Contact.findByLastNameAndFirstName("Tortenweasel", "Smitty")
+        assertEquals 'Smitty has 2 students', 2, smittyContact.students.size()
+
+        assertNotNull 'Totoro should have Smitty as a Contact', smittyContact.students.find {
+            it.firstName == "Totoro"
+        }
+
+        assertNotNull 'Smokey should have Smitty as a Contact', smittyContact.students.find {
+            it.firstName == "Smokey"
+        }
+   }
+
     def fixtureMultipleStudents() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Student.xsd">
