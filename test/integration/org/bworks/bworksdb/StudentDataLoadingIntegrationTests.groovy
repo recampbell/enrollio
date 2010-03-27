@@ -18,12 +18,33 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
         torten1 = Student.findByLastNameAndFirstName("Tortenweasel", "Totoro" )
         assertNotNull "Tortenweasel student loaded", torten1
 
-        assertEquals "Import Student Grade", '10', torten1.grade
+        assertEquals "Import Student Grade", 10, torten1.grade
         assertEquals "Import Student Email", 'totoro@alum.bworks.org', torten1.emailAddress
+        assertEquals "Import Student Gender", 'M', torten1.gender
         
 
     }
 
+   void testStudentBirthDateAndNotes() {
+        def bandit = Student.findByLastName("Bandit")
+        assertNull "No Bandit students", bandit
+
+        // must load contacts before loading students
+        dataLoadingService.loadContacts(fixtureMultipleContacts())
+        def xml = fixtureMultipleStudents()
+        dataLoadingService.loadStudents(xml)
+
+        // Firstname and lastname are tested here
+        bandit = Student.findByLastNameAndFirstName("Bandit", "Smokey" )
+        assertNotNull "Smokey student loaded", bandit
+
+        assertEquals "Birthdate", '1997-01-07', bandit.birthDate?.format('yyyy-MM-dd')
+        assertNotNull "Student Notes should be saved ", bandit.comments.find {
+                          it.body == 'Mentorship Interested'
+                      }
+        
+
+    }
     def fixtureMultipleStudents() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Student.xsd">
@@ -32,6 +53,7 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
 <ParentID>8675309</ParentID>
 <LastName>Bandit</LastName>
 <FirstName>Smokey</FirstName>
+<Notes>Mentorship Interested</Notes>
 <BirthDate>1997-01-07T00:00:00</BirthDate>
 <Grade>10</Grade>
 <ClassID>13</ClassID>
@@ -45,6 +67,7 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
 <ParentID>1010101</ParentID>
 <LastName>Tortenweasel</LastName>
 <FirstName>Totoro</FirstName>
+<Gender>M</Gender>
 <BirthDate>1997-01-07T00:00:00</BirthDate>
 <Grade>10</Grade>
 <ClassID>13</ClassID>

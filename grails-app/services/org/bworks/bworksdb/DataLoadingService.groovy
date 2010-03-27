@@ -38,11 +38,16 @@ class DataLoadingService {
         students.each { xmlStu ->
             def stu = new Student(firstName : xmlStu.FirstName.text(),
                                   lastName  : xmlStu.LastName.text())
-            println xmlStu.LastName.text()
-            println xmlStu.email.text()
-            println xmlStu.Grade.text()
-            println xmlStu.Gender.text()
-            println xmlStu.BirthDate.text()
+
+            stu.emailAddress = xmlStu.email.text()
+            if(xmlStu.Grade.text()) {
+                stu.grade = xmlStu.Grade.text().toInteger()
+            }
+            stu.gender = xmlStu.Gender.text()
+            if (xmlStu.BirthDate.text()) {
+                stu.birthDate = Date.parse("yyyy-MM-dd",xmlStu.BirthDate.text() )
+            }
+            
 
             def con = findContactByOldId(xmlStu.ParentID.text())
             if (con) {
