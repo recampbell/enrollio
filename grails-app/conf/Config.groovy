@@ -54,9 +54,10 @@ log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+        // console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+        rollingFile name:'myAppender', layout:pattern(conversionPattern: '%5p | %d | %F | %L | %m%n'), file:"enrollio.log"
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -73,7 +74,11 @@ log4j = {
 
     // set level to info for all application artefacts
     // http://grails.org/doc/1.1.x/guide/3.%20Configuration.html#3.1.2%20Logging
-    info "grails.app"
+    info myAppender:"grails.app"
+
+    root {
+         info 'myAppender'
+    }
 }
 
 
