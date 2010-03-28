@@ -80,41 +80,21 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
             it.firstName == "Totoro"
         }
 
-        assertNotNull 'Smokey should have Smitty as a Contact', smittyContact.students.find {
-            it.firstName == "Smokey"
+        assertNotNull 'Billy should have Smitty as a Contact', smittyContact.students.find {
+            it.firstName == "Billy"
         }
    }
 
     def fixtureMultipleStudents() {
         def xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Student.xsd">
-<Student>
-<StudentID>188</StudentID>
-<ParentID>8675309</ParentID>
-<LastName>Bandit</LastName>
-<FirstName>Smokey</FirstName>
-<Notes>Mentorship Interested</Notes>
-<BirthDate>1997-01-07T00:00:00</BirthDate>
-<Grade>10</Grade>
-<ClassID>13</ClassID>
-<GraduateDate>2007-08-18T00:00:00</GraduateDate>
-<DropOut>0</DropOut>
-<SystemReceivedID>0</SystemReceivedID>
-<email>smokeybandit@reynolds.com</email>
+<Student> <StudentID>188</StudentID> <ParentID>8675309</ParentID> <LastName>Bandit</LastName> <FirstName>Smokey</FirstName> <Notes>Mentorship Interested</Notes>
+<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade> <ClassID>13</ClassID> <GraduateDate>2007-08-18T00:00:00</GraduateDate>
+<DropOut>0</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>smokeybandit@reynolds.com</email>
 </Student>
-<Student>
-<StudentID>188</StudentID>
-<ParentID>1010101</ParentID>
-<LastName>Tortenweasel</LastName>
-<FirstName>Totoro</FirstName>
-<Gender>M</Gender>
-<BirthDate>1997-01-07T00:00:00</BirthDate>
-<Grade>10</Grade>
-<ClassID>13</ClassID>
-<GraduateDate>2007-08-18T00:00:00</GraduateDate>
-<DropOut>0</DropOut>
-<SystemReceivedID>0</SystemReceivedID>
-<email>totoro@alum.bworks.org</email>
+<Student> <StudentID>188</StudentID> <ParentID>1010101</ParentID> <LastName>Tortenweasel</LastName>
+<FirstName>Totoro</FirstName> <Gender>M</Gender> <BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade>
+<ClassID>13</ClassID> <GraduateDate>2007-08-18T00:00:00</GraduateDate> <DropOut>0</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>totoro@alum.bworks.org</email>
 </Student>
 <Student>
 <StudentID>188</StudentID>
@@ -133,7 +113,7 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
 <StudentID>188</StudentID>
 <ParentID>1010101</ParentID>
 <LastName>Tortenweasel</LastName>
-<FirstName>Smokey</FirstName>
+<FirstName>Billy</FirstName>
 <BirthDate>1997-01-07T00:00:00</BirthDate>
 <Grade>10</Grade>
 <ClassID>13</ClassID>
