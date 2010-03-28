@@ -155,6 +155,10 @@ class DataLoadingService {
             }
 
             con.cannotReach = xmlCon.CouldNotReach.text() == '1' ? true : false
+    
+            def signupDateString = xmlCon.DateOfSignUp.text().split('T')[0]
+            // Record this date to the SignupDate, also
+            con.signupDate = Date.parse('yyyy-MM-dd', signupDateString)
 
             if (con.validate() && con.save()) {
                 addCommentAboutId(con, xmlCon.ParentID.text())
@@ -167,7 +171,10 @@ class DataLoadingService {
                     addComment(con, 'Info taken by: ' + xmlCon.InfoTakenBy.text())
                 }
 
-                addComment(con, 'Signup Date:' + xmlCon.DateOfSignUp.text().split('T')[0])
+                // Add comment about the date that contact signed up.
+                // Duplicate functionality of signupDate, but what the heck
+                addComment(con, 'Signup Date:' + signupDateString)
+
                 log.info("Imported contact ${con} id: ${con.id}")
             }
             else {

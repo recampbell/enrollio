@@ -17,6 +17,7 @@ class Contact implements Commentable {
     String emailAddress
     Date dateCreated
     Date lastUpdated
+    Date signupDate = new Date()
 
     // Contacts who can't be reached are excluded from calling Lists, etc.
     Boolean cannotReach = false

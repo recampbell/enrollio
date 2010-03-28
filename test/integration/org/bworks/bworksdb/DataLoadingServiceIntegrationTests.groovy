@@ -193,7 +193,7 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
                       }
     }
 
-    // for now, just set the dateCreated()
+    // Decided to add a signupDate to Contact
     void testContactDateCreated() {
         def schmitz = Contact.findByLastName("Schmitzenbaumer")
         assertNull "Should not be schmitzenbaumer", schmitz
@@ -205,6 +205,8 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         assertNotNull "Date of signup comment", schmitz.comments.find {
                           it.body =~ '2006-01-21'
                       }
+
+        assertEquals "ContactSignup date is correct.", '2006-01-21', schmitz.signupDate.format('yyyy-MM-dd')
     }
 
     void testContactCannotBeReached() {
