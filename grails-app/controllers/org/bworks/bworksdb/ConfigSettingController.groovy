@@ -7,6 +7,8 @@ class ConfigSettingController {
     def index = { redirect(action:list,params:params) }
     def testDataService
 
+    def dataLoadingService
+
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST', 
                              generateTestData:'POST',
@@ -19,6 +21,17 @@ class ConfigSettingController {
 
     def testDataRequest = {
         [ ]
+    }
+
+    def loadDataRequest = {
+        []
+    }
+
+    def loadDataFromFile = {
+        def messages = dataLoadingService.loadFromFiles()
+
+        flash.message = messages.messages
+        redirect(controller:'admin', action:'index')
     }
 
     // TODO: Make this error message friendlier

@@ -21,6 +21,7 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
         assertRedirectUrlContains "/unauthorized"
 
     }
+
     void testNoAdminForRegularUser() {
         redirectEnabled = false
         loginAs("bob", "bobbobbob0")
@@ -31,6 +32,17 @@ class SecurityFiltersFunctionalTests extends functionaltestplugin.FunctionalTest
 
         // Make sure that user cannot go to admin page
         get('/admin')
+        assertRedirectUrlContains "/unauthorized"
+    }
+
+    void testNoLoadDataForRegularUser() {
+        loginAs("bob", "bobbobbob0")
+        redirectEnabled = false
+
+        get('/loadDataRequest')
+        assertRedirectUrlContains "/unauthorized"
+
+        post('/loadDataFromFile')
         assertRedirectUrlContains "/unauthorized"
     }
 

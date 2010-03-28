@@ -8,6 +8,9 @@
         <div id="wrapper">
             <div id="content">
                  <div class="rightnow">
+            <g:if test="${flash.message}">
+            <div class="message">${flash.message}</div>
+            </g:if>
                     <h3 class="reallynow">
                             <span>Admin</span>
                         <br />

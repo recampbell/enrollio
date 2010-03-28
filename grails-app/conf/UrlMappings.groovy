@@ -28,6 +28,8 @@ class UrlMappings {
         "/generateTestSessions"(controller:'configSetting', action:'generateTestSessions')
         "/generateTestCourses"(controller:'configSetting', action:'generateTestCourses')
         "/generateTestContacts"(controller:'configSetting', action:'generateTestContacts')
+        "/loadDataFromFile"(controller:'configSetting', action:'loadDataFromFile')
+        "/loadDataRequest"(controller:'configSetting', action:'loadDataRequest')
 
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
