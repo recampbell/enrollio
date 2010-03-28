@@ -49,6 +49,8 @@ class DataLoadingService {
     }
 
     def loadClassSessions(xmlString, course = null) {
+        def results = [ messages : []]
+        def importedSessions = 0
         if (!course) {
             course = getDefaultCourse()
         }
@@ -63,6 +65,7 @@ class DataLoadingService {
                 name:xmlStartDate, 
                 startDate: Date.parse('yyyy-MM-dd', xmlStartDate))
             if (cs.validate() && cs.save()) {
+                importedSessions = importedSessions + 1
                 log.info("Imported class session ${cs.name} id: ${cs.id}")
                 addCommentAboutId(cs, xmlSess.ClassID.text())
                 // Now, load some awesome lesson dates for this session
@@ -76,6 +79,9 @@ class DataLoadingService {
                 }
             }
         }
+
+        results.messages.add("${importedSessions} class sessions imported.")
+        return results
     }
 
     // Load lesson dates from Class Session XML.
@@ -107,8 +113,11 @@ class DataLoadingService {
 
     def loadStudents(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
-        def result = [messages:[]]
+        def results = [messages:[]]
         def numImported = 0
+        def numEnrollmentsImported = 0
+        def numInterestsImported = 0
+
 		def students = xml.children()
         students.each { xmlStu ->
             def stu = new Student(firstName : xmlStu.FirstName.text(),
@@ -134,10 +143,10 @@ class DataLoadingService {
                 }
 
                 if (xmlStu.ClassID.text() != '') {
-                    loadEnrollment(stu, xmlStu)
+                    numEnrollmentsImported += loadEnrollment(stu, xmlStu)
                 }
                 else {
-                    loadInterest(stu)
+                    numInterestsImported += loadInterest(stu)
                 }
             
                 log.info("Student ${stu} imported.")
@@ -151,31 +160,35 @@ class DataLoadingService {
             }
         }
 
-        result.messages.add("${numImported} students imported.")
+        results.messages.add("${numInterestsImported} interests imported.")
+        results.messages.add("${numEnrollmentsImported} enrollments imported.")
+        results.messages.add("${numImported} students imported.")
 
-        return result
+        return results
     }
 
     def loadEnrollment(stu, xmlStu) {
         if (xmlStu.ClassID.text() != '') {
             log.info("Trying to find class session '" + xmlStu.ClassID.text() + "'")
             def cs = findClassSessionByOldId(xmlStu.ClassID.text())
-            if (cs) {
-                log.info("Found class session " + cs)
-                log.info("Trying to add enrollment for student" + stu)
-                log.info("Deciding enrollment status:")
-                def enr = new Enrollment(student:stu)
-                if (xmlStu.GraduateDate.text() != '') {
-                    // then student graduated.
-                    // Graduation date is tracked with the Class Session, so just
-                    // mark enrollment as GRADUATED and throw away GraudateDate
-                    enr.status = EnrollmentStatus.GRADUATED
-                }
-                else if (xmlStu.DropOut.text() == "1") { 
-                    enr.status = EnrollmentStatus.DROPPED_OUT
-                }
-                cs.addToEnrollments(enr)
+            if (!cs) {
+                return 0;
             }
+            log.info("Found class session " + cs)
+            log.info("Trying to add enrollment for student" + stu)
+            log.info("Deciding enrollment status:")
+            def enr = new Enrollment(student:stu)
+            if (xmlStu.GraduateDate.text() != '') {
+                // then student graduated.
+                // Graduation date is tracked with the Class Session, so just
+                // mark enrollment as GRADUATED and throw away GraudateDate
+                enr.status = EnrollmentStatus.GRADUATED
+            }
+            else if (xmlStu.DropOut.text() == "1") { 
+                enr.status = EnrollmentStatus.DROPPED_OUT
+            }
+            cs.addToEnrollments(enr)
+            return 1
         }
     }
 
@@ -189,11 +202,15 @@ class DataLoadingService {
                                     signupDate:stu.contact.signupDate).save()        
         crs.addToInterests(interest) 
         stu.addToInterests(interest) 
+        return 1
     }
 
     def loadContacts(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
 		def contacts = xml.children()
+        def results = [ messages : []]
+        def importedContacts = 0
+
         contacts.each { xmlCon ->
             def con = new Contact(lastName:xmlCon.LastName.text(),
                                   firstName:xmlCon.FirstName.text())
@@ -225,6 +242,7 @@ class DataLoadingService {
 
             if (con.validate() && con.save()) {
                 addCommentAboutId(con, xmlCon.ParentID.text())
+                importedContacts = importedContacts + 1
 
                 if (xmlCon.Note != '') {
                     addComment(con, xmlCon.Note?.text())
@@ -248,6 +266,9 @@ class DataLoadingService {
             }
 
         }
+
+        results.messages.add("${importedContacts} contacts imported.")
+        return results
     }
 
 
