@@ -190,4 +190,26 @@ class DataLoadingService {
         
     }
 
+    def findClassSessionByOldId(oldId) {
+        // go through sessions' notes, and find this oldId
+        def c = CommentLink.createCriteria()
+        def links = c.list {
+            eq('type', GrailsNameUtils.getPropertyName(ClassSession.class))
+            comment {
+                like('body', "%:${oldId}:%")
+            }
+        }
+
+        if (links) {
+            def cs =ClassSession.findById(links[0].commentRef) 
+            log.info("Found Class session with: " + oldId)
+            log.info("Class Session name is: " + cs)
+            log.info("Class Session start date is: " + cs.startDate)
+            return cs
+        }
+        else {
+            log.error("Couldn't find Class session having oldId: '${ oldId }'")
+            return null
+        }
+    }
 }

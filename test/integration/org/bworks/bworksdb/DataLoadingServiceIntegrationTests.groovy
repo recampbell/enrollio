@@ -64,6 +64,10 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
         assertNotNull "Comment about original ID was saved.", 
              getCommentWithImportInfo(existingSession, "1")
+
+        existingSession = dataLoadingService.findClassSessionByOldId("1")
+        assertNotNull "Comment about original ID was saved.", existingSession
+
     }
 
     void testLoadMultipleClassSessions() {
