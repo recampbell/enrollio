@@ -130,8 +130,7 @@ xsi:noNamespaceSchemaLocation="Student.xsd">
 
         // Smokey Bandit, dropped out, Parent is Tortenweasel, ClassID 13
         xml = xml + '''<Student> <StudentID>188</StudentID> <ParentID>8675309</ParentID> <LastName>Bandit</LastName> <FirstName>Smokey</FirstName> <Notes>Mentorship Interested</Notes>
-<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade> <ClassID>13</ClassID> <GraduateDate>2007-08-18T00:00:00</GraduateDate>
-<DropOut>1</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>smokeybandit@reynolds.com</email>
+<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade> <ClassID>13</ClassID> <DropOut>1</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>smokeybandit@reynolds.com</email>
 </Student>
 '''
 
