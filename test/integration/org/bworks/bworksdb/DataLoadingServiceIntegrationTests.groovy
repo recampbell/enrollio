@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.bworks.bworksdb.util.TestKeys
 
 import grails.test.*
 
@@ -26,6 +27,31 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
         dataLoadingService.loadClassSessions(xml)
         def cs = ClassSession.findByNameIlike("%2006-03-11%")
         assertEquals "Start date imported correctly", '2006-03-11', cs.startDate?.format('yyyy-MM-dd')
+    }
+
+    // Data loading service should use default Children's
+    // program lessons and create lesson dates
+    void testClassSesssionLessonDates() {
+        def xml = fixtureSingleClassSession()
+        dataLoadingService.loadClassSessions(xml)
+        def cs = ClassSession.findByNameIlike("%2006-03-11%")
+        assertEquals "Six lesson dates for imported session", 6, cs.lessonDates.size()
+
+        // lesson dates are assigned in the lesson sequence order.
+        // So, the first lesson in the list should be the Class1Date, and should be Intro to Computers
+        // Test Lessons are loaded in TestDataService.loadDefaultCourses
+        def introDate = cs.lessonDates.find { it.lesson.name == TestKeys.LESSON_KIDS_AEC_INTRO }
+        assertNotNull introDate
+        assertEquals "Intro class has correct date", '2006-03-11', introDate.lessonDate.format('yyyy-MM-dd')
+
+        def wordDate = cs.lessonDates.find { it.lesson.name == "Word Processing" }
+        assertNotNull wordDate
+        assertEquals "Word Processing lesson date has correct date", '2006-03-25', 
+                  wordDate.lessonDate.format('yyyy-MM-dd')
+
+        def grad = cs.lessonDates.find { it.lesson.name == 'Graduation' }
+        assertNotNull grad
+        assertEquals "Grad class has correct date", '2006-08-26', grad.lessonDate.format('yyyy-MM-dd')
     }
 
     void testClassSesssionOrigIdIsPreserved() {

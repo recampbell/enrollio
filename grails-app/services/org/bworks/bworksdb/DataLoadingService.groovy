@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.bworks.bworksdb.util.TestKeys
 import org.bworks.bworksdb.auth.*
 import org.grails.comments.*
 import grails.util.*
@@ -24,6 +25,9 @@ class DataLoadingService {
             if (cs.validate() && cs.save()) {
                 log.info("Imported class session ${cs.name} id: ${cs.id}")
                 addCommentAboutId(cs, xmlSess.ClassID.text())
+                // Now, load some awesome lesson dates for this session
+                // from our import data.
+                loadLessonDates(cs, xmlSess)
             }
             else {
                 log.error("Couldn't import class session.  Errors are: ")
@@ -31,6 +35,33 @@ class DataLoadingService {
                     log.error("Error: ${it}")
                 }
             }
+        }
+    }
+
+    // Load lesson dates from Class Session XML.
+    // XML looks like this:
+    // <Class>
+    //     <Class1Date>2006-03-11T00:00:00</Class1Date>
+    //     <Class2Date>2006-03-18T00:00:00</Class1Date>
+    def loadLessonDates(cs, xmlSess) {
+        def lessons = getDefaultCourse().lessons
+
+        def eacLessons = [ 
+           Lesson.findByName(TestKeys.LESSON_KIDS_AEC_INTRO),
+           Lesson.findByName('Scratch Programming'),
+           Lesson.findByName('Word Processing'),
+           Lesson.findByName('Presentations'),
+           Lesson.findByName('Email and WWW'),
+           Lesson.findByName('Graduation')
+        ]
+
+        (1..6).each {
+            def dt = xmlSess.getProperty("Class${it}Date").text().split("T")[0]
+
+            def lessonDate = new LessonDate(
+                 lesson:eacLessons[it - 1],
+                 lessonDate:Date.parse('yyyy-MM-dd', dt))
+            cs.addToLessonDates(lessonDate)
         }
     }
 
