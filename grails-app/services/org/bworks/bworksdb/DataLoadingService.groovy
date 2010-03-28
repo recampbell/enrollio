@@ -1,12 +1,45 @@
 package org.bworks.bworksdb
+
 import org.bworks.bworksdb.util.TestKeys
 import org.bworks.bworksdb.auth.*
 import org.grails.comments.*
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 import grails.util.*
 
 class DataLoadingService {
 
     boolean transactional = true
+
+    // load data from hard-coded filenames
+    def loadFromFiles() {
+
+      def importDir = ApplicationHolder.application.parentContext.getResource("/WEB-INF/importData").getFile()
+
+      def classFile = new File(importDir, 'Class.zml')
+      if (classFile.exists()) {
+          log.info("adding class session data from ${classFile.name}")
+          def xml = classFile.getText()
+          loadClassSessions(xml)
+          log.info("Done adding student data from ${classFile.name}")
+      }
+
+      def contactFile = new File(importDir, 'Contact.xml')
+      if (contactFile.exists()) {
+          log.info("Begin adding contact data from ${contactFile.name}")
+          def xml = contactFile.getText()
+          loadContacts(xml)
+          log.info("Done adding contact data from ${contactFile.name}")
+      }
+
+      def studentFile = new File(importDir, 'Student.xml')
+      if (studentFile.exists()) {
+          log.info("Begin adding student data from ${studentFile.name}")
+          def xml = studentFile.getText()
+          loadStudents(xml)
+          log.info("Done adding student data from ${studentFile.name}")
+      }
+
+    }
 
     def loadClassSessions(xmlString, course = null) {
         if (!course) {
