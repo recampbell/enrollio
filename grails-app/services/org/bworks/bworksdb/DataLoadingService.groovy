@@ -91,9 +91,14 @@ class DataLoadingService {
                     addComment(stu, xmlStu.Notes.text())
                 }
 
-                loadEnrollment(stu, xmlStu)
+                if (xmlStu.ClassID.text() != '') {
+                    loadEnrollment(stu, xmlStu)
+                }
+                else {
+                    loadInterest(stu)
+                }
+            
                 log.info("Student ${stu} imported.")
-
             }
             else {
                 log.error("Couldn't import student.  Errors are: ")
@@ -128,6 +133,17 @@ class DataLoadingService {
     }
 
         
+    def loadInterest(stu) {
+        // create an interest in the default course for this student
+        // use the signup date for the student's parent as the signupDate for the Interest
+        def crs = getDefaultCourse()
+        def interest = new Interest(active:true, student:stu, 
+                                    course: crs,
+                                    signupDate:stu.contact.signupDate).save()        
+        crs.addToInterests(interest) 
+        stu.addToInterests(interest) 
+    }
+
     def loadContacts(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
 		def contacts = xml.children()
