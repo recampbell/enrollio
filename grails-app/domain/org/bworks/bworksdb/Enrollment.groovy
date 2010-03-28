@@ -5,7 +5,7 @@ class Enrollment implements Comparable {
     Student student
     ClassSession classSession
 
-    String status
+    EnrollmentStatus status = EnrollmentStatus.IN_PROGRESS
 
     static constraints = {
         status(nullable:true, blank:true)
