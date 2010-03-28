@@ -15,7 +15,7 @@ class DataLoadingService {
 
       def importDir = ApplicationHolder.application.parentContext.getResource("/WEB-INF/importData").getFile()
 
-      def classFile = new File(importDir, 'Class.zml')
+      def classFile = new File(importDir, 'Class.xml')
       if (classFile.exists()) {
           log.info("adding class session data from ${classFile.name}")
           def xml = classFile.getText()
