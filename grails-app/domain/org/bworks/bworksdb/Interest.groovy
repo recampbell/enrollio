@@ -8,6 +8,7 @@ class Interest {
     Course course
     Date dateCreated
     Date lastUpdated
+    Date signupDate = new Date()
 
     static belongsTo = [Student, Course]
 
