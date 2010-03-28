@@ -25,6 +25,31 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testStudentEnrollments() {
+        // load class session, contact and student data
+        // yes, it's tedious but it's an integration test, meow.
+        dataLoadingService.loadClassSessions(fixtureSingleClassSession())
+
+        def sess = dataLoadingService.findClassSessionByOldId("13")
+        assertNull "Class Sesion doesn't have any enrollments'", sess.enrollments
+
+        dataLoadingService.loadContacts(fixtureMultipleContacts())
+        dataLoadingService.loadStudents(fixtureMultipleStudents())
+
+        sess = dataLoadingService.findClassSessionByOldId("13")
+        assertEquals "Students correctly imported to Class Session", 3, sess.enrollments.size()
+
+        assertNotNull sess.enrollments.find {
+            it.student.firstName == 'Smokey' && it.student.lastName == 'Bandit'
+        }
+        assertNotNull sess.enrollments.find {
+            it.student.firstName == 'Billy' && it.student.lastName == 'Tortenweasel'
+        }
+        assertNotNull sess.enrollments.find {
+            it.student.firstName == 'Totoro' && it.student.lastName == 'Tortenweasel'
+        }
+    }
+
    void testStudentBirthDateAndNotes() {
         def bandit = Student.findByLastName("Bandit")
         assertNull "No Bandit students", bandit
@@ -207,6 +232,24 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
         return comment
     }
 
+    def fixtureSingleClassSession() {
+        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">
+<Class>
+<ClassID>13</ClassID>
+<Class1Date>2006-03-11T00:00:00</Class1Date>
+<Class2Date>2006-03-18T00:00:00</Class2Date>
+<Class3Date>2006-03-25T00:00:00</Class3Date>
+<Class4Date>2006-04-01T00:00:00</Class4Date>
+<Class5Date>2006-07-22T00:00:00</Class5Date>
+<Class6Date>2006-08-26T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+</dataroot>
+'''
+        return xml
+    }
 
 }
 

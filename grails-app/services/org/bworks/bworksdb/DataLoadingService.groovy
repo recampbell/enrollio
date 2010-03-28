@@ -90,6 +90,8 @@ class DataLoadingService {
                 if (xmlStu.Notes.text()) {
                     addComment(stu, xmlStu.Notes.text())
                 }
+
+                loadEnrollment(stu, xmlStu)
                 log.info("Student ${stu} imported.")
 
             }
@@ -101,6 +103,19 @@ class DataLoadingService {
             }
         }
     }
+
+    def loadEnrollment(stu, xmlStu) {
+        if (xmlStu.ClassID.text() != '') {
+            log.info("Trying to find class session '" + xmlStu.ClassID.text() + "'")
+            def cs = findClassSessionByOldId(xmlStu.ClassID.text())
+            if (cs) {
+                log.info("Found class session " + cs)
+                log.info("Trying to add enrollment for student" + stu)
+                cs.addToEnrollments(new Enrollment(student:stu))
+            }
+        }
+    }
+
         
     def loadContacts(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
