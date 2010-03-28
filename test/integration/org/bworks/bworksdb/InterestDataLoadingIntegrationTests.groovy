@@ -32,17 +32,17 @@ class InterestDataLoadingIntegrationTests extends GrailsUnitTestCase {
         assertEquals "Correct # of interests created", initInterestCount + 3, ints.size()
 
         def ima = ints.find {
-            it.student.lastName == "Interester" && it.student.firstName == "Ima"
+            it.student.lastName == "Interested" && it.student.firstName == "Ima"
         }
         assertNotNull "Interest added for Ima Interested", ima
 
         def alsoa = ints.find {
-            it.student.lastName == "Interester" && it.student.firstName == "Alsoa"
+            it.student.lastName == "Interested" && it.student.firstName == "Alsoa"
         }
         assertNotNull "Interest added for Alsoa Interested", alsoa
 
         def metooa = ints.find {
-            it.student.lastName == "Rhateaubolognese" && it.student.firstName == "Metooa"
+            it.student.lastName == "Chateaubolognese" && it.student.firstName == "Metooa"
         }
         assertNotNull "Interest added for Metooa", metooa
         
