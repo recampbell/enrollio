@@ -17,13 +17,6 @@
                             <g:link controller="course" action="list">Courses</g:link>
                         </li>
                         <li class="enr-top-menu-item">
-                            <g:link controller="classSession" action="list"
-                            class="enr-top-menu-item">Class Sessions</g:link>
-                        </li>
-                        <li class="enr-top-menu-item">
-                            <g:link controller="contact" action="list">Contacts</g:link>
-                        </li>
-                        <li class="enr-top-menu-item">
                             <g:link controller="student" action="list"
                             class="enr-top-menu-item">Students</g:link>
                         </li>
