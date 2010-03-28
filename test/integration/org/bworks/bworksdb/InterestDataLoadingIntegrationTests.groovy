@@ -35,16 +35,22 @@ class InterestDataLoadingIntegrationTests extends GrailsUnitTestCase {
             it.student.lastName == "Interested" && it.student.firstName == "Ima"
         }
         assertNotNull "Interest added for Ima Interested", ima
+        // Interest date should be signup date of the student's parent.
+        assertEquals "Signup date for ima is correct?", '2006-01-02', ima.signupDate.format('yyyy-MM-dd')
 
         def alsoa = ints.find {
             it.student.lastName == "Interested" && it.student.firstName == "Alsoa"
         }
         assertNotNull "Interest added for Alsoa Interested", alsoa
+        // Interest date should be signup date of the student's parent.
+        assertEquals "Signup date for alsoa is correct?", '2006-01-02', alsoa.signupDate.format('yyyy-MM-dd')
 
         def metooa = ints.find {
             it.student.lastName == "Chateaubolognese" && it.student.firstName == "Metooa"
         }
         assertNotNull "Interest added for Metooa", metooa
+        // Interest date should be signup date of the student's parent.
+        assertEquals "Signup date for metooa is correct?", '2009-10-10', metooa.signupDate.format('yyyy-MM-dd')
         
 
     }
