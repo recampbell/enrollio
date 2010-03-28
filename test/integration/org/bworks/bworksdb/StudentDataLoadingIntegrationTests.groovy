@@ -39,15 +39,27 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
         sess = dataLoadingService.findClassSessionByOldId("13")
         assertEquals "Students correctly imported to Class Session", 3, sess.enrollments.size()
 
-        assertNotNull sess.enrollments.find {
+        def banditEnr = sess.enrollments.find {
             it.student.firstName == 'Smokey' && it.student.lastName == 'Bandit'
         }
-        assertNotNull sess.enrollments.find {
+
+        assertNotNull banditEnr
+        assertEquals "Bandit dropped out (of course (no pun intended))", EnrollmentStatus.DROPPED_OUT, banditEnr.status 
+
+        def billyEnr = sess.enrollments.find {
             it.student.firstName == 'Billy' && it.student.lastName == 'Tortenweasel'
         }
-        assertNotNull sess.enrollments.find {
+
+        assertNotNull billyEnr
+        assertEquals "Billy graduated", EnrollmentStatus.GRADUATED, billyEnr.status
+
+        def totoroEnr = sess.enrollments.find {
             it.student.firstName == 'Totoro' && it.student.lastName == 'Tortenweasel'
         }
+
+        assertNotNull totoroEnr
+        assertEquals "Totoro is still taking class", EnrollmentStatus.IN_PROGRESS, totoroEnr.status
+
     }
 
    void testStudentBirthDateAndNotes() {
@@ -153,6 +165,7 @@ xsi:noNamespaceSchemaLocation="Student.xsd">
 </Student>
 </dataroot>
 '''
+
         return xml
 
     }

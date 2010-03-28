@@ -111,7 +111,19 @@ class DataLoadingService {
             if (cs) {
                 log.info("Found class session " + cs)
                 log.info("Trying to add enrollment for student" + stu)
-                cs.addToEnrollments(new Enrollment(student:stu))
+                log.info("Deciding enrollment status:")
+                def enr = new Enrollment(student:stu)
+                // if (xmlStu.GraduateDate.text() != '') {
+                if (false) {
+                    // then student graduated.
+                    // Graduation date is tracked with the Class Session, so just
+                    // mark enrollment as GRADUATED and throw away GraudateDate
+                    enr.status = EnrollmentStatus.GRADUATED
+                }
+                else if (xmlStu.DropOut.text() == "1") {
+                    enr.status = EnrollmentStatus.DROPPED_OUT
+                }
+                cs.addToEnrollments(enr)
             }
         }
     }
