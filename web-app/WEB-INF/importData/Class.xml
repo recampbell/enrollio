@@ -1,113 +1,283 @@
-
-    def fixtureMultipleStudents() {
-        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
-<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  
-xsi:noNamespaceSchemaLocation="Student.xsd">
-'''
-
-        // Smokey Bandit, dropped out, Parent is Tortenweasel, ClassID 13
-        xml = xml + '''<Student> <StudentID>188</StudentID> <ParentID>8675309</ParentID> <LastName>Bandit</LastName> <FirstName>Smokey</FirstName> <Notes>Mentorship Interested</Notes>
-<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade> <ClassID>13</ClassID> <DropOut>1</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>smokeybandit@reynolds.com</email>
-</Student>
-'''
-
-        // Totoro Tortenweasel, Class ID 13, Graduated, Parent Tortenweasel
-        xml = xml + '''<Student> <StudentID>188</StudentID> <ParentID>1010101</ParentID> <LastName>Tortenweasel</LastName>
-<FirstName>Totoro</FirstName> <Gender>M</Gender> <BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade>
-<ClassID>13</ClassID> <GraduateDate></GraduateDate> <DropOut>0</DropOut> <SystemReceivedID>0</SystemReceivedID> <email>totoro@alum.bworks.org</email>
-</Student>
-'''
-
-        // Nobodys Student, Non-existent class ID
-        xml = xml + ''' <Student> <StudentID>188</StudentID> <ParentID>1</ParentID>
-<LastName>Nobodys</LastName> <FirstName>Iam</FirstName>
-<BirthDate>1996-01-07T00:00:00</BirthDate> <Grade>4</Grade> <ClassID>1</ClassID> <GraduateDate>2007-08-18T00:00:00</GraduateDate> <DropOut>0</DropOut>
-<SystemReceivedID>0</SystemReceivedID> <email></email> </Student> <Student>
-'''
-
-        // Billy Tortenweasel, graduated Class 13
-        xml = xml + '''
-<StudentID>188</StudentID>
-<ParentID>1010101</ParentID>
-<LastName>Tortenweasel</LastName>
-<FirstName>Billy</FirstName>
-<BirthDate>1997-01-07T00:00:00</BirthDate>
-<Grade>10</Grade>
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">
+<Class>
+<ClassID>1</ClassID>
+<Class1Date>2006-03-11T00:00:00</Clayyss1Date>
+<Class2Date>2006-03-18T00:00:00</Class2Date>
+<Class3Date>2006-03-25T00:00:00</Class3Date>
+<Class4Date>2006-04-01T00:00:00</Class4Date>
+<Class5Date>2006-07-22T00:00:00</Class5Date>
+<Class6Date>2006-08-26T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>4</ClassID>
+<Class1Date>2006-06-03T00:00:00</Class1Date>
+<Class2Date>2006-06-10T00:00:00</Class2Date>
+<Class3Date>2006-06-17T00:00:00</Class3Date>
+<Class4Date>2006-06-24T00:00:00</Class4Date>
+<Class5Date>2006-07-01T00:00:00</Class5Date>
+<Class6Date>2006-07-08T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>5</ClassID>
+<Class1Date>2006-07-22T00:00:00</Class1Date>
+<Class2Date>2006-07-29T00:00:00</Class2Date>
+<Class3Date>2006-08-05T00:00:00</Class3Date>
+<Class4Date>2006-08-12T00:00:00</Class4Date>
+<Class5Date>2006-08-19T00:00:00</Class5Date>
+<Class6Date>2006-08-26T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>7</ClassID>
+<Class1Date>2006-09-09T00:00:00</Class1Date>
+<Class2Date>2006-09-16T00:00:00</Class2Date>
+<Class3Date>2006-09-23T00:00:00</Class3Date>
+<Class4Date>2006-09-30T00:00:00</Class4Date>
+<Class5Date>2006-10-07T00:00:00</Class5Date>
+<Class6Date>2006-10-14T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>8</ClassID>
+<Class6Date>2006-10-24T00:00:00</Class6Date>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>9</ClassID>
+<Class1Date>2006-10-28T00:00:00</Class1Date>
+<Class2Date>2006-11-04T00:00:00</Class2Date>
+<Class3Date>2006-11-11T00:00:00</Class3Date>
+<Class4Date>2006-11-18T00:00:00</Class4Date>
+<Class5Date>2006-11-25T00:00:00</Class5Date>
+<Class6Date>2006-12-02T00:00:00</Class6Date>
+<ClassStartTime>11am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>10</ClassID>
+<Class1Date>2007-01-06T00:00:00</Class1Date>
+<Class2Date>2007-01-13T00:00:00</Class2Date>
+<Class3Date>2007-01-20T00:00:00</Class3Date>
+<Class4Date>2007-01-27T00:00:00</Class4Date>
+<Class5Date>2007-02-03T00:00:00</Class5Date>
+<Class6Date>2007-02-10T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>11</ClassID>
+<Class1Date>2007-02-24T00:00:00</Class1Date>
+<Class2Date>2007-03-03T00:00:00</Class2Date>
+<Class3Date>2007-03-10T00:00:00</Class3Date>
+<Class4Date>2007-03-17T00:00:00</Class4Date>
+<Class5Date>2007-03-24T00:00:00</Class5Date>
+<Class6Date>2007-03-31T00:00:00</Class6Date>
+<ClassStartTime>11-12:30</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>12</ClassID>
+<Class1Date>2007-05-19T00:00:00</Class1Date>
+<Class2Date>2007-05-26T00:00:00</Class2Date>
+<Class3Date>2007-06-02T00:00:00</Class3Date>
+<Class4Date>2007-06-09T00:00:00</Class4Date>
+<Class5Date>2007-06-16T00:00:00</Class5Date>
+<Class6Date>2007-06-23T00:00:00</Class6Date>
+<ClassStartTime>10:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
 <ClassID>13</ClassID>
-<GraduateDate>2007-08-18T00:00:00</GraduateDate>
-<DropOut>0</DropOut>
-<SystemReceivedID>0</SystemReceivedID>
-<email>smokeybandit@reynolds.com</email>
-</Student>
+<Class1Date>2007-07-14T00:00:00</Class1Date>
+<Class2Date>2007-07-28T00:00:00</Class2Date>
+<Class3Date>2007-08-04T00:00:00</Class3Date>
+<Class4Date>2007-08-11T00:00:00</Class4Date>
+<Class5Date>2007-08-18T00:00:00</Class5Date>
+<Class6Date>2007-08-18T00:00:00</Class6Date>
+<ClassStartTime>10</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>14</ClassID>
+<Class1Date>2007-09-08T00:00:00</Class1Date>
+<Class2Date>2007-09-15T00:00:00</Class2Date>
+<Class3Date>2007-09-22T00:00:00</Class3Date>
+<Class4Date>2007-09-29T00:00:00</Class4Date>
+<Class5Date>2007-10-06T00:00:00</Class5Date>
+<Class6Date>2007-10-13T00:00:00</Class6Date>
+<ClassStartTime>11</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>15</ClassID>
+<Class1Date>2007-11-03T00:00:00</Class1Date>
+<Class2Date>2007-11-10T00:00:00</Class2Date>
+<Class3Date>2007-11-17T00:00:00</Class3Date>
+<Class4Date>2007-11-24T00:00:00</Class4Date>
+<Class5Date>2007-12-01T00:00:00</Class5Date>
+<Class6Date>2007-12-08T00:00:00</Class6Date>
+<ClassStartTime>11-12:30</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>16</ClassID>
+<Class1Date>2008-01-05T00:00:00</Class1Date>
+<Class2Date>2008-01-12T00:00:00</Class2Date>
+<Class3Date>2008-01-19T00:00:00</Class3Date>
+<Class4Date>2008-01-26T00:00:00</Class4Date>
+<Class5Date>2008-02-02T00:00:00</Class5Date>
+<Class6Date>2008-02-09T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>17</ClassID>
+<Class1Date>2008-02-23T00:00:00</Class1Date>
+<Class2Date>2008-03-01T00:00:00</Class2Date>
+<Class3Date>2008-03-08T00:00:00</Class3Date>
+<Class4Date>2008-03-15T00:00:00</Class4Date>
+<Class5Date>2008-03-22T00:00:00</Class5Date>
+<Class6Date>2008-03-29T00:00:00</Class6Date>
+<ClassStartTime>11 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>18</ClassID>
+<Class1Date>2008-04-19T00:00:00</Class1Date>
+<Class2Date>2008-04-26T00:00:00</Class2Date>
+<Class3Date>2008-05-03T00:00:00</Class3Date>
+<Class4Date>2008-05-10T00:00:00</Class4Date>
+<Class5Date>2008-05-17T00:00:00</Class5Date>
+<Class6Date>2008-05-24T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>19</ClassID>
+<Class1Date>2008-06-28T00:00:00</Class1Date>
+<Class2Date>2008-07-05T00:00:00</Class2Date>
+<Class3Date>2008-07-12T00:00:00</Class3Date>
+<Class4Date>2008-07-19T00:00:00</Class4Date>
+<Class5Date>2008-07-26T00:00:00</Class5Date>
+<Class6Date>2008-08-02T00:00:00</Class6Date>
+<ClassStartTime>10:30</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>21</ClassID>
+<Class1Date>2008-08-23T00:00:00</Class1Date>
+<Class2Date>2008-08-30T00:00:00</Class2Date>
+<Class3Date>2008-09-06T00:00:00</Class3Date>
+<Class4Date>2008-09-13T00:00:00</Class4Date>
+<Class5Date>2008-09-20T00:00:00</Class5Date>
+<Class6Date>2008-09-27T00:00:00</Class6Date>
+<ClassStartTime>11:00 am</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>22</ClassID>
+<Class1Date>2008-10-25T00:00:00</Class1Date>
+<Class2Date>2008-11-01T00:00:00</Class2Date>
+<Class3Date>2008-11-08T00:00:00</Class3Date>
+<Class4Date>2008-11-15T00:00:00</Class4Date>
+<Class5Date>2008-11-22T00:00:00</Class5Date>
+<Class6Date>2008-11-29T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>23</ClassID>
+<Class1Date>2008-12-06T00:00:00</Class1Date>
+<Class2Date>2008-12-13T00:00:00</Class2Date>
+<Class3Date>2008-12-20T00:00:00</Class3Date>
+<Class4Date>2008-12-27T00:00:00</Class4Date>
+<Class5Date>2009-01-03T00:00:00</Class5Date>
+<Class6Date>2009-01-10T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>24</ClassID>
+<Class1Date>2009-01-31T00:00:00</Class1Date>
+<Class2Date>2009-02-07T00:00:00</Class2Date>
+<Class3Date>2009-02-14T00:00:00</Class3Date>
+<Class4Date>2009-02-21T00:00:00</Class4Date>
+<Class5Date>2009-02-28T00:00:00</Class5Date>
+<Class6Date>2009-03-07T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>25</ClassID>
+<Class1Date>2009-03-28T00:00:00</Class1Date>
+<IsActive>1</IsActive>
+</Class>
+<Class>
+<ClassID>26</ClassID>
+<Class1Date>2009-03-28T00:00:00</Class1Date>
+<Class2Date>2009-04-04T00:00:00</Class2Date>
+<IsActive>1</IsActive>
+</Class>
+<Class>
+<ClassID>27</ClassID>
+<Class1Date>2009-03-28T00:00:00</Class1Date>
+<Class2Date>2009-04-04T00:00:00</Class2Date>
+<Class3Date>2009-04-11T00:00:00</Class3Date>
+<Class4Date>2009-04-18T00:00:00</Class4Date>
+<Class5Date>2009-04-25T00:00:00</Class5Date>
+<Class6Date>2009-05-02T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>28</ClassID>
+<Class1Date>2009-05-16T00:00:00</Class1Date>
+<Class2Date>2009-05-23T00:00:00</Class2Date>
+<Class3Date>2009-05-30T00:00:00</Class3Date>
+<Class4Date>2009-06-06T00:00:00</Class4Date>
+<Class5Date>2009-06-13T00:00:00</Class5Date>
+<Class6Date>2009-06-20T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>30</ClassID>
+<Class1Date>0209-07-11T00:00:00</Class1Date>
+<Class2Date>0209-07-18T00:00:00</Class2Date>
+<Class3Date>0209-07-25T00:00:00</Class3Date>
+<Class4Date>0209-08-01T00:00:00</Class4Date>
+<Class5Date>0209-08-08T00:00:00</Class5Date>
+<Class6Date>2009-08-15T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>31</ClassID>
+<Class1Date>2009-08-29T00:00:00</Class1Date>
+<Class2Date>2009-09-05T00:00:00</Class2Date>
+<Class3Date>2009-09-12T00:00:00</Class3Date>
+<Class4Date>2009-09-19T00:00:00</Class4Date>
+<Class5Date>2009-09-26T00:00:00</Class5Date>
+<Class6Date>2009-10-03T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>0</IsActive>
+</Class>
+<Class>
+<ClassID>32</ClassID>
+<Class1Date>2009-10-24T00:00:00</Class1Date>
+<Class2Date>2009-10-31T00:00:00</Class2Date>
+<Class3Date>2009-11-07T00:00:00</Class3Date>
+<Class4Date>2009-11-14T00:00:00</Class4Date>
+<Class5Date>2009-11-21T00:00:00</Class5Date>
+<Class6Date>2009-11-28T00:00:00</Class6Date>
+<ClassStartTime>11:00</ClassStartTime>
+<IsActive>1</IsActive>
+</Class>
 </dataroot>
-'''
-
-        return xml
-
-    }
-
-    def fixtureMultipleContacts() {
-        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
-<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Parent.xsd">
-<Parent>
-<ParentID>1</ParentID>
-<LastName>Malachi</LastName>
-<FirstName>Satanya</FirstName>
-<PrimaryPhone>(123) 222-4444</PrimaryPhone>
-<DateOfSignUp>2009-10-10T00:00:00</DateOfSignUp>
-<City>St. Elmo</City>
-<State>MA</State>
-<BroadbandAtHome>0</BroadbandAtHome>
-<CouldNotReach>0</CouldNotReach>
-<Address1>Level 1</Address1>
-<Address2>Level Nine</Address2>
-<Zip>63666</Zip>
-</Parent>
-<Parent>
-<ParentID>3</ParentID>
-<LastName>Chateaubolognese</LastName>
-<ParentEmail>schmitzenblitzen@donner.com</ParentEmail>
-<FirstName>Cherise</FirstName>
-<PrimaryPhone>(314) 111-3333</PrimaryPhone>
-<SecondPhone>(314) 111-2222</SecondPhone>
-<DateOfSignUp>2006-01-02T00:00:00</DateOfSignUp>
-<Address1>123 Chateaubolognese Street</Address1>
-<Address2>Unit A</Address2>
-<City>St. Louis</City>
-<State>MO</State>
-<Zip>63110</Zip>
-<BroadbandAtHome>0</BroadbandAtHome>
-<CouldNotReach>0</CouldNotReach>
-</Parent>
-<Parent>
-<ParentID>1010101</ParentID>
-<LastName>Tortenweasel</LastName>
-<FirstName>Smitty</FirstName>
-<PrimaryPhone>(314) 777-1111</PrimaryPhone>
-<DateOfSignUp>2006-01-14T00:00:00</DateOfSignUp>
-<Address1>789 Descending Street</Address1>
-<City>St. Louis</City>
-<State>MO</State>
-<Zip>63104</Zip>
-<BroadbandAtHome>0</BroadbandAtHome>
-<CouldNotReach>0</CouldNotReach>
-</Parent>
-<Parent>
-<ParentID>8675309</ParentID>
-<LastName>Schmitzenbaumer</LastName>
-<FirstName>Theresa</FirstName>
-<PrimaryPhone>(314) 555-4444</PrimaryPhone>
-<SecondPhone>(314) 333-2222</SecondPhone>
-<DateOfSignUp>2006-01-21T00:00:00</DateOfSignUp>
-<Address1>314 Phone Street</Address1>
-<Address2>Unit Bevel Street</Address2>
-<State>MO</State>
-<Note>Some note that we should save.</Note>
-<InfoTakenBy>Herr Cookie Monster</InfoTakenBy>
-<BroadbandAtHome>0</BroadbandAtHome>
-<CouldNotReach>1</CouldNotReach>
-</Parent>
-</dataroot>
-'''
-        return xml
-    }
