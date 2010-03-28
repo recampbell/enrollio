@@ -15,11 +15,14 @@ class DataLoadingService {
 
       def importDir = ApplicationHolder.application.parentContext.getResource("/WEB-INF/importData").getFile()
 
+      def messages = []
+
       def classFile = new File(importDir, 'Class.xml')
       if (classFile.exists()) {
           log.info("adding class session data from ${classFile.name}")
           def xml = classFile.getText()
-          loadClassSessions(xml)
+          def result = loadClassSessions(xml)
+          messages.add(result['messages'])
           log.info("Done adding student data from ${classFile.name}")
       }
 
@@ -27,7 +30,8 @@ class DataLoadingService {
       if (contactFile.exists()) {
           log.info("Begin adding contact data from ${contactFile.name}")
           def xml = contactFile.getText()
-          loadContacts(xml)
+          def result = loadContacts(xml)
+          messages.add(result['messages'])
           log.info("Done adding contact data from ${contactFile.name}")
       }
 
@@ -35,11 +39,12 @@ class DataLoadingService {
       if (studentFile.exists()) {
           log.info("Begin adding student data from ${studentFile.name}")
           def xml = studentFile.getText()
-          loadStudents(xml)
+          def result = loadStudents(xml)
+          messages.add(result['messages'])
           log.info("Done adding student data from ${studentFile.name}")
       }
 
-      return [ 'message' : "7 students loaded." ]
+      return [ 'messages' : messages.flatten() ]
 
     }
 
@@ -102,6 +107,8 @@ class DataLoadingService {
 
     def loadStudents(xmlString) {
         def xml = new XmlSlurper().parseText(xmlString)
+        def result = [messages:[]]
+        def numImported = 0
 		def students = xml.children()
         students.each { xmlStu ->
             def stu = new Student(firstName : xmlStu.FirstName.text(),
@@ -134,6 +141,7 @@ class DataLoadingService {
                 }
             
                 log.info("Student ${stu} imported.")
+                numImported = numImported + 1
             }
             else {
                 log.error("Couldn't import student.  Errors are: ")
@@ -142,6 +150,10 @@ class DataLoadingService {
                 }
             }
         }
+
+        result.messages.add("${numImported} students imported.")
+
+        return result
     }
 
     def loadEnrollment(stu, xmlStu) {
