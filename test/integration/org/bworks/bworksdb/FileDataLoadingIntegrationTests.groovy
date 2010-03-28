@@ -5,12 +5,23 @@ import grails.test.*
 class FileDataLoadingIntegrationTests extends GrailsUnitTestCase {
     def dataLoadingService
 
+    def initSessionCount
+    def initEnrollmentCount
+    def initInterestCount
+    def initStudentCount
+    def initContactCount
+
+    protected void setUp() {
+        super.setUp()
+    
+        initSessionCount = ClassSession.count()
+        initEnrollmentCount = Enrollment.count()
+        initInterestCount = Interest.count()
+        initStudentCount = Student.count()
+        initContactCount = Contact.count()
+    }
+
     void testFileLoad() {
-        def initSessionCount = ClassSession.count()
-        def initEnrollmentCount = Enrollment.count()
-        def initInterestCount = Interest.count()
-        def initStudentCount = Student.count()
-        def initContactCount = Contact.count()
 
         dataLoadingService.loadFromFiles()
 
@@ -28,5 +39,11 @@ class FileDataLoadingIntegrationTests extends GrailsUnitTestCase {
 
         assertEquals "Interests loaded from file successfully", 
                     initInterestCount + 3, Interest.count()
+    }
+
+    void testLoadMessages() {
+        def msg = dataLoadingService.loadFromFiles()
+        println "Message is: ${msg['message']}"
+        assert msg['message'] =~ /7 students loaded/
     }
 }

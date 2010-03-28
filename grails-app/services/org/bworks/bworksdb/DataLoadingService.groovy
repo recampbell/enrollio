@@ -39,6 +39,8 @@ class DataLoadingService {
           log.info("Done adding student data from ${studentFile.name}")
       }
 
+      return [ 'message' : "7 students loaded." ]
+
     }
 
     def loadClassSessions(xmlString, course = null) {
