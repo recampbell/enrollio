@@ -26,14 +26,14 @@ class ContactController {
     def show = {
         def contactInstance = Contact.get( params.id )
         // Create a stub new student, in case user wants to create one.
-        def studentInstance = new Student(lastName:contactInstance.lastName,
+        def newStudentInstance = new Student(lastName:contactInstance.lastName,
                                           contact:contactInstance)
 
         if(!contactInstance) {
             flash.message = "Contact not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ contactInstance : contactInstance, studentInstance : studentInstance ] }
+        else { return [ contactInstance : contactInstance, newStudentInstance : newStudentInstance ] }
     }
 
     def delete = {

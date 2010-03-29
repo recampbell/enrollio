@@ -6,7 +6,7 @@
     <g:renderErrors bean="${studentInstance}" as="list" />
 </div>
 </g:hasErrors>
-<g:form action="saveStudent" method="POST" name="newStudentForm">
+<g:form action="saveStudent" controller="contact" method="POST" name="newStudentForm">
 <table width="100%">
     <thead>
         <tr>
