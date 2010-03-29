@@ -40,16 +40,7 @@ class Student implements Commentable {
     }
 
     String toString(){
-        def fullName
-        // Is this really the best we can do?
-        fullName = lastName
-        if (firstName) {
-            fullName += ', ' + firstName
-        }
-        if (middleName) {
-            fullName += ' ' + middleName
-        }
-        return fullName
+        fullName()
     }
 
     // Return a printable string of the active interests the student

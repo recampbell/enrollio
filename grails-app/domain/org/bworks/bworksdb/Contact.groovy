@@ -40,7 +40,7 @@ class Contact implements Commentable {
     }
 
     String toString(){
-        return lastName + ', ' + firstName
+        return firstName + ' ' + lastName
     }
 
     String fullAddress() {
