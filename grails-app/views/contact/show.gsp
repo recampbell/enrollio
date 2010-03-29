@@ -77,9 +77,7 @@
                         </table>
                     </div>
                 </div>
-                <div>
                 <g:render template='createStudent' model="[contactInstance:contactInstance, studentInstance : studentInstance]" />
-                </div>
             </div>
             <div id="sidebar">
                 <g:render template="contactMenu" model="[contactInstance:contactInstance]"/>
