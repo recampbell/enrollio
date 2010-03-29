@@ -79,14 +79,14 @@
                 </div>
             </div>
             <div id="sidebar">
-                <g:render template="contactMenu" model="[contactInstance:contactInstance]"/>
+                <g:render template="studentMenu" model="[contactInstance:contactInstance]"/>
             </div>
             <div id="wrapper">
                 <div id="content">
                     <div class="infowrap">
-                        <g:render template='createStudent' model="[contactInstance:contactInstance, studentInstance : studentInstance]" />
+                        <g:render template='/contact/createStudent' model="[contactInstance:contactInstance, studentInstance : newStudentInstance]" />
                     </div>
-                </div>>
+                </div>
             </div>
         </div>
     </body>
