@@ -42,7 +42,7 @@
                     </div>
                     <div class="infobox margin-left">
                         <g:if test="${flash.message}">
-                            <div class="message">${flash.message}</div>
+                        <div class="message">${flash.message}</div>
                         </g:if>
                         <h3 class="reallynow">Contact Info:</h3>
                         <table>
@@ -50,38 +50,44 @@
                                 <tr>
                                     <td>${contactInstance}</td>
                                     <td>${contactInstance.address1} 
-                                    <br />
-                                    <g:if test="${contactInstance.address2}">
-                                    ${contactInstance.address2} 
-                                    <br /></g:if>
-                                    <g:if test="${contactInstance.city}">
-                                    ${contactInstance.city},&#160;&#160;</g:if>
-                                    <g:if test="${contactInstance.state}">
-                                    ${contactInstance.state} 
-                                    <br /></g:if>
-                                    <g:if test="${contactInstance.zipCode}">
-                                    ${contactInstance.zipCode}&#160;&#160;</g:if>
-                                    <br /></td>
+                                        <br />
+                                        <g:if test="${contactInstance.address2}">
+                                        ${contactInstance.address2} 
+                                        <br /></g:if>
+                                        <g:if test="${contactInstance.city}">
+                                        ${contactInstance.city},&#160;&#160;</g:if>
+                                        <g:if test="${contactInstance.state}">
+                                        ${contactInstance.state} 
+                                        <br /></g:if>
+                                        <g:if test="${contactInstance.zipCode}">
+                                        ${contactInstance.zipCode}&#160;&#160;</g:if>
+                                        <br /></td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
                                     <td>${contactInstance.emailAddress}</td>
                                 </tr>
                                 <g:each var="phone" in="${contactInstance.phoneNumbers}">
-                                    <tr>
-                                        <td>${phone.label}</td>
-                                        <td>${phone.phoneNumber}</td>
-                                    </tr>
+                                <tr>
+                                    <td>${phone.label}</td>
+                                    <td>${phone.phoneNumber}</td>
+                                </tr>
                                 </g:each>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <g:render template='createStudent' model="[contactInstance:contactInstance, studentInstance : studentInstance]" />
             </div>
             <div id="sidebar">
                 <g:render template="contactMenu" model="[contactInstance:contactInstance]"/>
             </div>
-       </div>
+            <div id="wrapper">
+                <div id="content">
+                    <div class="infowrap">
+                        <g:render template='createStudent' model="[contactInstance:contactInstance, studentInstance : studentInstance]" />
+                    </div>
+                </div>>
+            </div>
+        </div>
     </body>
 </html>
