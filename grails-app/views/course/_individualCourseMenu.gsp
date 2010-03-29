@@ -27,6 +27,12 @@
                     onClick="return submit_callList(this)">&#160;Call List</a>
                 </g:form>
             </li>
+            <li>
+            <g:link action="interestedStudents" controller="course" id="${courseInstance.id}">
+            Interested Students
+            
+            </g:link>
+            </li>
         </ul>
     </li>
     <li>

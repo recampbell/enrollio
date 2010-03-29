@@ -188,6 +188,13 @@ class CourseController {
         ]        
     }
     
+    def interestedStudents = {
+        def contactInstanceList = Contact.list()
+
+        [ contactInstanceList : contactInstanceList ]
+
+    }
+
     def callListReportData = {
         def courseInstance = Course.get(params.id)
         params['PROGRAM_NAME'] = courseInstance.name
