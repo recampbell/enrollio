@@ -29,7 +29,7 @@
             }
         </script>
 
-        <title>Contact: ${contactInstance}</title>
+        <title>${studentInstance ? "Student: " + studentInstance : "Contact:" + contactInstance}</title>
     </head>
     <body>
         <div id="wrapper">
