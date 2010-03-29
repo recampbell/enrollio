@@ -34,15 +34,23 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="rightnow">
+                <div class="infowrap">
+            
+                <div class="infobox">
+
+                    <g:each var="stu" in="${contactInstance.students}">
+                        <g:render template="/student/studentQuickView" model="[studentInstance:stu]" />
+                    </g:each>
+                </div>
+                    <div class="infobox margin-left">
                     <g:if test="${flash.message}">
                         <div class="message">${flash.message}</div>
                     </g:if>
-                    <h3 class="reallynow">Contact: ${contactInstance}</h3>
+                    <h3 class="reallynow">Contact Info:</h3>
                     <table>
                         <tbody>
                             <tr>
-                                <td>Address:</td>
+                                <td>${contactInstance}</td>
                                 <td>${contactInstance.address1} 
                                 <br />
                                 <g:if test="${contactInstance.address2}">
