@@ -28,7 +28,7 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
     void testRegularUserEditsContact() {
         gotoSomeContactShow() 
-        click("Edit Contact")
+        click("Edit Contact Info")
         assertTitleContains('Edit Contact')
         assertStatus 200
         shouldFail() { assertContentContains('Frodo') }
@@ -62,15 +62,12 @@ class ContactFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         def studentLink = byXPath('//a[starts-with(@name, "editStudent")]')
 
         if (studentLink instanceof ArrayList) {
-            studentLink = studentLink.find {
-                it.getAttribute('title') =~ TestKeys.STUDENT
-            }
+            studentLink = studentLink[0]
         }
         assertNotNull studentLink
         studentLink.click()
 
         assertStatus 200
         assertTitleContains 'Edit Student'
-        assertContentContains TestKeys.STUDENT
     }
 }

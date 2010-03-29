@@ -1,5 +1,7 @@
 <h3> 
-    <g:link action="edit" id="${studentInstance.id}" controller="student">
+    <g:link action="edit" name="editStudentLink${studentInstance.id}" 
+    id="${studentInstance.id}" controller="student"
+    title="${studentInstance}">
     ${studentInstance}
     </g:link>
 </h3>

@@ -15,10 +15,11 @@
                     controller="contact" 
                     action="create">New Student</g:link>
             </li>
-            <g:if test="${studentInstance}">
-                <li>
-                    <g:link name="editStudentLink" class="useredit" controller="student" action="edit" id="${studentInstance.id}">Edit</g:link>
-                </li>
+            <g:if test="${contactInstance}">
+            <li>
+            <g:link name="editStudentLink" class="useredit" controller="contact" 
+                action="edit" id="${contactInstance.id}">Edit Contact Info</g:link>
+            </li>
             </g:if>
         </ul>
     </li>
