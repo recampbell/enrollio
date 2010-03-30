@@ -168,7 +168,7 @@ class ClassSessionController {
     def graduation = {
         def classSessionInstance = ClassSession.get( params.id )
         if(!classSessionInstance) {
-            flash.message = "ClassSession not found with id ${params.id}"
+            flash.message = "Class Session not found with id ${params.id}"
             redirect(action:list)
         }
         else { return [ classSessionInstance : classSessionInstance ] }

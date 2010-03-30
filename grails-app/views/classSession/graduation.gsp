@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
-        <title>Class Session: ${classSessionInstance.name}</title>
+        <title>Graduation: ${classSessionInstance.name}</title>
     </head>
     <body>
         <div id="container">
@@ -13,7 +13,7 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-                            <span>${classSessionInstance.name}</span>
+                            <span>Graduation: ${classSessionInstance.name}</span>
                             <br />
                         </h3>
                         <p class="youhave"></p>
@@ -39,28 +39,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="infowrap">
-                        <div class="infobox">
-                            <h3>Lesson Dates</h3>
-                            <table>
-                                <tbody>
-                                    <g:each var="lessonDate"
-                                    in="${classSessionInstance.lessonDates}">
-                                        <tr>
-                                            <td>
-                                                <g:link controller="lessonDate"
-                                                action="show" id="${lessonDate.id}">
-                                                ${lessonDate.lesson.name}</g:link>
-                                            </td>
-                                            <td>
-                                                <enrollio:formatDate date="${lessonDate.lessonDate}" />
-                                            </td>
-                                        </tr>
-                                    </g:each>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="infobox margin-left">
+                        <div class="rightnow">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
                                 <g:link name="editEnrollmentsLink" action="editEnrollments" id="${classSessionInstance.id}">
@@ -68,6 +47,10 @@
                                 <br />
                             </h3>
                             <table>
+                                <thead>
+                                    <th>Student</th>
+                                    <th>Status</th>
+                                </thead>
                                 <tbody>
                                     <g:each var="enr"
                                     in="${classSessionInstance.enrollments}">
@@ -75,14 +58,13 @@
                                             <td>
                                                 <a href="#">${enr.student}</a>
                                             </td>
-                                            <td>${enr.status}</td>
+                                            <td>${enr.status.name}</td>
                                         </tr>
                                     </g:each>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
                 <div id="sidebar">
                     <g:render template="individualClassSessionMenu" model="[classSessionInstance:classSessionInstance]" />
                 </div>

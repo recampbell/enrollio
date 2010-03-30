@@ -6,6 +6,14 @@
         <ul>
             <!-- TODO Refactor this into a taglib or template -->
             <li>
+            <g:link name='graduationLink' 
+            class="graduation_cap" 
+            action="graduation"
+            id="${ classSessionInstance.id }"
+            controller="classSession">&nbsp;&nbsp;Graduation</g:link>
+            </li>
+            <g:if test="${showGradCertLink}">
+            <li>
                 <script type="text/javascript">function
                 submit_graduationCertificate(link) { link.parentNode._format.value =
                 link.title; link.parentNode.submit(); return false; }</script>
@@ -23,6 +31,7 @@
                     Certificates</a>
                 </g:form>
             </li>
+            </g:if>
             <li>
                 <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
                 id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
