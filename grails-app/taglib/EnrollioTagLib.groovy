@@ -74,7 +74,7 @@ class EnrollioTagLib {
     // as provided by ClassSessionService.attendancesForSession
     def studentAttendanceSummary = { attrs ->
 
-        if (attrs.summary.attendanceCount == attrs.summary.totalLessons) {
+        if (attrs.summary.attendanceCount > 0 && attrs.summary.attendanceCount == attrs.summary.totalLessons) {
             out << '100 %&nbsp;'
             out << '<img src="'
             out << resource(dir:'images/icons', file:'award_star_gold_3.png')
