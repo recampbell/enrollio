@@ -49,7 +49,7 @@
                             <table>
                                 <thead>
                                     <th>Student</th>
-                                    <th>Attendance</th>
+                                    <th width="60%">Attendance</th>
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
