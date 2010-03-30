@@ -42,13 +42,12 @@
                         <div class="rightnow">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
-                                <g:link name="editEnrollmentsLink" action="editEnrollments" id="${classSessionInstance.id}">
-                                (Add Enrollments)</g:link>
                                 <br />
                             </h3>
                             <table>
                                 <thead>
                                     <th>Student</th>
+                                    <th>Attendance</th>
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
@@ -57,6 +56,10 @@
                                         <tr>
                                             <td>
                                                 <a href="#">${enr.student}</a>
+                                            </td>
+                                            <td>
+                                            <enrollio:studentAttendanceSummary 
+                                                summary="${attendancesForSession[enr.student.id]}" />
                                             </td>
                                             <td>${enr.status.name}</td>
                                         </tr>

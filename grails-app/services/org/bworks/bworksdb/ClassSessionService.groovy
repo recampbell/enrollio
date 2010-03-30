@@ -101,15 +101,13 @@ class ClassSessionService {
         classSessionInstance.lessonDates.each {
             println "class session insance: " + it
             it.attendees.each { att ->
+                if (!results[att.student.id]) {
+                    results[att.student.id] = [ attendanceCount : 0 ]
+                }
                 println "Status meow ${att.status}"
                 if (att.status == 'present') {
                     println "Adding meow ${att.student.id}"
-                    if(results[att.student.id]) {
-                        results[att.student.id] += 1
-                    }
-                    else {
-                        results[att.student.id] = 1
-                    }
+                    results[att.student.id].attendanceCount += 1
                 }
             }
         }

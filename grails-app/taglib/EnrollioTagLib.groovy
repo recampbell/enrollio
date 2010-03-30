@@ -70,5 +70,13 @@ class EnrollioTagLib {
 
     }
 
+    // expects a single student's attendance data
+    // as provided by ClassSessionService.attendancesForSession
+    def studentAttendanceSummary = { attrs ->
+        out << attrs.summary.attendanceCount
+
+    }
+
+
 }
 
