@@ -2,9 +2,9 @@ package org.bworks.bworksdb
 
 public enum EnrollmentStatus {
 
+    IN_PROGRESS('In Progress')
     DROPPED_OUT('Dropped Out'),
     GRADUATED('Graduated'),
-    IN_PROGRESS('In Progress')
 
     String name
 
@@ -13,7 +13,7 @@ public enum EnrollmentStatus {
     }
 
     static list() {
-        [ DROPPED_OUT, GRADUATED, IN_PROGRESS ]
+        [ IN_PROGRESS, DROPPED_OUT, GRADUATED ]
     }
 
     static constraints = {
