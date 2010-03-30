@@ -24,7 +24,9 @@ class AttendanceController {
         else { return [ attendanceInstance : attendanceInstance ] }
     }
 
+    // ajaxy method to change staus of student's attendance
     def updateStatus = {
+
         def attendanceInstance = Attendance.get( params.id )
         if(attendanceInstance) {
 
@@ -35,6 +37,7 @@ class AttendanceController {
             flash.message = "Attendance not found with id ${params.id}"
             redirect(action:list)
         }
+        render ''
     }
 
     def delete = {

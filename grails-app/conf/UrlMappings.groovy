@@ -20,6 +20,9 @@ class UrlMappings {
         "/attendanceSheet"(controller: 'classSession', action: 'attendanceSheet')
         "/graduation"(controller: 'classSession', action: 'graduation')
 
+        // attendance controller
+        "/updateStatus"(controller: 'attendance', action: 'updateStatus')
+
 		// configSetting controller
         '/settings'(controller: 'configSetting', action: 'list')
         "/showSetting/$id"(controller: 'configSetting', action: 'show')
