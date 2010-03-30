@@ -1,4 +1,5 @@
 <h3> 
+    <enrollio:starred thingy="${studentInstance}" />
     <g:link action="edit" name="editStudentLink${studentInstance.id}" 
     id="${studentInstance.id}" controller="student"
     title="${studentInstance}">

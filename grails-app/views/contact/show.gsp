@@ -16,6 +16,10 @@
                     noneSelectedText : 'Select Interests',
                     selectedList:2   // selectedList shows the names of the selected interests!
                 });
+
+                $(".star").click(function(){
+                    alert("boo");
+                    });
             });
             function updateInterests() {
                 // Collect the labels of each of the selected Interests

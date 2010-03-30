@@ -70,5 +70,15 @@ class EnrollioTagLib {
 
     }
 
+    def starred = { attrs ->
+        def starType = attrs['thingy'].starred ? 'gold' : 'grey'
+        def id = attrs['']
+        out << '<img class="star" '
+        out << 'selected="' + attrs['thingy'].starred + '" '
+        out << 'starId="' + attrs['thingy'].id + '" '
+        out << 'src="' + resource(dir:'images/icons', file:"star_${starType}.png") + '" />'
+    }
+
+
 }
 

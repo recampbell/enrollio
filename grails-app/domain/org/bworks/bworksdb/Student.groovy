@@ -17,6 +17,7 @@ class Student implements Commentable {
     static hasMany = [ interests:Interest ]
     Date dateCreated
     Date lastUpdated
+    Boolean starred = false
 
     static constraints = {
         birthDate(nullable:true, blank:true)
@@ -27,6 +28,7 @@ class Student implements Commentable {
         lastName(nullable:false, blank:false)
         middleName(nullable:true, blank:true)
         lastUpdated(nullable:true, blank:true)
+        starred(nullable:true)
     }
     
     // Prints 'Gerald David Buchner' or
