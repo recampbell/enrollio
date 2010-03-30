@@ -1,7 +1,13 @@
 <ul>
     <li>
         <h3>
-            <a href="#" class="calendar">Class Session</a>
+            <g:if test="${classSessionInstance}">
+            
+            <g:link controller="classSession" action="show" id="$classSessionInstance.id">
+            Back to session
+            </g:link>
+            </g:if>
+            
         </h3>
         <ul>
             <!-- TODO Refactor this into a taglib or template -->
