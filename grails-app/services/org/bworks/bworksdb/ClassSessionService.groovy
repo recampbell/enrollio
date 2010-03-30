@@ -97,21 +97,25 @@ class ClassSessionService {
         // for each enrollment
         // --> find attendences for this student
         //
-        def results = [:]
         def lessonDates = classSessionInstance.lessonDates.collect {
             it
         }
+
+        def results = [:]
+        
+        // initialize a map for each student enrolled in this session.
+        // map will contain # of classes attended, and a list of classes missed,
+        // along with totalLessons in this session
+        classSessionInstance.enrollments.each { enr ->
+            results[enr.student.id] = [ attendanceCount : 0 , 
+                                        totalLessons : lessonDates.size(),
+                                        missed : lessonDates ]
+        }
+
         classSessionInstance.lessonDates.each {
             println "class session insance: " + it
             it.attendees.each { att ->
-                if (!results[att.student.id]) {
-                    results[att.student.id] = [ attendanceCount : 0 , 
-                                                totalLessons : lessonDates.size(),
-                                                         missed : lessonDates ]
-                }
-                println "Status meow ${att.status}"
                 if (att.status == 'present') {
-                    println "Adding meow ${att.student.id}"
                     results[att.student.id].attendanceCount += 1
                     // remove this attendance's lessonDate from the student's "missed" list.
                     results[att.student.id].missed.remove(att.lessonDate)
