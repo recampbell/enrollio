@@ -18,10 +18,12 @@ class StudentController {
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
-    def starStudent = {
-        def s = Student.get(params.id)
-        s?.starred = (params.starred == 'true')
-        return ''
+    def toggleStar = {
+        println "params" + params
+        def studentInstance = Student.get(params.id)
+        studentInstance?.starred = !(params.starred == 'true')
+        studentInstance.save()
+        render (template:'/utility/starredThingy', model:[thingy:studentInstance])
     }
 
     def list = {

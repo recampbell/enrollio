@@ -1,5 +1,7 @@
 <h3> 
-    <enrollio:starred thingy="${studentInstance}" />
+    <span starId="${studentInstance.id}" class="star">
+        <g:render template="/utility/starredThingy" model="[thingy:studentInstance]" />
+    </span>
     <g:link action="edit" name="editStudentLink${studentInstance.id}" 
     id="${studentInstance.id}" controller="student"
     title="${studentInstance}">
