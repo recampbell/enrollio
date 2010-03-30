@@ -109,7 +109,7 @@ class ClassSessionService {
         classSessionInstance.enrollments.each { enr ->
             results[enr.student.id] = [ attendanceCount : 0 , 
                                         totalLessons : lessonDates.size(),
-                                        missed : lessonDates ]
+                                        missed : lessonDates.clone() ]
         }
 
         classSessionInstance.lessonDates.each {
