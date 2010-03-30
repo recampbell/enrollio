@@ -165,6 +165,15 @@ class ClassSessionController {
         reportWriter.writeTo(response)
     }
 
+    def graduation = {
+        def classSessionInstance = ClassSession.get( params.id )
+        if(!classSessionInstance) {
+            flash.message = "ClassSession not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else { return [ classSessionInstance : classSessionInstance ] }
+
+    }
     def gradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
         def lessonDates = classSessionInstance?.lessonDates
