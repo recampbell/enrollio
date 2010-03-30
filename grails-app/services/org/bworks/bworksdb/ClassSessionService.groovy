@@ -98,16 +98,23 @@ class ClassSessionService {
         // --> find attendences for this student
         //
         def results = [:]
+        def lessonDates = classSessionInstance.lessonDates.collect {
+            it
+        }
         classSessionInstance.lessonDates.each {
             println "class session insance: " + it
             it.attendees.each { att ->
                 if (!results[att.student.id]) {
-                    results[att.student.id] = [ attendanceCount : 0 ]
+                    results[att.student.id] = [ attendanceCount : 0 , 
+                                                totalLessons : lessonDates.size(),
+                                                         missed : lessonDates ]
                 }
                 println "Status meow ${att.status}"
                 if (att.status == 'present') {
                     println "Adding meow ${att.student.id}"
                     results[att.student.id].attendanceCount += 1
+                    // remove this attendance's lessonDate from the student's "missed" list.
+                    results[att.student.id].missed.remove(att.lessonDate)
                 }
             }
         }

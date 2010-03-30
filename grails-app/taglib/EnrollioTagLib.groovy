@@ -73,10 +73,23 @@ class EnrollioTagLib {
     // expects a single student's attendance data
     // as provided by ClassSessionService.attendancesForSession
     def studentAttendanceSummary = { attrs ->
-        out << attrs.summary.attendanceCount
+
+        if (attrs.summary.attendanceCount == attrs.summary.totalLessons) {
+            out << '100 %&nbsp;'
+            out << '<img src="'
+            out << resource(dir:'images/icons', file:'award_star_gold_3.png')
+            out << '" />'
+        }
+
+        def missedClassesLinks = attrs.summary.missed.collect { lessonDate ->
+            g.link(controller:'lessonDate', action:'show', id:lessonDate.id, lessonDate.lesson.name)
+        }
+
+        if (missedClassesLinks) {
+            out << "&nbsp;Missed: "
+            out << missedClassesLinks.join(', ')
+        }
 
     }
-
-
 }
 
