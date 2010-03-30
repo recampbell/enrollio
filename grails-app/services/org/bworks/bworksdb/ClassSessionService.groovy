@@ -84,4 +84,42 @@ class ClassSessionService {
         }
         return enrolledStudents
     }
+
+    // returns a map like this:
+    // studentId : [ total:6, attended : 5, missed : [lessonDate1, lessonDate2] ]
+    // where (3) above is the ID(s) of the lessonDates that were missed.
+    //     summary: '4 of 5']
+    def attendancesForSession(classSessionInstance) {
+        // get lesson dates for this class session
+        // each lesson date -> get attendences
+        // go through each attendance and add 1 to attended
+        // get enrollments for this session
+        // for each enrollment
+        // --> find attendences for this student
+        //
+        def results = [:]
+        classSessionInstance.lessonDates.each {
+            println "class session insance: " + it
+            it.attendees.each { att ->
+                println "Status meow ${att.status}"
+                if (att.status == 'present') {
+                    println "Adding meow ${att.student.id}"
+                    if(results[att.student.id]) {
+                        results[att.student.id] += 1
+                    }
+                    else {
+                        results[att.student.id] = 1
+                    }
+                }
+            }
+        }
+        return results
+    }
 }
+
+
+
+
+
+
+

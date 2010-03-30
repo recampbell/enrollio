@@ -171,7 +171,8 @@ class ClassSessionController {
             flash.message = "Class Session not found with id ${params.id}"
             redirect(action:list)
         }
-        else { return [ classSessionInstance : classSessionInstance ] }
+        else { return [ attendancesForSession : classSessionService.attendancesForSession(classSessionInstance),
+                         classSessionInstance : classSessionInstance ] }
 
     }
     def gradCerts = {
