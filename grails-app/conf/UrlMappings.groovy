@@ -95,6 +95,7 @@ class UrlMappings {
 		"/student/$id"(controller: 'student', action: 'show')
 		"/editStudent/$id"(controller: 'student', action: 'edit')
 		"/updateStudent"(controller: 'student', action: 'update')
+		"/student/toggleStar"(controller: 'student', action: 'toggleStar')
 
 		// response codes
 		"500"(view:'/error')
