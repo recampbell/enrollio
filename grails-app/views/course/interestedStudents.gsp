@@ -27,7 +27,9 @@
                         </thead>
                         <g:each var="con" status="placeInList" in="${contactInstanceList}">
                         <g:render template="interestedContact" 
-                            model="[placeInList : placeInList, contactInstance : con ]" />
+                            model="[placeInList : placeInList, 
+                            contactInstance : con,
+                            classSessionInstance : classSessionInstance ]" />
                         </g:each>
                     </table>
                 </div>

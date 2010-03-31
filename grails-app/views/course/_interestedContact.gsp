@@ -13,9 +13,7 @@
         </ul>
     </td>
     <td width="20%">
-        
         <ul class="prop">
-
             <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
             <g:if test="${contactInstance.phoneNumbers}">
                 <g:each var="phone" in="${contactInstance.phoneNumbers}">
@@ -32,6 +30,9 @@
         <li>
         <g:render template="/utility/starredThingy" model="[thingy:student]" />
         
+                     <g:if test="${classSessionInstance}">
+                        <g:checkBox name="rememberMe" checked="${student.id % 2 == 0}" />
+                     </g:if>
         <g:link controller="student" action="edit" id="${student.id}">${student}</g:link>
         </li>
         </g:each>
