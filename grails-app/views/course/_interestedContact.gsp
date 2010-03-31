@@ -1,5 +1,31 @@
 <tr>
+    <td width="45%">
+        <g:link controller="contact" action="edit" id="${contactInstance.id}">${placeInList}) ${contactInstance}</g:link>
+        <ul class="prop">
+        
+            <li>${contactInstance.address1}</li> 
+            <g:if test="${contactInstance.address2}"> <li>${contactInstance.address2}</li></g:if>
+            <li>
+                <g:if test="${contactInstance.city}">${contactInstance.city},&#160;&#160;</g:if>
+                <g:if test="${contactInstance.state}">${contactInstance.state}&#160;</g:if>
+                <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
+            </li>
+        </ul>
+    </td>
     <td width="20%">
+        
+        <ul class="prop">
+
+            <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
+            <g:if test="${contactInstance.phoneNumbers}">
+                <g:each var="phone" in="${contactInstance.phoneNumbers}">
+                    <li>${phone.phoneNumber}</li>
+                </g:each>
+            </g:if>
+        </ul>
+    </td>
+
+    <td width="35%">
         <ul class="prop">
         <g:each var="student" in="${contactInstance.students}">
         
@@ -13,37 +39,5 @@
         </ul>
     
     
-    </td>
-    <td>
-        <g:link controller="contact" action="edit" id="${contactInstance.id}">${contactInstance}</g:link>
-    </td>
-    <td>${contactInstance.address1} 
-        <g:if test="${contactInstance.address2}">
-        ${contactInstance.address2} 
-        <br />
-        </g:if>
-        <g:if test="${contactInstance.city}">
-        ${contactInstance.city},&#160;&#160;</g:if>
-        <g:if test="${contactInstance.state}">
-        ${contactInstance.state} 
-        </g:if>
-        <g:if test="${contactInstance.zipCode}">
-        ${contactInstance.zipCode}&#160;&#160;
-        </g:if>
-        <br />
-    </td>
-    <td>
-
-        <g:if test="${contactInstance.emailAddress}">
-        <br />
-        ${contactInstance.emailAddress}
-        </g:if>
-        <g:if test="${contactInstance.phoneNumbers}">
-        <ul class="prop">
-            <g:each var="phone" in="${contactInstance.phoneNumbers}">
-            <li>${phone.phoneNumber}</li>
-            </g:each>
-        </ul>
-        </g:if>
     </td>
 </tr>

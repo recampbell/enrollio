@@ -13,12 +13,12 @@
                 <div class="rightnow">
                     <h3 class="reallynow">
                         <span>Interest List</span>
-
                         <br />
                     </h3>
                     <table>
-                        <g:each var="con" in="${contactInstanceList}">
-                        <g:render template="interestedContact" model="[contactInstance : con ]" />
+                        <g:each var="con" status="placeInList" in="${contactInstanceList}">
+                        <g:render template="interestedContact" 
+                            model="[placeInList : placeInList, contactInstance : con ]" />
                         </g:each>
                     </table>
                 </div>
