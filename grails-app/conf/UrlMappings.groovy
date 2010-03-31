@@ -23,6 +23,8 @@ class UrlMappings {
         // attendance controller
         "/updateStatus"(controller: 'attendance', action: 'updateStatus')
 
+        // enrollment controller
+        "/enrollmentStatus"(controller: 'enrollment', action: 'enrollmentStatus')
 		// configSetting controller
         '/settings'(controller: 'configSetting', action: 'list')
         "/showSetting/$id"(controller: 'configSetting', action: 'show')
