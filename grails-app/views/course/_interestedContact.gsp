@@ -1,4 +1,17 @@
 <tr>
+    <td width="20%">
+        <ul class="prop">
+        <g:each var="student" in="${contactInstance.students}">
+        
+        <li>
+            <g:render template="/utility/starredThingy" model="[thingy:student]" />${student}
+        </li>
+        </g:each>
+
+        </ul>
+    
+    
+    </td>
     <td>${contactInstance}</td>
     <td>${contactInstance.address1} 
         <g:if test="${contactInstance.address2}">
