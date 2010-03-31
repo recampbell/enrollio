@@ -25,16 +25,19 @@
 
     <td width="35%">
         <ul class="prop">
-        <g:each var="student" in="${contactInstance.students}">
+        <g:each var="stud" in="${contactInstance.students}">
         
         <li>
-        <g:render template="/utility/starredThingy" model="[thingy:student]" />
+        <g:render template="/utility/starredThingy" model="[thingy:stud]" />
          <g:if test="${classSessionInstance}">
-         <g:checkBox name="enrollStudent${student.id}" class="enrollStudent" 
-         classSessionId="${classSessionInstance.id}" studentId="${student.id}"
-             checked="${classSessionInstance.enrollments.find { it.student == student } }" />
+             <g:checkBox id="enrollStudent${stud.id}"
+             name="enrollStudent${stud.id}" 
+             class="enrollStudent" 
+             classSessionId="${classSessionInstance.id}" 
+             studentId="${stud.id}"
+             value="${classSessionInstance.enrollments.find { it.student.id == stud.id }}" />
          </g:if>
-        <g:link controller="student" action="edit" id="${student.id}">${student}</g:link>
+        <g:link controller="student" action="edit" id="${stud.id}">${stud}</g:link>
         </li>
         </g:each>
 
