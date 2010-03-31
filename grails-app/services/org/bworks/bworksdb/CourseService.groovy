@@ -20,16 +20,44 @@ class CourseService {
         return proposedClasses
     }
 
-    def getCallList(id) {
-        def prog = Course.get(id)
-        if (!prog) return null;
-        def interests = prog.interests.findAll { it.active == true }
-        def students = interests.collect { it.student }
-        def contacts = students.collect { it.contact }
+    // find non-starred students, sorted by interest date
+    // add their contacts to the list, unless contact is already in list
+    // because contact has a starred student.
+    def callList(id) {
+        def course = Course.get(id)
+        if (!course) return null;
+
+        def starredContacts = getInterestedStudentsContacts(course, true)
+
+        def regularContacts = getInterestedStudentsContacts(course, false)
+
+        regularContacts = regularContacts.findAll { regularContact ->
+            ! starredContacts.find { starredContact ->
+                starredContact.id == regularContact.id
+            }
+        }
+
+        return starredContacts.plus(regularContacts)
     }
 
     def activeInterests(Course p) {
         return Interest.findAllByCourseAndActive(p, true)
+    }
+
+    // find students, sorted by interest date,
+    // return a unique list of contacts
+    def getInterestedStudentsContacts(Course c, Boolean isStarred) {
+        def interests = c.interests.findAll { 
+            it.active == true && it.student.starred == isStarred
+        }.sort {
+            it.signupDate
+        }
+
+        def contactList = interests.collect {
+            it.student.contact
+        }.unique()
+
+        return contactList
     }
 
 

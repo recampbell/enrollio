@@ -87,7 +87,7 @@ class UrlMappings {
 		"/courseLessons/$id"(controller: 'course', action: 'lessons')
         "/sortLessons/$id"(controller: 'course', action: 'sortLessons')
         "/saveLessonSort"(controller: 'course', action: 'saveLessonSort')
-        "/interestedStudents"(controller: 'course', action: 'interestedStudents')
+        "/interestedStudents/$id"(controller: 'course', action: 'interestedStudents')
 
 		// shiroUser controller
 		'/createUser'(controller: 'shiroUser', action: 'create')

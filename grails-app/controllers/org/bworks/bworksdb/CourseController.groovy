@@ -18,12 +18,6 @@ class CourseController {
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
-    def pdfCallList = {
-        def contactInstanceList = courseService.getCallList(1)
-
-        [ contactInstanceList: contactInstanceList, contactInstanceTotal: Contact.count() ]
-
-    }
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ courseInstanceList: Course.list( params ), courseInstanceTotal: Course.count() ]
@@ -189,7 +183,7 @@ class CourseController {
     }
     
     def interestedStudents = {
-        def contactInstanceList = Contact.list()
+        def contactInstanceList = courseService.callList(params.id)
 
         [ contactInstanceList : contactInstanceList ]
 
