@@ -22,13 +22,15 @@ class ClassSessionController {
         println "Boo" + params
         def studentInstance = Student.get(params.studentId)
         def classSessionInstance = ClassSession.get(params.classSessionId)
+        def msg
         if (params.enroll == 'true') {
-            classSessionService.enrollStudent(studentInstance, classSessionInstance)
+            msg = classSessionService.enrollStudent(studentInstance, classSessionInstance)
         }
         else {
-            classSessionService.disrollStudent(studentInstance, classSessionInstance)
+            msg = classSessionService.disrollStudent(studentInstance, classSessionInstance)
         }
-        render ''
+
+        render '<b>' + msg['enrolledStudents'] + '</b> students enrolled'
     }
 
 

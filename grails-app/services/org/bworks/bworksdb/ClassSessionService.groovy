@@ -119,8 +119,7 @@ class ClassSessionService {
     // enrolls a student, or changes their status from dropped out
     // to "in progress"
     def enrollStudent(studentInstance, classSessionInstance) {
-        println "enrollStudent"
-        println "enrollStudent"
+        def msgs = [:]
         def enr = classSessionInstance.enrollments.find {
             it.student == studentInstance
         }
@@ -147,14 +146,16 @@ class ClassSessionService {
             }
             println "Number of enrollments is: " + classSessionInstance.enrollments.size()
         }
-        println "exit enroll"
+        
+        msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()
+        return msgs
     }
 
     // Removes an enrollment, unless there's already attendances in 
     // this class session for this student.  If there's already attendences,
     // then mark the enrollment as dropout.
     def disrollStudent(studentInstance, classSessionInstance) {
-        println "disrollollStudent"
+        def msgs = [:]
         def enr = classSessionInstance.enrollments.find {
             it.student == studentInstance
         }
@@ -175,13 +176,16 @@ class ClassSessionService {
             }
 
         }
-        println "exit disrollollStudent"
+
+        msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()
+
+        return msgs
     }
+
+    def activeEnrollments(classSessionInstance) {
+        classSessionInstance.enrollments.findAll {
+            it.status != EnrollmentStatus.DROPPED_OUT
+        }
+    }
+
 }
-
-
-
-
-
-
-

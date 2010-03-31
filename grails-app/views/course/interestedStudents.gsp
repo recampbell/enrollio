@@ -13,7 +13,11 @@
                                             action:"enrollStudent")}',
                             { 'enroll' : $(this).attr('checked'), 
                             'studentId' : $(this).attr("studentId"),
-                            'classSessionId' : $(this).attr("classSessionId") });
+                            'classSessionId' : $(this).attr("classSessionId") },
+                            function(data) {
+                            // update student count w/results from enrollStudent action
+                                $('#studentCount').html(data);
+                            });
                     });
             });
         </script>
@@ -32,7 +36,7 @@
                         </g:else>
                         <br />
                     </h3>
-                    <p class="youhave"><b>12</b> students enrolled</p>
+                    <p id="studentCount" class="youhave"><b>12</b> students enrolled</p>
                     <table>
                         <thead><th colspan="2">Contact</th>
                         <th>Students</th>
