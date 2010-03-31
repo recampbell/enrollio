@@ -1,5 +1,3 @@
-
-
 package org.bworks.bworksdb
 
 class LessonDateController {
@@ -28,7 +26,7 @@ class LessonDateController {
             ]
         }
 
-        render shows as JSON
+        render lds as JSON
     }
     
     def show = {
