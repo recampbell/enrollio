@@ -161,9 +161,8 @@ class ClassSessionService {
         }
 
         if (enr) {
-            def attendance = classSessionInstance.lessonDates*.attendees.find {
-                println "disrollollStudent loop " +it 
-                it.student == studentInstance && it.status == 'present'
+            def attendance = classSessionInstance.lessonDates*.attendees*.find { attendee ->
+                attendee.student == studentInstance && attendee.status == 'present'
             }
             
             if (attendance) {
