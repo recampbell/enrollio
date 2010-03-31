@@ -29,34 +29,6 @@
                             <span>Graduation: ${classSessionInstance.name}</span>
                             <br />
                         </h3>
-                        <p class="youhave"></p>
-                        <table>
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        Course:
-                                    </td>
-                                    <td><g:link controller="course"
-                                                action="show"
-                                                id="${classSessionInstance.course.id}">
-                                        ${classSessionInstance.course.name}
-                                                </g:link></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Start Date:
-                                    </td>
-                                    <td><enrollio:formatDate date="${classSessionInstance.startDate}" /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                        <div class="rightnow">
-                            <h3 class="reallynow">
-                                <span>Enrollments</span>
-                                <br />
-                            </h3>
                             <table>
                                 <thead>
                                     <th>Student</th>
@@ -84,7 +56,9 @@
                         </div>
                     </div>
                 <div id="sidebar">
-                    <g:render template="individualClassSessionMenu" model="[classSessionInstance:classSessionInstance]" />
+                    <g:render template="individualClassSessionMenu" 
+
+                    model="[showGradCertsLink:true, classSessionInstance:classSessionInstance]" />
                 </div>
             </div>
         </div>

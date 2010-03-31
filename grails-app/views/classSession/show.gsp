@@ -13,31 +13,15 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-                            <span>${classSessionInstance.name}</span>
-                            <br />
+                            ${classSessionInstance.name}
                         </h3>
-                        <p class="youhave"></p>
-                        <table>
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        Course:
-                                    </td>
-                                    <td><g:link controller="course"
-                                                action="show"
-                                                id="${classSessionInstance.course.id}">
-                                        ${classSessionInstance.course.name}
-                                                </g:link></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Start Date:
-                                    </td>
-                                    <td><enrollio:formatDate date="${classSessionInstance.startDate}" /></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p class="youhave">
+                        <g:link action="show" controller="course" id="${classSessionInstance.course.id}">
+                        
+                            ${classSessionInstance.course.name} Course
+                        </g:link>
+                        </p>
+                        
                     </div>
                     <div class="infowrap">
                         <div class="infobox">

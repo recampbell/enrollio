@@ -1,12 +1,9 @@
 <ul>
     <li>
         <h3>
-            <g:if test="${classSessionInstance}">
-            
-            <g:link controller="classSession" action="show" id="$classSessionInstance.id">
-            Back to session
+            <g:link class="calendar" controller="classSession" action="show" id="$classSessionInstance.id">
+            ${classSessionInstance.name}
             </g:link>
-            </g:if>
             
         </h3>
         <ul>
@@ -18,7 +15,7 @@
             id="${ classSessionInstance.id }"
             controller="classSession">&nbsp;&nbsp;Graduation</g:link>
             </li>
-            <g:if test="${showGradCertLink}">
+            <g:if test="${showGradCertsLink}">
             <li>
                 <script type="text/javascript">function
                 submit_graduationCertificate(link) { link.parentNode._format.value =

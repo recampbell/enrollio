@@ -62,8 +62,8 @@
                     <ul>
                         <li>
                             <h3>
-                                <g:link class="calendar" action="show" controller="classSession"
-                                id="${lessonDateInstance.classSession.id}">Parent Session</g:link> 
+                                <g:render template="/classSession/individualClassSessionMenu"
+                                           model="[ classSessionInstance : lessonDateInstance.classSession ]"/>
                             </h3>
                         
                         </li>
