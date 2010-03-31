@@ -8,6 +8,17 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
         <title>Graduation: ${classSessionInstance.name}</title>
+	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
+        <script type="text/javascript">
+             $(document).ready(function(){
+                $('.statusSwitcher').change(function(){
+                    $.post('${createLink(controller:"enrollment",
+                                             action:"enrollmentStatus")}',
+                                             { 'status' : $(this).val(), 
+                                                   'id' : $(this).attr("enrollmentId") });
+                    });
+                });
+        </script>
     </head>
     <body>
         <div id="container">
@@ -53,17 +64,18 @@
                                     <th>Status</th>
                                 </thead>
                                 <tbody>
-                                    <g:each var="enr" in="${classSessionInstance.enrollments}">
+                                    <g:each var="enrollmentInstance" in="${classSessionInstance.enrollments}">
                                         <tr>
                                             <td>
-                                                <a href="#">${enr.student}</a>
+                                                <a href="#">${enrollmentInstance.student}</a>
                                             </td>
                                             <td>
                                             <enrollio:studentAttendanceSummary 
-                                                summary="${attendancesForSession[enr.student.id]}" />
+                                                summary="${attendancesForSession[enrollmentInstance.student.id]}" />
                                             </td>
                                             <td>
-                                                <g:render template="enrollmentStatus" model="[enr : enr]" />
+                                                <g:render template="enrollmentStatus" 
+                                                model="[enrollmentInstance : enrollmentInstance]" />
                                             </td>
                                         </tr>
                                     </g:each>
