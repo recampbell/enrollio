@@ -16,6 +16,21 @@ class LessonDateController {
         [ lessonDateInstanceList: LessonDate.list( params ), lessonDateInstanceTotal: LessonDate.count() ]
     }
 
+    // Provide data for awesome fullcalendar plugin
+    def lessonDateData = {
+        // TODO filter by params
+        def lds = LessonDate.list().collect { lessonDate ->
+            
+            [ title : lessonDate.lesson.name.toString(),
+             // give unix-timestamp (seconds since epoch), which Javascript likes
+              start : show.showDate.getTime().intdiv(1000),
+              url   : createLink(action:'lessonDate', id:"${lessonDate.id}")
+            ]
+        }
+
+        render shows as JSON
+    }
+    
     def show = {
         def lessonDateInstance = LessonDate.get( params.id )
 
