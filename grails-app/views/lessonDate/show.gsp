@@ -73,33 +73,3 @@
         </div>
     </body>
 </html>
-
-
-
-
-
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-
-                    
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Attendees:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                               </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Lesson Date:</td>
-                            
-                            
-                        </tr>
- 

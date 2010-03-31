@@ -24,7 +24,7 @@
                     }
                 });
                 <g:if test="${showInstance}">
-                    $('#calendar').fullCalendar('gotoDate', ${showInstance.showDate.year + 1900}, ${showInstance.showDate.month});
+                    $('#calendar').fullCalendar('gotoDate', ${lessonDateInstance.lessonDate.year + 1900}, ${lessonDateInstance.lessonDate.month});
                 </g:if>
             });
         </script>
@@ -36,34 +36,12 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-                            ${lessonDateInstance.lesson.name},
-                            <enrollio:formatDate date="${lessonDateInstance.lessonDate}" />
+                            <span>Calendar</span>
                         </h3>
-                        <p class="youhave">
-             ${lessonDateInstance.classSession.name} </p>
-                    </div>
-                    <div class="rightnow">
-                            <h3 class="reallynow">Attendees </h3>
-                            <table>
-                                <tbody>
-                                    <g:each var="a" 
-                                             in="${lessonDateInstance.attendees}">
-                                    <tr>
-                                        <td>
-                                            <g:link controller="attendance" 
-                                            action="show" 
-                                            id="${a.id}">${a.student}</g:link>
+                        <span id="calendar">
 
-                                            </td>
-                                            <td>
-                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="present" name="status${a.id}" value="present" checked="${a.status == 'present'}"/>&nbsp;Present
-                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="absent" name="status${a.id}" value="absent" checked="${a.status == 'absent'}" />&nbsp;Absent
-                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="late" name="status${a.id}" value="late" checked="${a.status == 'late'}"/>&nbsp;Late
-                                            </td>
-                                    </tr>
-                                </g:each>
-                                </tbody>
-                            </table>
+                        </span>
+
                     </div>
                 </div>
                 <div id="sidebar">
@@ -81,33 +59,3 @@
         </div>
     </body>
 </html>
-
-
-
-
-
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-
-                    
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Attendees:</td>
-                            
-                            <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                               </ul>
-                            </td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Lesson Date:</td>
-                            
-                            
-                        </tr>
- 
