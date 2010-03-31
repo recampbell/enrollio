@@ -676,6 +676,7 @@ td input.squishy {
 #newStudentInterests {
     border: 1px;
 }
+
 #newStudentInterests ul {
      list-style: none;
 }
@@ -684,7 +685,6 @@ td input.squishy {
     float: left;
 }
 
-
 #newStudentInterests {
     clear: both;
 }
@@ -692,6 +692,7 @@ td input.squishy {
 #newStudentInterests input {
     width:auto;
 }
+
 #newStudentInterests label {
     float:none;
     clear:left;

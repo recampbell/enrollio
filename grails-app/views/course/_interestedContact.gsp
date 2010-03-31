@@ -22,7 +22,7 @@
                     ${contactInstance.emailAddress}
                 </g:if>
                 <g:if test="${contactInstance.phoneNumbers}">
-                <ul>
+                <ul class="prop">
                     <g:each var="phone" in="${contactInstance.phoneNumbers}">
                         <li>${phone.phoneNumber}</li>
                     </g:each>
