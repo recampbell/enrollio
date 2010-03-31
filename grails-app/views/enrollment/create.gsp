@@ -2,17 +2,18 @@
 <%@ page import="org.bworks.bworksdb.Enrollment" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Create Enrollment</title>         
+        <g:set var="entityName" value="${message(code: 'enrollment.label', default: 'Enrollment')}" />
+        <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Enrollment List</g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body">
-            <h1>Create Enrollment</h1>
+            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -26,11 +27,38 @@
                     <table>
                         <tbody>
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="status"><g:message code="enrollment.status.label" default="Status" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: enrollmentInstance, field: 'status', 'errors')}">
+                                    <g:select name="status" from="${org.bworks.bworksdb.EnrollmentStatus?.values()}" value="${enrollmentInstance?.status}" noSelection="['': '']" />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="student"><g:message code="enrollment.student.label" default="Student" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: enrollmentInstance, field: 'student', 'errors')}">
+                                    <g:select name="student.id" from="${org.bworks.bworksdb.Student.list()}" optionKey="id" value="${enrollmentInstance?.student?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="classSession"><g:message code="enrollment.classSession.label" default="Class Session" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: enrollmentInstance, field: 'classSession', 'errors')}">
+                                    <g:select name="classSession.id" from="${org.bworks.bworksdb.ClassSession.list()}" optionKey="id" value="${enrollmentInstance?.classSession?.id}"  />
+                                </td>
+                            </tr>
+                        
                         </tbody>
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
+                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
             </g:form>
         </div>
