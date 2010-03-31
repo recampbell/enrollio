@@ -126,7 +126,7 @@ class ClassSessionService {
         }
 
         if (enr) {
-            enr.enrollmentStatus = EnrollmentStatus.IN_PROGRESS
+            enr.status = EnrollmentStatus.IN_PROGRESS
             enr.save()
         }
         else {
@@ -160,16 +160,17 @@ class ClassSessionService {
         }
 
         if (enr) {
-            def attendence = classSessionInstance.lessonDates*.attendances.find {
+            def attendance = classSessionInstance.lessonDates*.attendees.find {
                 println "disrollollStudent loop " +it 
-                it.student == studentInstances && it.status == 'present'
+                it.student == studentInstance && it.status == 'present'
             }
             
             if (attendance) {
-                enr.enrollmentStatus = EnrollmentStatus.DROPPED_OUT
+                enr.status = EnrollmentStatus.DROPPED_OUT
                 enr.save()
             }
             else {
+                classSessionInstance.removeFromEnrollments(enr)
                 enr.delete(flush : true)
             }
 
