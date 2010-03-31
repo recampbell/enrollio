@@ -11,7 +11,7 @@
         <meta name="layout" content="main" />
         <title>Calendar</title>
         <g:javascript src="jquery-1.4.2.min.js" />
-        <g:javascript src="fullcalendar.js" />
+        <g:javascript src="fullcalendar.min.js" />
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -33,27 +33,11 @@
     <body>
         <div id="container">
             <div id="wrapper">
-                <div id="content">
-                    <div class="rightnow">
-                        <h3 class="reallynow">
-                            <span>Calendar</span>
-                        </h3>
-                        <span id="calendar">
+                <div id="content" class="calendar">
+                        <div id="calendar">
 
-                        </span>
+                        </div>
 
-                    </div>
-                </div>
-                <div id="sidebar">
-                    <ul>
-                        <li>
-                            <h3>
-                                <g:link class="calendar" action="show" controller="classSession"
-                                id="${lessonDateInstance.classSession.id}">Parent Session</g:link> 
-                            </h3>
-                        
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
