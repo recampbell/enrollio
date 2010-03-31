@@ -17,15 +17,6 @@ class ClassSessionController {
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
-    def editEnrollments = {
-        def classSession = ClassSession.get(params.id)
-        // TODO if courseId not provided, flash message and redirect back
-        def interests = Interest.findAllByCourse(classSession.course).findAll {
-            it.active == true
-        }
-        [ interests : interests , classSession:classSession ]
-    }
-
     // ajax method to enroll studs on the fly
     def enrollStudent = {
         println "Boo" + params
