@@ -1,7 +1,6 @@
 <tr>
                 <td>${contactInstance}</td>
                 <td>${contactInstance.address1} 
-                    <br />
                     <g:if test="${contactInstance.address2}">
                         ${contactInstance.address2} 
                         <br />
@@ -10,19 +9,26 @@
                         ${contactInstance.city},&#160;&#160;</g:if>
                     <g:if test="${contactInstance.state}">
                     ${contactInstance.state} 
-                    <br /></g:if>
+                    </g:if>
                     <g:if test="${contactInstance.zipCode}">
-                    ${contactInstance.zipCode}&#160;&#160;</g:if>
-                    <br /></td>
+                    ${contactInstance.zipCode}&#160;&#160;
+                    </g:if>
+                    <br />
+                 </td>
+                 <td>
+                 
+                <g:if test="${contactInstance.emailAddress}">
+                <br />
+                    ${contactInstance.emailAddress}
+                </g:if>
+                <g:if test="${contactInstance.phoneNumbers}">
+                <ul>
+                    <g:each var="phone" in="${contactInstance.phoneNumbers}">
+                        <li>${phone.phoneNumber}</li>
+                    </g:each>
+                </ul>
+                </g:if>
             </tr>
-            <tr>
-                <td>Email:</td>
-                <td>${contactInstance.emailAddress}</td>
+                 </td>
             </tr>
-            <g:each var="phone" in="${contactInstance.phoneNumbers}">
-            <tr>
-                <td>${phone.label}</td>
-                <td>${phone.phoneNumber}</td>
-            </tr>
-            </g:each>
 </tr>
