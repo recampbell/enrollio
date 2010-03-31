@@ -21,24 +21,6 @@
                     events: "${createLink(controller:'lessonDate', action:'lessonDateData')}",
                     aspectRatio:2.4,
                     dayClick: function(date) {
-                        
-                       <shiro:isLoggedIn>
-                        // create MM-DD-YYYY formatted date to pass to controller, meow
-                        var clicked_date = date.getDate();
-                        var clicked_month = date.getMonth();
-                        var clicked_year = date.getFullYear();
-                        var formattedDate = clicked_month + 1 + "-" +
-                                            clicked_date + "-" +
-                                            clicked_year
-                                            
-                                            
-                        // forward to the create action with this date as a param
-                        window.document.location.href = 
-                            "${createLink(controller:'show', action:'create')}" + 
-                            "?d=" + formattedDate
-                        
-                       </shiro:isLoggedIn>
-                        
                     }
                 });
                 <g:if test="${showInstance}">
