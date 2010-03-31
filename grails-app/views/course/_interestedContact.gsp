@@ -4,7 +4,9 @@
         <g:each var="student" in="${contactInstance.students}">
         
         <li>
-            <g:render template="/utility/starredThingy" model="[thingy:student]" />${student}
+        <g:render template="/utility/starredThingy" model="[thingy:student]" />
+        
+        <g:link controller="student" action="edit" id="${student.id}">${student}</g:link>
         </li>
         </g:each>
 
@@ -12,7 +14,9 @@
     
     
     </td>
-    <td>${contactInstance}</td>
+    <td>
+        <g:link controller="contact" action="edit" id="${contactInstance.id}">${contactInstance}</g:link>
+    </td>
     <td>${contactInstance.address1} 
         <g:if test="${contactInstance.address2}">
         ${contactInstance.address2} 
