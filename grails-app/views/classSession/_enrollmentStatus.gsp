@@ -3,5 +3,5 @@
     <g:radio class="statusSwitcher" enrollmentId="${enr.id}" 
     attendanceStatus="${enrStatus}" name="status${enr.id}" 
     value="present" 
-    checked="${enr.status == enrStatus}"/>${enrStatus.name}
+    checked="${enr.status == enrStatus}"/>&nbsp;${enrStatus.name}<br />
 </g:each>

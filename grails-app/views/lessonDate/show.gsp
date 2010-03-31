@@ -47,13 +47,12 @@
                                             id="${a.id}">${a.student}</g:link>
 
                                             </td>
-            <td>
-                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="present" name="status${a.id}" value="present" checked="${a.status == 'present'}"/>Present
-                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="absent" name="status${a.id}" value="absent" checked="${a.status == 'absent'}" />Absent
-                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="late" name="status${a.id}" value="late" checked="${a.status == 'late'}"/>Late
-
-                                    </td>
-                                </tr>
+                                            <td>
+                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="present" name="status${a.id}" value="present" checked="${a.status == 'present'}"/>&nbsp;Present
+                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="absent" name="status${a.id}" value="absent" checked="${a.status == 'absent'}" />&nbsp;Absent
+                                                <g:radio class="statusSwitcher" attendanceId="${a.id}" attendanceStatus="late" name="status${a.id}" value="late" checked="${a.status == 'late'}"/>&nbsp;Late
+                                            </td>
+                                    </tr>
                                 </g:each>
                                 </tbody>
                             </table>
