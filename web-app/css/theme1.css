@@ -2,12 +2,14 @@ body{
 	background:#f3f9ff url(../images/bg_blue.jpg) repeat-x top;
 	color: #202020;
 }
-a, a:visited{
+a, a:visited {
 	color:#375b91;
 }
-select{
-	border:1px solid #d9e6f0;
+
+select {
+    font-size: 80%;
 }
+
 #header h2{
 	color:#FFF;
 }
