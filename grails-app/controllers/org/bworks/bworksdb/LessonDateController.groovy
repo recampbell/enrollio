@@ -1,4 +1,6 @@
 package org.bworks.bworksdb
+import grails.converters.JSON
+import org.apache.shiro.SecurityUtils
 
 class LessonDateController {
     
@@ -9,9 +11,20 @@ class LessonDateController {
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
+    static navigation = [
+        group:'mainMenu',
+        action:'calendar',
+        title:'Calendar',
+        isVisible: { SecurityUtils.subject?.isAuthenticated() },
+        order:5
+    ]
+
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ lessonDateInstanceList: LessonDate.list( params ), lessonDateInstanceTotal: LessonDate.count() ]
+    }
+
+    def calendar = {
     }
 
     // Provide data for awesome fullcalendar plugin

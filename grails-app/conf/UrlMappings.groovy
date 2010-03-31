@@ -69,6 +69,7 @@ class UrlMappings {
 
 		// lessonDate controller
 		"/lessonDate/$id"(controller: 'lessonDate', action: 'show')
+		"/calendar"(controller: 'lessonDate', action: 'calendar')
 
         // jasper controller
         '/jasper/index'(controller:'jasper', action:'index')
