@@ -183,9 +183,17 @@ class CourseController {
     }
     
     def interestedStudents = {
+        def courseInstance = Course.get(params.id)
+        def classSessionInstance
+        if (params.classSessionId) {
+            classSessionInstance = ClassSession.get(params.classSessionId)
+        }
+
         def contactInstanceList = courseService.callList(params.id)
 
-        [ contactInstanceList : contactInstanceList ]
+        [ contactInstanceList : contactInstanceList,
+            courseInstance : courseInstance,
+            classSessionInstance : classSessionInstance ]
 
     }
 

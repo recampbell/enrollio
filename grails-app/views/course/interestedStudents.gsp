@@ -12,10 +12,19 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">
-                        <span>Interest List</span>
+                        <g:if test="${classSessionInstance}">
+                            <span>${classSessionInstance}</span>
+                        </g:if>
+                        <g:else>
+                            <span>${courseInstance}</span>
+                        </g:else>
                         <br />
                     </h3>
+                    <p class="youhave"><b>12</b> students enrolled</p>
                     <table>
+                        <thead><th colspan="2">Contact</th>
+                        <th>Students</th>
+                        </thead>
                         <g:each var="con" status="placeInList" in="${contactInstanceList}">
                         <g:render template="interestedContact" 
                             model="[placeInList : placeInList, contactInstance : con ]" />
