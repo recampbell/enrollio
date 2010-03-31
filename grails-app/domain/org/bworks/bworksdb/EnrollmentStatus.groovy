@@ -2,9 +2,9 @@ package org.bworks.bworksdb
 
 public enum EnrollmentStatus {
 
-    IN_PROGRESS('In Progress')
+    IN_PROGRESS('In Progress'),
     DROPPED_OUT('Dropped Out'),
-    GRADUATED('Graduated'),
+    GRADUATED('Graduated')
 
     String name
 
