@@ -34,6 +34,12 @@
                     </table>
                 </div>
             </div>
+                <g:if test="${classSessionInstance}">
+                <div id="sidebar">
+                    <g:render template="/classSession/individualClassSessionMenu" 
+                    model="[classSessionInstance:classSessionInstance]" />
+                </div>
+                </g:if>
         </div>
     </body>
 </html>
