@@ -129,22 +129,10 @@ class ClassSessionService {
             enr.save()
         }
         else {
-            println "Number of enrollments is: " + classSessionInstance.enrollments.size()
-            println "Adding enrollment to class session" + classSessionInstance
             def e = new Enrollment(student:studentInstance, classSession: classSessionInstance)
-            if (e.validate()) {
-                println "Evalkd"
-            }
-            else {
-                e.errors.allErrors.each {
-                    println it
-                }
-            }
             classSessionInstance.addToEnrollments(e)
             if (classSessionInstance.save(flush:true)) {
-                println "Saved!"
             }
-            println "Number of enrollments is: " + classSessionInstance.enrollments.size()
         }
         
         msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()
