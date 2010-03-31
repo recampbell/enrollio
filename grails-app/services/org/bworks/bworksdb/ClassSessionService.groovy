@@ -115,6 +115,67 @@ class ClassSessionService {
         }
         return results
     }
+
+    // enrolls a student, or changes their status from dropped out
+    // to "in progress"
+    def enrollStudent(studentInstance, classSessionInstance) {
+        println "enrollStudent"
+        println "enrollStudent"
+        def enr = classSessionInstance.enrollments.find {
+            it.student == studentInstance
+        }
+
+        if (enr) {
+            enr.enrollmentStatus = EnrollmentStatus.IN_PROGRESS
+            enr.save()
+        }
+        else {
+            println "Number of enrollments is: " + classSessionInstance.enrollments.size()
+            println "Adding enrollment to class session" + classSessionInstance
+            def e = new Enrollment(student:studentInstance, classSession: classSessionInstance)
+            if (e.validate()) {
+                println "Evalkd"
+            }
+            else {
+                e.errors.allErrors.each {
+                    println it
+                }
+            }
+            classSessionInstance.addToEnrollments(e)
+            if (classSessionInstance.save(flush:true)) {
+                println "Saved!"
+            }
+            println "Number of enrollments is: " + classSessionInstance.enrollments.size()
+        }
+        println "exit enroll"
+    }
+
+    // Removes an enrollment, unless there's already attendances in 
+    // this class session for this student.  If there's already attendences,
+    // then mark the enrollment as dropout.
+    def disrollStudent(studentInstance, classSessionInstance) {
+        println "disrollollStudent"
+        def enr = classSessionInstance.enrollments.find {
+            it.student == studentInstance
+        }
+
+        if (enr) {
+            def attendence = classSessionInstance.lessonDates*.attendances.find {
+                println "disrollollStudent loop " +it 
+                it.student == studentInstances && it.status == 'present'
+            }
+            
+            if (attendance) {
+                enr.enrollmentStatus = EnrollmentStatus.DROPPED_OUT
+                enr.save()
+            }
+            else {
+                enr.delete(flush : true)
+            }
+
+        }
+        println "exit disrollollStudent"
+    }
 }
 
 

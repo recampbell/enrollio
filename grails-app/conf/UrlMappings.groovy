@@ -19,6 +19,7 @@ class UrlMappings {
         "/gradCerts"(controller: 'classSession', action: 'gradCerts')
         "/attendanceSheet"(controller: 'classSession', action: 'attendanceSheet')
         "/graduation"(controller: 'classSession', action: 'graduation')
+        "/enrollStudent"(controller: 'classSession', action: 'enrollStudent')
 
         // attendance controller
         "/updateStatus"(controller: 'attendance', action: 'updateStatus')

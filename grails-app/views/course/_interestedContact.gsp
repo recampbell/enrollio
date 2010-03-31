@@ -30,8 +30,9 @@
         <li>
         <g:render template="/utility/starredThingy" model="[thingy:student]" />
          <g:if test="${classSessionInstance}">
-         <g:checkBox name="rememberMe" 
-         checked="${classSessionInstance.enrollments.find { it.student == student } }" />
+         <g:checkBox name="enrollStudent${student.id}" class="enrollStudent" 
+         classSessionId="${classSessionInstance.id}" studentId="${student.id}"
+             checked="${classSessionInstance.enrollments.find { it.student == student } }" />
          </g:if>
         <g:link controller="student" action="edit" id="${student.id}">${student}</g:link>
         </li>

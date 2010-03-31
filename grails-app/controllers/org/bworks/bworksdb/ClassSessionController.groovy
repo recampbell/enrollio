@@ -26,6 +26,22 @@ class ClassSessionController {
         [ interests : interests , classSession:classSession ]
     }
 
+    // ajax method to enroll studs on the fly
+    def enrollStudent = {
+        println "Boo" + params
+        def studentInstance = Student.get(params.studentId)
+        def classSessionInstance = ClassSession.get(params.classSessionId)
+        if (params.enroll == 'true') {
+            classSessionService.enrollStudent(studentInstance, classSessionInstance)
+        }
+        else {
+            classSessionService.disrollStudent(studentInstance, classSessionInstance)
+        }
+        render ''
+    }
+
+
+
     def saveEnrollments = {
         def enrollees = params.interestedStudents
         def classSession = ClassSession.get(params.classSessionId)
