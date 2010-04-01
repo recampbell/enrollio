@@ -106,6 +106,9 @@ class UrlMappings {
 		"/updateStudent"(controller: 'student', action: 'update')
 		"/student/toggleStar"(controller: 'student', action: 'toggleStar')
 
+        // Errors that were handled, but can't send any better place:
+        "/oops"(controller:'error', action:'oops')
+
 		// response codes
 		"500"(view:'/error')
 		"404"(controller:'error', action:'pageNotFound')

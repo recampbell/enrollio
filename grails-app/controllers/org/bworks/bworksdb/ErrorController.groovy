@@ -4,4 +4,7 @@ class ErrorController {
 
     def pageNotFound = {
     }
+
+    def oops = {
+    }
 }
