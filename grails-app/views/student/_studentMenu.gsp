@@ -15,6 +15,7 @@
                     controller="contact" 
                     action="create">New Student</g:link>
             </li>
+            <g:if test="${contactInstance}">
             <g:if test="${actionName == 'show'}">
                 <li>
                 <g:link name="editStudentLink" class="useredit" controller="contact" 
@@ -27,6 +28,7 @@
                     action="show" id="${contactInstance.id}">Show Contact Info</g:link>
                 </li>
             </g:else>
+            </g:if>
         </ul>
     </li>
 </ul>
