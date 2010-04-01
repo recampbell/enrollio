@@ -60,7 +60,9 @@ class CourseControllerTests extends grails.test.ControllerUnitTestCase {
         mockDomain(Course, [new Course(id:88)] )
         mockParams.id = 88
         
-        // test
+        // Create mock courseService so test doesn't blow up.
+        controller.metaClass.courseService = new Expando( activeInterests: { [ ] })
+
         def model = controller.show()
         
         assertEquals 88, model.courseInstance.id
