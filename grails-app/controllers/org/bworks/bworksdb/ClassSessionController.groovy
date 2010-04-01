@@ -214,8 +214,14 @@ class ClassSessionController {
 
         // Default Graduation Date to date of last class
         // TODO: Refactor to a Service, or else give classSession a graduationDate
-        def students = classSessionInstance.enrollments.collect { 
-            [STUDENT_NAME:it.student.fullName()]
+
+        // have to convert to long, otherwise getAll barfs
+        def studentIdList = request.getParameterValues('studentIds').collect {
+            it.toLong()
+        }
+
+        def students = Student.getAll(studentIdList)?.collect {
+            [STUDENT_NAME:it.fullName()]
         }
 
         // Set the background picture for the report using absolute URL
@@ -224,9 +230,15 @@ class ClassSessionController {
             resource(dir:'images', file:'blank_certificate_background.jpg',
                      absolute:true)
 
-        chain(controller:'jasper',
-              action:'index',
-              model:[data:students],params:params)
+        if (students) {
+            chain(controller:'jasper',
+                  action:'index',
+                  model:[data:students],params:params)
+        }
+        else {
+            render ''
+        }
+
     }
     
 }
