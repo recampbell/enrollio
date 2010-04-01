@@ -51,7 +51,7 @@
                                 controller="course"
                                 action="interestedStudents" id="${classSessionInstance.course.id}"
                                 params="[ classSessionId :classSessionInstance.id ]">
-                                (Add Enrollments)</g:link>
+                                (Add/Modify)</g:link>
                                 <br />
                             </h3>
                             <table>
@@ -62,7 +62,7 @@
                                             <td>
                                                 <a href="#">${enr.student}</a>
                                             </td>
-                                            <td>${enr.status}</td>
+                                            <td>${enr.status.name}</td>
                                         </tr>
                                     </g:each>
                                 </tbody>
