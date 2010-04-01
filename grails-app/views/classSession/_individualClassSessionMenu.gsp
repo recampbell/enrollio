@@ -24,10 +24,11 @@
                 id="${ classSessionInstance.id }" controller="classSession">&nbsp;&nbsp;Graduation</g:link>
             </li>
             <li>
-            <script type="text/javascript">
-                $(document).ready(function(){
-                });
-            </script>
+
+
+
+
+
                     
             <li>
                 <g:link name='gradCertsLink' class="certificate" 
@@ -38,7 +39,31 @@
         </ul>
         <ul>
             <h3>Print</h3>
-            <li><a href class="welcome_letter" action="#" name="welcomeLetterLink">Welcome Letters</a></li>
+            <li>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                            $('#welcomeLetterLink').click(function() {
+                                $.post('${createLink(action:"printWelcomeLetter", controller:"classSession")}',
+                                    $('#welcomeLetterForm').serialize());
+                                });
+                                
+                    });
+                </script>
+
+                 <g:form name="welcomeLetterForm" class="jasperReport"
+                     action="welcomeLetter">
+                     <input type="hidden" name="_format" value="PDF" />
+                     <!-- Name shown on top of PDF report -->
+                     <input type="hidden" name="_name" value="Welcome to Bworks!" />
+                     <input type="hidden" name="_file" value="welcomeLetter" />
+                     <input type="hidden" name="id" value="${classSessionInstance.id}" />
+                     <!-- TODO The &nbsp; is a kludge find CSS way to justify image
+                                         and text so it looks o.k. -->
+                 </g:form>
+
+            
+            
+            <a href id="welcomeLetterLink" class="welcome_letter" action="#" name="welcomeLetterLink">Welcome Letters</a></li>
             <li>
             <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
             id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
