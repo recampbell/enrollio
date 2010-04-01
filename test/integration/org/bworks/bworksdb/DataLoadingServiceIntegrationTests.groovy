@@ -386,7 +386,6 @@ class DataLoadingServiceIntegrationTests extends GrailsUnitTestCase {
 
         def comment = thingy.comments.find {
             def matchString = "Original ID was :${id}"
-            println "body" + it.body
             it.body =~ /Imported./ && it.body =~ /Original ID was :${id}:/
         }
 

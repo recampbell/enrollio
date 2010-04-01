@@ -43,7 +43,6 @@ class FileDataLoadingIntegrationTests extends GrailsUnitTestCase {
 
     void testLoadMessages() {
         def msg = dataLoadingService.loadFromFiles()
-        println "Message is: ${msg['messages']}"
         assertNotNull 'Reported # of students imported', msg['messages'].find {
             it =~ /7 students imported/
         }

@@ -63,8 +63,8 @@ class TestDataService {
             passwordHash: new Sha1Hash("bobbobbob0").toHex()
         )
         if (!user.validate()) {
-            println "User didn't validate!"
-            println user.errors.allErrors
+            log.error "User didn't validate!"
+            log.error user.errors.allErrors
         }
         else {
             user.save()
@@ -160,9 +160,8 @@ class TestDataService {
                     passwordHash: new Sha1Hash(password as String).toHex()
             )
             if (!dummyUser.validate()) {
-                println "username : ${userName}"
-                println "User didn't validate!"
-                println adminUser.errors.allErrors
+                log.error "User didn't validate!"
+                log.error adminUser.errors.allErrors
             }
             else {
                 dummyUser.save()

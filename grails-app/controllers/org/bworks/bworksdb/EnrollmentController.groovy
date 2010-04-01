@@ -14,7 +14,6 @@ class EnrollmentController {
     }
 
     def enrollmentStatus = {
-        println "params;" + params
         def enrollmentInstance = Enrollment.get(params.id)
         if (enrollmentInstance) {
             enrollmentInstance.properties = params
@@ -67,7 +66,6 @@ class EnrollmentController {
     }
 
     def update = {
-        println "Params are: " + params
         def enrollmentInstance = Enrollment.get(params.id)
         if (enrollmentInstance) {
             if (params.version) {

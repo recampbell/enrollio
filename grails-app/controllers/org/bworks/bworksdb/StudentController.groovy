@@ -19,7 +19,6 @@ class StudentController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def toggleStar = {
-        println "params" + params
         def studentInstance = Student.get(params.id)
         studentInstance?.starred = !(params.starred == 'true')
         studentInstance.save()
