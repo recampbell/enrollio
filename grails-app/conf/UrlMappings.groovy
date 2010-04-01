@@ -17,6 +17,7 @@ class UrlMappings {
         '/saveClassSession'(controller: 'classSession', action: 'save')
         "/printGradCerts"(controller: 'classSession', action: 'printGradCerts')
         "/certificates/$id"(controller: 'classSession', action: 'certificates')
+        "/printWelcomeLetter"(controller: 'classSession', action: 'printWelcomeLetter')
         "/graduation/$id"(controller: 'classSession', action: 'graduation')
         "/attendanceSheet"(controller: 'classSession', action: 'attendanceSheet')
         "/enrollStudent"(controller: 'classSession', action: 'enrollStudent')

@@ -255,6 +255,10 @@ class ClassSessionController {
         }
 
     }
+
+    def printWelcomeLetter = {
+        render ''
+    }
     
 }
 

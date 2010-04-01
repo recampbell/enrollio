@@ -24,12 +24,6 @@
                 id="${ classSessionInstance.id }" controller="classSession">&nbsp;&nbsp;Graduation</g:link>
             </li>
             <li>
-
-
-
-
-
-                    
             <li>
                 <g:link name='gradCertsLink' class="certificate" 
                 action="certificates" id="${ classSessionInstance.id }"

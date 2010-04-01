@@ -97,6 +97,7 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
         }
 
         assertUrlMapping('/printGradCerts', controller:'classSession', action:'printGradCerts')
+        assertUrlMapping('/printWelcomeLetter', controller:'classSession', action:'printWelcomeLetter')
 
         assertUrlMapping('/attendanceSheet', controller:'classSession', action:'attendanceSheet')
 
