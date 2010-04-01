@@ -61,9 +61,9 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         // NOTE: For some reason (probably javascript), the tests
         // will *not* follow the redirect, so you have to manually call followRedirect()
         redirectEnabled = false
-        def gradCertsLink = byName('gradCertsLink')
-        assertNotNull gradCertsLink
-        gradCertsLink.click()
+        def printGradCertsLink = byName('printGradCertsLink')
+        assertNotNull printGradCertsLink
+        printGradCertsLink.click()
         assertStatus 302
         followRedirect()
         assertStatus 200
@@ -75,9 +75,9 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         gotoClassSessionPage(TestKeys.PROGRAM_ADULT_AEC, TestKeys.SESSION_ADULT_NAME)
         assertStatus(200)
         redirectEnabled = false
-        def gradCertsLink = byName('gradCertsLink')
-        assertNotNull gradCertsLink
-        gradCertsLink.click()
+        def printGradCertsLink = byName('printGradCertsLink')
+        assertNotNull printGradCertsLink
+        printGradCertsLink.click()
         assertStatus 302
         followRedirect()
         assertStatus 200
