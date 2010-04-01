@@ -17,7 +17,7 @@
             </li>
             <li>
             
-                <g:link name='certificatesLink' 
+                <g:link name='gradCertsLink' 
                 class="certificate" 
                 action="certificates"
                 id="${ classSessionInstance.id }"
