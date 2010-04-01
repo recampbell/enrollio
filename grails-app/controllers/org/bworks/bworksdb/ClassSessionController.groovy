@@ -187,6 +187,20 @@ class ClassSessionController {
                          classSessionInstance : classSessionInstance ] }
 
     }
+    def certificates = {
+        def classSessionInstance = ClassSession.get( params.id )
+        if(!classSessionInstance) {
+            flash.message = "Class Session not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else { 
+            
+           def attendancesForSession =  classSessionService.attendancesForSession(classSessionInstance)
+            return [ attendancesForSession : attendancesForSession,
+                         classSessionInstance : classSessionInstance ] }
+
+    }
+
     def gradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
         def lessonDates = classSessionInstance?.lessonDates
