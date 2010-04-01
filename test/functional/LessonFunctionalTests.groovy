@@ -94,17 +94,17 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
             // Select Mentorship Course
             // TODO: See if we can select course by name, like the
             // user would.
-            def mentorshipEntry = byXPath("//option[. ='${TestKeys.PROGRAM_MENTORSHIP}']")
-            assertNotNull mentorshipEntry
-            assertEquals 'com.gargoylesoftware.htmlunit.html.HtmlOption', mentorshipEntry.class.name
+            def adultEntry = byXPath("//option[. ='${TestKeys.PROGRAM_ADULT_AEC}']")
+            assertNotNull adultEntry
+            assertEquals 'com.gargoylesoftware.htmlunit.html.HtmlOption', adultEntry.class.name
 
-            selects['course.id'].select mentorshipEntry.getValueAttribute()
+            selects['course.id'].select adultEntry.getValueAttribute()
             sequence = 12345
             click ('Update')
         }
 
         assertStatus 200
-        assertContentContains TestKeys.PROGRAM_MENTORSHIP
+        assertContentContains TestKeys.PROGRAM_ADULT_AEC
         assertContentContains 'This is a Lesson in Politics'
         assertContentContains 'You ain\'t seen nothin\' yet'
     }
