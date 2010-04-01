@@ -90,7 +90,8 @@ class StudentController {
             redirect(action:list)
         }
         else {
-            return [ studentInstance : studentInstance ]
+            return [ studentInstance : studentInstance,
+                     contactInstance : studentInstance.contact]
         }
     }
 

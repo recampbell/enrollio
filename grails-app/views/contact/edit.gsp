@@ -25,6 +25,9 @@
                     </g:form>
                 </div>
             </div>
+                <div id="sidebar">
+                <g:render template="/student/studentMenu" model="[contactInstance:contactInstance]"/>
+            </div>
         </div>
     </body>
 </html>
