@@ -13,18 +13,29 @@
         <script type="text/javascript">
              $(document).ready(function(){
                 $('#gradCertsForm').submit(function(){
+                    if($('.certificateCheckbox:checked').size() == 0) {
+                        alert("Please select at least one student, Homer.")
+                        return false;
+                    }
                     $.post('${createLink(action:"printGradCerts", controller:"classSession")}',
-                        $('#gradCertsForm').serialize())
-                    });
-                    return false;
+                        $('#gradCertsForm').serialize());
                 });
-             });
+                $('#selectAll').click(function() {
+                    $('.certificateCheckbox').attr('checked',true)
+                });
+                $('#selectNone').click(function() {
+                    $('.certificateCheckbox').attr('checked',false)
+                });
+                });
         </script>
     </head>
     <body>
         <div id="container">
             <div id="wrapper">
                 <div id="content">
+                    <g:if test="${flash.message}">
+                        <div class="message">${flash.message}</div>
+                    </g:if>
                     <div class="rightnow">
                         <h3 class="reallynow">
                             <span>Certificates: ${classSessionInstance.name}</span>
@@ -57,7 +68,7 @@
                                                 summary="${attendancesForSession[enrollmentInstance.student.id]}" />
                                             </td>
                                             <td>
-                                                <g:checkBox name="studentIds" checked="no"
+                                                <g:checkBox class="certificateCheckbox" name="studentIds" checked="no"
                                                 value="${enrollmentInstance.student.id}" />
                                             </td>
                                         </tr>

@@ -10,16 +10,16 @@ class ClassSessionController {
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', 
                              saveEnrollments:'POST', update:'POST',
-                             gradCerts: 'POST' ]
+                             printGradCerts: 'POST' ]
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
+
     // ajax method to enroll studs on the fly
     def enrollStudent = {
-        println "Boo" + params
         def studentInstance = Student.get(params.studentId)
         def classSessionInstance = ClassSession.get(params.classSessionId)
         def msg
@@ -187,6 +187,7 @@ class ClassSessionController {
                          classSessionInstance : classSessionInstance ] }
 
     }
+
     def certificates = {
         def classSessionInstance = ClassSession.get( params.id )
         if(!classSessionInstance) {
@@ -201,7 +202,7 @@ class ClassSessionController {
 
     }
 
-    def gradCerts = {
+    def printGradCerts = {
         def classSessionInstance = ClassSession.get( params.id )
         def lessonDates = classSessionInstance?.lessonDates
 
@@ -215,28 +216,43 @@ class ClassSessionController {
         // Default Graduation Date to date of last class
         // TODO: Refactor to a Service, or else give classSession a graduationDate
 
-        // have to convert to long, otherwise getAll barfs
-        def studentIdList = request.getParameterValues('studentIds').collect {
-            it.toLong()
-        }
-
-        def students = Student.getAll(studentIdList)?.collect {
-            [STUDENT_NAME:it.fullName()]
-        }
-
         // Set the background picture for the report using absolute URL
         // Haven't tried using a relative URL
         params['backgroundImageUrlParam'] =
             resource(dir:'images', file:'blank_certificate_background.jpg',
                      absolute:true)
 
-        if (students) {
-            chain(controller:'jasper',
-                  action:'index',
-                  model:[data:students],params:params)
+        // have to convert to long, otherwise getAll barfs
+        def studentIdList = request.getParameterValues('studentIds').collect {
+            it.toLong()
+        }
+
+        if (studentIdList.size() > 0) {
+
+            def students = Student.getAll(studentIdList)?.collect {
+                [STUDENT_NAME:it.fullName()]
+            }
+
+            if (students) {
+
+                chain(controller:'jasper',
+                      action:'index',
+                      model:[data:students],params:params)
+            }
+            else {
+                render ''
+            }
         }
         else {
-            render ''
+            flash.message = "You must select at least one student."
+            if (params.classSessionId) {
+                // redirect(action:'certificates', params:[id:params.classSessionId])
+                redirect(action:"oops", controller:"error")
+            }
+            else {
+                redirect(action:"oops", controller:"error")
+            }
+
         }
 
     }

@@ -419,6 +419,7 @@ form #button1:hover, form #button2:hover {
 }
 
 /* icons */
+.certificate{background:transparent url(../images/icons/script.png) no-repeat left;}
 .number_list{background:transparent url(../images/icons/text_list_numbers.png) no-repeat left;}
 .whatsnew{background:transparent url(../images/icons/new.png) no-repeat left;}
 .grin{background:transparent url(../images/icons/emoticon_grin.png) no-repeat left;}
