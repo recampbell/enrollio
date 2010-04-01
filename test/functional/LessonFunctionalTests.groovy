@@ -94,7 +94,11 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
             // Select Mentorship Course
             // TODO: See if we can select course by name, like the
             // user would.
-            selects['course.id'].select "3"
+            def mentorshipEntry = byXPath("//option[. ='${TestKeys.PROGRAM_MENTORSHIP}']")
+            assertNotNull mentorshipEntry
+            assertEquals 'com.gargoylesoftware.htmlunit.html.HtmlOption', mentorshipEntry.class.name
+
+            selects['course.id'].select mentorshipEntry.getValueAttribute()
             sequence = 12345
             click ('Update')
         }
