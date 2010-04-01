@@ -16,6 +16,15 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         click(sessionName)
     }
     
+    void gotoCertificatesPage(courseName, sessionName) {
+        gotoClassSessionPage(courseName, sessionName)
+        assertStatus(200)
+        redirectEnabled = false
+        def printGradCertsLink = byName('gradCertsLink')
+        assertNotNull printGradCertsLink
+        printGradCertsLink.click()
+    }
+
     // Make sure we can get to the add/edit enrollments page
     // for a Class Session
     void testAddEnrollments() {
@@ -39,6 +48,9 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     void testLessonDatesShown() {
         gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
 
+        def lessonDates = byXPath("//table[@id='lessonDates']/tbody/tr")
+        assertNotNull lessonDates
+
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
         assertContentContains 'Scratch Programming' 
         assertContentContains 'Word Processing'
@@ -52,36 +64,78 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
 
     // Test that Grad. Certs come out OK
     void testGradCerts() {
-
-        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
+        gotoCertificatesPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
-        assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
-        assertContentContains 'Scratch Programming' 
-        // Click on grad list, and expect a PDF
-        // NOTE: For some reason (probably javascript), the tests
-        // will *not* follow the redirect, so you have to manually call followRedirect()
+        assertContentContains "Certificates"
+
+        // Make sure students are shown
+        assertContentContains(TestKeys.STUDENT)
+        assertContentContains(TestKeys.STUDENT2)
+        
         redirectEnabled = false
-        def printGradCertsLink = byName('printGradCertsLink')
-        assertNotNull printGradCertsLink
-        printGradCertsLink.click()
+
+        form("gradCertsForm") {
+            // click one of the checkboxes (really, it only checks one of the checkboxes)
+            // but that's enough.
+            studentIds = true
+            def saveButton = byId('printGradCertsButton')
+            // Click on grad list, and expect a PDF
+            // NOTE: For some reason (probably javascript), the tests
+            // will *not* follow the redirect, so you have to manually call followRedirect()
+            saveButton.click()
+        }
+
         assertStatus 302
         followRedirect()
         assertStatus 200
         assertContentType "application/pdf"
     }
 
-    // Test grad certs for a class session w/no lesson dates
-    void testGradCertsNoLessons() {
-        gotoClassSessionPage(TestKeys.PROGRAM_ADULT_AEC, TestKeys.SESSION_ADULT_NAME)
-        assertStatus(200)
-        redirectEnabled = false
-        def printGradCertsLink = byName('printGradCertsLink')
-        assertNotNull printGradCertsLink
-        printGradCertsLink.click()
-        assertStatus 302
-        followRedirect()
+    // Test that Grad. Certs come out OK
+    void testGradCertsDontCrashIfNoStudentsSelected() {
+        gotoCertificatesPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
-        assertContentType "application/pdf"
+        assertContentContains "Certificates"
+        shouldFail {
+            assertContentContains "at least one student"
+        }
+        shouldFail {
+            assertContentContains "Homer"
+        }
+
+        // Make sure students are shown
+        assertContentContains(TestKeys.STUDENT)
+        assertContentContains(TestKeys.STUDENT2)
+        
+        def checkBoxen = []
+        def unModifiableCheckboxes = byName('studentIds')
+        if (unModifiableCheckboxes instanceof com.gargoylesoftware.htmlunit.html.HtmlElement) {
+            checkBoxen = [ unModifiableCheckboxes ]
+        }
+        else {
+            // create a modifiable list of checkboxes.
+            checkBoxen = unModifiableCheckboxes.collect { it }
+        }
+
+        checkBoxen.each {
+            assertEquals 'com.gargoylesoftware.htmlunit.html.HtmlCheckBoxInput', it.class.name
+            it.setChecked(false)
+        }
+
+        form("gradCertsForm") {
+            def saveButton = byId('printGradCertsButton')
+            // Click on grad list, and expect a PDF
+            // NOTE: For some reason (probably javascript), the tests
+            // will *not* follow the redirect, so you have to manually call followRedirect()
+            saveButton.click()
+        }
+
+        // Javascript should stop the form from being submitted,
+        // so we'll be on the same page.
+        assertStatus 200
+        assertContentContains "Certificates"
+        assertContentContains "at least one student"
+        assertContentContains "Homer"
     }
 
     // Test Attendance Sheet comes out OK

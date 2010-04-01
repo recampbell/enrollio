@@ -26,7 +26,7 @@
                     <div class="infowrap">
                         <div class="infobox">
                             <h3>Lesson Dates</h3>
-                            <table>
+                            <table id="lessonDates">
                                 <tbody>
                                     <g:each var="lessonDate"
                                     in="${classSessionInstance.lessonDates}">
