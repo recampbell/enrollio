@@ -118,7 +118,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         def interestCheckboxen = byName('interestInCourse')
 
         // Make sure we see three possible Courses to be interested in
-        assertEquals 3, interestCheckboxen.size()
+        assertEquals 4, interestCheckboxen.size()
 
         // Should be interested in the adult prog.
         assertNotNull interestCheckboxen.find { 
