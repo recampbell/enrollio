@@ -245,9 +245,8 @@ class ClassSessionController {
         }
         else {
             flash.message = "You must select at least one student."
-            if (params.classSessionId) {
-                // redirect(action:'certificates', params:[id:params.classSessionId])
-                redirect(action:"oops", controller:"error")
+            if (classSessionInstance) {
+                redirect(action:'certificates', controller:'classSession', params:[id:classSessionInstance.id])
             }
             else {
                 redirect(action:"oops", controller:"error")
