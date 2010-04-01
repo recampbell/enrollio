@@ -36,7 +36,9 @@
                         </g:else>
                         <br />
                     </h3>
-                    <p id="studentCount" class="youhave"><b>12</b> students enrolled</p>
+                        <g:if test="${classSessionInstance}">
+                        <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> students enrolled</p>
+                        </g:if>
                     <table>
                         <thead><th colspan="2">Contact</th>
                         <th>Students</th>
