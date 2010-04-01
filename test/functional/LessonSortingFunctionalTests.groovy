@@ -69,7 +69,8 @@ class LessonSortingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         assertContentContains('Sort Lessons')
 
         click('Courses')
-        click(TestKeys.PROGRAM_ADULT_AEC)
+        // mentorship course doesn't have classes
+        click(TestKeys.PROGRAM_MENTORSHIP)
         shouldFail() {
             assertContentContains('Sort Lessons')
         }
