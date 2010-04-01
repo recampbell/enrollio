@@ -111,6 +111,8 @@ class TestDataService {
         testProgs[TestKeys.PROGRAM_KIDS_AEC]   = [ 'date' : TestKeys.SESSION_KIDS_DATE,
                                                    'sessionName' : TestKeys.SESSION_KIDS_NAME ]
 
+        testProgs[TestKeys.PROGRAM_EARN_A_BIKE]   = [ 'date' : TestKeys.SESSION_BIKE_DATE,
+                                                   'sessionName' : TestKeys.SESSION_BIKE_NAME ]
         testProgs.each { key, testProg ->
             def p = Course.findByName(key)
             def classSession = new ClassSession(name:testProg.sessionName,
@@ -118,7 +120,7 @@ class TestDataService {
                                       startDate: testProg.date).save()
             
             def nextLessonDates = 
-                courseService.nextAvailableLessonDates(classSession.course, new Date())
+                courseService.nextAvailableLessonDates(classSession.course, classSession.startDate)
 
             nextLessonDates.each { lessonDate ->
                 classSession.addToLessonDates(lessonDate)
@@ -203,13 +205,55 @@ class TestDataService {
                                        sequence:courseService.nextAvailSequence(p0)))
         }
             
-        new Course(description:"Byteworks Adult Earn-A-Computer Course", name:TestKeys.PROGRAM_ADULT_AEC).save()
+        loadAdultCourse()
+        loadBikeCourse()
+        
         new Course(description:"Byteworks Mentorship Course", name:TestKeys.PROGRAM_MENTORSHIP).save()
  
         def s0 = new ConfigSetting(configKey:'defaultInterestCourse',
                                    value:1,
                                    isDefault: true,
                                    description:'When entering Students, this course will be the default course they\'re interested in').save()
+    }
+
+    def loadBikeCourse() {
+        def bikeCrs = new Course(description:"Bicycleworks Earn-A-Bike Course",
+        name:TestKeys.PROGRAM_EARN_A_BIKE).save()
+
+        def bikeLessons = [ 
+           [ name: TestKeys.LESSON_BIKE_INTRO, 
+             desc: TestKeys.LESSON_BIKE_INTRO_DESCRIPTION],
+           [ name: 'Bicycle Safety' ], 
+           [ name: 'Transmission Repair' ], 
+           [ name: 'Brakes and Reflectors' ],
+           [ name: 'Cross-country Bicycling' ],
+           [ name: 'Graduation' ]
+        ]
+        bikeLessons.eachWithIndex { it, i ->
+            if (!it.desc) { it.desc = it.name + "\n\nA description of " + it.name }
+            bikeCrs.addToLessons(new Lesson(description:it.desc,
+                                       name:it.name,
+                                       sequence:courseService.nextAvailSequence(bikeCrs)))
+        }
+    }
+
+    def loadAdultCourse() {
+        def adultCrs = new Course(description:"Byteworks Adult Earn-A-Computer Course", 
+                    name:TestKeys.PROGRAM_ADULT_AEC).save()
+        def adultLessons = [ 
+           [ name: TestKeys.LESSON_KIDS_AEC_INTRO, desc: TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION],
+           [ name: 'Word Processing' ], 
+           [ name: 'Spreadsheets' ], 
+           [ name: 'Presentations' ],
+           [ name: 'Email and WWW' ],
+           [ name: 'Graduation' ]
+        ]
+        adultLessons.eachWithIndex { it, i ->
+            if (!it.desc) { it.desc = it.name + "\n\nA description of " + it.name }
+            adultCrs.addToLessons(new Lesson(description:it.desc,
+                                       name:it.name,
+                                       sequence:courseService.nextAvailSequence(adultCrs)))
+        }
     }
 
     def loadDummyContacts(numContacts = 100) {
