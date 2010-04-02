@@ -24,7 +24,6 @@
                 id="${ classSessionInstance.id }" controller="classSession">&nbsp;&nbsp;Graduation</g:link>
             </li>
             <li>
-            <li>
                 <g:link name='gradCertsLink' class="certificate" 
                 action="certificates" id="${ classSessionInstance.id }"
                 controller="classSession">&nbsp;&nbsp;Certificates</g:link>
@@ -35,29 +34,30 @@
             <h3>Print</h3>
             <li>
 
-            <script type="text/javascript">function submit_callList(link) {
-            link.parentNode._format.value = link.title; link.parentNode.submit(); return
-            false; }</script>
-            <g:form name="callList" class="jasperReport" action="printWelcomeLetter">
-                <input type="hidden" name="_format" value="PDF" />
-                <!-- Name shown on top of PDF report -->
-                <input type="hidden" name="_name" value="WelcomeLetters" />
-                <input type="hidden" name="_file" value="welcomeLetter" />
-                <input type="hidden" name="id" value="${classSessionInstance.course.id}" />
-                <!-- TODO The &nbsp; is a kludge find CSS way to justify image
-                and text so it looks o.k. -->
-                <a href="#" name="callListLink" class="telephone" title="PDF"
-                onClick="return submit_callList(this)">&#160;&#160;Call List</a>
-            </g:form>
+                <script type="text/javascript">
+                    // The form below is submitted by this javascript
+                    // the browser will stay on the same page
+                    function submit_welcomeLetter(link) {
+                        link.parentNode.submit(); 
+                        return false;
+                    }
+                </script>
+                <g:form name="callList" class="jasperReport" action="printWelcomeLetter">
+                    <input type="hidden" name="_format" value="PDF" />
+                    <!-- _name is the title shown on top of the "Save As" popup -->
+                    <input type="hidden" name="_name" value="WelcomeLetters" />
+                    <input type="hidden" name="_file" value="welcomeLetter" />
+                    <input type="hidden" name="id" value="${classSessionInstance.course.id}" />
+                    <a href="#" name="callListLink" class="welcome_letter" title="PDF"
+                        onClick="return submit_welcomeLetter(this)">&#160;&#160;Welcome Letters</a>
+                </g:form>
+            </li>
             
-            
-            <a href="#" id="welcomeLetterLink" class="welcome_letter" name="welcomeLetterLink">Welcome Letters</a></li>
             <li>
-            <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
-            id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
+                <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
+                id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
             </li>
         </ul>
 
-        </ul>
         </li>
     </ul>
