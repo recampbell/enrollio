@@ -13,12 +13,12 @@
     <tbody>
         <g:each var="attendance" in="${lessonDateInstance.attendees}">
         <tr>
-            <td>
+            <td width="40%">
                 <g:link controller="student" action="show" 
                 id="${attendance.student.id}">${attendance.student}</g:link>
 
             </td>
-            <td>
+            <td width="60%">
                 <g:radio class="statusSwitcher" 
                 attendanceId="${attendance.id}" 
                 attendanceStatus="present" 
