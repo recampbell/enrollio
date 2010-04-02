@@ -10,7 +10,8 @@ class ClassSessionController {
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', 
                              saveEnrollments:'POST', update:'POST',
-                             printGradCerts: 'POST' ]
+                             printGradCerts: 'POST',
+                             printWelcomeLetter: 'POST' ]
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
@@ -256,9 +257,52 @@ class ClassSessionController {
 
     }
 
+    def attendance = {
+    }
+
     def printWelcomeLetter = {
-        render ''
+        println "Welcome" + params
+        def reportData = callListReportData()
+        
+        chain(controller:'jasper',
+              action:'index',
+              model:[data:reportData],params:params)
+    }
+
+    def buildReportData = { interest ->
+        def student = interest.student
+        def contact = student.contact 
+        
+        def addr = [ contact.address1 , contact.address2 ?: '' ]
+        def csz = [ contact.city ?: '' , contact.state ?: '', contact.zipCode ?: '']
+        
+        def reportData = [
+            CONTACT_NAME:contact,
+            CONTACT_ADDRESS:addr.join('<BR />'),
+            // TODO Contact Notes, mmmk?
+            CONTACT_NOTES:'',
+            CONTACT_CITY_STATE_ZIP:csz.join(', '),
+            CONTACT_EMAIL:contact.emailAddress,
+            CONTACT_PHONE:contact.phoneNumbers.join('<br />'),
+            CONTACT_ID:contact.id,
+            STUDENT_NAME:student.fullName(),
+            STUDENT_BIRTHDATE:student.birthDate ?: '?',
+            STUDENT_GENDER:student.gender ?: '?',
+            STUDENT_GRADE:student.grade ?: '?'
+        ]        
+
+        return reportData
     }
     
+    def callListReportData = {
+        def courseInstance = ClassSession.get(params.id.toLong()).course
+        params['PROGRAM_NAME'] = courseInstance.name
+
+        // Default Graduation Date to date of last class
+        // TODO: Refactor to a Service, or else give classSession a graduationDate
+        def interests = courseService.activeInterests(courseInstance)
+
+        return interests.collect(buildReportData)
+    }
 }
 

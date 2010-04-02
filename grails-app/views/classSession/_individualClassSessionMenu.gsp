@@ -34,30 +34,24 @@
         <ul>
             <h3>Print</h3>
             <li>
-                <script type="text/javascript">
-                    $(document).ready(function(){
-                            $('#welcomeLetterLink').click(function() {
-                                $.post('${createLink(action:"printWelcomeLetter", controller:"classSession")}',
-                                    $('#welcomeLetterForm').serialize());
-                                });
-                                
-                    });
-                </script>
 
-                 <g:form name="welcomeLetterForm" class="jasperReport"
-                     action="welcomeLetter">
-                     <input type="hidden" name="_format" value="PDF" />
-                     <!-- Name shown on top of PDF report -->
-                     <input type="hidden" name="_name" value="Welcome to Bworks!" />
-                     <input type="hidden" name="_file" value="welcomeLetter" />
-                     <input type="hidden" name="id" value="${classSessionInstance.id}" />
-                     <!-- TODO The &nbsp; is a kludge find CSS way to justify image
-                                         and text so it looks o.k. -->
-                 </g:form>
-
+            <script type="text/javascript">function submit_callList(link) {
+            link.parentNode._format.value = link.title; link.parentNode.submit(); return
+            false; }</script>
+            <g:form name="callList" class="jasperReport" action="printWelcomeLetter">
+                <input type="hidden" name="_format" value="PDF" />
+                <!-- Name shown on top of PDF report -->
+                <input type="hidden" name="_name" value="Call List" />
+                <input type="hidden" name="_file" value="callList" />
+                <input type="hidden" name="id" value="${classSessionInstance.course.id}" />
+                <!-- TODO The &nbsp; is a kludge find CSS way to justify image
+                and text so it looks o.k. -->
+                <a href="#" name="callListLink" class="telephone" title="PDF"
+                onClick="return submit_callList(this)">&#160;&#160;Call List</a>
+            </g:form>
             
             
-            <a href id="welcomeLetterLink" class="welcome_letter" action="#" name="welcomeLetterLink">Welcome Letters</a></li>
+            <a href="#" id="welcomeLetterLink" class="welcome_letter" name="welcomeLetterLink">Welcome Letters</a></li>
             <li>
             <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
             id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
