@@ -175,4 +175,45 @@ class ClassSessionService {
         }
     }
 
+    def welcomeLetterReportData(classSessionInstance) {
+        def reportData = [ forwardParams : [:] ]
+        reportData['forwardParams']['PROGRAM_NAME'] = classSessionInstance.course.name
+        reportData['forwardParams']['START_DATE'] = classSessionInstance.startDate.toString()
+
+        println "Enrollments are: " + classSessionInstance.enrollments.size()
+        def contacts = classSessionInstance.enrollments.collect {
+            println "Boo"
+            it.student.contact
+        }.unique()
+
+        reportData['contacts'] = contacts.collect {
+            buildContactData(it)
+        }
+
+        return reportData
+
+    }
+
+    // returns an array of contact information, used in Welcome Letter
+    // TODO: Refactor this method and similar method in CourseSessionService
+    // into perhaps the ContactService or something.
+    // (After writing tests, of course)
+    def buildContactData(contactInstance) {
+        
+        def addr = [ contactInstance.address1 , contactInstance.address2 ?: '' ]
+        def csz = [ contactInstance.city ?: '' , contactInstance.state ?: '', contactInstance.zipCode ?: '']
+        
+        def reportData = [
+            CONTACT_NAME:contactInstance,
+            CONTACT_ADDRESS:addr.join('<BR />'),
+            // TODO Contact Notes, mmmk?
+            CONTACT_NOTES:'',
+            CONTACT_CITY_STATE_ZIP:csz.join(', '),
+            CONTACT_EMAIL:contactInstance.emailAddress,
+            CONTACT_PHONE:contactInstance.phoneNumbers.join('<br />'),
+            CONTACT_ID:contactInstance.id
+        ]        
+
+        return reportData
+    }
 }

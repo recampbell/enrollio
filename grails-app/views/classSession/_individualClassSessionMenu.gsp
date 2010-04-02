@@ -47,7 +47,7 @@
                     <!-- _name is the title shown on top of the "Save As" popup -->
                     <input type="hidden" name="_name" value="WelcomeLetters" />
                     <input type="hidden" name="_file" value="welcomeLetter" />
-                    <input type="hidden" name="id" value="${classSessionInstance.course.id}" />
+                    <input type="hidden" name="id" value="${classSessionInstance.id}" />
                     <a href="#" name="callListLink" class="welcome_letter" title="PDF"
                         onClick="return submit_welcomeLetter(this)">&#160;&#160;Welcome Letters</a>
                 </g:form>
