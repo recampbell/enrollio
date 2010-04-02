@@ -29,12 +29,14 @@
                             <h3>Lesson Dates</h3>
                             <table id="lessonDates">
                                 <tbody>
-                                    <g:each var="lessonDate"
-                                    in="${classSessionInstance.lessonDates}">
-                                        <tr>
+                                    <g:each var="lessonDate" in="${classSessionInstance.lessonDates}">
+                                        <tr class="${lessonDate == lessonDateInstance ? 'selected' : ''}">
                                             <td>
-                                                <g:link controller="lessonDate"
-                                                action="show" id="${lessonDate.id}">
+                                                <g:link controller="classSession"
+                                                class="attendanceLink"
+                                                action="attendance" 
+                                                id="${classSessionInstance.id}"
+                                                params="[ lessonDateId : lessonDate.id ]">
                                                 ${lessonDate.lesson.name}</g:link>
                                             </td>
                                             <td>
@@ -47,7 +49,7 @@
                         </div>
                         <div class="infobox margin-left">
                             <g:render template="/lessonDate/attendance"
-                            model="[ lessonDateInstance : closestLessonDate ]" />
+                            model="[ lessonDateInstance : lessonDateInstance ]" />
                         </div>
                     </div>
                 </div>

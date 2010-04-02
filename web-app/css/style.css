@@ -703,3 +703,8 @@ td input.squishy {
     text-align:left;
 }
 
+/* selected attendance links */
+tr.selected {
+    background:#f3f9ff;
+}
+

@@ -258,6 +258,7 @@ class ClassSessionController {
 
     }
 
+    // TODO: this action is pretty messy and should be refactored.
     def attendance = {
         def classSessionInstance = ClassSession.get( params.id )
         if(!classSessionInstance) {
@@ -265,18 +266,32 @@ class ClassSessionController {
             redirect(action:list)
         }
         else {
-            // Find closest class to highlight/show in attendance sheet.
-            def closestLessonDate = classSessionService.closestLessonDate(classSessionInstance) 
-            if (closestLessonDate) {
-                // Init. attendances if need be.
-                attendanceService.initializeAttendees(closestLessonDate)
-                
-                [ classSessionInstance : classSessionInstance,
-                  closestLessonDate : closestLessonDate ]
+            // If user wants a specific lessonDate, then give it to 'em
+            if (params.lessonDateId) {
+                def lessonDateInstance = LessonDate.get(params.lessonDateId)
+                if (!lessonDateInstance) {
+                    flash.message = "Lesson date not found with id: ${params.lessonDateId}"
+                    redirect(action:show, id:classSessionInstance.id)
+                }
+                else {
+                    [ classSessionInstance : classSessionInstance,
+                      lessonDateInstance : lessonDateInstance ]
+                }
             }
             else {
-                flash.message = "You don't have any lesson dates scheduled for this session"
-                redirect(action:show, id:classSessionInstance.id)
+                // Find closest class to highlight/show in attendance sheet.
+                def closestLessonDate = classSessionService.closestLessonDate(classSessionInstance) 
+                if (closestLessonDate) {
+                    // Init. attendances if need be.
+                    attendanceService.initializeAttendees(closestLessonDate)
+                    
+                    [ classSessionInstance : classSessionInstance,
+                      lessonDateInstance : closestLessonDate ]
+                }
+                else {
+                    flash.message = "You don't have any lesson dates scheduled for this session"
+                    redirect(action:show, id:classSessionInstance.id)
+                }
             }
         }
     }
