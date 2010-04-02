@@ -41,8 +41,8 @@
             <g:form name="callList" class="jasperReport" action="printWelcomeLetter">
                 <input type="hidden" name="_format" value="PDF" />
                 <!-- Name shown on top of PDF report -->
-                <input type="hidden" name="_name" value="Call List" />
-                <input type="hidden" name="_file" value="callList" />
+                <input type="hidden" name="_name" value="WelcomeLetters" />
+                <input type="hidden" name="_file" value="welcomeLetter" />
                 <input type="hidden" name="id" value="${classSessionInstance.course.id}" />
                 <!-- TODO The &nbsp; is a kludge find CSS way to justify image
                 and text so it looks o.k. -->

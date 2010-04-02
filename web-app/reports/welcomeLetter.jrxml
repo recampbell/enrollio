@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="PROGRAM_NAME" class="java.lang.String" isForPrompting="false"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="STUDENT_NAME" class="java.lang.String"/>
+	<field name="CONTACT_ID" class="java.lang.String"/>
+	<field name="CONTACT_NAME" class="java.lang.String"/>
+	<field name="CONTACT_PHONE" class="java.lang.String"/>
+	<field name="CONTACT_ADDRESS" class="java.lang.String"/>
+	<field name="CONTACT_CITY_STATE_ZIP" class="java.lang.String"/>
+	<field name="STUDENT_BIRTHDATE" class="java.lang.String"/>
+	<field name="STUDENT_GRADE" class="java.lang.String"/>
+	<field name="CONTACT_EMAIL" class="java.lang.String"/>
+	<field name="CONTACT_NOTES" class="java.lang.String"/>
+	<field name="STUDENT_GENDER" class="java.lang.String"/>
+	<group name="CONTACT" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{CONTACT_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="97" isSplitAllowed="false">
+				<textField>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="12" width="135" height="48"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_NAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" x="186" y="12" width="114" height="50" isPrintWhenDetailOverflows="true"/>
+					<textElement markup="html"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_PHONE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="135" y="12" width="51" height="20"/>
+					<textElement/>
+					<text><![CDATA[Phone(s):]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="12" width="45" height="20"/>
+					<textElement/>
+					<text><![CDATA[Address:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="363" y="12" width="192" height="40"/>
+					<textElement markup="html"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_ADDRESS}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="80" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Student(s)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="251" y="80" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Birthdate:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="351" y="80" width="40" height="15"/>
+					<textElement/>
+					<text><![CDATA[Grade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="451" y="80" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Gender:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="50" width="63" height="20"/>
+					<textElement/>
+					<text><![CDATA[City/St/Zip:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="363" y="50" width="192" height="30"/>
+					<textElement markup="html"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_CITY_STATE_ZIP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="40" width="300" height="40" isPrintWhenDetailOverflows="true"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_NOTES}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="154" y="80" width="100" height="15"/>
+					<textElement/>
+					<text><![CDATA[Enroll?]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="1" width="555" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="45">
+			<textField>
+				<reportElement x="144" y="0" width="266" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA['Welcome Letter List: '  + $P{PROGRAM_NAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMM dd, yyyy">
+				<reportElement x="206" y="20" width="143" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="20" isSplitAllowed="false">
+			<textField>
+				<reportElement x="0" y="0" width="154" height="19"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="-1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_BIRTHDATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="-1" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_GRADE}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="154" y="3" width="8" height="8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="451" y="-1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_GENDER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32" isSplitAllowed="false">
+			<textField>
+				<reportElement x="493" y="0" width="58" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="38" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="471" y="0" width="22" height="20"/>
+				<textElement/>
+				<text><![CDATA[of]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>
