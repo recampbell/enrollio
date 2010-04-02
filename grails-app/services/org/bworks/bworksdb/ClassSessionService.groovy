@@ -216,4 +216,22 @@ class ClassSessionService {
 
         return reportData
     }
+
+    // Find upcoming lesson date, or closest lesson date in the past
+    def closestLessonDate(classSessionInstance) {
+        def today = new Date()
+        def dates = classSessionInstance.lessonDates.collect {
+            [ lessonDate : it, daysFromNow : it.lessonDate - new Date() ]
+        }
+
+        if (!dates) { 
+            return null
+        }
+
+        def sortedDates = dates.sort {
+            it.daysFromNow
+        }
+
+        return sortedDates[0]['lessonDate']
+    }
 }

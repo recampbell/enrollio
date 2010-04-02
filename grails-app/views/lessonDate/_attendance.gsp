@@ -1,0 +1,33 @@
+<h3 class="reallynow">Attendance: ${lessonDateInstance}</h3>
+<table>
+    <tbody>
+        <g:each var="attendance" in="${lessonDateInstance.attendees}">
+            <tr>
+                <td>
+                    <g:link controller="student" action="show" 
+                    id="${attendance.student.id}">${attendance.student}</g:link>
+
+                </td>
+                <td>
+                    <g:radio class="statusSwitcher" 
+                    attendanceId="${attendance.id}" 
+                    attendanceStatus="present" 
+                    name="status${attendance.id}" 
+                    value="present" 
+                    checked="${attendance.status == 'present'}"/>&nbsp;Present
+                    <g:radio class="statusSwitcher" 
+                    attendanceId="${attendance.id}" attendanceStatus="absent" 
+                    name="status${attendance.id}" 
+                    value="absent" 
+                    checked="${attendance.status == 'absent'}" />&nbsp;Absent
+                    <g:radio class="statusSwitcher" 
+                    attendanceId="${attendance.id}" 
+                    attendanceStatus="late" 
+                    name="status${attendance.id}" 
+                    value="late" 
+                    checked="${attendance.status == 'late'}"/>&nbsp;Late
+                </td>
+            </tr>
+        </g:each>
+    </tbody>
+</table>
