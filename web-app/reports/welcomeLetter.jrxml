@@ -15,49 +15,49 @@
 	<field name="CONTACT_EMAIL" class="java.lang.String"/>
 	<field name="CONTACT_NOTES" class="java.lang.String"/>
 	<field name="STUDENT_GENDER" class="java.lang.String"/>
-	<group name="CONTACT" isReprintHeaderOnEachPage="true">
+	<group name="CONTACT" isStartNewPage="true" isReprintHeaderOnEachPage="true">
 		<groupExpression><![CDATA[$F{CONTACT_ID}]]></groupExpression>
 		<groupHeader>
-			<band height="97" isSplitAllowed="false">
+			<band height="236" isSplitAllowed="false">
 				<textField>
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="12" width="135" height="48"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="128" width="135" height="48"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_NAME}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement stretchType="RelativeToBandHeight" x="186" y="12" width="114" height="50" isPrintWhenDetailOverflows="true"/>
+					<reportElement stretchType="RelativeToBandHeight" x="186" y="126" width="114" height="50" isPrintWhenDetailOverflows="true"/>
 					<textElement markup="html"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_PHONE}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="135" y="12" width="51" height="20"/>
+					<reportElement x="135" y="126" width="51" height="20"/>
 					<textElement/>
 					<text><![CDATA[Phone(s):]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="300" y="12" width="45" height="20"/>
+					<reportElement x="308" y="128" width="45" height="20"/>
 					<textElement/>
 					<text><![CDATA[Address:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="363" y="12" width="192" height="40"/>
+					<reportElement x="359" y="157" width="192" height="40"/>
 					<textElement markup="html"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_ADDRESS}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="80" width="100" height="15"/>
+					<reportElement x="0" y="216" width="100" height="15"/>
 					<textElement/>
 					<text><![CDATA[Student(s)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="251" y="80" width="100" height="15"/>
+					<reportElement x="251" y="216" width="100" height="15"/>
 					<textElement/>
 					<text><![CDATA[Birthdate:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="351" y="80" width="40" height="15"/>
+					<reportElement x="351" y="216" width="40" height="15"/>
 					<textElement/>
 					<text><![CDATA[Grade:]]></text>
 				</staticText>
@@ -67,7 +67,7 @@
 					<text><![CDATA[Gender:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="300" y="50" width="63" height="20"/>
+					<reportElement x="388" y="128" width="63" height="20"/>
 					<textElement/>
 					<text><![CDATA[City/St/Zip:]]></text>
 				</staticText>
@@ -77,18 +77,23 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_CITY_STATE_ZIP}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement stretchType="RelativeToBandHeight" x="0" y="40" width="300" height="40" isPrintWhenDetailOverflows="true"/>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="176" width="300" height="40" isPrintWhenDetailOverflows="true"/>
 					<textElement/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_NOTES}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="154" y="80" width="100" height="15"/>
+					<reportElement x="154" y="216" width="100" height="15"/>
 					<textElement/>
 					<text><![CDATA[Enroll?]]></text>
 				</staticText>
 				<line>
 					<reportElement x="0" y="1" width="555" height="1"/>
 				</line>
+				<staticText>
+					<reportElement x="14" y="22" width="335" height="92"/>
+					<textElement/>
+					<text><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 	</group>
@@ -102,7 +107,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA['Welcome Letter List: '  + $P{PROGRAM_NAME}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA['Welcome to '  + $P{PROGRAM_NAME}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMM dd, yyyy">
 				<reportElement x="206" y="20" width="143" height="20"/>
