@@ -259,6 +259,7 @@ class ClassSessionController {
     }
 
     // TODO: this action is pretty messy and should be refactored.
+    // Especially the duplicate calls to attendanceService
     def attendance = {
         def classSessionInstance = ClassSession.get( params.id )
         if(!classSessionInstance) {
@@ -274,6 +275,8 @@ class ClassSessionController {
                     redirect(action:show, id:classSessionInstance.id)
                 }
                 else {
+                    // Init. attendances if need be.
+                    attendanceService.initializeAttendees(lessonDateInstance)
                     [ classSessionInstance : classSessionInstance,
                       lessonDateInstance : lessonDateInstance ]
                 }
