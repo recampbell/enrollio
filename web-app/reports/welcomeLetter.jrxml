@@ -52,21 +52,6 @@
 					<text><![CDATA[Student(s)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="251" y="216" width="100" height="15"/>
-					<textElement/>
-					<text><![CDATA[Birthdate:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="351" y="216" width="40" height="15"/>
-					<textElement/>
-					<text><![CDATA[Grade:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="451" y="80" width="100" height="15"/>
-					<textElement/>
-					<text><![CDATA[Gender:]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="388" y="128" width="63" height="20"/>
 					<textElement/>
 					<text><![CDATA[City/St/Zip:]]></text>
@@ -81,11 +66,6 @@
 					<textElement/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{CONTACT_NOTES}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement x="154" y="216" width="100" height="15"/>
-					<textElement/>
-					<text><![CDATA[Enroll?]]></text>
-				</staticText>
 				<line>
 					<reportElement x="0" y="1" width="555" height="1"/>
 				</line>
@@ -119,33 +99,7 @@
 		</band>
 	</title>
 	<detail>
-		<band height="20" isSplitAllowed="false">
-			<textField>
-				<reportElement x="0" y="0" width="154" height="19"/>
-				<textElement>
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_NAME}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="251" y="-1" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_BIRTHDATE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="353" y="-1" width="48" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_GRADE}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement x="154" y="3" width="8" height="8"/>
-			</rectangle>
-			<textField>
-				<reportElement x="451" y="-1" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{STUDENT_GENDER}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="20" isSplitAllowed="false"/>
 	</detail>
 	<pageFooter>
 		<band height="32" isSplitAllowed="false">
