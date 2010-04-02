@@ -14,7 +14,7 @@
                 params="[ classSessionId :classSessionInstance.id ]">&nbsp;&nbsp;Enroll</g:link>
             </li>
             <li>
-                <g:link name='gradCertsLink' class="attendance" 
+                <g:link name='attendanceLink' class="attendance" 
                 action="attendance" id="${ classSessionInstance.id }"
                 controller="classSession">&nbsp;&nbsp;Attendance</g:link>
             </li>
@@ -24,7 +24,7 @@
                 id="${ classSessionInstance.id }" controller="classSession">&nbsp;&nbsp;Graduation</g:link>
             </li>
             <li>
-                <g:link name='gradCertsLink' class="certificate" 
+                <g:link name='certificatesLink' class="certificate" 
                 action="certificates" id="${ classSessionInstance.id }"
                 controller="classSession">&nbsp;&nbsp;Certificates</g:link>
             </li>

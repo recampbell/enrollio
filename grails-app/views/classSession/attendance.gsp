@@ -6,7 +6,7 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
-        <title>Class Session: ${classSessionInstance.name}</title>
+        <title>Attendance: ${classSessionInstance.name}</title>
     </head>
     <body>
         <div id="container">

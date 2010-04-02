@@ -20,9 +20,10 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         gotoClassSessionPage(courseName, sessionName)
         assertStatus(200)
         redirectEnabled = false
-        def printGradCertsLink = byName('gradCertsLink')
-        assertNotNull printGradCertsLink
-        printGradCertsLink.click()
+        def certificatesLink = byName('certificatesLink')
+        assertNotNull certificatesLink
+        certificatesLink.click()
+        assertStatus 200
     }
 
     // Make sure we can get to the add/edit enrollments page
@@ -61,6 +62,19 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertContentContains TestKeys.STUDENT2
     }
 
+
+    void testAttendancePage() {
+        gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
+        def link = byName('attendanceLink')
+        link.click()
+        assertStatus 200
+        assertTitleContains 'Attendance'
+        assertContentContains 'Attendance'
+        assertContentContains 'Present'
+        assertContentContains 'Absent'
+        assertContentContains 'Late'
+        
+    }
 
     // Test that Grad. Certs come out OK
     void testGradCerts() {
@@ -141,7 +155,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
     }
 
     // Test Attendance Sheet comes out OK
-    void testAttendanceSheet() {
+    void testPrintableAttendanceSheet() {
         gotoClassSessionPage(TestKeys.PROGRAM_KIDS_AEC, TestKeys.SESSION_KIDS_NAME)
         assertStatus 200
         // Click on sheet, and expect a PDF
