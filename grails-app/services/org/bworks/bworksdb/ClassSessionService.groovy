@@ -220,18 +220,24 @@ class ClassSessionService {
     // Find upcoming lesson date, or closest lesson date in the past
     def closestLessonDate(classSessionInstance) {
         def today = new Date()
-        def dates = classSessionInstance.lessonDates.collect {
-            [ lessonDate : it, daysFromNow : it.lessonDate - new Date() ]
+        // create a groovy List w/lesson dates.  SortedSet sucks.
+        def lessonDates = classSessionInstance.lessonDates.collect { it }
+
+        def dates = lessonDates.sort { lessonDate1, lessonDate2 ->
+
+            def lessonDate1Score = today - lessonDate1.lessonDate
+            if (lessonDate1Score < 0) lessonDate1Score *= -100000
+            def lessonDate2Score = today - lessonDate2.lessonDate
+            if (lessonDate2Score < 0) lessonDate2Score *= -100000
+
+            return lessonDate1Score <=> lessonDate2Score
+            
         }
 
         if (!dates) { 
             return null
         }
 
-        def sortedDates = dates.sort {
-            it.daysFromNow
-        }
-
-        return sortedDates[0]['lessonDate']
+        return dates[0]
     }
 }
