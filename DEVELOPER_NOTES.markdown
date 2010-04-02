@@ -75,3 +75,13 @@ before building the war file.  Example:
 
 If you've downloaded Enrollio before the Grails 1.2 upgrade, you should
 only need to install Grails 1.2 to run enrollio.
+
+# Functional Tests fail if run w/unit & integration
+
+As of 2010/04/02, you need to run functional tests separately from integration and
+unit tests.  If you just run grails test-app, there is a failure in the UserFunctionalTests:
+
+  No signature of method: java.util.Collections$UnmodifiableRandomAccessList.click() is 
+  applicable for argument types: () values: []
+
+Any solutions to this problem are welcome.
