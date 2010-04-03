@@ -79,7 +79,7 @@ log4j = {
 
     // set level to info for all application artefacts
     // http://grails.org/doc/1.1.x/guide/3.%20Configuration.html#3.1.2%20Logging
-    info myAppender:"grails.app"
+    info stacktrace:"grails.app"
 
     root {
          info 'stacktrace'
