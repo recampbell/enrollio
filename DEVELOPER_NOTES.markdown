@@ -4,6 +4,27 @@ Enrollio requires Grails 1.2.
 
 Some steps need to be taken before running Enrollio:
 
+# Configuration
+
+You will want to change some of the things in your Config.groovy before running
+Enrollio.
+
+grails.serverURL is currently hard-coded to "http://enrollio.org".  You will want
+to change this.
+
+# Compile App
+
+> grails compile
+
+# Compile Error
+
+If you receive the following error when running grails compile:
+
+  Error executing script TestApp: : java.lang.NoClassDefFoundError: 
+  Lcom/gargoylesoftware/htmlunit/html/HTMLParser$HtmlUnitDOMBuilder;
+
+Then, just run the compile again!
+
 ## You might want to increase permgen size on your JVM
 
 This will avoid permgen out-of-memory errors when running the tests.
