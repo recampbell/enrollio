@@ -49,14 +49,19 @@ environments {
 
 }
 
-// log4j configuration
+def catalinaBase = System.properties.getProperty('catalina.base')
+if (!catalinaBase) catalinaBase = '.'   // just in case
+def logDirectory = "${catalinaBase}/logs"
+
 log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
     appenders {
         // console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-        rollingFile name:'myAppender', layout:pattern(conversionPattern: '%5p | %d | %F | %L | %m%n'), file:"enrollio.log"
+        rollingFile name:'stacktrace', 
+            layout:pattern(conversionPattern: '%5p | %d | %F | %L | %m%n'), 
+            file:"${logDirectory}/enrollio.log".toString()
     }
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
@@ -77,7 +82,7 @@ log4j = {
     info myAppender:"grails.app"
 
     root {
-         info 'myAppender'
+         info 'stacktrace'
     }
 }
 
