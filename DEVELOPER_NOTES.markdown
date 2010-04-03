@@ -58,6 +58,17 @@ You merely need to run the tests again:
 
     $ grails test-app
 
+## Log file locations
+
+If you don't run tomcat as root, there could be a problem with lucene (the search engine)
+wanting to store its indexes in /usr/share/tomcat6, or some other directory that the 
+tomcat user doesn't have write access to.
+
+I just ran the following hack:
+
+  sudo mkdir /usr/share/tomcat6/.grails 
+  sudo chmod 777 /usr/share/tomcat6/.grails
+
 ## Remove jasperreports-2.0.5
 
 After Grails installs the necessary plugins, it's a wise move to remove the troublesome
