@@ -8,6 +8,7 @@ import grails.util.*
 
 class DataLoadingService {
 
+    def searchableService
     boolean transactional = true
 
     // load data from hard-coded filenames
@@ -16,6 +17,9 @@ class DataLoadingService {
       def importDir = ApplicationHolder.application.parentContext.getResource("/WEB-INF/importData").getFile()
 
       def messages = []
+
+      log.info("Stopping Searchable Service")
+      searchableService.stopMirroring()
 
       def classFile = new File(importDir, 'Class.xml')
       if (classFile.exists()) {
@@ -42,8 +46,12 @@ class DataLoadingService {
           def result = loadStudents(xml)
           messages.add(result['messages'])
           log.info("Done adding student data from ${studentFile.name}")
+          log.info("Reindexing")
+          searchableService.reindex()
       }
 
+      log.info("Reindexing searchable service")
+      searchableService.reindex()
       return [ 'messages' : messages.flatten() ]
 
     }
@@ -61,9 +69,16 @@ class DataLoadingService {
             // Date format looks like this:  
             //     <Class1Date>2006-03-11T00:00:00</Class1Date>
             def xmlStartDate = xmlSess.Class1Date.text().split('T')[0]
+            def parsedDate
+            try {
+                parsedDate = Date.parse('yyyy-MM-dd', xmlStartDate)
+            } catch (Exception e) {
+                return
+            }
+
             def cs = new ClassSession(course:course, 
                 name:xmlStartDate, 
-                startDate: Date.parse('yyyy-MM-dd', xmlStartDate))
+                startDate: parsedDate)
             if (cs.validate() && cs.save()) {
                 importedSessions = importedSessions + 1
                 log.info("Imported class session ${cs.name} id: ${cs.id}")
@@ -102,12 +117,21 @@ class DataLoadingService {
         ]
 
         (1..6).each {
-            def dt = xmlSess.getProperty("Class${it}Date").text().split("T")[0]
+            def dt = xmlSess.getProperty("Class${it}Date")?.text().split("T")[0]
 
+            // try to parse date, if not, then get the hell out
+            def parsedDate
+            try {
+                parsedDate = Date.parse('yyyy-MM-dd', dt)
+            } catch (Exception e) {
+                // Get out if we don't have a valid date
+                return
+            }
             def lessonDate = new LessonDate(
                  lesson:eacLessons[it - 1],
-                 lessonDate:Date.parse('yyyy-MM-dd', dt))
+                 lessonDate:parsedDate)
             cs.addToLessonDates(lessonDate)
+            
         }
     }
 
@@ -120,8 +144,10 @@ class DataLoadingService {
 
 		def students = xml.children()
         students.each { xmlStu ->
+            def lastName = 
+                xmlStu.LastName.text() == "" ? "Unknown" : xmlStu.LastName.text()
             def stu = new Student(firstName : xmlStu.FirstName.text(),
-                                  lastName  : xmlStu.LastName.text())
+                                  lastName  : lastName)
 
             stu.emailAddress = xmlStu.email.text()
             if(xmlStu.Grade.text()) {
