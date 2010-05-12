@@ -11,12 +11,11 @@
     <thead>
         <tr>
             <th width="20%">First</th>
-            <th width="20%">Middle</th>
+            <th width="10%">Middle</th>
             <th width="20%">Last</th>
-            <th width="20%">
-                Interests
-            </th>
-            <th width="10%"></th>
+            <th width="20%">Signup Date</th>
+            <th width="20%">Interests</th>
+            <th width="5%"></th> <!-- column for the 'save' button -->
         </tr>
     </thead>
     <tbody>
@@ -34,6 +33,9 @@
             <td>
                 <input  class="squishy" type="text" id="lastName" name="lastName"
                 value="${fieldValue(bean:studentInstance,field:'lastName')}" />
+            </td>
+            <td>
+                <input class="squishy" type="text" id="signupDate" />
             </td>
             <td>
                 <select name="interestInCourse" class="multiselect" multiple="multiple">

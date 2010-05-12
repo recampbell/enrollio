@@ -9,19 +9,23 @@
 
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.multiselect.min.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
         <script type="text/javascript">
              $(document).ready(function(){
-                $("select.multiselect").multiSelect({
-                    showHeader : false,
-                    noneSelectedText : 'Select Interests',
-                    selectedList:2   // selectedList shows the names of the selected interests!
-                });
-
-                // toggle students' starred status, depending on students current starred status                
-                // We have to use a <span></span> to hold the image, because we
-                // replace the contents of the span with the result of this POST.
-                // if we used only an image w/o a parent <span> it doesn't work
-                $(".star").click(function(){
+                  // Show date picker for the "Signup Date" that shown on the
+                  // new student form.  (It's rendered in the createStudent.gsp template below)
+                  $('#signupDate').datepicker();
+                  $("select.multiselect").multiSelect({
+                      showHeader : false,
+                      noneSelectedText : 'Select Interests',
+                      selectedList:2   // selectedList shows the names of the selected interests!
+                  });
+  
+                  // toggle students' starred status, depending on students current starred status                
+                  // We have to use a <span></span> to hold the image, because we
+                  // replace the contents of the span with the result of this POST.
+                  // if we used only an image w/o a parent <span> it doesn't work
+                  $(".star").click(function(){
                     $(this).load('${createLink(controller:"student",
                                             action:"toggleStar")}',
                         { 'starred' : $(this).children('img').attr('starred'), 'id' : $(this).attr("starId") });
