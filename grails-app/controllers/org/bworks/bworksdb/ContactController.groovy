@@ -114,6 +114,7 @@ class ContactController {
             render(view:'create',model:[contactInstance:contactInstance])
         }
     }
+
     // Only difference between this and saveAndAddStudents is that
     // saveAndAddStudents redirects to student/create action
     def save = {
@@ -135,7 +136,18 @@ class ContactController {
 
         if(!studentInstance.hasErrors() && studentInstance.validate()) {
             contactInstance.addToStudents(studentInstance)
-            studentService.saveInterests(studentInstance, params['interestInCourse'])
+
+            // get the one signup date on this form, and apply
+            // it to each course that the student is interested in.
+            def signupDates = null
+            if (params['signupDate']) {
+                signupDates = [:]
+                [params['interestInCourse']].flatten().each { courseId ->
+                    signupDates[courseId] = Date.parse('MM/dd/yyyy', params['signupDate'])
+                }
+            }
+
+            studentService.saveInterests(studentInstance, params['interestInCourse'], signupDates)
             flash.studentMessage = "Successfully added '${studentInstance.fullName()}'"
             // render(template:'studentList', model:[contactInstance:contactInstance])
             redirect(action:'show', id:contactInstance.id)

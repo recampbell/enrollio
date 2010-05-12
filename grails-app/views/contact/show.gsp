@@ -5,7 +5,6 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'jquery.multiselect.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'jquery-ui-1.8rc3.custom.css')}" />
 
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.multiselect.min.js')}"></script>
@@ -14,7 +13,7 @@
              $(document).ready(function(){
                   // Show date picker for the "Signup Date" that shown on the
                   // new student form.  (It's rendered in the createStudent.gsp template below)
-                  $('#signupDate').datepicker();
+                     $('#signupDate').datepicker({changeYear:true});
                   $("select.multiselect").multiSelect({
                       showHeader : false,
                       noneSelectedText : 'Select Interests',

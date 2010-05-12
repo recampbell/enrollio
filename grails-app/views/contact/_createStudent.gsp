@@ -35,7 +35,8 @@
                 value="${fieldValue(bean:studentInstance,field:'lastName')}" />
             </td>
             <td>
-                <input class="squishy" type="text" id="signupDate" />
+                <input class="hasDatePicker" type="text" id="signupDate" name="signupDate" 
+                       value="${new Date().format('MM/dd/yyyy')}" />
             </td>
             <td>
                 <select name="interestInCourse" class="multiselect" multiple="multiple">
