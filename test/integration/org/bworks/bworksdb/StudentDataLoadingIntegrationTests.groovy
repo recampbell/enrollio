@@ -63,6 +63,31 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    // If session < 90 days in the past, non-graduated students should
+    // be marked 'IN PROGRESS'
+    void testNonDropoutNonGraduatedEnrollments() {
+        // load class session, contact and student data
+        // yes, it's tedious but it's an integration test, meow.
+        dataLoadingService.loadClassSessions(fixtureSingleClassSession())
+
+        def sess = dataLoadingService.findClassSessionByOldId("13")
+        assertNull "Class Sesion doesn't have any enrollments'", sess.enrollments
+        sess.startDate = new Date() - 89
+        sess.save()
+
+        dataLoadingService.loadContacts(fixtureMultipleContacts())
+        dataLoadingService.loadStudents(fixtureMultipleStudents())
+
+        def totoroEnr = sess.enrollments.find {
+            it.student.firstName == 'Totoro' && it.student.lastName == 'Tortenweasel'
+        }
+
+        // Default to IN PROGRESS if class < 90 days ago
+        assertNotNull totoroEnr
+        assertEquals "Totoro is dropped out", EnrollmentStatus.IN_PROGRESS, totoroEnr.status
+
+    }
+
    void testStudentBirthDateAndNotes() {
         def bandit = Student.findByLastName("Bandit")
         assertNull "No Bandit students", bandit
