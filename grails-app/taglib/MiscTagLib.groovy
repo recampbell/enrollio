@@ -95,12 +95,16 @@ class MiscTagLib {
          def student = attrs['student']
          
          def links = []
+         out << '<ul>'
          student.activeInterests().each { interest ->
-            links << g.link(controller:'course', action: 'show', id: interest.course.id, 
-                          interest.course.name)
+             def dt = enrollio.formatDate(date:interest.signupDate)
+             def link = g.link(controller:'course', action: 'show',
+                                       id: interest.course.id, 
+                                       interest.course.name)
+             out << '<li>' + link + ' (since ' + interest.signupDate.format("MMM, yyyy") + ')</li>'
          }
          
-         out << links.join(',&nbsp;')
+         out << '</ul>'
          
 
      }
