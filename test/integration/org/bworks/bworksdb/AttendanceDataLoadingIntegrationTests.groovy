@@ -26,18 +26,34 @@ class AttendanceDataLoadingIntegrationTests extends GrailsUnitTestCase {
             }
         }
 
-        def graduatedStudent = Student.findByFirstNameAndLastName('Billy','Tortenweasel')
-        def attendances = []
-        sess.lessonDates.each { ld ->
-            attendances.add(ld.attendees.findAll { att ->
-                att.student == graduatedStudent
-            })
+        def crit = ClassSession.createCriteria()
+
+        def cnt = crit.count {
+           lessonDates {
+               attendees {
+                   eq 'status', 'present'
+                   student {
+                      eq 'firstName', 'Billy'
+                      eq 'lastName', 'Tortenweasel'
+                   }
+               }
+           }
         }
-        assertNotNull attendances
-        assertEquals 6, attendances.size()
-        attendances.each {
-            assertEquals "present", it.status
+        assertEquals 6, cnt
+        crit = ClassSession.createCriteria()
+        cnt = crit.count {
+           lessonDates {
+               attendees {
+                   ne 'status', 'present'
+                   student {
+                      eq 'firstName', 'Billy'
+                      eq 'lastName', 'Tortenweasel'
+                   }
+               }
+           }
         }
+        assertEquals 0, cnt
+        
         
     }
 
