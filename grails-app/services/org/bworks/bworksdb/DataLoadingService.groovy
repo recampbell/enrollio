@@ -209,6 +209,12 @@ class DataLoadingService {
                 // Graduation date is tracked with the Class Session, so just
                 // mark enrollment as GRADUATED and throw away GraudateDate
                 enr.status = EnrollmentStatus.GRADUATED
+                // assume that since student is graduated, that they attended all
+                // of this session's classes
+                cs.lessonDates.each {
+                    it.addToAttendees(student : stu, status:"present")
+                    it.save()
+                }
             }
             else if (xmlStu.DropOut.text() == "1") { 
                 enr.status = EnrollmentStatus.DROPPED_OUT
