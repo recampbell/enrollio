@@ -20,12 +20,14 @@ class AttendanceDataLoadingIntegrationTests extends GrailsUnitTestCase {
 
         def notGraduatedStudent = Student.findByFirstNameAndLastName('Totoro','Tortenweasel')
         
+        // Make sure no attendances were created for notGraduatedStudent
         sess.lessonDates.each {
             assertNull it.attendees.find { att ->
                 att.student == notGraduatedStudent
             }
         }
 
+        // Make sure we find 6 attendences for Billy (who graduated)
         def crit = ClassSession.createCriteria()
 
         def cnt = crit.count {
@@ -40,6 +42,9 @@ class AttendanceDataLoadingIntegrationTests extends GrailsUnitTestCase {
            }
         }
         assertEquals 6, cnt
+
+        // Make sure that there are no attendances that are <> 'present' for
+        // Billy
         crit = ClassSession.createCriteria()
         cnt = crit.count {
            lessonDates {
@@ -53,8 +58,15 @@ class AttendanceDataLoadingIntegrationTests extends GrailsUnitTestCase {
            }
         }
         assertEquals 0, cnt
-        
-        
+
+        // Make sure each lessonDate got one attendance for Billy
+        sess.lessonDates.each {
+            assertNotNull it.attendees.find { att ->
+                att.status == 'present' && 
+                att.student.firstName == 'Billy' && 
+                att.student.lastName == 'Tortenweasel'
+            }
+        }
     }
 
     def fixtureMultipleStudents() {
