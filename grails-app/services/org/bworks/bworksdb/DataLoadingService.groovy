@@ -213,6 +213,11 @@ class DataLoadingService {
             else if (xmlStu.DropOut.text() == "1") { 
                 enr.status = EnrollmentStatus.DROPPED_OUT
             }
+            else if (new Date() - cs.startDate > 90) {
+                // Default to dropped out if class session was > 90 days ago
+                // we can go back to current class and un-drop out kids
+                enr.status = EnrollmentStatus.DROPPED_OUT
+            }
             cs.addToEnrollments(enr)
             return 1
         }

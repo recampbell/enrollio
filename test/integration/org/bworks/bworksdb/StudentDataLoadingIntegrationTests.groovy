@@ -57,8 +57,9 @@ class StudentDataLoadingIntegrationTests extends GrailsUnitTestCase {
             it.student.firstName == 'Totoro' && it.student.lastName == 'Tortenweasel'
         }
 
+        // Default to DROPOUT if class > 90 days ago
         assertNotNull totoroEnr
-        assertEquals "Totoro is still taking class", EnrollmentStatus.IN_PROGRESS, totoroEnr.status
+        assertEquals "Totoro is dropped out", EnrollmentStatus.DROPPED_OUT, totoroEnr.status
 
     }
 
