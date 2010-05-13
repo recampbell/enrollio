@@ -52,5 +52,30 @@ class OrphanStudentIntegrationTests extends GrailsUnitTestCase {
             it.student.firstName == 'Smokey' && it.student.lastName == 'Bandit' && it.status == EnrollmentStatus.DROPPED_OUT
         }
     }
+
+    // orphaned students should be given a special signupDate
+    // since they don't have a contact, we don't know what date they signed up.
+    void testOrphanStudentsInterests() {
+        // load class session, contact and student data
+        def classSessions = TestData.fixtureSingleClassSession()
+        dataLoadingService.loadClassSessions(classSessions)
+
+        // Don't load any contacts, just load students
+        dataLoadingService.loadStudents(TestData.fixtureSingleStudent())
+
+        def crit = Interest.createCriteria()
+
+        def interest = crit.get {
+           student {
+              eq 'firstName', 'Ima'
+              eq 'lastName', 'Interested'
+           }
+        }
+
+        assertNotNull 'Interest was saved for orphan student', interest
+        assertEquals 'Signup date is 1/1/2006 for orphaned student', 
+                     '1/1/2006', 
+                     interest.signupDate.format('M/d/yyyy')
+    }
 }
         

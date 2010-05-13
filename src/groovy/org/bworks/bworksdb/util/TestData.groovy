@@ -62,4 +62,28 @@ xml = xml + '</dataroot>'
 
     }
 
+
+    static String fixtureSingleStudent(overrides = [:]) {
+        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  
+xsi:noNamespaceSchemaLocation="Student.xsd">
+'''
+
+        // Non Enrolled, non-graduated student
+        xml = xml + """<Student> <StudentID>123</StudentID>
+<LastName>Interested</LastName>
+<FirstName>Ima</FirstName>
+<ParentID>${overrides['parentID'] ?: '1010101'}</ParentID>
+<Gender>M</Gender> <BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade>
+<DropOut>0</DropOut>
+<SystemReceivedID>0</SystemReceivedID>
+<email>imainterested@example.org</email>
+</Student>
+"""
+
+xml = xml + '</dataroot>'
+
+        return xml
+
+    }
 }

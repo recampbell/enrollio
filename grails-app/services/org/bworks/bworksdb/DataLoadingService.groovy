@@ -377,7 +377,9 @@ class DataLoadingService {
     def createContactForOrphan(student, contactId) {
         def con = new Contact(lastName:student.lastName,
                               firstName:'SuppliedByDataImport',
-                              emailAddress:student.emailAddress)
+                              emailAddress:student.emailAddress,
+                              signupDate : Date.parse('yyyy/MM/dd', '2006/1/1')
+        )
 
         if (con.validate() && con.save()) {
             addCommentAboutId(con, contactId)
