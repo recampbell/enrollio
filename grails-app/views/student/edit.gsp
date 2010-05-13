@@ -28,7 +28,8 @@
     <body>
         <div id="wrapper">
             <div id="content">
-                <div class="box">
+                <div class="infowrap">
+                <div class="infobox">
                     <h3 class="reallynow">Edit Student: ${studentInstance}</h3>
                         <g:if test="${flash.message}">
                         <div class="message">${flash.message}</div>
@@ -117,13 +118,12 @@
                     </tbody>
                 </table>
 
+            </div>
 
             </div>
-            <div>                <!-- only auto-select the default prog if we have a new student -->
-                <fieldset id="studentInterests">
-                    <legend>Interests</legend>
+            <div class="infobox margin-left">                <!-- only auto-select the default prog if we have a new student -->
+                <h3 class="reallynow">Interests</h3>
                     <g:interestCheckBoxes student="${studentInstance}"  />
-                </fieldset>
                 <div class="buttons">
                     <span class="button">
                         <input class="save" type="submit" value="Save" />
