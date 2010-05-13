@@ -19,6 +19,13 @@
                      changeMonth: true,
                      changeYear:  true
                  });
+                 $('.hasDatePicker').datepicker({changeYear:true});
+                 // When checkbox is clicked, hide/show its buddy DIV that
+                 // has the signupDate input box in it.
+                 $('[name=interestInCourse]').change(function(){
+                     var courseId = $(this).val();
+                     $('#signupDateDiv_' + courseId).toggle();
+                 });
             });
 
           </script>
