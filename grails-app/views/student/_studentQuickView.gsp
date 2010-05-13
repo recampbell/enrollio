@@ -57,6 +57,27 @@
 
             </tr>
 
+            <g:if test="${studentInstance.enrollments}">
+            <tr class="prop">
+                <td valign="top" class="name">Enrollments:</td>
+
+                <td  valign="top" style="text-align:left;" class="value">
+                <ul>
+                    <g:each var="enr" in="${studentInstance.enrollments}">
+                    <li>
+                    ${enr.classSession.course.name}
+                    <g:link controller="classSession"
+                            action="show"
+                            id="${enr.classSession.id}">
+                    <enrollio:formatDate date="${enr.classSession.startDate}" />
+                    </g:link>
+                    </g:each>
+                    </li>
+                </ul>
+                </td>
+
+            </tr>
+            </g:if>
 
         </tbody>
     </table>
