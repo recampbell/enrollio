@@ -59,4 +59,16 @@ class StudentService {
             }
         }            
     }
+
+    // return signup date for student's interest in a course,
+    // or today's date, if no interests already exist
+    def signupDateForInterest(student, course) {
+        def interest = Interest.findWhere(student:student, course:course)
+        if (interest) {
+            return interest.signupDate
+        }
+        else {
+            return new Date()
+        }
+    }
 }

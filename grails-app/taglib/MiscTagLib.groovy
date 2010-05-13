@@ -3,6 +3,7 @@ import org.bworks.bworksdb.*
 class MiscTagLib {
 
     def configSettingService
+    def studentService
 
     def debug = { map ->
         if (grailsApplication.config.grails.views.debug.mode == true) {
@@ -29,38 +30,38 @@ class MiscTagLib {
         def courses = Course.findAll()
         // def defaultCourse = configSettingService.getSetting('defaultInterestCourse')
         out << '<ul class="prop">'
-        courses.each { prog ->
+        courses.each { course ->
             out << '<li>'
             // Note: Need to search for active == true, also
-            def checkBoxName = "interestInCourse_${prog.id}"
+            def checkBoxName = "interestInCourse_${course.id}"
             def results = Interest.withCriteria {
                 eq("student", student)
-                eq("course", prog)
+                eq("course", course)
                 eq("active", true)
             }
 
             // If student already has an interest in this course, or if
             // the caller wants us to check the default course automatically
             def hasInterest = (results || 
-                              (checkDefaultProg && (prog.id.toString() == defaultProgId)))
+                              (checkDefaultProg && (course.id.toString() == defaultProgId)))
             def sCheckbox = """ 
-                <label for="interestInCourse_${prog.id}">
+                <label for="interestInCourse_${course.id}">
                     <input class="checkbox" 
-                    id="interestInCourse_${prog.id}" 
+                    id="interestInCourse_${course.id}" 
                     name="interestInCourse" 
                     type="checkbox" 
                     ${hasInterest ? 'checked="true"' : ''}
-                    value="${prog.id}" />${prog.name}
+                    value="${course.id}" />${course.name}
                 </label>
-                <div id="signupDateDiv_${prog.id}"
+                <div id="signupDateDiv_${course.id}"
                      style=${hasInterest ? '' : 'display:none'}>
                      <ul>
                          <li>Signed up:&nbsp;
-                         <input id="signupDate_${prog.id}"
-                             name="signupDate_${prog.id}"
+                         <input id="signupDate_${course.id}"
+                             name="signupDate_${course.id}"
                              type="text"
                              class="hasDatePicker"
-                             value="${results[0]?.signupDate?.format('MM/dd/yyyy') ?: new Date().format('MM/dd/yyyy')}"
+                             value="${studentService.signupDateForInterest(student, course).format('MM/dd/yyyy')}"
                          </li>
                      </ul>
                 </div>
