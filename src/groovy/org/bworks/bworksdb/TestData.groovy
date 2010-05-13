@@ -7,7 +7,7 @@ class TestData {
     // Note: the indentation here is on purpose, otherwise the 
     // xml parser barfs
     static String fixtureSingleClassSession(classId = 13) {
-        def xml = '''<?xml version="1.0" encoding="UTF-8"?>
+        def xml = """<?xml version="1.0" encoding="UTF-8"?>
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Class.xsd">
 <Class>
 <ClassID>${classId}</ClassID>
@@ -21,7 +21,7 @@ class TestData {
 <IsActive>0</IsActive>
 </Class>
 </dataroot>
-'''
+"""
     return xml
 }
     static String fixtureMultipleStudents(overrides = [:]) {
