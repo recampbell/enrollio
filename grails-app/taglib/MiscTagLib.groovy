@@ -16,6 +16,7 @@ class MiscTagLib {
     // index, so that the appropriate courses/interests can be assigned to the appropriate
     // student.
     // If student already has an active Interest in a course, the checkbox is checked.
+ 
     def interestCheckBoxes = { attrs ->
         def student = attrs['student']
         def defaultProgId
@@ -27,7 +28,9 @@ class MiscTagLib {
         }
         def courses = Course.findAll()
         // def defaultCourse = configSettingService.getSetting('defaultInterestCourse')
+        out << '<ul class="prop">'
         courses.each { prog ->
+            out << '<li>'
             // Note: Need to search for active == true, also
             def checkBoxName = "interestInCourse_${prog.id}"
             def results = Interest.withCriteria {
@@ -49,10 +52,24 @@ class MiscTagLib {
                     ${hasInterest ? 'checked="true"' : ''}
                     value="${prog.id}" />${prog.name}
                 </label>
+                <div id="signupDateDiv_${prog.id}"
+                     style=${hasInterest ? '' : 'display:none'}>
+                     <ul>
+                         <li>Signed up:&nbsp;
+                         <input id="signupDate_${prog.id}"
+                             name="signupDate_${prog.id}"
+                             type="text"
+                             class="hasDatePicker"
+                             value="${results[0]?.signupDate?.format('MM/dd/yyyy') ?: new Date().format('MM/dd/yyyy')}"
+                         </li>
+                     </ul>
+                </div>
             """
 
             out << sCheckbox
+            out << '</li>'
         }
+        out << '</ul>'
         return out
     }
 
