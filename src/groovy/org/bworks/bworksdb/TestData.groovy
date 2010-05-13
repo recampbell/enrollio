@@ -30,18 +30,6 @@ class TestData {
 xsi:noNamespaceSchemaLocation="Student.xsd">
 '''
 
-        // Smokey Bandit, dropped out, Parent is Tortenweasel, ClassID 13
-        xml = xml + """<Student> <StudentID>188</StudentID>
-<ParentID>${overrides['parentID'] ?: '1010101'}</ParentID>
-<LastName>Bandit</LastName>
-<FirstName>Smokey</FirstName> <Notes>Mentorship Interested</Notes>
-<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade>
-<ClassID>${overrides['classID'] ?: '13'}</ClassID> <DropOut>1</DropOut>
-<SystemReceivedID>0</SystemReceivedID>
-<email>smokeybandit@reynolds.com</email>
-</Student>
-"""
-
         // Totoro Tortenweasel, Class ID 13, Graduated, Parent Tortenweasel
         xml = xml + """<Student> <StudentID>123</StudentID>
 <LastName>Tortenweasel</LastName>
@@ -53,6 +41,18 @@ xsi:noNamespaceSchemaLocation="Student.xsd">
 <DropOut>0</DropOut>
 <SystemReceivedID>0</SystemReceivedID>
 <email>totoro@alum.bworks.org</email>
+</Student>
+"""
+
+        // Smokey Bandit, dropped out, Parent is Tortenweasel, ClassID 13
+        xml = xml + """<Student> <StudentID>188</StudentID>
+<ParentID>${overrides['parentID'] ?: '1010101'}</ParentID>
+<LastName>Bandit</LastName>
+<FirstName>Smokey</FirstName> <Notes>Mentorship Interested</Notes>
+<BirthDate>1997-01-07T00:00:00</BirthDate> <Grade>10</Grade>
+<ClassID>${overrides['classID'] ?: '13'}</ClassID> <DropOut>1</DropOut>
+<SystemReceivedID>0</SystemReceivedID>
+<email>smokeybandit@reynolds.com</email>
 </Student>
 """
 

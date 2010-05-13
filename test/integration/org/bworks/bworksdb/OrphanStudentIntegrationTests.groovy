@@ -21,6 +21,10 @@ class OrphanStudentIntegrationTests extends GrailsUnitTestCase {
         assertEquals 'totoro@alum.bworks.org', orphan1.emailAddress
 
 
+        def con = orphan1.contact
+        assertEquals 'Contact generated correctly', 'Tortenweasel', con.lastName
+        assert 'Contact firstname generated correctly', ( con.firstName =~ /Auto-generated/ ).matches()
+
     }
 }
         
