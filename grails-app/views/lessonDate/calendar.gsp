@@ -17,6 +17,17 @@
             $(document).ready(function() {
                 // page is now ready, initialize the calendar...
                 $('#calendar').fullCalendar({
+                    buttonText: {
+                        prev: '<',
+                        next: '>',
+                        prevYear: '<<',
+                        nextYear: '>>'
+                    },
+                    header: {
+                        left: 'prevYear prev',
+                        center: 'title today',
+                        right: 'next nextYear'
+                    },
                     // put your options and callbacks here
                     events: "${createLink(controller:'lessonDate', action:'lessonDateData')}",
                     aspectRatio:2.4,
