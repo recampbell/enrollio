@@ -72,7 +72,10 @@ class DataLoadingService {
             def parsedDate
             try {
                 parsedDate = Date.parse('yyyy-MM-dd', xmlStartDate)
+                // if session don't have all 6 dates, then skip
+                Date.parse('yyyy-MM-dd', xmlSess.Class6Date.text().split('T')[0])
             } catch (Exception e) {
+                log.error("skipping session: ${xmlSess} because it doesn't have all 6 dates")
                 return
             }
 
