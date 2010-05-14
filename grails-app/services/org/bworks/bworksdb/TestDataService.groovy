@@ -281,6 +281,7 @@ class TestDataService {
                             lastName:lastName,
                             address1:randAddress.toString() + ' ' + randomStreetName(),
                             address2:address2,
+                            cannotReach: seed.nextInt(100) < 10,
                             city:'Saint Louis',
                             state:'MO',
                             zipCode:zip,
