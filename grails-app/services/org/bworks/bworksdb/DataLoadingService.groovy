@@ -276,7 +276,7 @@ class DataLoadingService {
             }
 
             if (xmlCon.SecondPhone != '') {
-                log.error("found second phone for ${con.lastName} ${xmlCon.SecondPhone}")
+                log.info("found second phone for ${con.lastName} ${xmlCon.SecondPhone}")
                 con.addToPhoneNumbers(new PhoneNumber(label:"Other", phoneNumber:xmlCon.SecondPhone.text()))
             }
 
@@ -298,7 +298,7 @@ class DataLoadingService {
                     addComment(con, xmlCon.Note?.text())
                 }
                 if (xmlCon.InfoTakenBy != '') {
-                    log.error("Adding infotakenby: ${xmlCon.InfoTakenBy?.text()}")
+                    log.info("Adding infotakenby: ${xmlCon.InfoTakenBy?.text()}")
                     addComment(con, 'Info taken by: ' + xmlCon.InfoTakenBy.text())
                 }
 
