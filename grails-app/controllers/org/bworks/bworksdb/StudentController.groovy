@@ -116,13 +116,15 @@ class StudentController {
             }
             studentInstance.properties = params
             if(!studentInstance.hasErrors() && studentInstance.save()) {
-                // Find courses that student is interested in, and accompanying signupDates
+                // Find courses that student is interested in, and accompanying signupDates.
                 // params look like this:  signupDate_1, where 1 is the ID of the course
-                def interestedIds = [params['interestInCourse']].flatten()
                 def signupDates = [:]
-                interestedIds.each{ courseId ->
+                if(params['interestInCourse']) {
+                    def interestedIds = [params['interestInCourse']].flatten()
+                    interestedIds.each{ courseId ->
                     signupDates[courseId] = 
                         Date.parse('MM/dd/yyyy', params['signupDate_' + courseId])
+                    }
                 }
                 studentService.saveInterests(studentInstance, 
                                             params['interestInCourse'],
