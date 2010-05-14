@@ -57,7 +57,9 @@ class CourseService {
             it.student.contact
         }.unique()
 
-        return contactList
+        return contactList.findAll {
+            it.cannotReach != true
+        }
     }
 
 
