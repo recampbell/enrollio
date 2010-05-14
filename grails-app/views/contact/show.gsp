@@ -62,6 +62,11 @@
                         <h3 class="reallynow">Contact Info:</h3>
                         <table>
                             <tbody>
+                                <g:if test="${contactInstance.cannotReach}">
+                                <tr>
+                                    <td colspan="4" class="errors">Cannot Reach</td>
+                                </tr>
+                                </g:if>
                                 <tr>
                                     <td>${contactInstance}</td>
                                     <td>${contactInstance.address1} 

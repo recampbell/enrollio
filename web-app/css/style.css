@@ -540,7 +540,7 @@ ul.helplist li  {
 }
 
 /* Errors styles:  Taken from Grails main.css */
-div.errors {
+.errors {
     background: #fff3f3;
     border: 1px solid red;
     color: #cc0000;
