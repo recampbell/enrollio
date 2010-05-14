@@ -165,7 +165,10 @@ class DataLoadingService {
             if (!con) {
                 // Create kludge contact.
                 // Purpose is to get as much data as possible
-                log.info("Creating contact for student: ${stu.firstName} ${stu.lastName}, ID: ${xmlStu.StudentID.text()}")
+                log.info("Creating contact for student: " +
+                          "${stu.firstName} ${stu.lastName}, " +
+                          "studentID: ${xmlStu.StudentID.text()}, " +
+                          "parentID: ${xmlStu.ParentID.text()}")
                 con = createContactForOrphan(stu, xmlStu.ParentID.text())
             }
             if(!con) {
