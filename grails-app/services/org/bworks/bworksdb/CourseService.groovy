@@ -1,5 +1,6 @@
 package org.bworks.bworksdb
 import grails.test.*
+import org.bworks.bworksdb.auth.ShiroUser
 
 class CourseService {
 
@@ -136,6 +137,19 @@ class CourseService {
             // it doesn't fail, but testNewLessonForCourse does. :-/
         }
         return lesson ? lesson.sequence + sequenceIncr : sequenceIncr
+    }
+
+    // Return a hash map of 
+    //     contactId : [ CallListContact ]
+    // for a particular class session
+    def callListContacts(classSession) {
+        def clc = [:]
+        CallListContact.findByClassSession(classSession).each {
+            clc[it.contact.id] = it
+        }
+
+        return clc
+
     }
 
 }

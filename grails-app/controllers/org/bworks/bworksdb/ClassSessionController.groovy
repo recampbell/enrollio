@@ -1,4 +1,6 @@
 package org.bworks.bworksdb
+import org.bworks.bworksdb.auth.ShiroUser
+import org.apache.shiro.SecurityUtils
 
 class ClassSessionController {
 
@@ -19,6 +21,30 @@ class ClassSessionController {
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
+
+    def reserveContact = {
+        def con = Contact.get(params['contactId'])
+        def cs = ClassSession.get(params['classSessionId'])
+
+        def clc = CallListContact.findByContactAndClassSession(con, cs)
+        def u = SecurityUtils.subject.getPrincipal()
+        def su = ShiroUser.findByUsername(u)
+        if (clc) {
+            clc.user = su
+            clc.save()
+        }
+        else {
+            clc = new CallListContact(contact:con, classSession : cs, user:su)
+            if (!clc.validate()) {
+                log.error( clc.errors.allErrors)
+            }
+            else {
+                clc.save()
+            }
+        }
+        log.info(clc.user.username)
+        render clc.user.username
+    }
 
     // ajax method to enroll studs on the fly
     def enrollStudent = {

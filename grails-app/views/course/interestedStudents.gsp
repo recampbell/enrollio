@@ -19,6 +19,15 @@
                                 $('#studentCount').html(data);
                             });
                     });
+                // When user clicks any entry that has a class of "reserveContact", then
+                // submit a POST to the app, with the contactId and classSessionId, and then
+                // the contact will be "reserved" for the current user.  meow.
+                $('.reserveContact').click(function() {
+                    $(this).load('${createLink(controller:"classSession",
+                                            action:"reserveContact")}',
+                            { 'contactId' : $(this).attr("contactId"),
+                              'classSessionId' : $(this).attr("classSessionId") });
+                    });
             });
         </script>
         <title></title>
@@ -40,13 +49,15 @@
                         <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> students enrolled</p>
                         </g:if>
                     <table>
-                        <thead><th colspan="2">Contact</th>
+                        <thead>
+                            <th colspan="2">Contact</th>
                         <th>Students</th>
                         </thead>
                         <g:each var="con" status="placeInList" in="${contactInstanceList}">
                         <g:render template="interestedContact" 
                             model="[placeInList : placeInList, 
                             contactInstance : con,
+                            callListContacts : callListContacts,
                             classSessionInstance : classSessionInstance ]" />
                         </g:each>
                     </table>
