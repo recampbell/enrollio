@@ -1,18 +1,13 @@
 <tr>
-    <td>
-        <g:if test="${callListContacts[contactInstance.id]}">
-            ${callListContacts[contactInstance.id].user?.username}
-        </g:if>
-        <g:else>
-        <g:if test="${classSessionInstance}">
-            <a contactId="${contactInstance.id}" 
-                class="reserveContact" 
-                classSessionId="${classSessionInstance.id}" href="#">Reserve</a>
-            
-        </g:if>
-        </g:else>
+    <g:if test="${classSessionInstance}">
+        <td>
+                <a contactId="${contactInstance.id}" 
+                    class="reserveContact" 
+                    classSessionId="${classSessionInstance.id}" href="#">
+                    ${callListContacts[contactInstance.id]?.user?.username ?: 'Reserve'}</a>
 
-    </td>
+        </td>
+    </g:if>
     <td width="45%">
         <g:link controller="contact" action="edit" id="${contactInstance.id}">${placeInList}) ${contactInstance}</g:link>
         <ul class="prop">
