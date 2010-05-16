@@ -1,18 +1,4 @@
 <tr>
-    <g:if test="${classSessionInstance}">
-        <td>
-            <g:select from="${users}" 
-            optionValue="username" 
-            optionKey="id" 
-            value="${callListContacts[contactInstance.id]?.user?.id}"
-            noSelection="['':'']" />
-                <a contactId="${contactInstance.id}" 
-                    class="reserveContact" 
-                    classSessionId="${classSessionInstance.id}" href="#">
-                    ${callListContacts[contactInstance.id]?.user?.username ?: 'Reserve'}</a>
-
-        </td>
-    </g:if>
     <td width="45%">
         <g:link controller="contact" action="edit" id="${contactInstance.id}">${placeInList}) ${contactInstance}</g:link>
         <ul class="prop">
@@ -23,12 +9,12 @@
                 <g:if test="${contactInstance.city}">${contactInstance.city},&#160;&#160;</g:if>
                 <g:if test="${contactInstance.state}">${contactInstance.state}&#160;</g:if>
                 <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
+                <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
             </li>
         </ul>
     </td>
     <td width="20%">
         <ul class="prop">
-            <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
             <g:if test="${contactInstance.phoneNumbers}">
                 <g:each var="phone" in="${contactInstance.phoneNumbers}">
                     <li>${phone.phoneNumber}</li>
@@ -59,4 +45,35 @@
     
     
     </td>
+    <g:if test="${classSessionInstance}">
+        <td>
+            <g:select 
+                contactId="${contactInstance.id}" 
+                classSessionId="${classSessionInstance.id}"
+                class="reserveContact" 
+                from="${users}" 
+                optionValue="username" 
+                optionKey="id" 
+                value="${callListContacts[contactInstance.id]?.user?.id}"
+                noSelection="['':'']" />
+
+                <!-- show red push pin if this contact is reserved for currently logged
+                     in user -->
+            <g:if test="${callListContacts[contactInstance.id]?.user?.id == currentUser.id}">
+                <img src="${resource(dir:'images/icons', file:'push_pin_red.png')}" 
+                        contactId="${contactInstance.id}" 
+                        userId=""
+                        class="toggleReservation" 
+                        classSessionId="${classSessionInstance.id}"/>
+            </g:if>
+            <g:else>
+            <!-- Post a gray pin, and the current users ID -->
+                <img src="${resource(dir:'images/icons', file:'push_pin_gray.png')}" 
+                        contactId="${contactInstance.id}" 
+                        userId="${currentUser.id}"
+                        class="toggleReservation" 
+                        classSessionId="${classSessionInstance.id}"/>
+            </g:else>
+        </td>
+    </g:if>
 </tr>

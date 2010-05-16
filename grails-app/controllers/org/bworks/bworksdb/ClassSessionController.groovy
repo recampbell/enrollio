@@ -25,10 +25,11 @@ class ClassSessionController {
     def reserveContact = {
         def con = Contact.get(params['contactId'])
         def cs = ClassSession.get(params['classSessionId'])
+        def su = ShiroUser.get(params['userId'])
+        log.info "Username: " + su?.username
 
         def clc = CallListContact.findByContactAndClassSession(con, cs)
-        def u = SecurityUtils.subject.getPrincipal()
-        def su = ShiroUser.findByUsername(u)
+
         if (clc) {
             clc.user = su
             clc.save()
@@ -42,8 +43,7 @@ class ClassSessionController {
                 clc.save()
             }
         }
-        log.info(clc.user.username)
-        render clc.user.username
+        render clc.user?.username ?: 'not assigned'
     }
 
     // ajax method to enroll studs on the fly

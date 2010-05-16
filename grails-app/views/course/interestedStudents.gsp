@@ -22,13 +22,37 @@
                 // When user clicks any entry that has a class of "reserveContact", then
                 // submit a POST to the app, with the contactId and classSessionId, and then
                 // the contact will be "reserved" for the current user.  meow.
-                $('.reserveContact').click(function() {
-                    $(this).load('${createLink(controller:"classSession",
-                                            action:"reserveContact")}',
-                            { 'contactId' : $(this).attr("contactId"),
-                              'classSessionId' : $(this).attr("classSessionId") });
+                $('.reserveContact').change(function() {
+                    postReservation($(this), $(this).val());
+
+                    var pushPin = $(this).next('.toggleReservation');
+                    if($(this).val() == "${currentUser.id}") {
+                        pushPin.attr("src", 
+                            "${resource(dir:'images/icons', file:'push_pin_red.png')}");
+                    }
+                    else {
+                        pushPin.attr("src" , 
+                            "${resource(dir:'images/icons', file:'push_pin_gray.png')}"); 
+                    }
+               
                     });
-            });
+                $('.toggleReservation').click(function() {
+                    alert( $(this).attr("userId"));
+                    postReservation($(this), $(this).attr("userId"));
+                    $(this).previous().val($(this).attr("userId"))
+                })
+                
+             });
+
+            // generic function to handle sending POSTS to 
+            // reserveContact action
+            function postReservation(element, userId) {
+                $.post('${createLink(controller:"classSession",
+                                        action:"reserveContact")}',
+                    { 'contactId' : $(element).attr("contactId"), 
+                         'userId' : userId,
+                 'classSessionId' : $(element).attr("classSessionId") });
+            }
         </script>
         <title></title>
     </head>
@@ -50,9 +74,9 @@
                         </g:if>
                     <table>
                         <thead>
-                            <th colspan="1">Reserve</th>
                             <th colspan="2">Contact</th>
-                        <th>Students</th>
+                            <th>Students</th>
+                            <th colspan="1">Reserve</th>
                         </thead>
                         <g:each var="con" status="placeInList" in="${contactInstanceList}">
                         <g:render template="interestedContact" 
