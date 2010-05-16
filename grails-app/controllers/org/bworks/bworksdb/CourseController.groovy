@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils
 class CourseController {
     
     def index = { redirect(action:list,params:params) }
+    def userService
 
     static navigation = [
         group:'mainMenu',
@@ -198,6 +199,7 @@ class CourseController {
         [ contactInstanceList : contactInstanceList,
             courseInstance : courseInstance,
             callListContacts : callListContacts,
+            currentUser : userService.loggedInUser(),
             users : ShiroUser.list(), 
             classSessionInstance : classSessionInstance ]
 
