@@ -50,12 +50,14 @@
                         </g:if>
                     <table>
                         <thead>
+                            <th colspan="1">Reserve</th>
                             <th colspan="2">Contact</th>
                         <th>Students</th>
                         </thead>
                         <g:each var="con" status="placeInList" in="${contactInstanceList}">
                         <g:render template="interestedContact" 
                             model="[placeInList : placeInList, 
+                            users : users,
                             contactInstance : con,
                             callListContacts : callListContacts,
                             classSessionInstance : classSessionInstance ]" />

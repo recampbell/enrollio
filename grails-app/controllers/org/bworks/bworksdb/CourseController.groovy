@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.bworks.bworksdb.auth.ShiroUser
 import org.apache.shiro.SecurityUtils
 
 class CourseController {
@@ -197,6 +198,7 @@ class CourseController {
         [ contactInstanceList : contactInstanceList,
             courseInstance : courseInstance,
             callListContacts : callListContacts,
+            users : ShiroUser.list(), 
             classSessionInstance : classSessionInstance ]
 
     }

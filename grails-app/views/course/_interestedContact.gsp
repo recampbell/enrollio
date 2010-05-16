@@ -1,6 +1,11 @@
 <tr>
     <g:if test="${classSessionInstance}">
         <td>
+            <g:select from="${users}" 
+            optionValue="username" 
+            optionKey="id" 
+            value="${callListContacts[contactInstance.id]?.user?.id}"
+            noSelection="['':'']" />
                 <a contactId="${contactInstance.id}" 
                     class="reserveContact" 
                     classSessionId="${classSessionInstance.id}" href="#">
