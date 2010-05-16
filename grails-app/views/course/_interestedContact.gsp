@@ -63,7 +63,7 @@
                 <img src="${resource(dir:'images/icons', file:'push_pin_red.png')}" 
                         contactId="${contactInstance.id}" 
                         userId=""
-                        class="toggleReservation" 
+                        class="reservationPushPin" 
                         classSessionId="${classSessionInstance.id}"/>
             </g:if>
             <g:else>
@@ -71,7 +71,7 @@
                 <img src="${resource(dir:'images/icons', file:'push_pin_gray.png')}" 
                         contactId="${contactInstance.id}" 
                         userId="${currentUser.id}"
-                        class="toggleReservation" 
+                        class="reservationPushPin" 
                         classSessionId="${classSessionInstance.id}"/>
             </g:else>
         </td>

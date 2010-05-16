@@ -24,22 +24,17 @@
                 // the contact will be "reserved" for the current user.  meow.
                 $('.reserveContact').change(function() {
                     postReservation($(this), $(this).val());
-
-                    var pushPin = $(this).next('.toggleReservation');
-                    if($(this).val() == "${currentUser.id}") {
-                        pushPin.attr("src", 
-                            "${resource(dir:'images/icons', file:'push_pin_red.png')}");
-                    }
-                    else {
-                        pushPin.attr("src" , 
-                            "${resource(dir:'images/icons', file:'push_pin_gray.png')}"); 
-                    }
-               
-                    });
-                $('.toggleReservation').click(function() {
-                    alert( $(this).attr("userId"));
-                    postReservation($(this), $(this).attr("userId"));
-                    $(this).previous().val($(this).attr("userId"))
+                    updatePushPin($(this).parent(), $(this).val())
+                });
+                $('.reservationPushPin').click(function() {
+                    var pushPin = $(this);
+                    var userId = pushPin.attr("userId");
+                    postReservation(pushPin, userId);
+                    // Change drop-down to reflect who (if anybody) has
+                    // reserved this contact
+                    updatePushPin(pushPin.parent(), userId)
+                    // Update the select box
+                    pushPin.parent().find('.reserveContact').val(userId)
                 })
                 
              });
@@ -53,6 +48,27 @@
                          'userId' : userId,
                  'classSessionId' : $(element).attr("classSessionId") });
             }
+
+            // update the push pin that's in the parent TD
+            function updatePushPin(parent, reservationUserId) {
+                var pushPin = parent.find('.reservationPushPin');
+                // If reservationUserId = this push pin's userId, then show red, and 
+                // DELETE the userId attribute
+                if(reservationUserId != "" && reservationUserId == pushPin.attr("userId")) {
+                    pushPin.attr("src", 
+                        "${resource(dir:'images/icons', file:'push_pin_red.png')}");
+                    pushPin.attr("userId", "")
+                }
+                else {
+                    // Add the current user's ID to this push pin, and make it gray
+                    // when push pin is pressed, this userID is sent to server to reserve the contact
+                    pushPin.attr("src" , 
+                        "${resource(dir:'images/icons', file:'push_pin_gray.png')}"); 
+                    pushPin.attr("userId", "${currentUser.id}")
+                }
+                
+            }
+
         </script>
         <title></title>
     </head>
