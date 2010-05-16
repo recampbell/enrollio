@@ -10,5 +10,6 @@ class CallListContact {
     int calls = 0
 
     static constraints = {
+        user(nullable:true)
     }
 }
