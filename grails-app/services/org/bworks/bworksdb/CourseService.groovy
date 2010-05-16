@@ -144,7 +144,7 @@ class CourseService {
     // for a particular class session
     def callListContacts(classSession) {
         def clc = [:]
-        CallListContact.findByClassSession(classSession).each {
+        CallListContact.findAllByClassSession(classSession).each {
             clc[it.contact.id] = it
         }
 
