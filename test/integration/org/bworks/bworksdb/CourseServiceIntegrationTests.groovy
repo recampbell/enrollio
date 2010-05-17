@@ -49,7 +49,8 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
         contact.addToStudents(starStudent).save()
         
-        def notStarStudent1 = new Student(firstName:'not', lastName:'Star', starred:false);
+        def notStarStudent1 = new Student(firstName:'not', lastName:'nostar', starred:false);
+        def notStarStudent1Brother = new Student(firstName:'brother', lastName:'nostar', starred:false);
         
         def notStarContact1 = new Contact(firstName:'Not',
                             lastName:TestKeys.CONTACT1_LAST_NAME,
@@ -60,6 +61,7 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
                             zipCode:'63043',
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
         notStarContact1.addToStudents(notStarStudent1).save()
+        notStarContact1.addToStudents(notStarStudent1Brother).save()
         
         def notStarStudent2 = new Student(firstName:'not', lastName:'Star', starred:true);
         
@@ -73,7 +75,6 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
         notStarContact2.addToStudents(notStarStudent2).save()
                                 
-        
         def course = new Course(name:"first course", description:"foo desc.").save()
         
         def firstInterest = new Interest(course:course, active:true)
@@ -87,6 +88,14 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         def thirdInterest = new Interest(course:course, active:true)
         notStarStudent1.addToInterests(thirdInterest)
         course.addToInterests(thirdInterest).save()
+
+        def thirdInterestBrother = new Interest(course:course, active:true)
+        notStarStudent1Brother.addToInterests(thirdInterestBrother)
+        course.addToInterests(thirdInterestBrother).save()
+
+
+
+
         def contacts = courseService.callList(course.id)
         
         assertEquals 'wrong number of contacts returned', 3, contacts.size()

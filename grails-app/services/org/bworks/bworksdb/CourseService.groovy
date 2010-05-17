@@ -25,7 +25,9 @@ class CourseService {
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
     def callList(id) {
-        Contact.withCriteria {
+        def crit = Contact.createCriteria() 
+        
+        crit.listDistinct {
             students {
                 interests {
                     eq 'course.id', id
@@ -33,6 +35,7 @@ class CourseService {
                 order 'starred', 'desc'
             }
         }
+        
 /*        def course = Course.get(id)
         if (!course) return null;
 
