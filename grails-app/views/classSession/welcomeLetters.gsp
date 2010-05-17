@@ -14,19 +14,14 @@
      <g:each var="contactInstance" in="${contactInstanceList}">
          <div id="container" style="page-break-after:always">
             <div id="wrapper">
-                <div id="content">
-                    <div class="rightnow">
                         <h3 class="reallynow">
-                            ${classSessionInstance.name}
+                            Welcome to Byteworks
                         </h3>
                         <p class="youhave">
-                        <g:link action="show" controller="course" id="${classSessionInstance.course.id}">
-                        
-                            ${classSessionInstance.course.name} Course
-                        </g:link>
+         Sed ut perspiciatis unde omnis enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+         1914 translation by H. Rackham
                         </p>
                         
-                    </div>
                     <div class="infowrap">
                         <div class="infobox">
                             <h3>Lesson Dates</h3>
@@ -68,7 +63,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         </g:each>
