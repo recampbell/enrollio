@@ -5,15 +5,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="tabName" content="classSession" />
         <title>Welcome Letter</title>
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'style.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme1.css')}" />
         <link rel="stylesheet" media="print" type="text/css" href="${resource(dir:'css', file:'print.css')}" />
+        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'print.css')}" />
     </head>
  <body>
      <g:each var="contactInstance" in="${contactInstanceList}">
-         <div id="container" style="page-break-after:always">
-            <div id="wrapper">
                         <h3 class="reallynow">
                             Welcome to Byteworks
                         </h3>
@@ -22,10 +18,43 @@
          1914 translation by H. Rackham
                         </p>
                         
-                    <div class="infowrap">
-                        <div class="infobox">
-                            <h3>Lesson Dates</h3>
-                            <table id="lessonDates">
+                            <h3>Contact Info:</h3>
+                            <ul class="prop">
+
+                                <li>${contactInstance}</li> 
+                                <ul class="prop">
+                                    <g:if test="${contactInstance.phoneNumbers}">
+                                    <g:each var="phone" in="${contactInstance.phoneNumbers}">
+                                    <li>${phone.phoneNumber}</li>
+                                    </g:each>
+                                    </g:if>
+                                </ul>
+                            <li>${contactInstance.address1}</li> 
+                            <g:if test="${contactInstance.address2}"> <li>${contactInstance.address2}</li></g:if>
+                            <li>
+                            <g:if test="${contactInstance.city}">${contactInstance.city},&#160;&#160;</g:if>
+                            <g:if test="${contactInstance.state}">${contactInstance.state}&#160;</g:if>
+                            <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
+                            <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
+                            </li>
+                        </ul>
+                            <h3>Student(s)</h3>
+                            <ul>
+                                    <g:each var="student"
+                                    in="${classSessionInstance.enrollments*.student}">
+                                        <li>
+                                           ${student}
+                                        </li>
+                                    </g:each>
+                                    </ul>
+                        </div>
+                    </div>
+                    <div class="infobox margin-left">
+                            <h3 class="reallynow">
+                                <span>Enrollments</span>
+                                <br />
+                            </h3>
+                            <table>
                                 <tbody>
                                     <g:each var="lessonDate"
                                     in="${classSessionInstance.lessonDates}">
@@ -43,28 +72,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="infobox margin-left">
-                            <h3 class="reallynow">
-                                <span>Enrollments</span>
-                                <br />
-                            </h3>
-                            <table>
-                                <tbody>
-                                    <g:each var="enr"
-                                    in="${classSessionInstance.enrollments}">
-                                        <tr>
-                                            <td>
-                                                <a href="#">${enr.student}</a>
-                                            </td>
-                                            <td>${enr.status.name}</td>
-                                        </tr>
-                                    </g:each>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
-            </div>
-        </div>
+                </div>
         </g:each>
     </body>
 </html>
