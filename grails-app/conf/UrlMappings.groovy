@@ -23,6 +23,7 @@ class UrlMappings {
         "/enrollStudent"(controller: 'classSession', action: 'enrollStudent')
         "/attendance/$id"(controller: 'classSession', action: 'attendance')
         "/reserveContact"(controller: 'classSession', action: 'reserveContact')
+        "/welcomeLetters/$id"(controller: 'classSession', action: 'welcomeLetters')
 
         // attendance controller
         "/updateStatus"(controller: 'attendance', action: 'updateStatus')

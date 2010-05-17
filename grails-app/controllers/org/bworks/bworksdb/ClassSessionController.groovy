@@ -21,6 +21,17 @@ class ClassSessionController {
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
+    def welcomeLetters = {
+        def classSessionInstance = ClassSession.get(params.id)
+        def contactInstanceList = classSessionInstance.enrollments.collect {
+            it.student.contact
+        }.unique()
+        
+        [ classSessionInstance: classSessionInstance, 
+          contactInstanceList : contactInstanceList ]
+    }
+
+
 
     def reserveContact = {
         def con = Contact.get(params['contactId'])

@@ -34,23 +34,11 @@
             <h3>Print</h3>
             <li>
 
-                <script type="text/javascript">
-                    // The form below is submitted by this javascript
-                    // the browser will stay on the same page
-                    function submit_welcomeLetter(link) {
-                        link.parentNode.submit(); 
-                        return false;
-                    }
-                </script>
-                <g:form name="callList" class="jasperReport" action="printWelcomeLetter">
-                    <input type="hidden" name="_format" value="PDF" />
-                    <!-- _name is the title shown on top of the "Save As" popup -->
-                    <input type="hidden" name="_name" value="WelcomeLetters" />
-                    <input type="hidden" name="_file" value="welcomeLetter" />
-                    <input type="hidden" name="id" value="${classSessionInstance.id}" />
-                    <a href="#" name="callListLink" class="welcome_letter" title="PDF"
-                        onClick="return submit_welcomeLetter(this)">&#160;&#160;Welcome Letters</a>
-                </g:form>
+                <g:link name='welcomeLettersLink' 
+                class="application_list" 
+                controller="classSession"
+                action="welcomeLetters"
+                id="${classSessionInstance.id}">&#160;Welcome Letters</g:link>
             </li>
             
             <li>
