@@ -59,15 +59,8 @@
                     </div>
                 </div>
                 <div id="sidebar">
-                    <ul>
-                        <li>
-                            <h3>
-                                <g:render template="/classSession/individualClassSessionMenu"
-                                           model="[ classSessionInstance : lessonDateInstance.classSession ]"/>
-                            </h3>
-                        
-                        </li>
-                    </ul>
+                    <g:render template="/classSession/individualClassSessionMenu"
+                    model="[ classSessionInstance : lessonDateInstance.classSession ]"/>
                 </div>
             </div>
         </div>
