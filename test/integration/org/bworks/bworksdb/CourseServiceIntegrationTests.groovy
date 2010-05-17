@@ -37,71 +37,80 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     }
     
     void testStarredStudentsFirst() {
-        def starStudent = new Student(firstName:'Star', lastName:'Star', starred:true);
+        def signup1 = new Student(firstName:'Star', lastName:'Star', starred:true);
         
         def contact = new Contact(firstName:'Bob',
-                            lastName:'IhaveAStarredStudent',
+                            lastName:'signup1',
                             address1:'add1',
                             address2:'add2',
                             city:'Saint Louis',
                             state:'MO',
                             zipCode:'63043',
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
-        contact.addToStudents(starStudent).save()
+        contact.addToStudents(signup1).save()
         
-        def notStarStudent1 = new Student(firstName:'not', lastName:'nostar', starred:false);
-        def notStarStudent1Brother = new Student(firstName:'brother', lastName:'nostar', starred:false);
+        def signup2 = new Student(firstName:'not', lastName:'nostar', starred:false);
+        def signup2brother = new Student(firstName:'brother', lastName:'nostar', starred:false);
         
         def notStarContact1 = new Contact(firstName:'Not',
-                            lastName:TestKeys.CONTACT1_LAST_NAME,
+                            lastName:'signup2',
                             address1:'add1',
                             address2:'add2',
                             city:'Saint Louis',
                             state:'MO',
                             zipCode:'63043',
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
-        notStarContact1.addToStudents(notStarStudent1).save()
-        notStarContact1.addToStudents(notStarStudent1Brother).save()
+        notStarContact1.addToStudents(signup2).save()
+        notStarContact1.addToStudents(signup2brother).save()
         
-        def notStarStudent2 = new Student(firstName:'not', lastName:'Star', starred:true);
+        def signup3 = new Student(firstName:'not', lastName:'Star', starred:true);
         
         def notStarContact2 = new Contact(firstName:'Bob',
-                            lastName:TestKeys.CONTACT1_LAST_NAME,
+                            lastName:'signup3',
                             address1:'add1',
                             address2:'add2',
                             city:'Saint Louis',
                             state:'MO',
                             zipCode:'63043',
                             emailAddress:TestKeys.CONTACT_EMAIL).save()
-        notStarContact2.addToStudents(notStarStudent2).save()
+        notStarContact2.addToStudents(signup3).save()
+
+        def signup4 = new Student(firstName:'signup4', lastName:'Star', starred:true);
+        
+        def signup4Contact = new Contact(firstName:'Bob',
+                            lastName:'signup4',
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
+        signup4Contact.addToStudents(signup4).save()
                                 
         def course = new Course(name:"first course", description:"foo desc.").save()
         
         def firstInterest = new Interest(course:course, active:true)
-        starStudent.addToInterests(firstInterest)
+        signup1.addToInterests(firstInterest)
         course.addToInterests(firstInterest).save()
 
         def secondInterest = new Interest(course:course, active:true)
-        notStarStudent2.addToInterests(secondInterest)
+        signup2.addToInterests(secondInterest)
         course.addToInterests(secondInterest).save()
 
-        def thirdInterest = new Interest(course:course, active:true)
-        notStarStudent1.addToInterests(thirdInterest)
-        course.addToInterests(thirdInterest).save()
-
         def thirdInterestBrother = new Interest(course:course, active:true)
-        notStarStudent1Brother.addToInterests(thirdInterestBrother)
+        signup2brother.addToInterests(thirdInterestBrother)
         course.addToInterests(thirdInterestBrother).save()
 
+        def thirdInterest = new Interest(course:course, active:true)
+        signup3.addToInterests(thirdInterest)
+        course.addToInterests(thirdInterest).save()
 
-
+        def fourthInterest = new Interest(course:course, active:true)
+        signup4.addToInterests(fourthInterest)
+        course.addToInterests(fourthInterest).save()
 
         def contacts = courseService.callList(course.id)
         
-        assertEquals 'wrong number of contacts returned', 3, contacts.size()
+        assertEquals 'wrong number of contacts returned', 4, contacts.size()
         
         assertEquals 1, contacts[0].students.findAll { it.starred }.size()
         assertEquals 1, contacts[1].students.findAll { it.starred }.size()
-        assertEquals 0, contacts[2].students.findAll { it.starred }.size()
+        assertEquals 1, contacts[2].students.findAll { it.starred }.size()
+        assertEquals 0, contacts[3].students.findAll { it.starred }.size()
     }
 }
