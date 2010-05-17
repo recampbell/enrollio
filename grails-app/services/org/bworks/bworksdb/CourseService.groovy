@@ -25,13 +25,19 @@ class CourseService {
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
     def callList(id) {
-        def course = Course.get(id)
+        Contact.withCriteria {
+            students {
+                interests {
+                    eq 'course.id', id
+                }
+                order 'starred', 'desc'
+            }
+        }
+/*        def course = Course.get(id)
         if (!course) return null;
 
         def starredContacts = getInterestedStudentsContacts(course, true)
-
         def regularContacts = getInterestedStudentsContacts(course, false)
-
         regularContacts = regularContacts.findAll { regularContact ->
             ! starredContacts.find { starredContact ->
                 starredContact.id == regularContact.id
@@ -39,7 +45,7 @@ class CourseService {
         }
 
         return starredContacts.plus(regularContacts)
-    }
+*/    }
 
     def activeInterests(Course p) {
         return Interest.findAllByCourseAndActive(p, true)

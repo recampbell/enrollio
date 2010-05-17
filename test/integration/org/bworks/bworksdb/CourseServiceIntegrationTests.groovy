@@ -35,4 +35,64 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         
         assertEquals 'One contact found', 1, contacts.size()
     }
+    
+    void testStarredStudentsFirst() {
+        def starStudent = new Student(firstName:'Star', lastName:'Star', starred:true);
+        
+        def contact = new Contact(firstName:'Bob',
+                            lastName:'IhaveAStarredStudent',
+                            address1:'add1',
+                            address2:'add2',
+                            city:'Saint Louis',
+                            state:'MO',
+                            zipCode:'63043',
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
+        contact.addToStudents(starStudent).save()
+        
+        def notStarStudent1 = new Student(firstName:'not', lastName:'Star', starred:false);
+        
+        def notStarContact1 = new Contact(firstName:'Not',
+                            lastName:TestKeys.CONTACT1_LAST_NAME,
+                            address1:'add1',
+                            address2:'add2',
+                            city:'Saint Louis',
+                            state:'MO',
+                            zipCode:'63043',
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
+        notStarContact1.addToStudents(notStarStudent1).save()
+        
+        def notStarStudent2 = new Student(firstName:'not', lastName:'Star', starred:true);
+        
+        def notStarContact2 = new Contact(firstName:'Bob',
+                            lastName:TestKeys.CONTACT1_LAST_NAME,
+                            address1:'add1',
+                            address2:'add2',
+                            city:'Saint Louis',
+                            state:'MO',
+                            zipCode:'63043',
+                            emailAddress:TestKeys.CONTACT_EMAIL).save()
+        notStarContact2.addToStudents(notStarStudent2).save()
+                                
+        
+        def course = new Course(name:"first course", description:"foo desc.").save()
+        
+        def firstInterest = new Interest(course:course, active:true)
+        starStudent.addToInterests(firstInterest)
+        course.addToInterests(firstInterest).save()
+
+        def secondInterest = new Interest(course:course, active:true)
+        notStarStudent2.addToInterests(secondInterest)
+        course.addToInterests(secondInterest).save()
+
+        def thirdInterest = new Interest(course:course, active:true)
+        notStarStudent1.addToInterests(thirdInterest)
+        course.addToInterests(thirdInterest).save()
+        def contacts = courseService.callList(course.id)
+        
+        assertEquals 'wrong number of contacts returned', 3, contacts.size()
+        
+        assertEquals 1, contacts[0].students.findAll { it.starred }.size()
+        assertEquals 1, contacts[1].students.findAll { it.starred }.size()
+        assertEquals 0, contacts[2].students.findAll { it.starred }.size()
+    }
 }
