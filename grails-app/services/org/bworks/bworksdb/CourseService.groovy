@@ -29,10 +29,12 @@ class CourseService {
         
         crit.listDistinct {
             students {
+                order 'starred', 'desc'
+
                 interests {
                     eq 'course.id', id
+                    order 'signupDate', 'asc'
                 }
-                order 'starred', 'desc'
             }
         }
         

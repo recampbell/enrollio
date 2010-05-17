@@ -84,23 +84,23 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
                                 
         def course = new Course(name:"first course", description:"foo desc.").save()
         
-        def firstInterest = new Interest(course:course, active:true)
+        def firstInterest = new Interest(signupDate:new Date() - 365, course:course, active:true)
         signup1.addToInterests(firstInterest)
         course.addToInterests(firstInterest).save()
 
-        def secondInterest = new Interest(course:course, active:true)
+        def secondInterest = new Interest(signupDate:new Date() - 300, course:course, active:true)
         signup2.addToInterests(secondInterest)
         course.addToInterests(secondInterest).save()
 
-        def thirdInterestBrother = new Interest(course:course, active:true)
+        def thirdInterestBrother = new Interest(signupDate:new Date() - 200,course:course, active:true)
         signup2brother.addToInterests(thirdInterestBrother)
         course.addToInterests(thirdInterestBrother).save()
 
-        def thirdInterest = new Interest(course:course, active:true)
+        def thirdInterest = new Interest(signupDate:new Date() - 200, course:course, active:true)
         signup3.addToInterests(thirdInterest)
         course.addToInterests(thirdInterest).save()
 
-        def fourthInterest = new Interest(course:course, active:true)
+        def fourthInterest = new Interest(signupDate:new Date() - 100,course:course, active:true)
         signup4.addToInterests(fourthInterest)
         course.addToInterests(fourthInterest).save()
 
@@ -112,5 +112,12 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         assertEquals 1, contacts[1].students.findAll { it.starred }.size()
         assertEquals 1, contacts[2].students.findAll { it.starred }.size()
         assertEquals 0, contacts[3].students.findAll { it.starred }.size()
+        
+        assertEquals 'signup1',contacts[0].lastName
+        assertEquals 'signup3',contacts[1].lastName
+        assertEquals 'signup4',contacts[2].lastName
+        assertEquals 'signup2',contacts[3].lastName
+        
+        
     }
 }
