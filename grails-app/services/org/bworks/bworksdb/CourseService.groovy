@@ -38,19 +38,7 @@ class CourseService {
             }
         }
         
-/*        def course = Course.get(id)
-        if (!course) return null;
-
-        def starredContacts = getInterestedStudentsContacts(course, true)
-        def regularContacts = getInterestedStudentsContacts(course, false)
-        regularContacts = regularContacts.findAll { regularContact ->
-            ! starredContacts.find { starredContact ->
-                starredContact.id == regularContact.id
-            }
-        }
-
-        return starredContacts.plus(regularContacts)
-*/    }
+   }
 
     def activeInterests(Course p) {
         return Interest.findAllByCourseAndActive(p, true)
