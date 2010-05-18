@@ -94,9 +94,22 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         ( activeContact, activeStudent) = 
            setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudent', 'Computer Course')
 
+        def activeStudent_InactiveBrother
+        ( activeContact, activeStudent_InactiveBrother) = 
+           setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudentInactiveBrother', 'Computer Course')
+
+        activeStudent_InactiveBrother.interests.each {
+            it.active = false
+            it.save()
+        }
+
+        def anotherActiveContact, anotherActiveStudent
+        ( anotherActiveContact, anotherActiveStudent) = 
+           setupContactAndStudentWithCourse('AnotherActiveContact', 'AnotherActiveStudent', 'Computer Course')
+
         def anotherInactiveContact, anotherInactiveStudent
         ( anotherInactiveContact, anotherInactiveStudent) = 
-           setupContactAndStudentWithCourse('ThirdContact', 'ThirdStudent', 'Computer Course')
+           setupContactAndStudentWithCourse('AnotherInactiveContact', 'AnotherInactiveStudent', 'Computer Course')
 
         anotherInactiveStudent.interests.each {
             it.active = false
@@ -104,8 +117,13 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         }
 
         def contactList = courseService.callList(computerCourse.id)
-        assertEquals 1, contactList.size()
-        assertEquals 'ActiveContact', contactList[0].lastName
+        assertEquals 2, contactList.size()
+        assertNotNull contactList.find {
+            it.lastName == 'ActiveContact'
+        }
+        assertNotNull contactList.find {
+            it.lastName == 'AnotherActiveContact'
+        }
     }
 
     void willTest() {
