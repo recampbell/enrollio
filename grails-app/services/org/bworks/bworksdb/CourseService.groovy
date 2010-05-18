@@ -34,6 +34,7 @@ class CourseService {
                 interests {
                     eq 'course.id', id
                     order 'signupDate', 'asc'
+                    eq 'active', true
                 }
             }
         }

@@ -79,6 +79,35 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    // only active interests should be returned on call list
+    void testActiveStudents() {
+        def inactiveContact, inactiveStudent, computerCourse
+        ( inactiveContact, inactiveStudent, computerCourse ) = 
+           setupContactAndStudentWithCourse('inactiveContact', 'inactiveStudent', 'Computer Course')
+
+        inactiveStudent.interests.each {
+            it.active = false
+            it.save()
+        }
+
+        def activeContact, activeStudent
+        ( activeContact, activeStudent) = 
+           setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudent', 'Computer Course')
+
+        def anotherInactiveContact, anotherInactiveStudent
+        ( anotherInactiveContact, anotherInactiveStudent) = 
+           setupContactAndStudentWithCourse('ThirdContact', 'ThirdStudent', 'Computer Course')
+
+        anotherInactiveStudent.interests.each {
+            it.active = false
+            it.save()
+        }
+
+        def contactList = courseService.callList(computerCourse.id)
+        assertEquals 1, contactList.size()
+        assertEquals 'ActiveContact', contactList[0].lastName
+    }
+
     void willTest() {
         /*
 
