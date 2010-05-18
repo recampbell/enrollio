@@ -44,25 +44,6 @@ class CourseService {
         return Interest.findAllByCourseAndActive(p, true)
     }
 
-    // find students, sorted by interest date,
-    // return a unique list of contacts
-    def getInterestedStudentsContacts(Course c, Boolean isStarred) {
-        def interests = c.interests.findAll { 
-            it.active == true && it.student.starred == isStarred
-        }.sort {
-            it.signupDate
-        }
-
-        def contactList = interests.collect {
-            it.student.contact
-        }.unique()
-
-        return contactList.findAll {
-            it.cannotReach != true
-        }
-    }
-
-
     // Utility method to make sure we have lesson sequences
     // in a standard order (separated by sequenceIncr, so that we can easily
     // add new Lessons between other lessons w/o trampling existing sequences)
