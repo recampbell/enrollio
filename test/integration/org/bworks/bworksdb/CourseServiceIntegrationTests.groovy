@@ -6,34 +6,44 @@ import org.bworks.bworksdb.util.TestKeys
 
 class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     def courseService
+    def testDataService
     
     void testFindInterestedContacts() {
-        def student = Student.findByLastName(TestKeys.STUDENT)
-        def contact = new Contact(firstName:'Bob',
-                            lastName:TestKeys.CONTACT1_LAST_NAME,
-                            address1:'add1',
-                            address2:'add2',
-                            city:'Saint Louis',
-                            state:'MO',
-                            zipCode:'63043',
-                            emailAddress:TestKeys.CONTACT_EMAIL).save()
-                                
-        
-        def firstCourse = new Course(name:"first course", description:"foo desc.")
-        def secondCourse = new Course(name:"second course", description:"foo desc.")
-        def thirdCourse = new Course(name:"third course", description:"foo desc.")
-        
-        def firstInterest = new Interest(course:firstCourse, active:true)
-        def secondInterest = new Interest(course:secondCourse, active:true)
+        def computerStudent, computerContact, computerCourse
+        ( computerContact, computerStudent, computerCourse ) = 
+           setupContactAndStudentWithCourse('ComputerContact', 'ComputerStudent', 'Computer Course')
 
-        student.addToInterests(firstInterest).addToInterests(secondInterest).save()
-        
-        firstCourse.addToInterests(firstInterest).save()
-        secondCourse.addToInterests(secondInterest).save()
+        def bikeStudent, bikeContact, bikeCourse
+        ( bikeContact, bikeStudent, bikeCourse ) = 
+           setupContactAndStudentWithCourse('BikeContact', 'BikeStudent', 'Bike Course')
 
-        def contacts = courseService.callList(firstCourse.id)
+        // set up student interested in both bike and computer course
+        def bothStudent, bothContact
+        ( bothContact, bothStudent ) = 
+           setupContactAndStudentWithCourse('BothContact', 
+                                            'BothStudent', 
+                                            'Bike Course', 'Computer Course')
+
+        // set up student interested in some other course
+        def someStudent, someContact
+        ( someContact, someStudent ) = 
+           setupContactAndStudentWithCourse('SomeContact', 
+                                            'SomeStudent', 
+                                            'Some Course', 'Some Course')
+
+        // add another course with nobody interested, just to flesh out the test scenario
+        def thirdCourse = new Course(name:"third course", description:"foo desc.").save()
         
-        assertEquals 'One contact found', 1, contacts.size()
+        def computerCallList = courseService.callList(computerCourse.id)
+        
+        assertEquals 'Two contacts should be on computer course call list', 2, computerCallList.size()
+        assertNotNull computerCallList.find { it.lastName == 'ComputerContact' }
+        assertNotNull computerCallList.find { it.lastName == 'BothContact' }
+
+        def bikeCallList = courseService.callList(bikeCourse.id)
+        assertEquals 'Two contacts should be on bike course call list', 2, bikeCallList.size()
+        assertNotNull bikeCallList.find { it.lastName == 'BikeContact' }
+        assertNotNull bikeCallList.find { it.lastName == 'BothContact' }
     }
     
     void testStarredStudentsFirst() {
