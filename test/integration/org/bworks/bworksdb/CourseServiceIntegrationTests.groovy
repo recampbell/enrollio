@@ -126,43 +126,71 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         }
     }
 
-    void willTest() {
-        /*
+    // Only one instance of a contact should be returned,
+    // even if that contact has > 1 interested student
+    void testUniqueContacts() {
+        def contact, student1, student2, student3, computerCourse
+        ( contact, student1, computerCourse) = 
+           setupContactAndStudentWithCourse('Contact', 'Student1', 'Computer Course')
 
-        def firstInterest = new Interest(signupDate:new Date() - 365, course:course, active:true)
-        signup1.addToInterests(firstInterest)
-        course.addToInterests(firstInterest).save()
+        ( contact, student2) =
+           setupContactAndStudentWithCourse('Contact', 'Student2', 'Computer Course')
+        ( contact, student3) =
+           setupContactAndStudentWithCourse('Contact', 'Student3', 'Computer Course')
 
-        def secondInterest = new Interest(signupDate:new Date() - 300, course:course, active:true)
-        signup2.addToInterests(secondInterest)
-        course.addToInterests(secondInterest).save()
+        def contactList = courseService.callList(computerCourse.id)
+        assertEquals 1, contactList.size()
+        assertEquals 'Contact', contactList[0].lastName
+    }
 
-        def thirdInterestBrother = new Interest(signupDate:new Date() - 200,course:course, active:true)
-        signup2brother.addToInterests(thirdInterestBrother)
-        course.addToInterests(thirdInterestBrother).save()
+    // Call list should be ordered by the date
+    // that people sign up
+    // Also, Starred students get priority over non-starred
+    void testSignupDateOrder() {
 
-        def thirdInterest = new Interest(signupDate:new Date() - 200, course:course, active:true)
-        signup3.addToInterests(thirdInterest)
-        course.addToInterests(thirdInterest).save()
+        // register stu5 today, should be last
+        def con5, stu5, computerCourse
+        ( con5, stu5, computerCourse) = 
+           setupContactAndStudentWithCourse('con5', 'stu5', 'Computer Course')
 
-        def fourthInterest = new Interest(signupDate:new Date() - 100,course:course, active:true)
-        signup4.addToInterests(fourthInterest)
-        course.addToInterests(fourthInterest).save()
-        */
+        // register stu4 yesterday
+        def con4, stu4
+        ( con4, stu4) = 
+           setupContactAndStudentWithCourse('con4', 'stu4', 'Computer Course')
 
-        def contacts = courseService.callList(course.id)
-        
-        assertEquals 'wrong number of contacts returned', 4, contacts.size()
-        
-        assertEquals 1, contacts[0].students.findAll { it.starred }.size()
-        assertEquals 1, contacts[1].students.findAll { it.starred }.size()
-        assertEquals 1, contacts[2].students.findAll { it.starred }.size()
-        assertEquals 0, contacts[3].students.findAll { it.starred }.size()
-        
-        assertEquals 'signup1',contacts[0].lastName
-        assertEquals 'signup3',contacts[1].lastName
-        assertEquals 'signup4',contacts[2].lastName
-        assertEquals 'signup2',contacts[3].lastName
+        stu4.interests.each { it.signupDate = new Date() - 1 }
+        stu4.save()
+
+        // stu3 registered a year ago, but isn't starred, should be behind the starred students
+        def con3, stu3
+        ( con3, stu3) = 
+           setupContactAndStudentWithCourse('con3', 'stu3', 'Computer Course')
+        stu3.interests.each { it.signupDate = new Date() - 365 }
+        stu3.save()
+
+        // stu1 registered last year, and is starred
+        def con1, stu1
+        ( con1, stu1) = 
+           setupContactAndStudentWithCourse('con1', 'stu1', 'Computer Course')
+        stu1.starred = true
+        stu1.interests.each { it.signupDate = new Date() - 365 }
+        stu1.save()
+
+
+        // stu2 registered today, but is starred
+        def con2, stu2
+        ( con2, stu2) = 
+           setupContactAndStudentWithCourse('con2', 'stu2', 'Computer Course')
+        stu2.starred = true
+        stu2.save()
+
+        def contactList = courseService.callList(computerCourse.id)
+
+        assertEquals 'con1', contactList[0].lastName
+        assertEquals 'con2', contactList[1].lastName
+        assertEquals 'con3', contactList[2].lastName
+        assertEquals 'con4', contactList[3].lastName
+        assertEquals 'con5', contactList[4].lastName
         
         
     }
