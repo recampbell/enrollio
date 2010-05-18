@@ -27,7 +27,7 @@ class CourseService {
     def callList(id) {
         def crit = Contact.createCriteria() 
         
-        crit.listDistinct {
+        def contacts = crit.listDistinct {
             students {
                 order 'starred', 'desc'
 
@@ -38,7 +38,9 @@ class CourseService {
                 }
             }
         }
-        
+        // Hack that will avoid NULL inactive student if a contact
+        // has interested and un-interested students
+        contacts*.refresh()       
    }
 
     def activeInterests(Course p) {
