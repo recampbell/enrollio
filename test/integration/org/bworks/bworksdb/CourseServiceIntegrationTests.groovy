@@ -47,53 +47,41 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     }
     
     void testStarredStudentsFirst() {
-        def signup1 = new Student(firstName:'Star', lastName:'Star', starred:true);
-        
-        def contact = new Contact(firstName:'Bob',
-                            lastName:'signup1',
-                            address1:'add1',
-                            address2:'add2',
-                            city:'Saint Louis',
-                            state:'MO',
-                            zipCode:'63043',
-                            emailAddress:TestKeys.CONTACT_EMAIL).save()
-        contact.addToStudents(signup1).save()
-        
-        def signup2 = new Student(firstName:'not', lastName:'nostar', starred:false);
-        def signup2brother = new Student(firstName:'brother', lastName:'nostar', starred:false);
-        
-        def notStarContact1 = new Contact(firstName:'Not',
-                            lastName:'signup2',
-                            address1:'add1',
-                            address2:'add2',
-                            city:'Saint Louis',
-                            state:'MO',
-                            zipCode:'63043',
-                            emailAddress:TestKeys.CONTACT_EMAIL).save()
-        notStarContact1.addToStudents(signup2).save()
-        notStarContact1.addToStudents(signup2brother).save()
-        
-        def signup3 = new Student(firstName:'not', lastName:'Star', starred:true);
-        
-        def notStarContact2 = new Contact(firstName:'Bob',
-                            lastName:'signup3',
-                            address1:'add1',
-                            address2:'add2',
-                            city:'Saint Louis',
-                            state:'MO',
-                            zipCode:'63043',
-                            emailAddress:TestKeys.CONTACT_EMAIL).save()
-        notStarContact2.addToStudents(signup3).save()
+        def firstContact, firstStudent, computerCourse
+        ( firstContact, firstStudent, computerCourse ) = 
+           setupContactAndStudentWithCourse('FirstContact', 'FirstStudent', 'Computer Course')
 
-        def signup4 = new Student(firstName:'signup4', lastName:'Star', starred:true);
+        def firstStarredContact, firstStarredStudent
+        ( firstStarredContact, firstStarredStudent) = 
+           setupContactAndStudentWithCourse('FirstStarredContact', 'SecondStudent', 'Computer Course')
+
+        // set starred for this student
+        firstStarredStudent.starred = true
+        firstStarredStudent.save()
+
+        def thirdContact, thirdStudent
+        ( thirdContact, thirdStudent) = 
+           setupContactAndStudentWithCourse('ThirdContact', 'ThirdStudent', 'Computer Course')
         
-        def signup4Contact = new Contact(firstName:'Bob',
-                            lastName:'signup4',
-                            emailAddress:TestKeys.CONTACT_EMAIL).save()
-        signup4Contact.addToStudents(signup4).save()
-                                
-        def course = new Course(name:"first course", description:"foo desc.").save()
+        def secondStarredContact, secondStarredStudent
+        ( secondStarredContact, secondStarredStudent) = 
+           setupContactAndStudentWithCourse('SecondStarredContact', 'FourthStudent', 'Computer Course')
+
+        secondStarredStudent.starred = true
+        secondStarredStudent.save()
+
+        def contactList = courseService.callList(computerCourse.id)
         
+        assertEquals 'FirstStarredContact',  contactList[0].lastName
+        assertEquals 'SecondStarredContact', contactList[1].lastName
+        assertEquals 'FirstContact',         contactList[2].lastName
+        assertEquals 'ThirdContact',         contactList[3].lastName
+
+    }
+
+    void willTest() {
+        /*
+
         def firstInterest = new Interest(signupDate:new Date() - 365, course:course, active:true)
         signup1.addToInterests(firstInterest)
         course.addToInterests(firstInterest).save()
@@ -113,6 +101,7 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         def fourthInterest = new Interest(signupDate:new Date() - 100,course:course, active:true)
         signup4.addToInterests(fourthInterest)
         course.addToInterests(fourthInterest).save()
+        */
 
         def contacts = courseService.callList(course.id)
         
