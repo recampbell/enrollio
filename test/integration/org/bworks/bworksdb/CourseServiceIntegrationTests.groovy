@@ -120,4 +120,44 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         
         
     }
+
+    // utility method to simplify student/contact setup
+    // returns a list with contact, student
+    // You can specify > 1 courseName if you want to add interests to mult. courses.
+    // If contact/student with contactLastName, studentFirstName already exist, they are
+    // NOT re-created.
+    def setupContactAndStudentWithCourse(contactLastName, 
+                                         studentFirstName, 
+                                         String... courseNames) {
+        def retVals = []
+        def c = Contact.findByLastName(contactLastName)
+        if (!c) {
+            c = new Contact(lastName:contactLastName, firstName:'Fuzzball').save()
+        }
+
+        retVals.add(c)
+
+        def s = Student.findByLastNameAndFirstName(contactLastName, studentFirstName)
+        if (!s) {
+            s = new Student(firstName:studentFirstName, lastName:contactLastName)
+        } 
+
+        retVals.add(s)
+
+        c.addToStudents(s).save()
+
+        courseNames.each {
+            def course = Course.findByName(it)
+            if (! course) {
+                course = new Course(name:it, description:it).save()
+                retVals.add(course)
+            }
+
+            def i = new Interest(course:course, student:s, active:true)
+            s.addToInterests(i).save()
+            course.addToInterests(i).save()
+        }
+
+        return retVals
+    }
 }
