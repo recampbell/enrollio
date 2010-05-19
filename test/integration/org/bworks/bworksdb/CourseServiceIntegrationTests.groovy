@@ -10,20 +10,20 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     
     void testFindInterestedContacts() {
         def (computerContact, computerStudent, computerCourse) = 
-           setupContactAndStudentWithCourse('ComputerContact', 'ComputerStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('ComputerContact', 'ComputerStudent', 'Computer Course')
 
         def (bikeContact, bikeStudent, bikeCourse) = 
-           setupContactAndStudentWithCourse('BikeContact', 'BikeStudent', 'Bike Course')
+           testDataService.setupContactAndStudentWithCourse('BikeContact', 'BikeStudent', 'Bike Course')
 
         // set up student interested in both bike and computer course
         def (bothContact, bothStudent) = 
-           setupContactAndStudentWithCourse('BothContact', 
+           testDataService.setupContactAndStudentWithCourse('BothContact', 
                                             'BothStudent', 
                                             'Bike Course', 'Computer Course')
 
         // set up student interested in some other course
         def (someContact, someStudent) = 
-           setupContactAndStudentWithCourse('SomeContact', 
+           testDataService.setupContactAndStudentWithCourse('SomeContact', 
                                             'SomeStudent', 
                                             'Some Course', 'Some Course')
 
@@ -44,20 +44,20 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     
     void testStarredStudentsFirst() {
         def (firstContact, firstStudent, computerCourse) = 
-           setupContactAndStudentWithCourse('FirstContact', 'FirstStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('FirstContact', 'FirstStudent', 'Computer Course')
 
         def (firstStarredContact, firstStarredStudent) = 
-           setupContactAndStudentWithCourse('FirstStarredContact', 'SecondStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('FirstStarredContact', 'SecondStudent', 'Computer Course')
 
         // set starred for this student
         firstStarredStudent.starred = true
         firstStarredStudent.save()
 
         def (thirdContact, thirdStudent) = 
-           setupContactAndStudentWithCourse('ThirdContact', 'ThirdStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('ThirdContact', 'ThirdStudent', 'Computer Course')
         
         def (secondStarredContact, secondStarredStudent) = 
-           setupContactAndStudentWithCourse('SecondStarredContact', 'FourthStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('SecondStarredContact', 'FourthStudent', 'Computer Course')
 
         secondStarredStudent.starred = true
         secondStarredStudent.save()
@@ -74,7 +74,7 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     // only active interests should be returned on call list
     void testActiveStudents() {
         def (inactiveContact, inactiveStudent, computerCourse) = 
-           setupContactAndStudentWithCourse('inactiveContact', 'inactiveStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('inactiveContact', 'inactiveStudent', 'Computer Course')
 
         inactiveStudent.interests.each {
             it.active = false
@@ -82,11 +82,11 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         }
 
         def (activeContact, activeStudent) = 
-           setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudent', 'Computer Course')
 
         def activeStudent_InactiveBrother
         (activeContact, activeStudent_InactiveBrother) = 
-           setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudentInactiveBrother', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('ActiveContact', 'ActiveStudentInactiveBrother', 'Computer Course')
 
         activeStudent_InactiveBrother.interests.each {
             it.active = false
@@ -94,10 +94,10 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         }
 
         def (anotherActiveContact, anotherActiveStudent) = 
-           setupContactAndStudentWithCourse('AnotherActiveContact', 'AnotherActiveStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('AnotherActiveContact', 'AnotherActiveStudent', 'Computer Course')
 
         def (anotherInactiveContact, anotherInactiveStudent) = 
-           setupContactAndStudentWithCourse('AnotherInactiveContact', 'AnotherInactiveStudent', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('AnotherInactiveContact', 'AnotherInactiveStudent', 'Computer Course')
 
         anotherInactiveStudent.interests.each {
             it.active = false
@@ -119,12 +119,12 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
     void testUniqueContacts() {
         def contact, student1, student2, student3, computerCourse
         (contact, student1, computerCourse) = 
-           setupContactAndStudentWithCourse('Contact', 'Student1', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('Contact', 'Student1', 'Computer Course')
 
         (contact, student2) =
-           setupContactAndStudentWithCourse('Contact', 'Student2', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('Contact', 'Student2', 'Computer Course')
         (contact, student3) =
-           setupContactAndStudentWithCourse('Contact', 'Student3', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('Contact', 'Student3', 'Computer Course')
 
         def contactList = courseService.callList(computerCourse.id)
         assertEquals 1, contactList.size()
@@ -138,24 +138,24 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
 
         // register stu5 today, should be last
         def (con5, stu5, computerCourse) = 
-           setupContactAndStudentWithCourse('con5', 'stu5', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('con5', 'stu5', 'Computer Course')
 
         // register stu4 yesterday
         def (con4, stu4) = 
-           setupContactAndStudentWithCourse('con4', 'stu4', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('con4', 'stu4', 'Computer Course')
 
         stu4.interests.each { it.signupDate = new Date() - 1 }
         stu4.save()
 
         // stu3 registered a year ago, but isn't starred, should be behind the starred students
         def (con3, stu3) = 
-           setupContactAndStudentWithCourse('con3', 'stu3', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('con3', 'stu3', 'Computer Course')
         stu3.interests.each { it.signupDate = new Date() - 365 }
         stu3.save()
 
         // stu1 registered last year, and is starred
         def (con1, stu1) = 
-           setupContactAndStudentWithCourse('con1', 'stu1', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('con1', 'stu1', 'Computer Course')
         stu1.starred = true
         stu1.interests.each { it.signupDate = new Date() - 365 }
         stu1.save()
@@ -163,7 +163,7 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
 
         // stu2 registered today, but is starred
         def (con2, stu2) = 
-           setupContactAndStudentWithCourse('con2', 'stu2', 'Computer Course')
+           testDataService.setupContactAndStudentWithCourse('con2', 'stu2', 'Computer Course')
         stu2.starred = true
         stu2.save()
 
@@ -178,43 +178,4 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         
     }
 
-    // utility method to simplify student/contact setup
-    // returns a list with contact, student
-    // You can specify > 1 courseName if you want to add interests to mult. courses.
-    // If contact/student with contactLastName, studentFirstName already exist, they are
-    // NOT re-created.
-    def setupContactAndStudentWithCourse(contactLastName, 
-                                         studentFirstName, 
-                                         String... courseNames) {
-        def retVals = []
-        def c = Contact.findByLastName(contactLastName)
-        if (!c) {
-            c = new Contact(lastName:contactLastName, firstName:'Fuzzball').save()
-        }
-
-        retVals.add(c)
-
-        def s = Student.findByLastNameAndFirstName(contactLastName, studentFirstName)
-        if (!s) {
-            s = new Student(firstName:studentFirstName, lastName:contactLastName)
-        } 
-
-        retVals.add(s)
-
-        c.addToStudents(s).save()
-
-        courseNames.each {
-            def course = Course.findByName(it)
-            if (! course) {
-                course = new Course(name:it, description:it).save()
-                retVals.add(course)
-            }
-
-            def i = new Interest(course:course, student:s, active:true)
-            s.addToInterests(i).save()
-            course.addToInterests(i).save()
-        }
-
-        return retVals
-    }
 }
