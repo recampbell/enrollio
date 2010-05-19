@@ -22,7 +22,7 @@ class ClassSessionController {
     }
 
     def welcomeLetters = {
-        def classSessionInstance = ClassSession.get(params.id)
+        def classSessionInstance = ClassSession.get(params.id.toLong())
         def contactInstanceList = classSessionInstance.enrollments.collect {
             it.student.contact
         }.unique()

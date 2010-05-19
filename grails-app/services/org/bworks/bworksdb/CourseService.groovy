@@ -24,10 +24,10 @@ class CourseService {
     // find non-starred students, sorted by interest date
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
-    def callList(id) {
+    def callList(long id) {
         def crit = Contact.createCriteria() 
         
-        crit.listDistinct {
+        def contacts = crit.listDistinct {
             students {
                 order 'starred', 'desc'
 
@@ -38,6 +38,8 @@ class CourseService {
                 }
             }
         }
+
+        contacts*.refresh()
         
    }
 

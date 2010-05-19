@@ -194,7 +194,7 @@ class CourseController {
             callListContacts = courseService.callListContacts(classSessionInstance)
         }
 
-        def contactInstanceList = courseService.callList(params.id)
+        def contactInstanceList = courseService.callList(params.id.toLong())
 
         [ contactInstanceList : contactInstanceList,
             courseInstance : courseInstance,
