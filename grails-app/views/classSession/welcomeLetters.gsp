@@ -67,9 +67,9 @@
                      <ul>
                          <g:each var="student"
                          in="${classSessionInstance.enrollments*.student}">
-                         <li>
-                         ${student}
-                         </li>
+                         <g:if test="${student.contact.id == contactInstance.id}">
+                             <li> ${student} </li>
+                         </g:if>
                          </g:each>
                      </ul>
                  </td>
