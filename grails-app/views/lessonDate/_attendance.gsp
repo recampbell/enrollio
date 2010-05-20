@@ -8,7 +8,7 @@
         });
     });
 </script>
-<h3 class="reallynow">Attendance: ${lessonDateInstance}</h3>
+<h3 class="reallynow">${lessonDateInstance}</h3>
 <table>
     <tbody>
         <g:each var="attendance" in="${lessonDateInstance.attendees}">
