@@ -33,8 +33,11 @@
                                     in="${classSessionInstance.lessonDates}">
                                         <tr>
                                             <td>
-                                                <g:link controller="lessonDate"
-                                                action="show" id="${lessonDate.id}">
+                                                <g:link controller="classSession"
+                                                action="attendance" 
+                                                id="${lessonDate.classSession.id}"
+                                                params="['lessonDateId':lessonDate.id]"
+                                                >
                                                 ${lessonDate.lesson.name}</g:link>
                                             </td>
                                             <td>
