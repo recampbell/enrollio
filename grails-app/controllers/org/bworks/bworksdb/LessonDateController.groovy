@@ -35,7 +35,9 @@ class LessonDateController {
             [ title : lessonDate.lesson.name.toString(),
              // give unix-timestamp (seconds since epoch), which Javascript likes
               start : lessonDate.lessonDate.getTime().intdiv(1000),
-              url   : createLink(action:'show', id:"${lessonDate.id}")
+              url   : createLink(action:'attendance', controller:'classSession', 
+                      id:lessonDate.classSession.id, 
+                      params: [ 'lessonDateId':lessonDate.id ])
             ]
         }
 
