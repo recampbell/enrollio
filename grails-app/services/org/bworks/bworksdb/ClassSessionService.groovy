@@ -144,24 +144,29 @@ class ClassSessionService {
     // then mark the enrollment as dropout.
     def disrollStudent(studentInstance, classSessionInstance) {
         def msgs = [:]
-        def enr = classSessionInstance.enrollments.find {
-            it.student == studentInstance
+        def crit = Attendance.createCriteria()
+        
+        def enrollment = classSessionInstance.enrollments.find {
+             it.student == studentInstance
         }
 
-        if (enr) {
-            def attendance = classSessionInstance.lessonDates*.attendees*.find { attendee ->
-                attendee.student == studentInstance && attendee.status == 'present'
-            }
-            
-            if (attendance) {
-                enr.status = EnrollmentStatus.DROPPED_OUT
-                enr.save()
-            }
-            else {
-                classSessionInstance.removeFromEnrollments(enr)
-                enr.delete(flush : true)
+        def attendances = crit.list() {
+            eq 'student.id', studentInstance.id
+            eq 'status', 'present'
+
+            lessonDate {
+                eq 'classSession.id', classSessionInstance.id
             }
 
+        }
+
+        if(attendances) {
+            enrollment.status = EnrollmentStatus.DROPPED_OUT
+            enrollment.save()
+        }
+        else {
+            classSessionInstance.removeFromEnrollments(enrollment)
+            enrollment.delete(flush : true)
         }
 
         msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()

@@ -414,4 +414,36 @@ class TestDataService {
 
         return retVals
     }
+
+    // utility method to set up a class session
+    // in a specified course
+    // a lesson is added, and a lesson date is added
+    def setupFullClassSession(course) {
+        def lesson = new Lesson(sequence:1, name:"Foo Lesson", course:course, description: "Foo lesson")
+        assert lesson.validate()
+        lesson.save()
+
+        course.addToLessons(lesson)
+        def classSession = new ClassSession(name:"Foo Session",
+                                      course:course,
+                                      startDate: new Date()).save()
+        course.addToClassSessions(classSession).save()
+        def nextLessonDates = 
+                courseService.nextAvailableLessonDates(course, classSession.startDate)
+        println "next lesson dates " + nextLessonDates
+
+        nextLessonDates.each { lessonDate ->
+            classSession.addToLessonDates(lessonDate)
+        }
+
+        if (!classSession.validate()) {
+            classSession.errors.allErrors.each {
+            println it
+            }
+        }
+        classSession.save()
+
+        return classSession
+
+    }
 }
