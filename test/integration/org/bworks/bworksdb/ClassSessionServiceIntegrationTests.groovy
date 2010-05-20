@@ -75,6 +75,32 @@ class ClassSessionServiceIntegrationTests extends GrailsUnitTestCase {
             it.student == student
         }
 
+    }
+
+    // Student who has had no attendances should have enrollment removed
+    // when we call disrollStudent method.
+    void testDisEnrollWithPresentAttendances() {
+        // create an interested student in 'computer course'
+        def (contact, student, course) = 
+            testDataService.setupContactAndStudentWithCourse('con', 'removeme', 'computer course')
+
+        def session = testDataService.setupFullClassSession(course)
+
+        classSessionService.enrollStudent(student, session)
+
+        def lessonDate = session.lessonDates.toArray()[0]
+        lessonDate.addToAttendees(student : student, status:'present').save()
+
+        // Student should still have a record of their enrollment
+        classSessionService.disrollStudent(student, session)
+
+        def enrollment = session.enrollments.find {
+            it.student == student
+        }
+
+        assertEquals 'Students who attended a class but didn\'t graduate should be marked as dropout', 
+            EnrollmentStatus.DROPPED_OUT,
+            enrollment.status
 
     }
 }
