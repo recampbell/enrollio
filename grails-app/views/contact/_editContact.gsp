@@ -83,14 +83,16 @@
                 </td>
             </tr>
 
-            <tr class="prop">
-                <td valign="top" class="name">
-                    <label for="emailAddress">Drop - Cannot Reach</label>
-                </td>
-                <td valign="top">
-                    <g:checkBox name="cannotReach" value="${contactInstance?.cannotReach}" ></g:checkBox>
-                </td>
-            </tr>
+            <g:if test="${showDrop == 'true'}">
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="cannotReach">Drop - Cannot Reach</label>
+                    </td>
+                    <td valign="top">
+                        <g:checkBox name="cannotReach" value="${contactInstance?.cannotReach}" ></g:checkBox>
+                    </td>
+                </tr>
+            </g:if>
         </tbody>
     </table>
 </div>
