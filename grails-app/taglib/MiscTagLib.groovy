@@ -97,7 +97,7 @@ class MiscTagLib {
      // If the mascotIcon has been configured, then return an IMG tag
      // with the icon in it, as well as any attributes that are provided
      def mascotIcon = { attrs ->
-         def iconFile = configSettingService.getSetting('mascotIcon')
+         def iconFile = configSettingService.getSetting(ConfigSetting.MASCOT_ICON)
          
          if (iconFile) {
              def attribs = ""

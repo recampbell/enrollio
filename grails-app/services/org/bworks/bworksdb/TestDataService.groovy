@@ -172,13 +172,43 @@ class TestDataService {
 
     def loadDefaultConfigSettings() {
 
-        if (! ConfigSetting.findByConfigKeyAndIsDefault('mascotIcon', true)) {
+        def defaultSettings = [
+            [ 'name'   : ConfigSetting.DEFAULT_STATE,
+              'value'  : 'MO',
+              'desc'   : 'What it says'],
 
-            def s0 = new ConfigSetting(configKey:'mascotIcon',
-                                       // value:servletContext.getRealPath("/images/mascot.png"),
-                                       value:config.grails.serverURL + '/images/mascot.png',
-                                       isDefault: true,
-                                       description:'Enrollio Mascot Icon Used on every page').save()
+            [ 'name'   : ConfigSetting.DEFAULT_CITY,
+              'value'  : 'St. Louis',
+              'desc'   : 'What it says'],
+
+            [ 'name'   : ConfigSetting.DEFAULT_AREA_CODE,
+              'value'  : '314',
+              'desc'   : 'What it says'],
+
+            [ 'name'   : ConfigSetting.MASCOT_ICON,
+              'value'  : config.grails.serverURL + '/images/mascot.png',
+              'desc'   : 'Enrollio Mascot Icon Used on every page'
+            ]
+        ]
+
+        defaultSettings.each { setting ->
+            // if this setting hasn't been defined, load it.
+            if (! ConfigSetting.findByConfigKeyAndIsDefault(setting['name'], true)) {
+
+                def cs = new ConfigSetting(
+                                  configKey:setting['name'],
+                                  value : setting['value'],
+                                  description : setting['desc'],
+                                  isDefault : true)
+                if (!cs.validate()) {
+                    cs.errors.allErrors.each {
+                        log.error("Error initializing settings: " + it)
+                    }
+                }
+                else {
+                    cs.save()
+                }
+            }
         }
     }
 
