@@ -83,7 +83,7 @@
                 </td>
             </tr>
 
-            <g:if test="${showDrop == 'true'}">
+            <g:if test="${showDrop}">
                 <tr class="prop">
                     <td valign="top" class="name">
                         <label for="cannotReach">Drop - Cannot Reach</label>

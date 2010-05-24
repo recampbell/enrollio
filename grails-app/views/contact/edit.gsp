@@ -18,7 +18,8 @@
                     </div>
                     </g:hasErrors>
                     <g:form action="update" name="editContactForm" method="post" >
-                    <g:render template="editContact" model="[contactInstance:contactInstance]"
+                    <g:render template="editContact" 
+                    model="[contactInstance:contactInstance, showDrop:true]"
                     showDrop="true"/>
                     <div class="buttons">
                         <g:actionSubmit class="save" value="Update" />
