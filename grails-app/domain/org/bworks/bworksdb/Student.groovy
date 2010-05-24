@@ -14,7 +14,7 @@ class Student implements Commentable {
     String emailAddress
     Contact contact
     static belongsTo = [Contact]
-    static hasMany = [ interests:Interest, enrollments:Enrollment ]
+    static hasMany = [ interests:Interest, enrollments:Enrollment, userSettings : UserSetting ]
     Date dateCreated
     Date lastUpdated
     Boolean starred = false
