@@ -3,6 +3,7 @@ package org.bworks.bworksdb
 class ContactController {
     
     def studentService
+    def configSettingService
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -99,8 +100,12 @@ class ContactController {
         // Create two new phone numbers
         contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Home'))
         contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Work'))
+        contactInstance.city = configSettingService.getSetting(ConfigSetting.DEFAULT_CITY)
+        contactInstance.state = configSettingService.getSetting(ConfigSetting.DEFAULT_STATE)
         contactInstance.properties = params
-        return ['contactInstance':contactInstance]
+        def defaultAreaCode = configSettingService.getSetting(ConfigSetting.DEFAULT_AREA_CODE)?.toString()
+        return ['contactInstance':contactInstance,
+                 defaultAreaCode : defaultAreaCode]
     }
 
 
