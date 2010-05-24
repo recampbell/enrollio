@@ -1,4 +1,3 @@
-
 <%@ page import="org.bworks.bworksdb.Contact" %>
 <html>
     <head>
@@ -6,8 +5,15 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />    
         <title>Create Contact</title>         
+        <g:javascript src="jquery-1.4.2.min.js" />
+        <g:javascript src="jquery.maskedinput-1.2.2.min.js" />
     </head>
     <body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".phoneNumber").mask("(999) 999-9999")
+            });
+        </script>
         <div id="wrapper">
         <div id="content">
             <div class="rightnow">

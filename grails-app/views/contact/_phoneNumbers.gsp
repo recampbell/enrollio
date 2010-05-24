@@ -13,7 +13,7 @@
                     </td>
                     <td>
                             <g:hiddenField name='phoneNumbers[${i}].id' value='${phoneNumber.id}'/>
-                            <g:textField name='phoneNumbers[${i}].phoneNumber' value='${phoneNumber.phoneNumber}'/>
+                            <g:textField class="phoneNumber" name='phoneNumbers[${i}].phoneNumber' value='${phoneNumber.phoneNumber}'/>
                     </td>
             </tr>
     </g:each>
