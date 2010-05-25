@@ -22,7 +22,8 @@
                                 var="userSetting">
                                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                         <td>
-                                            <g:link action="edit" id="${userSetting.configKey}">
+                                            <g:link action="edit" 
+                                            params="[ 'configKey': userSetting.configKey]">
                                             ${userSetting.configKey}</g:link>
                                         </td>
                                         <td>

@@ -23,13 +23,20 @@
                 <g:renderErrors bean="${userSettingInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
-                <g:hiddenField name="id" value="${userSettingInstance?.id}" />
-                <g:hiddenField name="version" value="${userSettingInstance?.version}" />
+            <g:form action="update" method="post" >
                 <div class="dialog">
                     <table>
                         <tbody>
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="configKey"><g:message code="userSetting.configKey.label" default="Config Key" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: userSettingInstance, field: 'configKey', 'errors')}">
+                                    <label name="configKey">${userSettingInstance?.configKey}</label>
+                                    <g:hiddenField name="configKey" value="${userSettingInstance?.configKey}" />
+                                </td>
+                            </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="value"><g:message code="userSetting.value.label" default="Value" /></label>
@@ -39,23 +46,6 @@
                                 </td>
                             </tr>
                         
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="useSystemDefault"><g:message code="userSetting.useSystemDefault.label" default="Use System Default" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userSettingInstance, field: 'useSystemDefault', 'errors')}">
-                                    <g:checkBox name="useSystemDefault" value="${userSettingInstance?.useSystemDefault}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="configKey"><g:message code="userSetting.configKey.label" default="Config Key" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: userSettingInstance, field: 'configKey', 'errors')}">
-                                    <g:textField name="configKey" value="${userSettingInstance?.configKey}" />
-                                </td>
-                            </tr>
                         
                         </tbody>
                     </table>

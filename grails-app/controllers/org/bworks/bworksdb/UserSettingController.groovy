@@ -5,6 +5,7 @@ class UserSettingController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def configSettingService
+    def userService
 
     def index = {
         redirect(action: "list", params: params)
@@ -23,17 +24,6 @@ class UserSettingController {
         return [userSettingInstance: userSettingInstance]
     }
 
-    def save = {
-        def userSettingInstance = new UserSetting(params)
-        if (userSettingInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), userSettingInstance.id])}"
-            redirect(action: "show", id: userSettingInstance.id)
-        }
-        else {
-            render(view: "create", model: [userSettingInstance: userSettingInstance])
-        }
-    }
-
     def show = {
         def userSettingInstance = UserSetting.get(params.id)
         if (!userSettingInstance) {
@@ -46,7 +36,7 @@ class UserSettingController {
     }
 
     def edit = {
-        def userSettingInstance = UserSetting.get(params.id)
+        def userSettingInstance = configSettingService.getSetting(params.configKey)
         if (!userSettingInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), params.id])}"
             redirect(action: "list")
@@ -57,30 +47,10 @@ class UserSettingController {
     }
 
     def update = {
-        def userSettingInstance = UserSetting.get(params.id)
-        if (userSettingInstance) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (userSettingInstance.version > version) {
-                    
-                    userSettingInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'userSetting.label', default: 'UserSetting')] as Object[], "Another user has updated this UserSetting while you were editing")
-                    render(view: "edit", model: [userSettingInstance: userSettingInstance])
-                    return
-                }
-            }
-            userSettingInstance.properties = params
-            if (!userSettingInstance.hasErrors() && userSettingInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), userSettingInstance.id])}"
-                redirect(action: "show", id: userSettingInstance.id)
-            }
-            else {
-                render(view: "edit", model: [userSettingInstance: userSettingInstance])
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), params.id])}"
-            redirect(action: "list")
-        }
+        def userSettingInstance = 
+            configSettingService.setUserSetting(params.configKey.toString(), params.value)
+        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), userSettingInstance.id])}"
+        redirect(contoller:'userSetting', action: "list")
     }
 
     def delete = {
