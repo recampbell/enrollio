@@ -68,5 +68,23 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
         }?.toString()
     }
 
+    void testRemoveUserSetting() {
 
+        configSettingService.setSetting(ConfigSetting.DEFAULT_AREA_CODE, '314')
+
+        // pretend like 'bob' is logged in, and wants 777 to be def. area code
+        userService.metaClass.loggedInUser = {
+            return ShiroUser.findByUsername('bob')
+        }
+        configSettingService.setUserSetting(ConfigSetting.DEFAULT_AREA_CODE, '777')
+
+        def defAreaCode = configSettingService.getSetting(ConfigSetting.DEFAULT_AREA_CODE)
+        assertEquals '777', defAreaCode.value
+
+        // bob wants to use the system setting now.
+        configSettingService.useSystemSetting(ConfigSetting.DEFAULT_AREA_CODE)
+        defAreaCode = configSettingService.getSetting(ConfigSetting.DEFAULT_AREA_CODE)
+        assertEquals '314', defAreaCode.value
+
+    }
 }

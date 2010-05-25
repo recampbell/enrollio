@@ -99,4 +99,18 @@ class ConfigSettingService {
     def systemSettingsList() {
     }
 
+    // Use the system-wide configuration setting for configKey
+    def useSystemSetting(configKey) {
+        def curUser = userService.loggedInUser()
+        if (curUser) {
+            def setting = curUser.userSettings.find { it.configKey == configKey }
+            if (setting) {
+                curUser.removeFromUserSettings(setting)
+                setting.delete()
+                curUser.save()
+            }
+        }
+
+    }
+
 }
