@@ -56,13 +56,12 @@ class ConfigSettingService {
         }
         if (setting) {
             setting.value = value
-            setting.save()
-            
+            setting.save(flush:true)
         }
         else {
             // create a new UserSetting
-            setting = curUser.addToUserSettings(
-                new UserSetting(configKey:key, value:value).save());
+            setting = new UserSetting(configKey:key, value:value).save(flush:true)
+            curUser.addToUserSettings(setting);
         }
         curUser.save(flush:true)
 
