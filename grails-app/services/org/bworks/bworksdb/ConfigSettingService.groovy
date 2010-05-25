@@ -64,11 +64,40 @@ class ConfigSettingService {
         else {
             // create a new UserSetting
             setting = curUser.addToUserSettings(
-                new UserSetting(configKey:key, value:value));
+                new UserSetting(configKey:key, value:value).save());
         }
         curUser.save(flush:true)
 
         return setting
+    }
+
+    def userSettingsList() {
+        def userSettings = [:]
+
+        def crit = ConfigSetting.createCriteria()
+        def results = crit.list() {
+            projections {
+                distinct('configKey')
+            }
+        }
+
+        crit = UserSetting.createCriteria()
+        crit.list() {
+            projections {
+                distinct('configKey')
+            }
+        }.each {
+            results.add it
+        }
+
+        results.unique().each { configKey ->
+            userSettings[configKey] = getSetting(configKey).toString()
+        }
+
+        return userSettings
+    }
+
+    def systemSettingsList() {
     }
 
 }

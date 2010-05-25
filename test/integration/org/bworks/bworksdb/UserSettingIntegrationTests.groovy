@@ -41,4 +41,18 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testUserSettingList() {
+        configSettingService.setSetting(ConfigSetting.DEFAULT_STATE, 'MO')
+        // pretend like 'bob' is logged in
+        userService.metaClass.loggedInUser = {
+            return ShiroUser.findByUsername('bob')
+        }
+        configSettingService.setUserSetting(ConfigSetting.DEFAULT_AREA_CODE, '777')
+
+        def userSettings = configSettingService.userSettingsList()
+        assertEquals '777', userSettings[ConfigSetting.DEFAULT_AREA_CODE]
+        assertEquals 'MO', userSettings[ConfigSetting.DEFAULT_STATE]
+    }
+
+
 }
