@@ -39,6 +39,9 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
         configSettingService.setUserSetting(ConfigSetting.DEFAULT_STATE, 'WA')
         assertEquals 'WA', configSettingService.getSetting(ConfigSetting.DEFAULT_STATE).toString()
 
+        configSettingService.setUserSetting(ConfigSetting.DEFAULT_STATE, 'dork')
+        assertEquals 'dork', configSettingService.getSetting(ConfigSetting.DEFAULT_STATE).toString()
+
     }
 
     void testUserSettingList() {
@@ -55,6 +58,13 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
         }?.toString()
         assertEquals 'MO', userSettings.find {
             it.configKey == ConfigSetting.DEFAULT_STATE
+        }?.toString()
+
+
+        configSettingService.setUserSetting(ConfigSetting.DEFAULT_AREA_CODE, 'donk')
+        userSettings = configSettingService.userSettingsList()
+        assertEquals 'donk', userSettings.find {
+            it.configKey == ConfigSetting.DEFAULT_AREA_CODE
         }?.toString()
     }
 
