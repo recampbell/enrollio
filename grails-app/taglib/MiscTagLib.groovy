@@ -24,11 +24,10 @@ class MiscTagLib {
         // Whether to check the default course
         def checkDefaultProg = attrs['checkDefaultProg']
         if (checkDefaultProg) {
-            defaultProgId = configSettingService.getSetting('defaultInterestCourse')
+            defaultProgId = configSettingService.getSetting(ConfigSetting.DEFAULT_COURSE)
             if (defaultProgId) defaultProgId = defaultProgId.value;
         }
         def courses = Course.findAll()
-        // def defaultCourse = configSettingService.getSetting('defaultInterestCourse')
         out << '<ul class="prop">'
         courses.each { course ->
             out << '<li>'

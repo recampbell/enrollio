@@ -19,5 +19,6 @@ class ConfigSetting {
     static public final String DEFAULT_AREA_CODE = 'DEFAULT_AREA_CODE'
     static public final String DEFAULT_CITY = 'DEFAULT_CITY'
     static public final String DEFAULT_STATE = 'DEFAULT_STATE'
+    static public final String DEFAULT_COURSE = 'DEFAULT_COURSE'
     static public final String MASCOT_ICON = 'MASCOT_ICON'
 }

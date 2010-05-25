@@ -239,7 +239,7 @@ class TestDataService {
         
         new Course(description:"Byteworks Mentorship Course", name:TestKeys.PROGRAM_MENTORSHIP).save()
  
-        def s0 = new ConfigSetting(configKey:'defaultInterestCourse',
+        def s0 = new ConfigSetting(configKey:ConfigSetting.DEFAULT_COURSE,
                                    value:1,
                                    isDefault: true,
                                    description:'When entering Students, this course will be the default course they\'re interested in').save()
