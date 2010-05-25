@@ -20,6 +20,16 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
         assertUrlMapping("/thanks", controller:'help', action:'thanks')
     }
 
+    void testUserSettingMappings() {
+        assertUrlMapping("/saveUserSetting", 
+                         controller:'userSetting', action:'save') 
+        assertUrlMapping("/userSettings", 
+                         controller:'userSetting', action:'list') 
+        assertUrlMapping("/editUserSetting/DEFAULT_STATE", 
+                         controller:'userSetting', action:'edit') {
+            configKey = 'DEFAULT_STATE'
+        }
+    }
     void testUserMappings() {
         assertUrlMapping("/showUser/bob", 
                          controller:'shiroUser', action:'show') {

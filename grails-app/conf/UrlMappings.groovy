@@ -42,6 +42,11 @@ class UrlMappings {
         "/loadDataFromFile"(controller:'configSetting', action:'loadDataFromFile')
         "/loadDataRequest"(controller:'configSetting', action:'loadDataRequest')
 
+		// userSetting controller
+        '/userSettings'(controller: 'userSetting', action: 'list')
+        "/editUserSetting/$configKey"(controller: 'userSetting', action: 'edit')
+        "/saveUserSetting"(controller: 'userSetting', action: 'save')
+
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
 		'/contacts'(controller: 'contact', action: 'list')
