@@ -12,8 +12,14 @@ class ConfigSettingServiceTests extends GrailsUnitTestCase {
     }
 
     def configSettingService
+    def userService
 
-    void testSomething() {
+    void testBasicConfigSetting() {
+
+        // pretend like nobody is logged in
+        userService.metaClass.loggedInUser = {
+            null
+        }
 
         def defaultSetting = new ConfigSetting(configKey:'foo', value:'Default', isDefault:true)
         assert defaultSetting.validate()

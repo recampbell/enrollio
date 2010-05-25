@@ -10,12 +10,14 @@ class ConfigSettingService {
         def curUser = userService.loggedInUser()
         def setting
         if (curUser) {
+            println "user logged in: " + curUser.username
             setting = curUser.userSettings.find {
                 it.configKey == key
             }
             if (setting) { return setting }
         }
 
+        println "user NOT logged in: "
         setting = ConfigSetting.findByConfigKeyAndIsDefault(key, false)
         if (!setting) {
             setting = ConfigSetting.findByConfigKeyAndIsDefault(key, true)
@@ -64,7 +66,7 @@ class ConfigSettingService {
             setting = curUser.addToUserSettings(
                 new UserSetting(configKey:key, value:value));
         }
-        curUser.save()
+        curUser.save(flush:true)
 
         return setting
     }
