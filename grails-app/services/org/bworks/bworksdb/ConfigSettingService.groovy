@@ -69,8 +69,10 @@ class ConfigSettingService {
         return setting
     }
 
+    // returns a list of settings. Each setting is either specifically user-defined, or
+    // defined by the system-wide setting.  User settings get precedence
     def userSettingsList() {
-        def userSettings = [:]
+        def userSettings = []
 
         def crit = ConfigSetting.createCriteria()
         def results = crit.list() {
@@ -89,7 +91,7 @@ class ConfigSettingService {
         }
 
         results.unique().each { configKey ->
-            userSettings[configKey] = getSetting(configKey).toString()
+            userSettings.add getSetting(configKey)
         }
 
         return userSettings

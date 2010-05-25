@@ -50,8 +50,12 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
         configSettingService.setUserSetting(ConfigSetting.DEFAULT_AREA_CODE, '777')
 
         def userSettings = configSettingService.userSettingsList()
-        assertEquals '777', userSettings[ConfigSetting.DEFAULT_AREA_CODE]
-        assertEquals 'MO', userSettings[ConfigSetting.DEFAULT_STATE]
+        assertEquals '777', userSettings.find {
+            it.configKey == ConfigSetting.DEFAULT_AREA_CODE
+        }?.toString()
+        assertEquals 'MO', userSettings.find {
+            it.configKey == ConfigSetting.DEFAULT_STATE
+        }?.toString()
     }
 
 
