@@ -4,8 +4,19 @@ class ConfigSettingService {
 
     boolean transactional = true
 
+    def userService
+
     def getSetting(key) {
-        def setting = ConfigSetting.findByConfigKeyAndIsDefault(key, false)
+        def curUser = userService.loggedInUser()
+        def setting
+        if (curUser) {
+            setting = curUser.userSettings.find {
+                it.configKey == key
+            }
+            if (setting) { return setting }
+        }
+
+        setting = ConfigSetting.findByConfigKeyAndIsDefault(key, false)
         if (!setting) {
             setting = ConfigSetting.findByConfigKeyAndIsDefault(key, true)
         }
@@ -26,7 +37,7 @@ class ConfigSettingService {
         if (!setting.validate()) {
             return null
         }
-        setting.save
+        setting.save()
         return setting
     }
 
