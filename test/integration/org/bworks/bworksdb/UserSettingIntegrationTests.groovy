@@ -27,8 +27,6 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
             return ShiroUser.findByUsername('bob')
         }
 
-        userService = new UserService()
-
         assertEquals 'MO', configSettingService.getSetting(ConfigSetting.DEFAULT_STATE).toString()
 
         def user = ShiroUser.findByUsername('bob')
