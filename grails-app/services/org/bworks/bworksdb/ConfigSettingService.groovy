@@ -41,4 +41,32 @@ class ConfigSettingService {
         return setting
     }
 
+    // create new UserSetting, unless useSystemSetting is true.
+    // zap User Setting if useSystemSetting = true
+    def setUserSetting(key, value) {
+        def curUser = userService.loggedInUser()
+        def setting
+        if (curUser) {
+            setting = curUser.userSettings.find {
+                it.configKey == key
+            }
+        } else {
+            // TODO Throw error
+            return null
+        }
+        if (setting) {
+            setting.value = value
+            setting.save()
+            
+        }
+        else {
+            // create a new UserSetting
+            setting = curUser.addToUserSettings(
+                new UserSetting(configKey:key, value:value));
+        }
+        curUser.save()
+
+        return setting
+    }
+
 }
