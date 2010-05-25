@@ -30,6 +30,14 @@ class ContactController {
         def newStudentInstance = new Student(lastName:contactInstance.lastName,
                                           contact:contactInstance)
 
+        // create interest in default prog.
+        def defCourse = configSettingService.getSetting(ConfigSetting.DEFAULT_COURSE)
+        if (defCourse) {
+            def interest = new Interest(student:newStudentInstance,
+                                        course:Course.get(defCourse.value.toLong()))
+            newStudentInstance.addToInterests(interest)
+        }
+
         if(!contactInstance) {
             flash.message = "Contact not found with id ${params.id}"
             redirect(action:list)

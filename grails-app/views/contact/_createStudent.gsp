@@ -39,11 +39,7 @@
                        value="${new Date().format('MM/dd/yyyy')}" />
             </td>
             <td>
-                <select name="interestInCourse" class="multiselect" multiple="multiple">
-                    <g:each var="course" in="${Course.list()}">
-                    <option value="${course.id}">${course.name}</option>
-                    </g:each>
-                </select>
+                <enrollio:courseDropDown studentInstance="${studentInstance}"/>
             </td>
             <td>
                 <g:submitButton style="float:right" class="save" name="saveButton" value="Save" />

@@ -91,5 +91,21 @@ class EnrollioTagLib {
         }
 
     }
+
+    def courseDropDown = { attrs ->
+        def studentInstance = attrs['studentInstance']
+
+        out << '<select name="interestInCourse" class="multiselect" multiple="multiple">'
+        Course.list().each { course ->
+            if(studentInstance?.interests.find { it.course.id == course.id }) {
+               out << "<option selected=\"selected\" value=\"${course.id}\">${course.name}</option>"
+            }
+            else {
+               out << "<option value=\"${course.id}\">${course.name}</option>"
+            }
+        }
+        out << "</select>"
+    }
+
 }
 
