@@ -4,13 +4,17 @@ class UserSettingController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def configSettingService
+
     def index = {
         redirect(action: "list", params: params)
     }
 
     def list = {
+        def settingsList = configSettingService.userSettingsList()
+        
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [userSettingInstanceList: UserSetting.list(params), userSettingInstanceTotal: UserSetting.count()]
+        [ userSettingInstanceList: settingsList, userSettingInstanceTotal:settingsList.size() ] 
     }
 
     def create = {
