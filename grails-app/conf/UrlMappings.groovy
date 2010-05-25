@@ -44,8 +44,8 @@ class UrlMappings {
 
 		// userSetting controller
         '/userSettings'(controller: 'userSetting', action: 'list')
-        "/editUserSetting/$configKey"(controller: 'userSetting', action: 'edit')
-        "/saveUserSetting"(controller: 'userSetting', action: 'save')
+        "/editUserSetting"(controller: 'userSetting', action: 'edit')
+        "/updateUserSetting"(controller: 'userSetting', action: 'update')
 
 		// contact controller
 		'/contact'(controller: 'contact', action: 'index')
