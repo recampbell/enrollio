@@ -54,21 +54,10 @@ class UserSettingController {
     }
 
     def delete = {
-        def userSettingInstance = UserSetting.get(params.id)
-        if (userSettingInstance) {
-            try {
-                userSettingInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), params.id])}"
-                redirect(action: "list")
-            }
-            catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), params.id])}"
-                redirect(action: "show", id: params.id)
-            }
+        if (params.configKey) {
+            configSettingService.useSystemSetting(params.configKey)
         }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'userSetting.label', default: 'UserSetting'), params.id])}"
-            redirect(action: "list")
-        }
+        flash.message = "Now using system default for ${params.configKey}"
+        redirect(action: "list")
     }
 }
