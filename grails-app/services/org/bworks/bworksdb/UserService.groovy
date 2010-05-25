@@ -6,7 +6,11 @@ import org.apache.shiro.SecurityUtils
 class UserService {
 
     ShiroUser loggedInUser() {
-        return ShiroUser.findByUsername(SecurityUtils.subject.getPrincipal())
+        def principal = SecurityUtils.subject.getPrincipal()
+        if (principal) {
+            return ShiroUser.findByUsername(principal)
+        }
+        return null
     }
 
 }
