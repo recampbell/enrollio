@@ -10,4 +10,12 @@
             </li>
         </ul>
     </li>
+    <shiro:isLoggedIn>
+    <li>
+        <h3>
+            <g:link class="app_form" controller="userSetting" 
+                   action="list">User Settings</g:link>
+        </h3>
+    </li>
+    </shiro:isLoggedIn>
 </ul>
