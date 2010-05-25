@@ -9,7 +9,7 @@ class UserSetting {
     // save their settings for later use/toggling later
     Boolean useSystemDefault = false
 
-    static belongsTo = Student
+    static belongsTo = ShiroUser
     static constraints = {
         value(blank:true)
         useSystemDefault(nullable:true)

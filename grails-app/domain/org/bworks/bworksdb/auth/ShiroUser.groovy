@@ -1,4 +1,5 @@
 package org.bworks.bworksdb.auth
+import org.bworks.bworksdb.UserSetting
 
 class ShiroUser {
     String username
@@ -9,7 +10,7 @@ class ShiroUser {
     String password
 
     static transients = ['passwordConfirm', 'password']
-
+    static hasMany = [ userSettings : UserSetting ]
     static constraints = {
         username(nullable: false, blank: false)
         firstName(nullable:false, blank:false)
