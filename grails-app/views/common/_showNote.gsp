@@ -1,4 +1,4 @@
-<tr>
+<tr noteDiv="${noteInstance.id}">
     <td noteId="${noteInstance.id}">
         ${noteInstance.body}
     </td>

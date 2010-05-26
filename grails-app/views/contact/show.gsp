@@ -50,8 +50,16 @@
 
                   $(".saveNote").click(function() {
                       var noteId = $( this ).attr( 'saveNoteId' );
+                      var noteElement=$( "[noteTextId=" + noteId + "]");
+                      var noteText = noteElement.val().trim();
                       toggleNoteLinks(noteId);
 
+                      $.ajax({
+                          url:'${createLink(controller:"contact", action:"updateNote")}',
+                          data:  { 'noteText' : noteText, 'id' : noteId },
+                          success: function(msg) {
+                              $("[noteDiv=" + noteId + "]").replaceWith(msg)
+                          }});
                       // Don't actually trigger the href
                       return false;
                   });

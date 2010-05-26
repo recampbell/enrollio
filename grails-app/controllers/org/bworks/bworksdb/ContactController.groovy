@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import org.grails.comments.Comment
 
 class ContactController {
     
@@ -218,5 +219,17 @@ class ContactController {
         
         }
         redirect(action:'show', id:contactInstance.id)
+    }
+
+    def updateNote = {
+        def noteInstance = Comment.get( params.id )
+        if (!noteInstance) {
+            render "Note not found with id: " + params.id
+        }
+        else {
+            noteInstance.body = params.noteText
+            noteInstance.save()
+            render(template:"/common/showNote", model:[noteInstance:noteInstance]);
+        }
     }
 }
