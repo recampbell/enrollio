@@ -102,7 +102,8 @@
                         <table>
                             <tbody>
                                 <comments:each bean="${contactInstance}">
-                                    <g:render template="/common/showNote">
+                                    <g:render template="/common/showNote"
+                                              model="[ noteInstance : comment ]"/>
                                 </comments:each>
                                 <tr>
                                     <td>
