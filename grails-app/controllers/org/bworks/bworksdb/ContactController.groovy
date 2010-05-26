@@ -3,6 +3,7 @@ package org.bworks.bworksdb
 class ContactController {
     
     def studentService
+    def userService
     def configSettingService
     def index = { redirect(action:list,params:params) }
 
@@ -133,6 +134,10 @@ class ContactController {
     def save = {
         def contactInstance = new Contact(params)
         if(!contactInstance.hasErrors() && contactInstance.save()) {
+            if (params.noteText) {
+                contactInstance.addComment(userService.loggedInUser(), params.noteText)
+                contactInstance.save()
+            }
             flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
             redirect(action:show,id:contactInstance.id)
         }
