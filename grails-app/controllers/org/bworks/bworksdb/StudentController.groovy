@@ -6,6 +6,7 @@ class StudentController {
     def index = { redirect(action:list,params:params) }
 
     def studentService
+    def contactService
     def searchableService
 
     static navigation = [
@@ -51,16 +52,16 @@ class StudentController {
         def studentInstance = Student.get( params.id )
         def contactInstance = studentInstance.contact
 
-        def newStudentInstance = new Student(lastName:contactInstance.lastName,
-                                              contact:contactInstance)
-
+        def newStudentInstance = contactService.createStudentStub(contactInstance)
         if(!studentInstance) {
             flash.message = "Student not found with id ${params.id}"
             redirect(action:list)
         }
         else { 
             render (view:'/contact/show',
-                    model : [ studentInstance : studentInstance, contactInstance : contactInstance ] )
+                    model : [ studentInstance : studentInstance, 
+                              contactInstance : contactInstance,
+                              newStudentInstance : newStudentInstance] )
         }
 
     }
