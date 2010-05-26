@@ -109,7 +109,7 @@ class EnrollioTagLib {
 
     def phoneNumberInput = { attrs ->
         def phoneNumberList = attrs['phoneNumberList']
-        def phoneLabels = [ 'Home', 'Office', 'Mobile', 'Other' ]
+        def phoneLabels = [ 'Home', 'Work', 'Mobile', 'Other' ]
         out << "<table>"
         phoneNumberList.eachWithIndex { phoneNumber, i ->
             out << "<tr>"
