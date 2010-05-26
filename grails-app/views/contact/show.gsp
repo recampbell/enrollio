@@ -102,17 +102,11 @@
         <div id="foo">
         </div>
             <div id="content">
-                <div class="infowrap">
                     <div class="infobox">
-                        <g:each var="stu" in="${contactInstance.students}">
-                            <g:render template="/student/studentQuickView" model="[studentInstance:stu]" />
-                        </g:each>
-                    </div>
-                    <div class="infobox margin-left">
                         <g:if test="${flash.message}">
                         <div class="message">${flash.message}</div>
                         </g:if>
-                        <h3 class="reallynow">Contact Info:</h3>
+                        <h3 class="reallynow">Contact Info</h3>
                         <table>
                             <tbody>
                                 <g:if test="${contactInstance.cannotReach}">
@@ -169,6 +163,18 @@
                             </tbody>
                         </table></g:form>
                     </div>
+                    </div>
+                <div class="infowrap">
+                    <div class="infobox margin-left">
+                        <g:if test="${contactInstance.students}">
+                            <g:each var="stu" in="${contactInstance.students}">
+                                <g:render template="/student/studentQuickView" model="[studentInstance:stu]" />
+                            </g:each>
+                        </g:if>
+                        <g:else>
+                            <h3>Students</h3>
+                            <p>No students</p>
+                        </g:else>
                     </div>
                 </div>
             </div>
