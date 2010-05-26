@@ -11,6 +11,8 @@
 	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
         <script type="text/javascript">
              $(document).ready(function(){
+                  
+
                   // Show date picker for the "Signup Date" that shown on the
                   // new student form.  (It's rendered in the createStudent.gsp template below)
                      $('#signupDate').datepicker({changeYear:true});
@@ -35,15 +37,43 @@
                       var noteElement=$( "[noteId=" + noteId + "]");
                       var noteText = noteElement.text().trim();
                       
-                      noteElement.empty().html(
+                      noteElement.html(
                           '<input noteTextId="' + noteId + '" ' +
                           'value="' + noteText + '" />'
                       );
+                      toggleNoteLinks(noteId);
+                      
                       // Don't actually trigger the href
                       return false;
                       
-                      
                   });
+
+                  $(".saveNote").click(function() {
+                      var noteId = $( this ).attr( 'saveNoteId' );
+                      toggleNoteLinks(noteId);
+
+                      // Don't actually trigger the href
+                      return false;
+                  });
+
+                  $(".cancelNote").click(function() {
+                      var noteId = $( this ).attr( 'cancelNoteId' );
+                      var noteText = $( "[origNoteText=" + noteId + "]").val().trim();
+                      
+                      $( "[noteId=" + noteId + "]").text(noteText);
+
+                      toggleNoteLinks(noteId);
+
+                      // Don't actually trigger the href
+                      return false;
+                  });
+
+                  function toggleNoteLinks(noteId) {
+                      $("[editNoteId=" + noteId + "]").toggle();
+                      $("[cancelNoteId=" + noteId + "]").toggle();
+                      $("[saveNoteId=" + noteId + "]").toggle();
+                  }
+
             });
             function updateInterests() {
                 // Collect the labels of each of the selected Interests
