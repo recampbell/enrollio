@@ -102,17 +102,10 @@
                         <table>
                             <tbody>
                                 <comments:each bean="${contactInstance}">
-                                <tr><td>
-                                        ${comment.body}
-                                    </td>
-                                    <td>
-                                    Posted by ${comment.poster} on
-                                        <enrollio:formatDate date="${comment.dateCreated}" />
-                                        <g:link controller="contact" action="editNote" id="${comment.id}">Edit</g:link>
-                                    </td>
-                                 </tr>
+                                    <g:render template="/common/showNote">
                                 </comments:each>
-                              <tr>  <td>
+                                <tr>
+                                    <td>
                                     <g:textField name="noteText" />
                                 </td>
                                 <td>
