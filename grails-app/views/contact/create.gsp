@@ -34,14 +34,15 @@
                     </div>
                     <div class="infobox margin-left">
                             <h3 class="reallynow">Phone Numbers</h3>
-                    <g:render template="phoneNumbers" bean="${contactInstance}"/>                         
+                            <enrollio:phoneNumberInput 
+                            phoneNumberList="${contactInstance.phoneNumbers}" />
                     </div>
-        </g:form>
+                    <g:actionSubmit value="Create Contact" action="save" />
+                </g:form>
                 </div>
-            </div>
+        </div>
             <div id="sidebar">
                 <g:render template="/student/studentMenu" />
             </div>
-        </div>
     </body>
 </html>

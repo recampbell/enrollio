@@ -107,5 +107,25 @@ class EnrollioTagLib {
         out << "</select>"
     }
 
+    def phoneNumberInput = { attrs ->
+        def phoneNumberList = attrs['phoneNumberList']
+        def phoneLabels = [ 'Home', 'Office', 'Mobile', 'Other' ]
+        out << "<table>"
+        phoneNumberList.eachWithIndex { phoneNumber, i ->
+            out << "<tr>"
+            out << "<td>"
+            out << select(from:phoneLabels, value:phoneNumber.label,
+                          name:"phoneNumbers[${i}].label")
+            out << """
+            <input name="phoneNumbers[${i}].phoneNumber"
+                  value="${phoneNumber.phoneNumber}"
+                  class="phoneNumber" />
+            """
+            out << hiddenField(name:"phoneNumbers[${i}].id", value:"${phoneNumber.id}")
+            out << "</td>"
+            out << "</tr>"
+        }
+        out << "</table>"
+    }
 }
 
