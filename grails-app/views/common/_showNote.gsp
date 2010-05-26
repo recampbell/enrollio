@@ -1,5 +1,5 @@
 <tr>
-    <td>
+    <td noteId="${noteInstance.id}">
         ${noteInstance.body}
     </td>
     <td>
@@ -10,7 +10,7 @@
             Updated by ${noteInstance.poster} on
         </g:else>
         <enrollio:formatDate date="${noteInstance.lastUpdated}" />
-        <a href="" class="editNote">Edit</a>&nbsp;
+        <a href="" editNoteId="${noteInstance.id}" class="editNote">Edit</a>&nbsp;
         <a href="" class="saveNote" style="display:none">Save</a>&nbsp;
         <a href="" class="cancelNote" style="display:none">Cancel</a>
     </td>

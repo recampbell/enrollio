@@ -17,7 +17,7 @@
                   $("select.multiselect").multiSelect({
                       showHeader : false,
                       noneSelectedText : 'Select Interests',
-                      selectedList:2   // selectedList shows the names of the selected interests!
+                       selectedList:2   // selectedList shows the names of the selected interests!
                   });
   
                   // toggle students' starred status, depending on students current starred status                
@@ -29,6 +29,21 @@
                                             action:"toggleStar")}',
                         { 'starred' : $(this).children('img').attr('starred'), 'id' : $(this).attr("starId") });
                     });
+
+                  $(".editNote").click(function() {
+                      var noteId = $( this ).attr( 'editNoteId' );
+                      var noteElement=$( "[noteId=" + noteId + "]");
+                      var noteText = noteElement.text().trim();
+                      
+                      noteElement.empty().html(
+                          '<input noteTextId="' + noteId + '" ' +
+                          'value="' + noteText + '" />'
+                      );
+                      // Don't actually trigger the href
+                      return false;
+                      
+                      
+                  });
             });
             function updateInterests() {
                 // Collect the labels of each of the selected Interests
