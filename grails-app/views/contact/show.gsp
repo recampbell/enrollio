@@ -93,8 +93,35 @@
                                     <td>${phone.phoneNumber}</td>
                                 </tr>
                                 </g:each>
+                                <g:if test="${contactInstance.comments}">
+                                </g:if>
                             </tbody>
                         </table>
+                    <div class="infobox">
+                        <h3 class="reallynow">Notes:</h3><g:form action="addNote">
+                        <table>
+                            <tbody>
+                                <comments:each bean="${contactInstance}">
+                                <tr><td>
+                                        ${comment.body}
+                                    </td>
+                                    <td>
+                                    Posted by ${comment.poster} on
+                                        <enrollio:formatDate date="${comment.dateCreated}" />
+                                    </td>
+                                 </tr>
+                                </comments:each>
+                              <tr>  <td>
+                                    <g:hiddenField name="contactId" value="${contactInstance.id}" />
+                                    <g:textField name="noteText" />
+                                </td>
+                                <td>
+                                    <g:actionSubmit value="Add Note" action="save" />
+                                    </td>
+                                      </tr>
+                            </tbody>
+                        </table></g:form>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -29,5 +29,9 @@ class ShiroUser {
             }
         )
     }
+
+    String toString() {
+        username
+    }
     
 }
