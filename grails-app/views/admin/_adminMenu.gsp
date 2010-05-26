@@ -50,4 +50,23 @@
             <g:link class="group" controller="configSetting" action="loadDataRequest">Import Data</g:link>
         </h3>
     </li>
+    <li>
+    <h3><a href="" class="zoom">Search settings</a> </h3>
+        <ul>
+                <li>
+                <g:link class="zoom_in" controller="admin" action="startMirroring">Start Mirroring</g:link> 
+                </li>
+                <li>
+                <g:link class="zoom_out" controller="admin" action="startMirroring">Stop Mirroring</g:link> 
+                </li>
+        </ul>
+        </li>
+        <li>
+        <h3>
+            <g:link class="group" controller="configSetting" action="testDataRequest">Test Data</g:link>
+        </h3>
+        <h3>
+            <g:link class="group" controller="configSetting" action="loadDataRequest">Import Data</g:link>
+        </h3>
+    </li>
 </ul>

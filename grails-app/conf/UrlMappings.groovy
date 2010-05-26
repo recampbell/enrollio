@@ -3,6 +3,8 @@ class UrlMappings {
 
 		// admin controller
 		'/admin'(controller: 'admin', action: 'index')
+		'/startMirroring'(controller: 'admin', action: 'startMirroring')
+		'/stopMirroring'(controller: 'admin', action: 'stopMirroring')
 
 		// auth controller
 		'/login'(controller: 'auth', action: 'login')

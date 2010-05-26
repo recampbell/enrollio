@@ -469,8 +469,10 @@ form #button1:hover, form #button2:hover {
 .app_form_edit{background:transparent url(../images/icons/application_form_edit.png) no-repeat left;}
 .app_form{background:transparent url(../images/icons/application_form.png) no-repeat left;}
 .wrench{background:transparent url(../images/icons/wrench.png) no-repeat left;}
-.search{background:transparent url(../images/icons/magnifier.png) no-repeat left;}
 
+.zoom{background:transparent url(../images/icons/zoom.png) no-repeat left;}
+.zoom_in{background:transparent url(../images/icons/zoom_in.png) no-repeat left;}
+.zoom_out{background:transparent url(../images/icons/zoom_out.png) no-repeat left;}
 
 /* PAGINATION */
 

@@ -6,6 +6,7 @@ class StudentController {
     def index = { redirect(action:list,params:params) }
 
     def studentService
+    def searchableService
 
     static navigation = [
         group:'mainMenu',
@@ -30,6 +31,8 @@ class StudentController {
         def studentInstanceTotal
         params.max = 10
         if(params.q){
+            // TODO: Total kludge, but works for now :-/
+            searchableService.reindex()
             def search = Student.search("*" + params.q + "*",
                              [ offset:params.offset, max:params.max ] )
             
