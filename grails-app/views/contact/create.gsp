@@ -11,36 +11,37 @@
     <body>
         <script type="text/javascript">
             $(document).ready(function() {
-                $(".phoneNumber").mask("(999) 999-9999")
+                    $(".phoneNumber").mask("(999) 999-9999")
             });
         </script>
         <div id="wrapper">
-        <div id="content">
-            <div class="rightnow">
-                <h3 class="reallynow">New Student</h3>
-                <p>
-                All students need parent or contact info.  
-                Please fill out Parent info, or search for an existing contact.
-                </p>
+            <div id="content">
+                <div class="rightnow">
+                    <h3 class="reallynow">
+                        <span>New Contact</span>
+                        <br />
+                    </h3>
+                    <p class="youhave">All students need parent or contact info.  </p>
+                    <p>Please fill out Parent info, or search for an existing contact.</p>
+                </div>
+                    
+                    
+                <div class="infowrap">
+                <g:form method="post" >
+                    <div class="infobox">
+                        <h3 class="reallynow">Contact Info </h3>
+                        <g:render template="editContact" model="[contactInstance:contactInstance]" />                      <br />
+                    </div>
+                    <div class="infobox margin-left">
+                            <h3 class="reallynow">Phone Numbers</h3>
+                    <g:render template="phoneNumbers" bean="${contactInstance}"/>                         
+                    </div>
+        </g:form>
+                </div>
             </div>
-        <div class="infobox">
-            <g:render template="/student/studentSearchForm" />
-        </div>
-        <div class="infobox">
-            <h3 class="reallynow">New Parent/Contact</h3>
-            <g:hasErrors bean="${contactInstance}">
-                <div class="errors">
-                    <g:renderErrors bean="${contactInstance}" as="list" />
-                </div>
-            </g:hasErrors>
-            <g:form method="post" >
-            <g:render template="editContact" model="[contactInstance:contactInstance]" />
-                <div class="buttons">
-                    <g:actionSubmit value="Create Contact" action="save" />
-                </div>
-            </g:form>
-        </div>
-        </div>
+            <div id="sidebar">
+                <g:render template="/student/studentMenu" />
+            </div>
         </div>
     </body>
 </html>

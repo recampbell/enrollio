@@ -231,6 +231,14 @@ thead{
 	display:inline:
 }
 
+.infowrap form {
+    padding : 0px;
+}
+
+.infowrap form textarea {
+    height : 100px;
+    width  : 200px;
+}
 .infobox{
 	width:365px;
 	float:left;

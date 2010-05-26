@@ -28,7 +28,6 @@
                     <input type="text" id="lastName" name="lastName" value="${fieldValue(bean:contactInstance,field:'lastName')}"/>
                 </td>
             </tr>
-            <g:render template="phoneNumbers" bean="${contactInstance}"/>                         
             <tr class="prop">
                 <td valign="top" class="name">
                     <label for="address1">Address1:</label>
@@ -83,6 +82,16 @@
                 </td>
             </tr>
 
+            <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="noteText">Note:</label>
+                    </td>
+                    <td valign="top">
+                        <g:textArea name="noteText" 
+                            value="${noteText}"
+                            rows="2" cols="30"/>
+                    </td>
+            </tr>
             <g:if test="${showDrop}">
                 <tr class="prop">
                     <td valign="top" class="name">
