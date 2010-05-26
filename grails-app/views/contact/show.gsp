@@ -98,7 +98,7 @@
                             </tbody>
                         </table>
                     <div class="infobox">
-                        <h3 class="reallynow">Notes:</h3><g:form action="addNote">
+                        <h3 class="reallynow">Notes:</h3><g:form id="${contactInstance.id}" controller="contact" action="addNote">
                         <table>
                             <tbody>
                                 <comments:each bean="${contactInstance}">
@@ -108,15 +108,15 @@
                                     <td>
                                     Posted by ${comment.poster} on
                                         <enrollio:formatDate date="${comment.dateCreated}" />
+                                        <g:link controller="contact" action="editNote" id="${comment.id}">Edit</g:link>
                                     </td>
                                  </tr>
                                 </comments:each>
                               <tr>  <td>
-                                    <g:hiddenField name="contactId" value="${contactInstance.id}" />
                                     <g:textField name="noteText" />
                                 </td>
                                 <td>
-                                    <g:actionSubmit value="Add Note" action="save" />
+                                    <input type="submit" value="Add Note" />
                                     </td>
                                       </tr>
                             </tbody>
