@@ -228,6 +228,7 @@ class ContactController {
         }
         else {
             noteInstance.body = params.noteText
+            noteInstance.posterId = userService.loggedInUser()?.id
             noteInstance.save()
             render(template:"/common/showNote", model:[noteInstance:noteInstance]);
         }
