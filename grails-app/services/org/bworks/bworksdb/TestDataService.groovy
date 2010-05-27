@@ -37,7 +37,7 @@ class TestDataService {
         contact.addToStudents(student)
         contact.addToStudents(student2)
         contact.save(flush:true)
-        
+
         // interests
         addInterest(student, Course.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
 
@@ -317,6 +317,17 @@ class TestDataService {
                             zipCode:zip,
                             emailAddress:emailAddress).save()
  
+        // add comments to test comment search indexing, as well as comment dates.
+        c0.addComment(ShiroUser.findByUsername("admin"), "This guy knows " + randomLastName() + c0.lastName) 
+        c0.comments.each {
+            def randomDay = seed.nextInt(1000) 
+            it.dateCreated = new Date() - randomDay
+            if (randomDay.mod(6) == 0) {
+                it.lastUpdated = new Date() - seed.nextInt(randomDay)
+            }
+            it.save()
+        }
+
         def randPhone = seed.nextInt(10000) - 1
         randPhone = randPhone.toString().padLeft(4, "0")
         c0.addToPhoneNumbers(new PhoneNumber(label:'Home', 
