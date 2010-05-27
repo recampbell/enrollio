@@ -39,7 +39,10 @@
                                     <g:each var="enrollmentInstance" in="${classSessionInstance.enrollments}">
                                         <tr>
                                             <td>
-                                                <a href="#">${enrollmentInstance.student}</a>
+                                                <g:link action="show"
+                                                controller="student"
+                                                id="${enrollmentInstance.student.id}">
+                                                ${enrollmentInstance.student}</g:link>
                                             </td>
                                             <td>
                                             <enrollio:studentAttendanceSummary 

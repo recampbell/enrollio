@@ -1,6 +1,6 @@
 <tr>
     <td width="45%">
-        <g:link controller="contact" action="edit" id="${contactInstance.id}">${placeInList}) ${contactInstance}</g:link>
+        <g:link controller="contact" action="show" id="${contactInstance.id}">${placeInList}) ${contactInstance}</g:link>
         <ul class="prop">
         
             <li>${contactInstance.address1}</li> 
