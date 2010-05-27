@@ -41,6 +41,16 @@
                           '<input noteTextId="' + noteId + '" ' +
                           'value="' + noteText + '" />'
                       );
+
+                      // register an event handler to trap ENTER key
+                      // which will send the updated note
+                      $('[noteTextId=' + noteId + ']').keydown(function(event) {
+                        if (event.keyCode == '13') {
+                            $("[[saveNoteId=" + noteId + "]").click();
+                            event.preventDefault();
+                         }
+                      });
+
                       toggleNoteLinks(noteId);
                       
                       // Don't actually trigger the href
