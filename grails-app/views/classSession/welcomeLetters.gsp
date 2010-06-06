@@ -12,13 +12,30 @@
      <g:each var="contactInstance" in="${contactInstanceList}">
      <div style="page-break-after:always;">
          <h3 class="reallynow">
-             Welcome to Byteworks
+             Welcome to ByteWORKS
          </h3>
          <p class="youhave">
-         Sed ut perspiciatis unde omnis enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-         1914 translation by H. Rackham
-         </p>
+        Dear Parent/Guardian,
+        </p>
+        <p >
+        I would like to welcome your child into the ByteWorks program.  I hope your
+        child will learn a lot from our class and will benefit greatly from the
+        refurbished computer they receive.
+        </p>
+        <p >
+        As a reminder, there are no fees for this class.  This class is provided as a
+        service to the community, provided by vounteers, to increase the
+        awareness of technology in the community.
+        </p>
 
+         <p >
+         Included in this letter you will find an attached letter of understanding. 
+         Please have your child bring the signed paperwork to the first
+         class.</p>
+
+         <p >
+         Below is listed the contact information we have for you and your child. 
+         Please review this information and make any corrections if necessary.</p>
          <table>
              <tr>
                  <th>Contact Information</th>
@@ -50,18 +67,15 @@
                      <ul>
                          <g:each var="student"
                          in="${classSessionInstance.enrollments*.student}">
-                         <li>
-                         ${student}
-                         </li>
+                         <g:if test="${student.contact.id == contactInstance.id}">
+                         <li> ${student} </li>
+                         </g:if>
                          </g:each>
                      </ul>
                  </td>
              </tr>
          </table>
-         <h3 class="reallynow">
-             <span>Lesson Dates</span>
-             <br />
-         </h3>
+         <h3 class="reallynow">Lesson Dates</h3>Classes start at <b>11:00</b> but students are encouraged to arrive at 10:30 a.m.
          <table>
              <tbody>
                  <g:each var="lessonDate"
@@ -79,13 +93,37 @@
          </table>
 
          <h3 class="reallynow">
-             <span>Directions:</span>
-             <br />
+             <span>Directions to ByteWORKS:</span>
          </h3>
-         <p class="youhave">
-         Sed ut perspiciatis unde omnis enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-         1914 translation by H. Rackham
+         <p>
+         4100 Shenandoah<br />
+         Saint Louis, MO 63110<br />
+         (314) 827-6640
          </p>
+         <table><tr><td>
+                     <h4>From Missouri</h4>
+
+                     <ul>
+                         <li>Take Highway 44 or Highway 40 east</li>
+                         <li>Go south on Kingshighway</li>
+                         <li>Turn left at Magnolia (Tower Grove Park)</li>
+                         <li>Drive for about 1 mile, and turn left at Thurman</li>
+                         <li>Go north for two blocks.  ByteWORKS is at the corner of Thurman and Shenandoah</li>
+                     </ul>
+                 </td>
+                 <td>
+                     <h4>From Illinois / Downtown</h4>
+                     <ul>
+                         <li>Take Highway 44 or Highway 40 west</li>
+                         <li>Go south on Grand</li>
+                         <li>Turn right at Magnolia (Tower Grove Park)</li>
+                         <li>Drive for about 1 mile, and turn right at Thurman</li>
+                         <li>Go north for two blocks.  ByteWORKS is at the corner of Thurman and Shenandoah</li>
+                     </ul>
+                 </td>
+             </tr>
+     </table>
+         <img src="${resource(dir:'images', file:'directions.png')}"/>
      </div>
     </g:each>
 </body>
