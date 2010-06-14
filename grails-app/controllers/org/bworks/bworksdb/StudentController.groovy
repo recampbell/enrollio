@@ -28,24 +28,25 @@ class StudentController {
     }
 
     def list = {
-        def studentInstanceList
-        def studentInstanceTotal
+        def contactInstanceList
+        def contactInstanceTotal
         params.max = 10
         if(params.q){
             // TODO: Total kludge, but works for now :-/
             searchableService.reindex()
-            def search = Student.search("*" + params.q + "*",
+            def search = Contact.search("*" + params.q + "*",
                              [ offset:params.offset, max:params.max ] )
             
-                studentInstanceList = search.results
-                studentInstanceTotal = search.total
+                contactInstanceList = search.results
+                contactInstanceTotal = search.total
             }
         else {
-            studentInstanceList = Student.list( params )
-            studentInstanceTotal = Student.count()
+            contactInstanceList = Contact.list( params )
+            contactInstanceTotal = Contact.count()
         }
 
-        [ prevQuery:params.q, studentInstanceList: studentInstanceList, studentInstanceTotal: studentInstanceTotal ]
+        [ prevQuery:params.q, contactInstanceList: contactInstanceList,
+          contactInstanceTotal: contactInstanceTotal ]
     }
 
     def show = {

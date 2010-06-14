@@ -29,6 +29,13 @@ class EnrollioTagLib {
         return formattedFieldName
     }
 
+    def contactStudentList = { attrs ->
+        def c = attrs['contact']
+        out << c.students.collect {
+            g.link(controller:'contact', action:'show',
+                         id:c.id, params : [ studentId : it.id ], it.fullName())
+        }.join(', ')
+    }
 
     def textField = { attrs ->
         def m = attrs['model']

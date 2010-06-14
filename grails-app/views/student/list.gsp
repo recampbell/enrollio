@@ -19,38 +19,34 @@
                     <table>
                         <thead>
                             <tr>
-                                <g:sortableColumn property="firstName" title="Student" />
                                 <g:sortableColumn property="contact" title="Contact" />
+                                <g:sortableColumn property="firstName" title="Student(s)" />
                                 <th>Info</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <g:each in="${studentInstanceList}" status="i"
-                            var="studentInstance">
+                            <g:each in="${contactInstanceList}" status="i" var="contactInstance">
                             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                 <td>
-                                    <g:link action="show" name="studentLink_${studentInstance.id}" 
-                                    id="${studentInstance.id}">${studentInstance.fullName()}</g:link>
+                                    <g:link controller="contact" action="show" 
+                                    name="contactLink_${contactInstance.id}" 
+                                    id="${contactInstance.id}">${contactInstance.fullName()}</g:link>
                                 </td>
                                 <td>
-                                    <g:link controller="contact" action="show" 
-                                    name="contactLink_${studentInstance.contact.id}"
-                                    id="${studentInstance.contact.id}">
-                                    ${studentInstance.contact.fullName()}
-                                    </g:link>
+                                    <enrollio:contactStudentList contact="${contactInstance}" />
                                 </td>
-                                <td>${studentInstance.contact.fullAddress() + ' ' +
-                                    studentInstance.contact.abbrevPhoneNumbers()}</td>
+                                <td>${contactInstance.fullAddress() + ' ' +
+                                    contactInstance.abbrevPhoneNumbers()}</td>
                             </tr>
                             </g:each>
                         </tbody>
                     </table>
                     <div class="paginateButtons">
                         <g:if test="prevQuery">
-                            <g:paginate params="[q:prevQuery]" total="${studentInstanceTotal}" />
+                            <g:paginate params="[q:prevQuery]" total="${contactInstanceTotal}" />
                         </g:if>
                         <g:else>
-                            <g:paginate total="${studentInstanceTotal}" />
+                            <g:paginate total="${contactInstanceTotal}" />
                         </g:else>
                     </div>
                 </div>
