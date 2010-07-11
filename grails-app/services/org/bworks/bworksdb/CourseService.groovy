@@ -1,5 +1,6 @@
 package org.bworks.bworksdb
 import grails.test.*
+import grails.orm.PagedResultList
 import org.bworks.bworksdb.auth.ShiroUser
 
 class CourseService {
@@ -24,7 +25,7 @@ class CourseService {
     // find non-starred students, sorted by interest date
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
-    def callList(id) {
+    def callList(id, offset = 0, maxResults = null) {
         def crit = Contact.createCriteria() 
         
         def contacts = crit.listDistinct {
@@ -41,6 +42,21 @@ class CourseService {
         // Hack that will avoid NULL inactive student if a contact
         // has interested and un-interested students
         contacts*.refresh()       
+
+        def totalCount = contacts.size()
+        // Another hack that implements pagination
+        if (offset && offset < contacts.size()) {
+            contacts = contacts[offset .. contacts.size() - 1]
+        }
+
+        if (maxResults) {
+            def upperBound = Math.min(contacts.size(), maxResults)
+
+            contacts = contacts[0 .. upperBound - 1]
+        }
+
+        return new PagedResultList(contacts, totalCount)
+
    }
 
     def activeInterests(Course p) {

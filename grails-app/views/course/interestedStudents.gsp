@@ -104,6 +104,9 @@
                         </g:each>
                     </table>
                 </div>
+                <div class="paginateButtons">
+                    <g:paginate id="${courseInstance.id}" total="${contactInstanceTotal}" />
+                </div>
             </div>
                 <g:if test="${classSessionInstance}">
                 <div id="sidebar">

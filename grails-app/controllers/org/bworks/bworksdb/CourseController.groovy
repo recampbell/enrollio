@@ -1,4 +1,5 @@
 package org.bworks.bworksdb
+import grails.orm.PagedResultList
 import org.bworks.bworksdb.auth.ShiroUser
 import org.apache.shiro.SecurityUtils
 
@@ -186,17 +187,23 @@ class CourseController {
     
 
     def interestedStudents = {
+        // default to showing 10 records, and at most 100 records
+        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def courseInstance = Course.get(params.id)
         def classSessionInstance
-        def callListContacts = [:]
+        def callListContacts
         if (params.classSessionId) {
             classSessionInstance = ClassSession.get(params.classSessionId)
             callListContacts = courseService.callListContacts(classSessionInstance)
         }
 
-        def contactInstanceList = courseService.callList(params.id.toLong())
+        PagedResultList contactInstanceList = 
+            courseService.callList(params.id.toLong(), 
+                                   params.offset?.toLong(), 
+                                   params.max?.toLong())
 
         [ contactInstanceList : contactInstanceList,
+          contactInstanceTotal : contactInstanceList.totalCount,
             courseInstance : courseInstance,
             callListContacts : callListContacts,
             currentUser : userService.loggedInUser(),
