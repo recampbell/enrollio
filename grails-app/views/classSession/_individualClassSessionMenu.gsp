@@ -11,7 +11,7 @@
                 <g:link name="editEnrollmentsLink" class="groupadd"
                 controller="course"
                 action="interestedStudents" id="${classSessionInstance.course.id}"
-                params="[ classSessionId :classSessionInstance.id ]">&nbsp;&nbsp;Enroll</g:link>
+                params="[ classSessionId :classSessionInstance.id ]">&nbsp;&nbsp;Enroll / Call List</g:link>
             </li>
             <li>
                 <g:link name='attendanceLink' class="attendance" 
@@ -33,9 +33,13 @@
         <ul>
             <h3>Print</h3>
             <li>
+            <g:render template="/course/pdfCallListLink" 
+                      model="[courseInstance:classSessionInstance.course]"/>
+            </li>
+            <li>
 
                 <g:link name='welcomeLettersLink' 
-                class="application_list" 
+                class="welcome_letter" 
                 controller="classSession"
                 action="welcomeLetters"
                 id="${classSessionInstance.id}">&#160;Welcome Letters</g:link>
