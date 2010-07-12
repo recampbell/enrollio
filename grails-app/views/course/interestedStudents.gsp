@@ -6,6 +6,7 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="course" />
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
+        <g:if test="${classSessionInstance}">
         <script type="text/javascript">
              $(document).ready(function(){
                 $('.enrollStudent').click(function() {
@@ -70,6 +71,7 @@
             }
 
         </script>
+        </g:if>
         <title></title>
     </head>
     <body>
@@ -78,7 +80,7 @@
                 <div class="rightnow">
                     <h3 class="reallynow">
                         <g:if test="${classSessionInstance}">
-                            <span>${classSessionInstance}</span>
+                            <span>Call List for ${classSessionInstance}</span>
                         </g:if>
                         <g:else>
                             <span>Waiting List for ${courseInstance}</span>
@@ -86,13 +88,19 @@
                         <br />
                     </h3>
                         <g:if test="${classSessionInstance}">
-                        <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> students enrolled</p>
+                        <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> 
+                        students enrolled.
+                        </p>
+                        <p>${contactInstanceTotal} students interested in 
+                        <g:link action="show" controller="course" id="${courseInstance.id}">${courseInstance}</g:link>
+                        </p>
                         </g:if>
                     <table>
                         <thead>
                             <th colspan="2">Contact</th>
                             <th>Students</th>
-                            <th colspan="1">Reserve</th>
+                            <g:if test="${classSessionInstance}">
+                            <th colspan="1">Reserved?</th></g:if>
                         </thead>
                         <g:each var="con" 
                             in="${contactInstanceList}">
@@ -112,12 +120,15 @@
                     params="[ classSessionId:classSessionInstance?.id]" />
                 </div>
             </div>
+            <div id="sidebar">
                 <g:if test="${classSessionInstance}">
-                <div id="sidebar">
                     <g:render template="/classSession/individualClassSessionMenu" 
                     model="[classSessionInstance:classSessionInstance]" />
-                </div>
                 </g:if>
+                <g:else>
+                    <g:render template="individualCourseMenu" />
+                </g:else>
+            </div>
         </div>
     </body>
 </html>
