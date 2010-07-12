@@ -32,6 +32,9 @@
                     <p>Send an e-mail to <a href="mailto:nathan.neff@gmail.com" >nathan.neff@gmail.com</a> for a login name/password</p>
                     <h3 class="reallynow">Thanks</h3>
                     <p>I would like to thank&nbsp;<g:link action="thanks">a bunch of people</g:link> for helping me.</p>
+                    <h3 class="reallynow">Version</h3>
+                    <p>
+                    <g:render template="version" /></p>
                 </div>
             </div>
         </div>
