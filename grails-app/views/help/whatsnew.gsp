@@ -44,5 +44,11 @@
         <div id="sidebar">
             <g:render template="helpMenu" />
         </div>
+        <div id="footer">
+            <div id="credits">
+                Enrollio Version ${grailsApplication.metadata['app.version']} "${grailsApplication.metadata['app.versionName']}"
+            </div>
+            <br>
+        </div>
     </body>
 </html>
