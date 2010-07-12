@@ -16,33 +16,4 @@
             </g:if>
         </ul>
     </li>
-    <g:if test="${courseInstance}">
-        <ul>
-            <li>
-                <h3>
-                    <a href="#" class="module">${courseInstance}</a>
-                </h3>
-            </li>
-        </ul>
-    </g:if>
 </ul>
-<g:if test="${courseInstance}">
-    <ul>
-        <li>
-            <script type="text/javascript">function submit_callList(link) {
-            link.parentNode._format.value = link.title; link.parentNode.submit(); return
-            false; }</script>
-            <g:form name="callList" class="jasperReport" action="callList">
-                <input type="hidden" name="_format" value="PDF" />
-                <!-- Name shown on top of PDF report -->
-                <input type="hidden" name="_name" value="Call List" />
-                <input type="hidden" name="_file" value="callList" />
-                <input type="hidden" name="id" value="${courseInstance.id}" />
-                <!-- TODO The &nbsp; is a kludge find CSS way to justify image
-                and text so it looks o.k. -->
-                <a href="#" name="callListLink" class="telephone" title="PDF"
-                onClick="return submit_callList(this)">&#160;&#160;Call List</a>
-            </g:form>
-        </li>
-    </ul>
-</g:if>
