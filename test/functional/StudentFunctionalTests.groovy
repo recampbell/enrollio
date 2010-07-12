@@ -11,7 +11,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         loginAs('bob', 'bobbobbob0')
         click("Students")
 
-        def studentLink = byXPath("//a[starts-with(@name,'studentLink')]")
+        def studentLink = byXPath("//a[starts-with(@href,'/enrollio/student/')]")
         studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
         studentLink.click()
 
@@ -34,16 +34,9 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     }
   
     void testRegularUserGoesToStudentShow() {
-        loginAs('bob', 'bobbobbob0')
-        click("Students")
+        gotoStudentShow()
         assertStatus 200
 
-        def studentLink = byXPath("//a[starts-with(@name,'studentLink')]")
-        assertNotNull studentLink
-        studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
-        // click on the link -- using its id <evil laugh>
-        studentLink.click()
-        assertStatus 200
         assertTitleContains('student:')
         assertContentContains('interests:')
     }
@@ -83,10 +76,6 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 
         shouldFail() {
             assertContentContains('Baggins')
-        }
-
-        shouldFail() {
-            assertContentContains('Updated')
         }
 
         shouldFail() {
