@@ -94,9 +94,11 @@
                             <th>Students</th>
                             <th colspan="1">Reserve</th>
                         </thead>
-                        <g:each var="con" status="placeInList" in="${contactInstanceList}">
+                        <g:each var="con" 
+                            in="${contactInstanceList}">
                         <g:render template="interestedContact" 
-                            model="[placeInList : placeInList, 
+                        model="[
+                            placeInList : contactInstanceList.indexOf(con) + (params.offset ? params.offset.toLong() : 0), 
                             users : users,
                             contactInstance : con,
                             callListContacts : callListContacts,
@@ -105,7 +107,9 @@
                     </table>
                 </div>
                 <div class="paginateButtons">
-                    <g:paginate id="${courseInstance.id}" total="${contactInstanceTotal}" />
+                    <g:paginate id="${courseInstance.id}" 
+                    total="${contactInstanceTotal}"
+                    params="[ classSessionId:classSessionInstance?.id]" />
                 </div>
             </div>
                 <g:if test="${classSessionInstance}">
