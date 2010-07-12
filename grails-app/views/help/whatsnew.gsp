@@ -3,11 +3,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
         <meta name="tabName" content="help" />
-        <title>Help - About</title>
+        <title>Help - What's New</title>
     </head>
     <body>
         <div id="wrapper">
             <div id="content">
+                <div class="rightnow">
+                    <h3 class="reallynow">0.2 - "Dangle"</h3>
+                    <ul class="helplist">
+                        <li>Print welcome letters for classes</li>
+                        <li>Change signup date for students</li>
+                        <li>Ability to "star" students to place them at top of enrollment list.</li>
+                        <li>Mark contacts as "Cannot Reach"</li>
+                        <li>Add notes to contacts</li>
+                        <li>Assign a particular user to people on call list</li>
+                        <li>Users can have default area code, city and area code when 
+                            adding new contacts.</li>
+                    </ul>
+                </div>
                 <div class="rightnow">
                     <h3 class="reallynow">2010/03/23</h3>
                     <ul class="helplist">
