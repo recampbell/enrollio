@@ -81,7 +81,7 @@
                             <span>${classSessionInstance}</span>
                         </g:if>
                         <g:else>
-                            <span>${courseInstance}</span>
+                            <span>Waiting List for ${courseInstance}</span>
                         </g:else>
                         <br />
                     </h3>

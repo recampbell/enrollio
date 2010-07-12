@@ -140,7 +140,8 @@ class CourseFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         assertContentContains "name must have a value"
             
     }
-    void testCallList() {
+
+    void testWaitingList() {
         loginAs('bob', 'bobbobbob0')
         click("Courses")
         assertStatus 200
@@ -153,8 +154,11 @@ class CourseFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         // click the link to go to course/show
         progLink.click()
         assertStatus 200
-        def callListLink = byName('callListLink')
-        assertNotNull callListLink
+        click('Waiting List')
+        assertContentContains('Waiting List for')
+    }
+
+    void ztestPDFCallList() {
         // Click on call list, and expect a PDF
         // NOTE: For some reason (probably javascript), the tests
         // will *not* follow the redirect, so you have to manually call followRedirect()
