@@ -221,7 +221,7 @@ class TestDataService {
         def eacLessons = [ 
            [ name: TestKeys.LESSON_KIDS_AEC_INTRO, desc: TestKeys.LESSON_KIDS_AEC_INTRO_DESCRIPTION],
            [ name: 'Scratch Programming' ], 
-           [ name: 'Word Processing' ], 
+           [ name: TestKeys.LESSON_KIDS_AEC_TEST_CHANGE, desc: TestKeys.LESSON_KIDS_AEC_TEST_CHANGE_DESCRIPTION],
            [ name: 'Presentations' ],
            [ name: 'Email and WWW' ],
            [ name: 'Graduation' ]

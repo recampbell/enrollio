@@ -52,9 +52,11 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         def lessonDates = byXPath("//table[@id='lessonDates']/tbody/tr")
         assertNotNull lessonDates
 
+        // Test the ones we know will be there.
+        // Don't rely on TestKeys.LESSON_KIDS_AEC_TEST_CHANGE to be in
+        // this list
         assertContentContains TestKeys.LESSON_KIDS_AEC_INTRO
         assertContentContains 'Scratch Programming' 
-        assertContentContains 'Word Processing'
         assertContentContains 'Presentations'
         assertContentContains 'Email and WWW'
         assertContentContains 'Graduation'

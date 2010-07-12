@@ -38,6 +38,10 @@ class TestKeys {
         "This lesson teaches the basics of computer hardware and software," + 
         "\nincluding how computers store information."
 
+    static public final String LESSON_KIDS_AEC_TEST_CHANGE = "This course name will change" 
+    static public final String LESSON_KIDS_AEC_TEST_CHANGE_DESCRIPTION = 
+        "Don't count on this, 'cause I'm going to change it"
+
     static public final String LESSON_BIKE_INTRO = "Introduction and acquaintance" 
     static public final String LESSON_BIKE_INTRO_DESCRIPTION = 
         "Teach basics about bicycles and how to steer them." + 

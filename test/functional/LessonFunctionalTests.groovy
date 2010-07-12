@@ -79,9 +79,16 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         
     }
 
+    // Change a lesson's name and its course
+    // make sure changes are o.k.
     void testLessonEdit() {
         loginAs('bob', 'bobbobbob0')
-        gotoLessonShow()
+        click('Courses')
+        click(TestKeys.PROGRAM_KIDS_AEC)
+        // we'll change the dummy lesson that's set up 
+        // for this sole purpose.
+        assertContentContains TestKeys.LESSON_KIDS_AEC_TEST_CHANGE
+        click(TestKeys.LESSON_KIDS_AEC_TEST_CHANGE)
         click('Edit')
         assertStatus 200
         assertTitleContains 'Edit Lesson:'
@@ -91,7 +98,7 @@ class LessonFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         form('editLessonForm') {
             name = 'This is a Lesson in Politics'
             description = 'You ain\'t seen nothin\' yet'
-            // Select Mentorship Course
+            // Select Adult program for this lesson
             // TODO: See if we can select course by name, like the
             // user would.
             def adultEntry = byXPath("//option[. ='${TestKeys.PROGRAM_ADULT_AEC}']")
