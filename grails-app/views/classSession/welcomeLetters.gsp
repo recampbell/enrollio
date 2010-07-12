@@ -9,6 +9,10 @@
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'print.css')}" />
     </head>
  <body>
+     <g:if test="${!contactInstanceList}">
+     Nobody's enrolled in ${classSessionInstance} yet.
+     <g:link action="show" id="${classSessionInstance.id}">Back to Session</g:link>
+     </g:if>
      <g:each var="contactInstance" in="${contactInstanceList}">
      <div style="page-break-after:always;">
          <h3 class="reallynow">
