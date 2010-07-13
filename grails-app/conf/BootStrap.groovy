@@ -22,7 +22,7 @@ class BootStrap {
 				testDataService.loadDefaultConfigSettings()
 			}
 			development {
-				testDataService.loadDevData()
+				testDataService.loadDevData(5)
 			}
 			test {
                 ExpandoMetaClass.enableGlobally()
