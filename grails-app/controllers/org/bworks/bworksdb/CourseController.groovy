@@ -187,15 +187,12 @@ class CourseController {
     
 
     def interestedStudents = {
+
         // default to showing 10 records, and at most 100 records
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def courseInstance = Course.get(params.id)
-        def classSessionInstance
-        def callListContacts
-        if (params.classSessionId) {
-            classSessionInstance = ClassSession.get(params.classSessionId)
-            callListContacts = courseService.callListContacts(classSessionInstance)
-        }
+        def classSessionInstance = ClassSession.get(params.classSessionId)
+        def callListContacts = courseService.callListContacts(courseInstance)
 
         PagedResultList contactInstanceList = 
             courseService.callList(params.id.toLong(), 

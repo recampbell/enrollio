@@ -3,9 +3,7 @@ import org.bworks.bworksdb.auth.ShiroUser
 
 class CallListContact {
 
-    Contact contact
-    ClassSession classSession
-
+    static belongsTo = [ course:Course, contact:Contact ]
     ShiroUser user
     int calls = 0
 

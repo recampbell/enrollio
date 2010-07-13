@@ -6,7 +6,6 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="course" />
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
-        <g:if test="${classSessionInstance}">
         <script type="text/javascript">
              $(document).ready(function(){
                 $('.enrollStudent').click(function() {
@@ -47,7 +46,7 @@
                                         action:"reserveContact")}',
                     { 'contactId' : $(element).attr("contactId"), 
                          'userId' : userId,
-                 'classSessionId' : $(element).attr("classSessionId") });
+                 'courseId' : $(element).attr("courseId") });
             }
 
             // update the push pin that's in the parent TD
@@ -71,7 +70,6 @@
             }
 
         </script>
-        </g:if>
         <title></title>
     </head>
     <body>
@@ -99,8 +97,7 @@
                         <thead>
                             <th colspan="2">Contact</th>
                             <th>Students</th>
-                            <g:if test="${classSessionInstance}">
-                            <th colspan="1">Reserved?</th></g:if>
+                            <th colspan="1">Reserved For?</th>
                         </thead>
                         <g:each var="con" 
                             in="${contactInstanceList}">
@@ -110,6 +107,7 @@
                             users : users,
                             contactInstance : con,
                             callListContacts : callListContacts,
+                            courseInstance : courseInstance,
                             classSessionInstance : classSessionInstance ]" />
                         </g:each>
                     </table>

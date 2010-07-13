@@ -45,35 +45,33 @@
     
     
     </td>
-    <g:if test="${classSessionInstance}">
-        <td>
-            <g:select 
-                contactId="${contactInstance.id}" 
-                classSessionId="${classSessionInstance.id}"
-                class="reserveContact" 
-                from="${users}" 
-                optionValue="username" 
-                optionKey="id" 
-                value="${callListContacts[contactInstance.id]?.user?.id}"
-                noSelection="['':'']" />
+    <td>
+        <g:select 
+            contactId="${contactInstance.id}" 
+            courseId="${courseInstance.id}"
+            class="reserveContact" 
+            from="${users}" 
+            optionValue="username" 
+            optionKey="id" 
+            value="${callListContacts[contactInstance.id]?.user?.id}"
+            noSelection="['':'']" />
 
-                <!-- show red push pin if this contact is reserved for currently logged
-                     in user -->
-            <g:if test="${callListContacts[contactInstance.id]?.user?.id == currentUser.id}">
-                <img src="${resource(dir:'images/icons', file:'push_pin_red.png')}" 
-                        contactId="${contactInstance.id}" 
-                        userId=""
-                        class="reservationPushPin" 
-                        classSessionId="${classSessionInstance.id}"/>
-            </g:if>
-            <g:else>
-            <!-- Post a gray pin, and the current users ID -->
-                <img src="${resource(dir:'images/icons', file:'push_pin_gray.png')}" 
-                        contactId="${contactInstance.id}" 
-                        userId="${currentUser.id}"
-                        class="reservationPushPin" 
-                        classSessionId="${classSessionInstance.id}"/>
-            </g:else>
-        </td>
-    </g:if>
+            <!-- show red push pin if this contact is reserved for currently logged
+                 in user -->
+        <g:if test="${callListContacts[contactInstance.id]?.user?.id == currentUser.id}">
+            <img src="${resource(dir:'images/icons', file:'push_pin_red.png')}" 
+                    contactId="${contactInstance.id}" 
+                    userId=""
+                    class="reservationPushPin" 
+                    courseId="${courseInstance.id}"/>
+        </g:if>
+        <g:else>
+        <!-- Post a gray pin, and the current users ID -->
+            <img src="${resource(dir:'images/icons', file:'push_pin_gray.png')}" 
+                    contactId="${contactInstance.id}" 
+                    userId="${currentUser.id}"
+                    class="reservationPushPin" 
+                    courseId="${courseInstance.id}"/>
+        </g:else>
+    </td>
 </tr>

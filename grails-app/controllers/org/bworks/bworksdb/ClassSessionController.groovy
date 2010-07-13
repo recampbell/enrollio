@@ -35,18 +35,17 @@ class ClassSessionController {
 
     def reserveContact = {
         def con = Contact.get(params['contactId'])
-        def cs = ClassSession.get(params['classSessionId'])
+        def course = Course.get(params['courseId'])
         def su = ShiroUser.get(params['userId'])
-        log.info "Username: " + su?.username
 
-        def clc = CallListContact.findByContactAndClassSession(con, cs)
+        def clc = CallListContact.findByContactAndCourse(con, course)
 
         if (clc) {
             clc.user = su
             clc.save()
         }
         else {
-            clc = new CallListContact(contact:con, classSession : cs, user:su)
+            clc = new CallListContact(contact:con, course : course, user:su)
             if (!clc.validate()) {
                 log.error( clc.errors.allErrors)
             }

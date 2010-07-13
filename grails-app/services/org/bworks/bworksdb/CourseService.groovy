@@ -138,12 +138,10 @@ class CourseService {
         return lesson ? lesson.sequence + sequenceIncr : sequenceIncr
     }
 
-    // Return a hash map of 
-    //     contactId : [ CallListContact ]
-    // for a particular class session
-    def callListContacts(classSession) {
+    // Retrieve a list of contacts that are "reserved" 
+    def callListContacts(course) {
         def clc = [:]
-        CallListContact.findAllByClassSession(classSession).each {
+        CallListContact.findAllByCourse(course).each {
             clc[it.contact.id] = it
         }
 
