@@ -29,6 +29,8 @@ class CourseService {
         def crit = Contact.createCriteria() 
         
         def contacts = crit.listDistinct {
+            // contacts must be contacted (i.e. cannot reach is either NULL or false)
+            ne 'cannotReach', true
             students {
                 order 'starred', 'desc'
 

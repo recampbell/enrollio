@@ -232,4 +232,31 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         assertNotNull bikeCallList.find { it.lastName == 'BothContact' }
     }
 
+    // call list should not have contacts whose cannotReach = true
+    void testFilterCannotReach() {
+        def (computerContact, computerStudent, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact', 'ComputerStudent', 'Computer Course')
+
+        def (bikeContact, bikeStudent, bikeCourse) = 
+           testDataService.setupContactAndStudentWithCourse('BikeContact', 'BikeStudent', 'Bike Course')
+
+        // set up student interested in both bike and computer course
+        def (bothContact, bothStudent) = 
+           testDataService.setupContactAndStudentWithCourse('BothContact', 
+                                            'BothStudent', 
+                                            'Bike Course', 'Computer Course')
+
+        // set up student interested in some other course
+        def (unreachableContact, someStudent) = 
+           testDataService.setupContactAndStudentWithCourse('UnreachableContact', 
+                                            'UnreachableSomeStudent', 
+                                            'Bike Course')
+        unreachableContact.cannotReach = true
+        unreachableContact.save()
+
+        def bikeCallList = courseService.callList(bikeCourse.id)
+        assertEquals 'Only reachable contacts should be on list', 2, bikeCallList.size()
+        assertNotNull bikeCallList.find { it.lastName == 'BikeContact' }
+        assertNotNull bikeCallList.find { it.lastName == 'BothContact' }
+    }
 }
