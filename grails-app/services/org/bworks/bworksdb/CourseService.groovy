@@ -25,7 +25,7 @@ class CourseService {
     // find non-starred students, sorted by interest date
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
-    def callList(id, offset = 0, maxResults = null) {
+    def callList(id, offset = 0, maxResults = null, options = [:]) {
         def crit = Contact.createCriteria() 
         
         def contacts = crit.listDistinct {
