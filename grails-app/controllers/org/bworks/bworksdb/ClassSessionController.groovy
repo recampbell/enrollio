@@ -221,7 +221,9 @@ class ClassSessionController {
         else { 
             
            def attendancesForSession =  classSessionService.attendancesForSession(classSessionInstance)
-            return [ attendancesForSession : attendancesForSession,
+           def interestsInCourse     =  classSessionService.enrolledStudentsInterests(classSessionInstance)
+            return [    interestsInCourse     : interestsInCourse,
+                        attendancesForSession : attendancesForSession,
                          classSessionInstance : classSessionInstance ] }
 
     }

@@ -254,4 +254,15 @@ class ClassSessionService {
 
         return dates[0]
     }
+    // returns a map of [ 1 : interest,
+    //                    2 : interest2 ] where 1 and 2 are student IDs
+    // and interest and interest2 are interests in the specified class session
+    // TODO:test, mewo
+    def enrolledStudentsInterests(classSession) {
+        def interests = [:]
+        classSession.enrollments.each { enr ->
+            interests[enr.student.id] = Interest.findByStudentAndCourse(enr.student, classSession.course)
+        }
+        return interests
+    }
 }

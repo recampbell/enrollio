@@ -17,6 +17,39 @@
                                              { 'status' : $(this).val(), 
                                                    'id' : $(this).attr("enrollmentId") });
                     });
+                $('.stillInterested').change(function(){
+                    $.post('${createLink(controller:"interest",
+                                             action:"updateInterest")}',
+                                             { 'active' : $(this).attr('checked'), 
+                                                   'id' : $(this).attr("interestId") });
+                    });
+                $("#graduateAll").toggle(
+                    function(){
+                        $(this).text("In Prog. All");
+                        $('.statusSwitcher').each(function() {
+                            $(this).val("GRADUATED")
+                            $(this).change()
+                            })}
+                        
+                        ,
+
+                    function(){
+                        $(this).text("Grad. All");
+                        $('.statusSwitcher').each(function() {
+                            $(this).val("IN_PROGRESS")
+                            $(this).change()
+                            });
+                        }
+                        );
+                $("#allStillInterested").click(
+                    function(){
+                        var checked = $(this).attr('checked');
+                        $('.stillInterested').each(function() {
+                            $(this).attr('checked',checked);
+                            $(this).change();
+                        })
+                    });
+
                 });
         </script>
     </head>
@@ -31,9 +64,19 @@
                         </h3>
                             <table>
                                 <thead>
-                                    <th>Student</th>
+                                    <th>Student
+                                    
+                                    </th>
+                                    <th rowspan="2">Status
+                                    
+                                        <div>
+                                        <a href="#" id="graduateAll">Grad. All</a></div>
+                                    </th>
+                                    <th>Still Interested?
+                                        <input type="checkbox" id="allStillInterested" />
+                                    
+                                    </th>
                                     <th width="60%">Attendance</th>
-                                    <th>Status</th>
                                 </thead>
                                 <tbody>
                                     <g:each var="enrollmentInstance" in="${classSessionInstance.enrollments}">
@@ -45,12 +88,17 @@
                                                 ${enrollmentInstance.student}</g:link>
                                             </td>
                                             <td>
-                                            <enrollio:studentAttendanceSummary 
-                                                summary="${attendancesForSession[enrollmentInstance.student.id]}" />
-                                            </td>
-                                            <td>
                                                 <g:render template="enrollmentStatus" 
                                                 model="[enrollmentInstance : enrollmentInstance]" />
+                                            </td>
+                                            <td>
+                                                <g:checkBox class="stillInterested" name="stillInterested${enrollmentInstance.student.id}"
+                                                    interestId="${interestsInCourse[enrollmentInstance.student.id]?.id}"
+                                                    value="${interestsInCourse[enrollmentInstance.student.id]?.active}" />
+                                            </td>
+                                            <td>
+                                            <enrollio:studentAttendanceSummary 
+                                                summary="${attendancesForSession[enrollmentInstance.student.id]}" />
                                             </td>
                                         </tr>
                                     </g:each>
