@@ -43,7 +43,10 @@
                         </table>
                     </div>
                     <div class="infobox margin-left">
-                            <h3 class="reallynow">Sessions</h3>
+                        <h3 class="reallynow">
+                            <a href="#" class="headerLink calendar">Sessions</a>
+                            <br />
+                        </h3>
                         <table>
                             <tbody>
                                 <g:each var="session"
