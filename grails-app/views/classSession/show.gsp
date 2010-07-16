@@ -14,7 +14,9 @@
                 <div id="content">
                     <div class="rightnow">
                         <h3 class="reallynow">
-                            ${classSessionInstance.name}
+                            <a href="#" class="headerLink calendar">
+
+                                ${classSessionInstance.name}</a><br />
                         </h3>
                         <p class="youhave">
                         <g:link action="show" controller="course" id="${classSessionInstance.course.id}">
