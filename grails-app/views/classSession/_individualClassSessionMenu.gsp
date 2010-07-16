@@ -1,6 +1,12 @@
 <ul>
     <li>
         <h3>
+            <g:link class="module" controller="course" 
+                   action="show"
+                   id="${classSessionInstance.course.id}">${classSessionInstance.course}
+            </g:link>
+        </h3>
+        <h3>
             <g:link class="calendar" controller="classSession" action="show" id="$classSessionInstance.id">
             ${classSessionInstance.name}
             </g:link>
