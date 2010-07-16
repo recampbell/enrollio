@@ -7,7 +7,7 @@ class InterestController {
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+    static allowedMethods = [delete:'POST', save:'POST', updateInterest:'POST']
 
     def list = {
         def interestInstanceList
@@ -98,6 +98,25 @@ class InterestController {
         def interestInstance = new Interest()
         interestInstance.properties = params
         return ['interestInstance':interestInstance]
+    }
+
+    def updateInterest = {
+        println "param is id " + params.id
+        println "params is " + params
+        def interestInstance = Interest.get(params.id)
+
+        if (interestInstance) {
+            interestInstance.properties = params
+            if (!interestInstance.hasErrors() && interestInstance.save(flush: true)) {
+                render ''
+            } 
+            else {
+                render 'ERROR'
+            }
+        }
+        else {
+            render 'ERROR'
+        }
     }
 
     def save = {
