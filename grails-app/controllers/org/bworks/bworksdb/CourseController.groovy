@@ -190,14 +190,22 @@ class CourseController {
 
         // default to showing 10 records, and at most 100 records
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+        println params
         def courseInstance = Course.get(params.id)
         def classSessionInstance = ClassSession.get(params.classSessionId)
         def callListContacts = courseService.callListContacts(courseInstance)
 
+        def options = [ 
+            max:params.max?.toLong(), 
+            offset:params.offset?.toLong()
+        ] 
+
+        if(params.reservedForUser) {
+            options['reservedForUser'] = ShiroUser.findByUsername('admin')
+        }
+            
         PagedResultList contactInstanceList = 
-            courseService.callList(params.id.toLong(), 
-                                   params.offset?.toLong(), 
-                                   params.max?.toLong())
+            courseService.callList(params.id.toLong(), options) 
 
         [ contactInstanceList : contactInstanceList,
           contactInstanceTotal : contactInstanceList.totalCount,

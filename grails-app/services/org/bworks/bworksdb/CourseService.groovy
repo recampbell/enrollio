@@ -22,10 +22,11 @@ class CourseService {
         return proposedClasses
     }
 
+
     // find non-starred students, sorted by interest date
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
-    def callList(id, offset = 0, maxResults = null, options = [:]) {
+    def callList(courseId, options = [:]) {
         def crit = Contact.createCriteria() 
         
         def contacts = crit.listDistinct {
@@ -35,24 +36,46 @@ class CourseService {
                 order 'starred', 'desc'
 
                 interests {
-                    eq 'course.id', id
+                    eq 'course.id', courseId
                     order 'signupDate', 'asc'
                     eq 'active', true
                 }
             }
+
         }
         // Hack that will avoid NULL inactive student if a contact
         // has interested and un-interested students
         contacts*.refresh()       
 
-        def totalCount = contacts.size()
-        // Another hack that implements pagination
-        if (offset && offset < contacts.size()) {
-            contacts = contacts[offset .. contacts.size() - 1]
+        // yet another hack -- couldn't easily find way to join
+        // CallListContact table, which the Contact model doesn't know about.
+        if (options.reservedForUser) {
+            def callListContacts = 
+                CallListContact.findAllByUserAndCourse(options.reservedForUser, 
+                                                        Course.get(courseId))
+            def consToRemove = [ ]
+            contacts.eachWithIndex { contact, index ->
+                if (!callListContacts.find { clc -> clc.contact.id == contact.id }) {
+                    consToRemove.add(contact)
+                }
+            }
+
+            println "removeing" + consToRemove
+            consToRemove.each { conToRemove ->
+                println "Removing " + conToRemove
+                contacts.remove(conToRemove)
+            }
         }
 
-        if (maxResults) {
-            def upperBound = Math.min(contacts.size(), maxResults)
+        def totalCount = contacts.size()
+
+        // Another hack that implements pagination
+        if (options.offset && options.offset < contacts.size()) {
+            contacts = contacts[options.offset .. contacts.size() - 1]
+        }
+
+        if (options.max && contacts.size() > 0) {
+            def upperBound = Math.min(contacts.size(), options.max)
 
             contacts = contacts[0 .. upperBound - 1]
         }

@@ -2,6 +2,8 @@ package org.bworks.bworksdb
 
 import grails.test.*
 import org.bworks.bworksdb.util.TestKeys
+import org.bworks.bworksdb.auth.ShiroUser
+import org.bworks.bworksdb.CallListContact
 
 
 class CourseServiceIntegrationTests extends GrailsUnitTestCase {
@@ -46,12 +48,24 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         // we only want to see contacts reserved to user 'Bob'
         def (con1, stu1, computerCourse) = 
            testDataService.setupContactAndStudentWithCourse('con1', 'stu1', 'Computer Course')
-        def (con2, stu2, computerCourse) = 
+        def (con2, stu2) = 
            testDataService.setupContactAndStudentWithCourse('con2', 'stu2', 'Computer Course')
-        def (con3, stu3, computerCourse) = 
+        def (con3, stu3) = 
            testDataService.setupContactAndStudentWithCourse('con3', 'stu3', 'Computer Course')
-        def (con4, stu4, computerCourse) = 
+        def (con4, stu4) = 
            testDataService.setupContactAndStudentWithCourse('con4', 'stu4', 'Computer Course')
+
+        def bob = ShiroUser.findByUsername('bob')
+        assertNotNull bob
+        assertNotNull new CallListContact(user:bob, contact:con2, course:computerCourse).save()
+        assertNotNull new CallListContact(user:bob, contact:con4, course:computerCourse).save()
+
+        def options = [ reservedForUser : bob ]
+        def contactList = courseService.callList(computerCourse.id, options)
+        
+        assertEquals 2, contactList.size()
+        assertEquals 'con2',  contactList[0].lastName
+        assertEquals 'con4',  contactList[1].lastName
     }
 
     void testStarredStudentsFirst() {
@@ -187,18 +201,19 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         stu2.save()
 
         // get first person in paginated list
-        def contactList = courseService.callList(computerCourse.id, 0, 1)
+        def options = [ offset:0, max:1 ]
+        def contactList = courseService.callList(computerCourse.id, options)
 
         assertEquals 'con1', contactList[0].lastName
 
         // get second and third person in paginated list
-        contactList = courseService.callList(computerCourse.id, 1, 2)
+        contactList = courseService.callList(computerCourse.id, [ offset:1, max:2])
 
         assertEquals 'con2', contactList[0].lastName
         assertEquals 'con3', contactList[1].lastName
 
         // get everyone after fourth in list
-        contactList = courseService.callList(computerCourse.id, 3, 100)
+        contactList = courseService.callList(computerCourse.id, [offset:3, max:100])
         assertEquals 'con4', contactList[0].lastName
         assertEquals 'con5', contactList[1].lastName
         assertEquals 'con6', contactList[2].lastName

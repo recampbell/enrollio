@@ -84,6 +84,22 @@
                             <span>Waiting List for ${courseInstance}</span>
                         </g:else>
                         <br />
+                        <g:form controller="course" action="interestedStudents" 
+                        id="${courseInstance.id}"
+                        method="GET">
+
+        <g:select 
+            name="reservedForUser"
+            courseId="${courseInstance.id}"
+            class="reserveContact" 
+            from="${users}" 
+            optionValue="${reservedForUser}" 
+            optionKey="id" 
+            value="${reservedForUser?.id}"
+            noSelection="['':'']" />
+                        <g:submitButton name="submitFilter" value="Filter" />
+                        
+                        </g:form>
                     </h3>
                         <g:if test="${classSessionInstance}">
                         <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> 
@@ -115,7 +131,8 @@
                 <div class="paginateButtons">
                     <g:paginate id="${courseInstance.id}" 
                     total="${contactInstanceTotal}"
-                    params="[ classSessionId:classSessionInstance?.id]" />
+                    params="[ reservedForUser : reservedForUser?.id ?: '',
+                                classSessionId:classSessionInstance?.id]" />
                 </div>
             </div>
             <div id="sidebar">
