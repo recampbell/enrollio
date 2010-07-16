@@ -89,7 +89,10 @@ class EnrollioTagLib {
         }
 
         def missedClassesLinks = attrs.summary.missed.collect { lessonDate ->
-            g.link(controller:'lessonDate', action:'show', id:lessonDate.id, lessonDate.lesson.name)
+            g.link(controller:'classSession', 
+                       action:'attendance', 
+                       id:lessonDate.classSession.id,
+                       params:[ lessonDateId : lessonDate.id ], lessonDate.lesson.name)
         }
 
         if (missedClassesLinks) {
