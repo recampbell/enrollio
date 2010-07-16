@@ -42,6 +42,18 @@ class CourseServiceIntegrationTests extends GrailsUnitTestCase {
         assertNotNull bikeCallList.find { it.lastName == 'BothContact' }
     }
     
+    void testFilterCallListContact() {
+        // we only want to see contacts reserved to user 'Bob'
+        def (con1, stu1, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('con1', 'stu1', 'Computer Course')
+        def (con2, stu2, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('con2', 'stu2', 'Computer Course')
+        def (con3, stu3, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('con3', 'stu3', 'Computer Course')
+        def (con4, stu4, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('con4', 'stu4', 'Computer Course')
+    }
+
     void testStarredStudentsFirst() {
         def (firstContact, firstStudent, computerCourse) = 
            testDataService.setupContactAndStudentWithCourse('FirstContact', 'FirstStudent', 'Computer Course')
