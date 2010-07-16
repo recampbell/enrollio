@@ -71,7 +71,7 @@ class UrlMappings {
 	'/home'(controller: 'home', action: 'index')
 
 	// interest controller
-	"/interest/$id"(controller: 'interest', action: 'show')
+	"/updateInterest"(controller: 'interest', action: 'updateInterest')
 
 	// lesson controller
 	"/lesson/$id"(controller: 'lesson', action: 'show')
