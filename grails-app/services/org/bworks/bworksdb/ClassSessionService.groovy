@@ -135,6 +135,15 @@ class ClassSessionService {
             }
         }
         
+        // Create an interest.  This happens when brothers/sisters are enrolled when they 
+        // don't have an interest in a particular course.
+        // TODO test this, meow.
+        def interest = Interest.findByStudentAndCourse(studentInstance, classSessionInstance.course)
+        if (!interest) {
+            def i = new Interest(student:studentInstance, active:true,
+                                 course:classSessionInstance.course).save()
+            studentInstance.addToInterests(i).save()
+        }
         msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()
         return msgs
     }
