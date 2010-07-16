@@ -6,9 +6,28 @@
                 { 'status' : $(this).attr('attendanceStatus'),
                 'id'     : $(this).attr('attendanceId') });
         });
+        $('#selectAll').toggle(
+            function() { 
+                $(this).text("All Absent");
+                $(".statusSwitcher[value='present']").each(function() {
+                    $(this).click();
+                })},
+            function() { 
+            
+                $(this).text("All Present");
+                $(".statusSwitcher[value='absent']").each(function() {
+                    $(this).click();
+                })}
+            );
+
     });
 </script>
-<h3 class="reallynow">${lessonDateInstance}</h3>
+<h3 class="reallynow">${lessonDateInstance}
+
+    <a href="#" id="selectAll">All Present</a>
+
+
+</h3>
 <table>
     <tbody>
         <g:each var="attendance" in="${lessonDateInstance.attendees}">
