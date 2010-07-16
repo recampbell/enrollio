@@ -22,6 +22,18 @@
     </li>
     <li>
         <h3>
+            <a href="" class="calendar">Sessions</a>
+        </h3>
+            <ul>
+                <li>
+                <g:link controller="classSession" 
+                action="create" params="['course.id':courseInstance.id]" 
+                class="calendar_add">New Session</g:link>
+                </li>
+            </ul>
+    </li>
+    <li>
+        <h3>
             <g:link class="book_open" controller="course" action="lessons"
             id="${courseInstance.id}">Lessons</g:link>
         </h3>
@@ -47,17 +59,4 @@
             </g:if>
         </ul>
     </li>
-    <li>
-        <h3>
-            <a href="#" class="calendar">Class Sessions</a>
-        </h3>
-            <ul>
-                <li>
-         <g:link controller="classSession" 
-                                action="create" params="['course.id':courseInstance.id]" 
-                                class="calendar_add">New Session</g:link>
-            </li>
-            </ul>
-        </li>
-    </ul>
 </ul>
