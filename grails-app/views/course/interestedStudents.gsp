@@ -93,9 +93,8 @@
             courseId="${courseInstance.id}"
             class="reserveContact" 
             from="${users}" 
-            optionValue="${reservedForUser}" 
             optionKey="id" 
-            value="${reservedForUser?.id}"
+            value="${reservedForUserId}"
             noSelection="['':'']" />
                         <g:submitButton name="submitFilter" value="Filter" />
                         
@@ -131,7 +130,7 @@
                 <div class="paginateButtons">
                     <g:paginate id="${courseInstance.id}" 
                     total="${contactInstanceTotal}"
-                    params="[ reservedForUser : reservedForUser?.id ?: '',
+                    params="[ reservedForUser : reservedForUserId ?: '',
                                 classSessionId:classSessionInstance?.id]" />
                 </div>
             </div>

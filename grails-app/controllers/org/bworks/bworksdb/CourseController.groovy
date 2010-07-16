@@ -201,7 +201,7 @@ class CourseController {
         ] 
 
         if(params.reservedForUser) {
-            options['reservedForUser'] = ShiroUser.findByUsername('admin')
+            options['reservedForUser'] = ShiroUser.get(params.reservedForUser)
         }
             
         PagedResultList contactInstanceList = 
@@ -209,6 +209,7 @@ class CourseController {
 
         [ contactInstanceList : contactInstanceList,
           contactInstanceTotal : contactInstanceList.totalCount,
+          reservedForUserId : params.reservedForUser,
             courseInstance : courseInstance,
             callListContacts : callListContacts,
             currentUser : userService.loggedInUser(),
