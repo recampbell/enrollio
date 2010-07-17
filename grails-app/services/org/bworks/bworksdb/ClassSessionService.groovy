@@ -120,9 +120,7 @@ class ClassSessionService {
     // to "in progress"
     def enrollStudent(studentInstance, classSessionInstance) {
         def msgs = [:]
-        def enr = classSessionInstance.enrollments.find {
-            it.student == studentInstance
-        }
+        def enr = Enrollment.findByClassSessionAndStudent(classSessionInstance, studentInstance)
 
         if (enr) {
             enr.status = EnrollmentStatus.IN_PROGRESS
@@ -155,9 +153,7 @@ class ClassSessionService {
         def msgs = [:]
         def crit = Attendance.createCriteria()
         
-        def enrollment = classSessionInstance.enrollments.find {
-             it.student == studentInstance
-        }
+        def enr = Enrollment.findByClassSessionAndStudent(classSessionInstance, studentInstance)
 
         def attendances = crit.list() {
             eq 'student.id', studentInstance.id
@@ -170,12 +166,12 @@ class ClassSessionService {
         }
 
         if(attendances) {
-            enrollment.status = EnrollmentStatus.DROPPED_OUT
-            enrollment.save()
+            enr.status = EnrollmentStatus.DROPPED_OUT
+            enr.save()
         }
         else {
-            classSessionInstance.removeFromEnrollments(enrollment)
-            enrollment.delete(flush : true)
+            classSessionInstance.removeFromEnrollments(enr)
+            enr.delete(flush : true)
         }
 
         msgs['enrolledStudents'] = activeEnrollments(classSessionInstance).size()

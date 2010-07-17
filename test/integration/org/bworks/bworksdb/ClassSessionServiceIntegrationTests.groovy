@@ -25,6 +25,32 @@ class ClassSessionServiceIntegrationTests extends GrailsUnitTestCase {
 
     }
 
+    void testAddEnrollmentWithTwoStudentsTheSameName() {
+        // create an interested student in 'computer course'
+        def (contact, originalStudent, course) = 
+            testDataService.setupContactAndStudentWithCourse('con', 'stuey', 'computer course')
+
+        def session = new ClassSession(name:'May 2010', startDate: new Date(), course:course).save()
+
+        classSessionService.enrollStudent(originalStudent, session)
+        def sameNameStudent = new Student(firstName:'stuey', lastName:'con')
+        contact.addToStudents(sameNameStudent).save()
+        assertEquals 2, contact.students.size()
+
+        classSessionService.enrollStudent(sameNameStudent, session)
+        assertEquals 2, session.enrollments.size()
+
+        def originalStudentEnrollment = Enrollment.findByStudentAndClassSession(originalStudent, session)
+        assertNotNull originalStudentEnrollment
+        assertEquals EnrollmentStatus.IN_PROGRESS, originalStudentEnrollment.status
+
+        def sameNameStudentEnrollment = Enrollment.findByStudentAndClassSession(sameNameStudent, session)
+        assertNotNull sameNameStudentEnrollment
+        assertEquals EnrollmentStatus.IN_PROGRESS, sameNameStudentEnrollment.status
+
+    }
+
+
     // Enrollments should be totally removed from the database
     // when we call disRollStudent
     void testRemoveEnrollment() {

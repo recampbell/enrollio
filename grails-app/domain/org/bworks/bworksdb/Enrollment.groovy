@@ -12,6 +12,7 @@ class Enrollment implements Comparable {
     }
 
     int compareTo(obj) {
-        this.student.toString() <=> obj.student.toString()
+        this.student.toString() + this.student.id <=> 
+        obj.student.toString() + obj.student.id
     }
 }
