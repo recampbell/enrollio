@@ -84,8 +84,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertStatus 200
         assertContentContains "Certificates"
 
-        // Make sure students are shown
-        assertContentContains(TestKeys.STUDENT)
+        // Make sure enrolled student is shown
         assertContentContains(TestKeys.STUDENT2)
         
         redirectEnabled = false
@@ -121,8 +120,7 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
             // assertContentContains "Homer"
         // }
 
-        // Make sure students are shown
-        assertContentContains(TestKeys.STUDENT)
+        // Make sure enrolled student is shown
         assertContentContains(TestKeys.STUDENT2)
         
         def checkBoxen = []

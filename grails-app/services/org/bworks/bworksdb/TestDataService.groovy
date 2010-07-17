@@ -12,14 +12,16 @@ class TestDataService {
     boolean transactional = true
 
     def courseService
+    def classSessionService
     def config = ConfigurationHolder.config
 
-
-        
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
         // get courses
         loadDefaultCourses()
+        def adultCourse      = Course.findByName(TestKeys.PROGRAM_ADULT_AEC)
+        def mentorshipCourse = Course.findByName(TestKeys.PROGRAM_MENTORSHIP)
+        def childrensCourse  = Course.findByName(TestKeys.PROGRAM_KIDS_AEC)
                 
         // build contact, student
         def contact = new Contact(firstName:TestKeys.CONTACT1_FIRST_NAME,
@@ -39,15 +41,37 @@ class TestDataService {
         contact.save(flush:true)
 
         // interests
-        addInterest(student, Course.findByName(TestKeys.PROGRAM_ADULT_AEC), true)
-
-        addInterest(student, Course.findByName(TestKeys.PROGRAM_KIDS_AEC), false)
-        addInterest(student2, Course.findByName(TestKeys.PROGRAM_KIDS_AEC), true)
+        addInterest(student, adultCourse , true)
+        addInterest(student, childrensCourse, false)
+        addInterest(student2, childrensCourse, true)
 
         loadDummyRegularUser()
+
         // load dummy class sessions for now -- we should
         // create more predictable test data for integration tests
-        loadDummyClassSessions()
+        loadDummyClassSession(mentorshipCourse, 
+                              TestKeys.SESSION_MENTORSHIP_DATE,
+                              TestKeys.SESSION_MENTORSHIP_NAME)
+
+        def childrensSession = loadDummyClassSession(childrensCourse, 
+                              TestKeys.SESSION_KIDS_DATE,
+                              TestKeys.SESSION_KIDS_NAME)
+        enrollDummyStudent(student2, childrensSession)
+
+        def adultClassSession = 
+            loadDummyClassSession(adultCourse, 
+                                  TestKeys.SESSION_ADULT_DATE,
+                                  TestKeys.SESSION_ADULT_NAME)
+        enrollDummyStudent(student, adultClassSession)
+
+    }
+
+    def enrollDummyStudent(student, classSession) {
+        if (classSession.enrollments?.findByStudent(student)) {
+            return
+        }
+
+        classSessionService.enrollStudent(student, classSession)
     }
 
     def loadDummyRegularUser() {
@@ -97,48 +121,22 @@ class TestDataService {
         loadDefaultConfigSettings()
     } 
 
-    def loadDummyClassSessions() {
-        // define start dates for the various test courses in a hash
-        // for easy assignment
-        def testProgs = [:]
+    def loadDummyClassSession(course, startDate, sessionName) {
+        def classSession = 
+            new ClassSession(name:sessionName,
+                           course:course,
+                           startDate: startDate).save()
 
-        testProgs[TestKeys.PROGRAM_MENTORSHIP] = [ 'date' : TestKeys.SESSION_MENTORSHIP_DATE,
-                                                   'sessionName' : TestKeys.SESSION_MENTORSHIP_NAME ]
+        def nextLessonDates = 
+            courseService.nextAvailableLessonDates(course, startDate)
 
-        testProgs[TestKeys.PROGRAM_ADULT_AEC]  = [ 'date' : TestKeys.SESSION_ADULT_DATE  ,
-                                                   'sessionName' : TestKeys.SESSION_ADULT_NAME ]
-
-        testProgs[TestKeys.PROGRAM_KIDS_AEC]   = [ 'date' : TestKeys.SESSION_KIDS_DATE,
-                                                   'sessionName' : TestKeys.SESSION_KIDS_NAME ]
-
-        testProgs[TestKeys.PROGRAM_EARN_A_BIKE]   = [ 'date' : TestKeys.SESSION_BIKE_DATE,
-                                                   'sessionName' : TestKeys.SESSION_BIKE_NAME ]
-        testProgs.each { key, testProg ->
-            def p = Course.findByName(key)
-            def classSession = new ClassSession(name:testProg.sessionName,
-                                      course:p,
-                                      startDate: testProg.date).save()
-            
-            def nextLessonDates = 
-                courseService.nextAvailableLessonDates(classSession.course, classSession.startDate)
-
-            nextLessonDates.each { lessonDate ->
-                classSession.addToLessonDates(lessonDate)
-            }
-
-            classSession.save()
-
-            // Enroll Student in this new Session
-            p.interests.eachWithIndex  { interest, i ->
-                if (i < 5) {
-                    classSession.addToEnrollments(new Enrollment(student:interest.student))
-                }
-                else {
-                    return
-                }
-            }
-            classSession.save()
+        nextLessonDates.each { lessonDate ->
+            classSession.addToLessonDates(lessonDate)
         }
+
+        classSession.save()
+
+        return classSession
 
    }
 
