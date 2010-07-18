@@ -85,31 +85,51 @@
                         </g:else>
                         <br />
                     </h3>
-                        <div>
                         <g:form controller="course" action="interestedStudents" 
-                        id="${courseInstance.id}"
-                        method="GET">
-                        <g:hiddenField name="classSessionId" value="${classSessionInstance?.id}" />
+                            id="${courseInstance.id}"
+                            method="GET">
 
-        <g:select 
-            name="reservedForUser"
-            courseId="${courseInstance.id}"
-            class="reserveContact" 
-            from="${users}" 
-            optionKey="id" 
-            value="${reservedForUserId}"
-            noSelection="['':'']" />
-                        <g:submitButton name="submitFilter" value="Filter" />
-                        
-                        </g:form></div>
+                            <g:hiddenField name="classSessionId" value="${classSessionInstance?.id}" />
+                            <table>
+                                <tr>
+                                    <td>
+                            <label for="q">Contact Name:</label>
+                            <g:textField name="q" value="${params.q}" size="20" />
+                                </td>
+                                <td>
+                                
+                            <label for="reservedForUser">Reserved For:</label>
+                            <g:select 
+                                name="reservedForUser"
+                                courseId="${courseInstance.id}"
+                                class="reserveContact" 
+                                from="${users}" 
+                                optionKey="id" 
+                                value="${reservedForUserId}"
+                                noSelection="['':'']" />
+                                <td>
+                            <g:submitButton name="submitFilter" value="Search" />
+                                </td>
+                                
+                                </tr>
+                            
                         <g:if test="${classSessionInstance}">
-                        <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> 
-                        students enrolled.
-                        </p>
-                        <p>${contactInstanceTotal} students interested in 
-                        <g:link action="show" controller="course" id="${courseInstance.id}">${courseInstance}</g:link>
-                        </p>
+                                <tr>
+                                
+                                    <td>
+                                    ${contactInstanceTotal} students interested in 
+                                    <g:link action="show" controller="course" id="${courseInstance.id}">${courseInstance}</g:link>
+                                    </td>
+                                    <td>
+                                        <span id="studentCount">
+                                        <b>${classSessionInstance.enrollments?.size()}</b> 
+                                        students enrolled.
+                                        </span>
+                                    </td>
+                                </tr>
                         </g:if>
+                        </table>
+                        </g:form>
                     <table>
                         <thead>
                             <th colspan="2">Contact</th>
