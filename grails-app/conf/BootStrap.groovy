@@ -4,6 +4,7 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 
 class BootStrap {
     def testDataService
+    def searchableService
 
     def init = { servletContext ->
         def totalUsers = ShiroUser.count()
@@ -22,7 +23,9 @@ class BootStrap {
                 testDataService.loadDefaultConfigSettings()
             }
             development {
+                searchableService.stopMirroring()
                 testDataService.loadDevData(30)
+                searchableService.startMirroring()
             }
             test {
                 ExpandoMetaClass.enableGlobally()
