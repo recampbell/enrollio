@@ -2,6 +2,7 @@ package org.bworks.bworksdb
 import grails.test.*
 import grails.orm.PagedResultList
 import org.bworks.bworksdb.auth.ShiroUser
+import org.bworks.bworksdb.CallListContact
 
 class CourseService {
 
@@ -27,22 +28,7 @@ class CourseService {
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
     def callList(courseId, options = [:]) {
-        def crit = Contact.createCriteria() 
-        
-        def contacts = crit.listDistinct {
-            // contacts must be contacted (i.e. cannot reach is either NULL or false)
-            ne 'cannotReach', true
-            students {
-                order 'starred', 'desc'
-
-                interests {
-                    eq 'course.id', courseId
-                    order 'signupDate', 'asc'
-                    eq 'active', true
-                }
-            }
-
-        }
+        def contacts = contactsInterestedInCourse(courseId)
         // Hack that will avoid NULL inactive student if a contact
         // has interested and un-interested students
         contacts*.refresh()       
@@ -172,6 +158,42 @@ class CourseService {
 
         return clc
 
+    }
+
+    // generate / regenerate CallListContacts
+    // for a particular course.  This creates a list of 
+    // contacts who have students interested in a course, and their place in line.
+    def updateCallListContacts(course) {
+        def contacts = contactsInterestedInCourse(course.id)
+        contacts.eachWithIndex { contact, pos ->
+            def clc = CallListContact.findByCourseAndContact(course, contact)
+            if (!clc) {
+                clc = new CallListContact(course:course, contact:contact, callListPosition : pos.toLong()).save()
+            }
+            else {
+                clc.callListPosition = pos.toLong()
+                clc.save()
+            }
+        }
+    }
+
+    def contactsInterestedInCourse(courseId) {
+        def crit = Contact.createCriteria() 
+        
+        def contacts = crit.listDistinct {
+            // contacts must be contacted (i.e. cannot reach is either NULL or false)
+            ne 'cannotReach', true
+            students {
+                order 'starred', 'desc'
+
+                interests {
+                    eq 'course.id', courseId
+                    order 'signupDate', 'asc'
+                    eq 'active', true
+                }
+            }
+
+        }
     }
 
 }
