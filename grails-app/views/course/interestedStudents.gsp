@@ -84,6 +84,8 @@
                             <span>Waiting List for ${courseInstance}</span>
                         </g:else>
                         <br />
+                    </h3>
+                        <div>
                         <g:form controller="course" action="interestedStudents" 
                         id="${courseInstance.id}"
                         method="GET">
@@ -98,8 +100,7 @@
             noSelection="['':'']" />
                         <g:submitButton name="submitFilter" value="Filter" />
                         
-                        </g:form>
-                    </h3>
+                        </g:form></div>
                         <g:if test="${classSessionInstance}">
                         <p id="studentCount" class="youhave"><b>${classSessionInstance.enrollments?.size()}</b> 
                         students enrolled.
