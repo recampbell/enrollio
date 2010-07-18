@@ -110,6 +110,7 @@ class MiscTagLib {
      // Create links to the student's active interests
      def activeInterestLinks = { attrs ->
          def student = attrs['student']
+         def contactCallListPositions = attrs['contactCallListPositions']
          
          def links = []
          out << '<ul>'
@@ -118,7 +119,18 @@ class MiscTagLib {
              def link = g.link(controller:'course', action: 'show',
                                        id: interest.course.id, 
                                        interest.course.name)
-             out << '<li>' + link + ' (since ' + interest.signupDate.format("MMM, yyyy") + ')</li>'
+             out << '<li>' + link + ' (since ' + interest.signupDate.format("MMM, yyyy") + ') '
+             if (contactCallListPositions && contactCallListPositions[interest.course.id]) {
+                 def dangle = contactCallListPositions[interest.course.id]
+
+                 // we know where this student is in the call list
+                 out << g.link(controller:"course",
+                                 action:"interestedStudents",
+                                 params:[ contactId : student.contact.id ],
+                                 dangle.callListPosition.toString() + "th in list"
+                                 )
+             }
+             out << '</li>'
          }
          
          out << '</ul>'

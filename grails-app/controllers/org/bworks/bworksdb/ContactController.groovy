@@ -5,6 +5,7 @@ class ContactController {
     
     def studentService
     def contactService
+    def courseService
     def userService
     def configSettingService
     def index = { redirect(action:list,params:params) }
@@ -36,7 +37,10 @@ class ContactController {
         }
         else { 
             def newStudentInstance = contactService.createStudentStub(contactInstance)
-            return [ contactInstance : contactInstance, newStudentInstance : newStudentInstance ] 
+            def contactCallListPositions = courseService.contactCallListPositions(contactInstance)
+            return [ contactInstance : contactInstance, 
+                  newStudentInstance : newStudentInstance,
+                  contactCallListPositions : contactCallListPositions ] 
         }
     }
 

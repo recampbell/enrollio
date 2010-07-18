@@ -52,7 +52,8 @@
                 <td valign="top" class="name">Interests:</td>
 
                 <td  valign="top" style="text-align:left;" class="value">
-                    <g:activeInterestLinks student="${studentInstance}"/>
+                    <g:activeInterestLinks student="${studentInstance}"
+                    contactCallListPositions="${contactCallListPositions}"/>
                 </td>
 
             </tr>

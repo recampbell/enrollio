@@ -160,6 +160,19 @@ class CourseService {
 
     }
 
+    // return a list of the positions that this contact has
+    // for any course.  Example, contact is 1st on call list for EAC,
+    // 2nd on call list for Mentorship, etc.
+    // list is indexed/keyed by course id.
+    def contactCallListPositions(contactInstance) {
+        def contactCallListPositions = CallListContact.findAllByContact(contactInstance)
+        def coursePositions = [:]
+        contactCallListPositions.each {
+            coursePositions[it.course.id] = it
+        }
+        return coursePositions
+    }
+
     // generate / regenerate CallListContacts
     // for a particular course.  This creates a list of 
     // contacts who have students interested in a course, and their place in line.
