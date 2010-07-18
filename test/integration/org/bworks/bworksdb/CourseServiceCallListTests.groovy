@@ -85,6 +85,7 @@ class CourseServiceCallListTests extends GrailsUnitTestCase {
         assertEquals 5, callListContacts[con5.id].callListPosition
         assertEquals 6, callListContacts[con6.id].callListPosition
     }
+
     // register three contacts interested in computer course
     // then, request to see contact #2, with pagination, and 
     // we should see #2, #3
@@ -109,6 +110,25 @@ class CourseServiceCallListTests extends GrailsUnitTestCase {
         assertEquals 2, contactList.size()
         assertEquals 'ComputerContact2', contactList[0].lastName
         assertEquals 'ComputerContact3', contactList[1].lastName
+    }
+
+    void testSearchContactInCallList() {
+        def (computerContact, computerStudent, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('jackson', 'ComputerStudent', 'Computer Course')
+
+        def (computerContact2) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact2', 'ComputerStudent2', 'Computer Course')
+
+        def (computerContact3) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact3', 'ComputerStudent3', 'Computer Course')
+
+        def (computerContact4) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact4', 'ComputerStudent4', 'Computer Course')
+
+        def contactList = courseService.callList(computerCourse.id,
+                                    [q:'ack'])
+        assertEquals 1, contactList.size()
+        assertEquals 'jackson', contactList[0].lastName
     }
 }
         

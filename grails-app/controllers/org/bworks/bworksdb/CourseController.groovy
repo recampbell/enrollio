@@ -205,6 +205,8 @@ class CourseController {
             options['contactId'] = params.contactId
         }
 
+        if (params.q) options['q'] = params.q
+
         if(params.reservedForUser) {
             options['reservedForUser'] = ShiroUser.get(params.reservedForUser)
         }

@@ -28,7 +28,7 @@ class CourseService {
     // add their contacts to the list, unless contact is already in list
     // because contact has a starred student.
     def callList(courseId, options = [:]) {
-        def contacts = contactsInterestedInCourse(courseId)
+        def contacts = contactsInterestedInCourse(courseId, options)
         // Hack that will avoid NULL inactive student if a contact
         // has interested and un-interested students
         contacts*.refresh()       
@@ -209,11 +209,17 @@ class CourseService {
         }
     }
 
-    def contactsInterestedInCourse(courseId) {
+    def contactsInterestedInCourse(courseId, options = [:]) {
         def crit = Contact.createCriteria() 
         
         def contacts = crit.listDistinct {
             // contacts must be contacted (i.e. cannot reach is either NULL or false)
+            if (options.q) {
+                or {
+                    ilike('lastName', "%${options.q}%")
+                    ilike('firstName', "%${options.q}%")
+                }
+            }
             ne 'cannotReach', true
             students {
                 order 'starred', 'desc'
