@@ -125,7 +125,6 @@ class MiscTagLib {
 
                  // we know where this student is in the call list
                  out << g.link(controller:"course",
-                                 id:interest.course.id,
                                  action:"interestedStudents",
                                  params:[ contactId : student.contact.id ],
                                  dangle.callListPosition.toString() + "th in list"

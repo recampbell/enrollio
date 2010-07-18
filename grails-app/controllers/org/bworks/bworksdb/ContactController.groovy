@@ -37,8 +37,7 @@ class ContactController {
         }
         else { 
             def newStudentInstance = contactService.createStudentStub(contactInstance)
-            def contactCallListPositions = 
-                courseService.contactCallListPositions(contactInstance)
+            def contactCallListPositions = courseService.contactCallListPositions(contactInstance)
             return [ contactInstance : contactInstance, 
                   newStudentInstance : newStudentInstance,
                   contactCallListPositions : contactCallListPositions ] 

@@ -78,14 +78,12 @@ class CourseServiceCallListTests extends GrailsUnitTestCase {
         courseService.updateCallListContacts(computerCourse)
         def callListContacts = courseService.callListContacts(computerCourse)
 
-        assertEquals 1, callListContacts[con1.id].callListPosition
-        assertEquals 2, callListContacts[con2.id].callListPosition
-        assertEquals 3, callListContacts[con3.id].callListPosition
-        assertEquals 4, callListContacts[con4.id].callListPosition
-        assertEquals 5, callListContacts[con5.id].callListPosition
-        assertEquals 6, callListContacts[con6.id].callListPosition
-    }
-
+        assertEquals 0, callListContacts[con1.id].callListPosition
+        assertEquals 1, callListContacts[con2.id].callListPosition
+        assertEquals 2, callListContacts[con3.id].callListPosition
+        assertEquals 3, callListContacts[con4.id].callListPosition
+        assertEquals 4, callListContacts[con5.id].callListPosition
+        assertEquals 5, callListContacts[con6.id].callListPosition
     // register three contacts interested in computer course
     // then, request to see contact #2, with pagination, and 
     // we should see #2, #3
