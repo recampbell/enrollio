@@ -118,7 +118,6 @@
                             in="${contactInstanceList}">
                         <g:render template="interestedContact" 
                         model="[
-                            placeInList : contactInstanceList.indexOf(con) + (params.offset ? params.offset.toLong() : 0), 
                             users : users,
                             contactInstance : con,
                             callListContacts : callListContacts,
