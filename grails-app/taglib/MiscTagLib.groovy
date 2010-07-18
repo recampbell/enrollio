@@ -112,32 +112,22 @@ class MiscTagLib {
          def student = attrs['student']
          def contactCallListPositions = attrs['contactCallListPositions']
          
-         def links = []
          out << '<ul>'
          student.activeInterests().each { interest ->
              def dt = enrollio.formatDate(date:interest.signupDate)
-             def link = g.link(controller:'course', action: 'show',
-                                       id: interest.course.id, 
-                                       interest.course.name)
-             out << '<li>' + link + ' (since ' + interest.signupDate.format("MMM, yyyy") + ') '
+             def link = g.link(controller:'course', action: 'interestedStudents',
+                               params:[ contactId : student.contact.id ],
+                               id: interest.course.id, 
+                               interest.course.name)
+             out << '<li>' + link + ' reg. ' + interest.signupDate.format("MMM, yyyy")
              if (contactCallListPositions && contactCallListPositions[interest.course.id]) {
-                 def dangle = contactCallListPositions[interest.course.id]
+                 def callListPos = contactCallListPositions[interest.course.id]
+                 out << " - ${callListPos.callListPosition}th"
 
-                 // we know where this student is in the call list
-                 out << g.link(controller:"course",
-                                 action:"interestedStudents",
-                                 params:[ contactId : student.contact.id ],
-                                 dangle.callListPosition.toString() + "th in list"
-                                 )
              }
              out << '</li>'
          }
          
          out << '</ul>'
-         
-
      }
-     
-     
-
 }
