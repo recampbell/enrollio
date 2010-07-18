@@ -89,6 +89,7 @@
                         <g:form controller="course" action="interestedStudents" 
                         id="${courseInstance.id}"
                         method="GET">
+                        <g:hiddenField name="classSessionId" value="${classSessionInstance?.id}" />
 
         <g:select 
             name="reservedForUser"
