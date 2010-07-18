@@ -120,6 +120,7 @@
                         model="[
                             users : users,
                             contactInstance : con,
+                            selectedContactId : selectedContactId,
                             callListContacts : callListContacts,
                             courseInstance : courseInstance,
                             classSessionInstance : classSessionInstance ]" />

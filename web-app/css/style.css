@@ -719,3 +719,7 @@ tr.selected {
     background:#D2E5F1
 }
 
+tr.selectedLight {
+    background:#F3F9FF
+}
+

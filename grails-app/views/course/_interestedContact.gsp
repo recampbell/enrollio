@@ -1,4 +1,4 @@
-<tr>
+<tr class="${contactInstance.id.toString() == selectedContactId.toString() ? 'selectedLight' : ''}">
     <td width="45%">
         <g:link controller="contact" 
            action="show" id="${contactInstance.id}">${callListContacts[contactInstance.id]?.callListPosition}) ${contactInstance}</g:link>
