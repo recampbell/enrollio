@@ -116,10 +116,32 @@ class TestDataService {
         numContacts.times {
             loadDummyContactAndStudents()
         }
-        loadDummyClassSessions()
+        loadAllDummyClassSessions()
         loadDummyUsers()
         loadDefaultConfigSettings()
     } 
+
+    // General method to load awesome dummy class sessions
+    def loadAllDummyClassSessions() {
+        def adultCourse      = Course.findByName(TestKeys.PROGRAM_ADULT_AEC)
+        def mentorshipCourse = Course.findByName(TestKeys.PROGRAM_MENTORSHIP)
+        def childrensCourse  = Course.findByName(TestKeys.PROGRAM_KIDS_AEC)
+                
+        // load dummy class sessions for now -- we should
+        // create more predictable test data for integration tests
+        loadDummyClassSession(mentorshipCourse, 
+                              TestKeys.SESSION_MENTORSHIP_DATE,
+                              TestKeys.SESSION_MENTORSHIP_NAME)
+
+        loadDummyClassSession(childrensCourse, 
+                              TestKeys.SESSION_KIDS_DATE,
+                              TestKeys.SESSION_KIDS_NAME)
+
+        loadDummyClassSession(adultCourse, 
+                              TestKeys.SESSION_ADULT_DATE,
+                              TestKeys.SESSION_ADULT_NAME)
+
+    }
 
     def loadDummyClassSession(course, startDate, sessionName) {
         def classSession = 
