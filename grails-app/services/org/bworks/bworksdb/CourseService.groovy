@@ -166,6 +166,8 @@ class CourseService {
     def updateCallListContacts(course) {
         def contacts = contactsInterestedInCourse(course.id)
         contacts.eachWithIndex { contact, pos ->
+            // don't show zero-based positions.
+            pos++
             def clc = CallListContact.findByCourseAndContact(course, contact)
             if (!clc) {
                 clc = new CallListContact(course:course, contact:contact, callListPosition : pos.toLong()).save()

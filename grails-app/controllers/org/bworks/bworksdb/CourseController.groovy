@@ -190,8 +190,9 @@ class CourseController {
 
         // default to showing 10 records, and at most 100 records
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        println params
+
         def courseInstance = Course.get(params.id)
+        if (courseInstance) courseService.updateCallListContacts(courseInstance)
         def classSessionInstance = ClassSession.get(params.classSessionId)
         def callListContacts = courseService.callListContacts(courseInstance)
 
