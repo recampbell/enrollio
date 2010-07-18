@@ -55,8 +55,14 @@ class CourseService {
 
         def totalCount = contacts.size()
 
-        // Another hack that implements pagination
-        if (options.offset && options.offset < contacts.size()) {
+        def searchingForContactId
+        if (options.contactId && (searchingForContactId = contacts.find { it.id == options.contactId }) ) {
+            // keep only contacts after the contact we're searching for
+            contacts = contacts[contacts.indexOf(searchingForContactId) .. contacts.size() - 1]
+        }
+        else if (options.offset && options.offset < contacts.size()) {
+            // Another hack that implements pagination
+            // see if caller wants offset
             contacts = contacts[options.offset .. contacts.size() - 1]
         }
 

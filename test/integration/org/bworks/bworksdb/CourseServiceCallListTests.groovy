@@ -84,6 +84,30 @@ class CourseServiceCallListTests extends GrailsUnitTestCase {
         assertEquals 3, callListContacts[con4.id].callListPosition
         assertEquals 4, callListContacts[con5.id].callListPosition
         assertEquals 5, callListContacts[con6.id].callListPosition
+    // register three contacts interested in computer course
+    // then, request to see contact #2, with pagination, and 
+    // we should see #2, #3
+    void testShowContactInCallList() {
+        def (computerContact, computerStudent, computerCourse) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact', 'ComputerStudent', 'Computer Course')
+
+        def (computerContact2) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact2', 'ComputerStudent2', 'Computer Course')
+
+        def (computerContact3) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact3', 'ComputerStudent3', 'Computer Course')
+
+        def (computerContact4) = 
+           testDataService.setupContactAndStudentWithCourse('ComputerContact4', 'ComputerStudent4', 'Computer Course')
+
+        // callList should ignore offset if contactId is specified.
+        // if I want to see contact 'bob', then 'bob' should be first, regardless
+        // of offset.
+        def contactList = courseService.callList(computerCourse.id,
+                                    [offset:3, max:2, contactId:computerContact2.id])
+        assertEquals 2, contactList.size()
+        assertEquals 'ComputerContact2', contactList[0].lastName
+        assertEquals 'ComputerContact3', contactList[1].lastName
     }
 }
         
