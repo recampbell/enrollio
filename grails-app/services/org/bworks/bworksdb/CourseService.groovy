@@ -56,9 +56,16 @@ class CourseService {
         def totalCount = contacts.size()
 
         def searchingForContactId
-        if (options.contactId && (searchingForContactId = contacts.find { it.id == options.contactId }) ) {
-            // keep only contacts after the contact we're searching for
-            contacts = contacts[contacts.indexOf(searchingForContactId) .. contacts.size() - 1]
+        def newOffset
+        if (options.contactId) {
+            searchingForContactId = contacts.find { it.id == options.contactId.toLong() }
+            if (searchingForContactId) {
+                // we have to pass back this new offset, to tell
+                // the view what person we're on.
+                newOffset = contacts.indexOf(searchingForContactId)
+                // keep only contacts after the contact we're searching for
+                contacts = contacts[contacts.indexOf(searchingForContactId) .. contacts.size() - 1]
+            }
         }
         else if (options.offset && options.offset < contacts.size()) {
             // Another hack that implements pagination
@@ -72,7 +79,11 @@ class CourseService {
             contacts = contacts[0 .. upperBound - 1]
         }
 
-        return new PagedResultList(contacts, totalCount)
+        def resultList = new PagedResultList(contacts, totalCount)
+        if (newOffset) {
+            resultList.metaClass.newOffset = newOffset
+        }
+        return resultList
 
    }
 

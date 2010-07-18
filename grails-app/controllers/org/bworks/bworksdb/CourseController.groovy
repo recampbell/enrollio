@@ -201,6 +201,10 @@ class CourseController {
             offset:params.offset?.toLong()
         ] 
 
+        if (params.contactId) {
+            options['contactId'] = params.contactId
+        }
+
         if(params.reservedForUser) {
             options['reservedForUser'] = ShiroUser.get(params.reservedForUser)
         }
@@ -208,6 +212,7 @@ class CourseController {
         PagedResultList contactInstanceList = 
             courseService.callList(params.id.toLong(), options) 
 
+        def data = 
         [ contactInstanceList : contactInstanceList,
           contactInstanceTotal : contactInstanceList.totalCount,
           reservedForUserId : params.reservedForUser,
@@ -216,6 +221,19 @@ class CourseController {
             currentUser : userService.loggedInUser(),
             users : ShiroUser.list(), 
             classSessionInstance : classSessionInstance ]
+
+        // dam, this is ugly.  see if there's a property called 'newOffset'
+        try {
+            if (contactInstanceList.newOffset) {
+                params.offset = contactInstanceList.newOffset.toString()
+            }
+        } catch (Exception e) {}
+
+        if (params.contactId) {
+            data['selectedContactId'] = params.contactId
+        }
+
+        return data
 
     }
 
