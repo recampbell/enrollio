@@ -56,10 +56,10 @@
             </li>
             <li>
                 <g:link name='welcomeLettersLink' 
-                class="welcome_letter" 
+                class="email" 
                 controller="classSession"
                 action="envelopes"
-                id="${classSessionInstance.id}">&#160;Envelopes</g:link>
+                id="${classSessionInstance.id}">&#160;Envelopes (CSV)</g:link>
             
             </li>
             
