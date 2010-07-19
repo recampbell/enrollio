@@ -36,6 +36,16 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">
+                        <g:hasErrors bean="${contactInstance}">
+                            <div class="errors">
+                                <g:renderErrors bean="${contactIntance}" as="list" />
+                            </div>
+                        </g:hasErrors>
+                        <g:hasErrors bean="${studentInstance}">
+                            <div class="errors">
+                                <g:renderErrors bean="${studentInstance}" as="list" />
+                            </div>
+                        </g:hasErrors>
                         <span>New Contact</span>
                         <br />
                     </h3>
@@ -61,34 +71,36 @@
                         <table width="100%">
                             <tbody>
                                 <tr class="prop">
-                                    <td><label for="firstName">First Name : </label> </td>
+                                    <td><label for="student.firstName">First Name : </label> </td>
                                     <td>
                                         <input type="text" id="firstName" 
-                                        name="firstName" 
+                                        name="student.firstName" 
                                         value="${fieldValue(bean:studentInstance,field:'firstName')}"/><br />
                                     </td> 
                                 </tr>
                                 <tr class="prop">
-                                    <td><label for="middleName">Middle Name: </label> </td>
+                                    <td><label for="student.middleName">Middle Name: </label> </td>
                                     <td>
                                         <input type="text" id="middleName" 
-                                        name="middleName" 
+                                        name="student.middleName" 
                                         value="${fieldValue(bean:studentInstance,field:'middleName')}"/><br />
                                     </td> 
                                 </tr>
 
                                 <tr class="prop">
-                                    <td><label for="lastName">Last Name: </label> </td>
+                                    <td><label for="student.lastName">Last Name: </label> </td>
                                     <td>
                                         <input type="text" id="lastName" 
-                                        name="lastName" 
+                                        name="student.lastName" 
                                         value="${fieldValue(bean:studentInstance,field:'lastName')}"/><br />
                                     </td> 
                                 </tr>
                                 <tr>
-                                    <td><label for="signupDate">Signup Date</label></td>
+                                    <td><label for="student.signupDate">Signup Date</label></td>
                                     <td>
-                                        <input class="hasDatePicker" type="text" id="signupDate" name="signupDate" 
+                                        <input class="hasDatePicker" type="text" 
+                                        id="student.signupDate" 
+                                        name="student.signupDate" 
                                         value="${new Date().format('MM/dd/yyyy')}" />
                                     </td>
                                 </tr>

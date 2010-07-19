@@ -117,18 +117,6 @@ class ContactController {
                  defaultAreaCode : defaultAreaCode]
     }
 
-
-    def saveAndAddStudents = {
-        def contactInstance = new Contact(params)
-        if(!contactInstance.hasErrors() && contactInstance.save()) {
-            flash.message = "Contact ${contactInstance.id} created"
-            redirect(action:create,controller:"student",params:["contact.id":contactInstance.id])
-        }
-        else {
-            render(view:'create',model:[contactInstance:contactInstance])
-        }
-    }
-
     // Only difference between this and saveAndAddStudents is that
     // saveAndAddStudents redirects to student/create action
     def save = {
@@ -138,8 +126,24 @@ class ContactController {
                 contactInstance.addComment(userService.loggedInUser(), params.noteText)
                 contactInstance.save()
             }
-            flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
-            redirect(action:show,id:contactInstance.id)
+            if (params.student) {
+                def studentInstance = new Student(params.student)
+                studentInstance.contact = contactInstance
+                if (!studentInstance.hasErrors() && studentInstance.validate()) {
+
+                    contactInstance.addToStudents(studentInstance).save()
+                    flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
+                    redirect(action:show,id:contactInstance.id)
+                }
+                else {
+                    render(view:'create', model:[contactInstance:contactInstance,
+                                                 studentInstance:studentInstance])
+                }
+            }
+            else {
+                flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
+                redirect(action:show,id:contactInstance.id)
+            }
         }
         else {
             render(view:'create',model:[contactInstance:contactInstance])
