@@ -28,6 +28,12 @@
                                         </td>
                                         <td>${fieldValue(bean:courseInstance,
                                         field:'description')}</td>
+                                    <td>
+                                    <g:each var="sess" in="${courseInstance.classSessions}">
+                                    <g:link controller="classSession" action="show"
+                                    id="${sess.id}">${sess.name},&nbsp</g:link>
+
+                                    </g:each></td>
                                     </tr>
                                 </g:each>
                             </tbody>
