@@ -228,6 +228,21 @@ class ClassSessionController {
 
     }
 
+    def envelopes = {
+        def classSessionInstance = ClassSession.get( params.id )
+        if(!classSessionInstance) {
+            flash.message = "Class Session not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else if (classSessionInstance.enrollments?.size() == 0) { 
+            flash.notice = "No students are enrolled in this class session.  Can't print envelopes for nobody"
+            redirect(action:show, id:classSessionInstance.id)
+        }
+        else {
+            render 'hello world'
+        }
+
+    }
     def certificates = {
         def classSessionInstance = ClassSession.get( params.id )
         if(!classSessionInstance) {

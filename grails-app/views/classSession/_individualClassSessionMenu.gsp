@@ -43,6 +43,10 @@
                       model="[courseInstance:classSessionInstance.course]"/>
             </li>
             <li>
+                <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
+                id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
+            </li>
+            <li>
 
                 <g:link name='welcomeLettersLink' 
                 class="welcome_letter" 
@@ -50,11 +54,15 @@
                 action="welcomeLetters"
                 id="${classSessionInstance.id}">&#160;Welcome Letters</g:link>
             </li>
-            
             <li>
-                <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
-                id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
+                <g:link name='welcomeLettersLink' 
+                class="welcome_letter" 
+                controller="classSession"
+                action="envelopes"
+                id="${classSessionInstance.id}">&#160;Envelopes</g:link>
+            
             </li>
+            
         </ul>
 
         </li>

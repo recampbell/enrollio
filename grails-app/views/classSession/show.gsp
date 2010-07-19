@@ -12,6 +12,11 @@
         <div id="container">
             <div id="wrapper">
                 <div id="content">
+                    <g:if test="${flash.notice}">
+                            <div class="errors">
+                                ${flash.notice}
+                            </div>
+                    </g:if>
                     <div class="rightnow">
                         <h3 class="reallynow">
                             <a href="#" class="headerLink calendar">
