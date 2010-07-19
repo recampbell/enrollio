@@ -23,13 +23,23 @@
                                              { 'active' : $(this).attr('checked'), 
                                                    'id' : $(this).attr("interestId") });
                     });
+                // When user pressed "Graduate all", we switch everyone's status to
+                // graduated or 'in progress'.  We also select/desect the "still interested" boxen.
                 $("#graduateAll").toggle(
                     function(){
                         $(this).text("In Prog. All");
                         $('.statusSwitcher').each(function() {
                             $(this).val("GRADUATED")
                             $(this).change()
-                            })}
+                            });
+
+                        $('.stillInterested').each(function() {
+                            $(this).attr('checked',false);
+                            $(this).change();
+                        })
+                        $('#allStillInterested').attr('checked', false);
+
+                    }
                         
                         ,
 
@@ -39,6 +49,11 @@
                             $(this).val("IN_PROGRESS")
                             $(this).change()
                             });
+                        $('.stillInterested').each(function() {
+                            $(this).attr('checked',true);
+                            $(this).change();
+                            });
+                        $('#allStillInterested').attr('checked', true);
                         }
                         );
                 $("#allStillInterested").click(
@@ -73,7 +88,8 @@
                                         <a href="#" id="graduateAll">Grad. All</a></div>
                                     </th>
                                     <th>Still Interested?
-                                        <input type="checkbox" id="allStillInterested" />
+                                        <input type="checkbox" 
+                                                 id="allStillInterested" />
                                     
                                     </th>
                                     <th width="60%">Attendance</th>
@@ -92,7 +108,8 @@
                                                 model="[enrollmentInstance : enrollmentInstance]" />
                                             </td>
                                             <td>
-                                                <g:checkBox class="stillInterested" name="stillInterested${enrollmentInstance.student.id}"
+                                                <g:checkBox class="stillInterested" 
+                                                             name="stillInterested${enrollmentInstance.student.id}"
                                                     interestId="${interestsInCourse[enrollmentInstance.student.id]?.id}"
                                                     value="${interestsInCourse[enrollmentInstance.student.id]?.active}" />
                                             </td>
