@@ -78,7 +78,11 @@
                 <div class="rightnow">
                     <h3 class="reallynow">
                         <g:if test="${classSessionInstance}">
-                            <span>Call List for ${classSessionInstance}</span>
+                                <g:link controller="classSession"
+                                           class="headerLink calendar"
+                                           action="show"
+                                           id="${classSessionInstance.id}" >
+                                           ${classSessionInstance.name}</g:link>
                         </g:if>
                         <g:else>
                             <span>Waiting List for ${courseInstance}</span>
