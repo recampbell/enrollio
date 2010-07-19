@@ -239,7 +239,25 @@ class ClassSessionController {
             redirect(action:show, id:classSessionInstance.id)
         }
         else {
-            render 'hello world'
+            def header = [ 'name', 'address1', 'address2', 'city', 'state', 'zip' ]
+            def envelopes = classSessionInstance.enrollments.collect {
+                [ it.student.contact.fullName(),
+                  it.student.contact.address1 ?: '',
+                  it.student.contact.address2 ?: '',
+                  it.student.contact.city ?: '',
+                  it.student.contact.state ?: '',
+                  it.student.contact.zipCode ?: '']
+            }
+
+            envelopes = [ header ] + envelopes 
+
+            // join all data w/tabs
+            def envelopeData = envelopes.collect {
+                it.join(",")
+            }
+
+            response.setHeader("Content-disposition", "attachment; filename=envelopes.csv")
+            render(contentType: "text/csv", text: envelopeData.join("\n"));
         }
 
     }
