@@ -78,13 +78,3 @@
       }
 
 });
-function updateInterests() {
-    // Collect the labels of each of the selected Interests
-    // and put them into the "Interests" section of the newStudentForm
-    // from http://groups.google.com/group/jquery-en/browse_thread/thread/6bbc26e14a59526c
-    var selectedInterestLabels = 
-        $('input[name=interestInCourse]:checked').map(function() {
-            return $(this).attr("courseName")
-    }).get();
-    $('#interestNames').val(selectedInterestLabels.join(", "))
-}

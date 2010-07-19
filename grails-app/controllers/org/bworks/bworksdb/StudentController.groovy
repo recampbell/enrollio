@@ -148,17 +148,6 @@ class StudentController {
         }
     }
 
-    def create = {
-        def contact
-
-        def studentInstance = new Student()
-        if (params.contact?.id) {
-            studentInstance.lastName = Contact.get(params.contact.id)?.lastName
-        }
-        studentInstance.properties = params
-        return ['studentInstance':studentInstance]
-    }
-
     def save = {
         def studentInstance = new Student(params)
         if(!studentInstance.hasErrors() && studentInstance.save()) {
