@@ -2,7 +2,6 @@ package org.bworks.bworksdb
 
 class EnrollmentController {
 
-    def classSessionService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -16,21 +15,14 @@ class EnrollmentController {
 
     def enrollmentStatus = {
         def enrollmentInstance = Enrollment.get(params.id)
-
         if (enrollmentInstance) {
-            // assign the values specified on the request, then forward
-            // enrollment to the class session service, to tie up other 
-            // loose ends.
             enrollmentInstance.properties = params
-            if (classSessionService.enrollmentStatusChange(enrollmentInstance)) {
+            if (!enrollmentInstance.hasErrors() && enrollmentInstance.save(flush: true)) {
                 render ''
             }
             else {
-                render ''
+                render "ERROR"
             }
-        }
-        else {
-            println "yaba" * 100
         }
     }
 
