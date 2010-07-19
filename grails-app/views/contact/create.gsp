@@ -5,8 +5,26 @@
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />    
         <title>Create Contact</title>         
+        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'jquery.multiselect.css')}" />
         <g:javascript src="jquery-1.4.2.min.js" />
         <g:javascript src="jquery.maskedinput-1.2.2.min.js" />
+        <g:javascript src="jquery.multiselect.min.js" />
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
+        <g:javascript src="enrollioContact" />
+        <script type="text/javascript">
+            
+             $(document).ready(function(){
+                  $("select.multiselect").multiSelect({
+                      showHeader : false,
+                      noneSelectedText : 'Select Interests',
+                       selectedList:2   // selectedList shows the names of the selected interests!
+                  });
+                  // Show date picker for the "Signup Date" that shown on the
+                  // new student form.  (It's rendered in the createStudent.gsp template below)
+                 $('#signupDate').datepicker({changeYear:true});
+             });
+        
+        </script>
     </head>
     <body>
         <script type="text/javascript">
@@ -38,9 +56,50 @@
                             phoneNumberList="${contactInstance.phoneNumbers}" />
                     </div>
                     <div class="infobox margin-left">
-                            <h3 class="reallynow">Student Info</h3>
-                            <enrollio:phoneNumberInput 
-                            phoneNumberList="${contactInstance.phoneNumbers}" />
+                        <h3 class="reallynow">Student Info</h3>
+                        <p> You can add more students after saving the Contact.</p>
+                        <table width="100%">
+                            <tbody>
+                                <tr class="prop">
+                                    <td><label for="firstName">First Name : </label> </td>
+                                    <td>
+                                        <input type="text" id="firstName" 
+                                        name="firstName" 
+                                        value="${fieldValue(bean:studentInstance,field:'firstName')}"/><br />
+                                    </td> 
+                                </tr>
+                                <tr class="prop">
+                                    <td><label for="middleName">Middle Name: </label> </td>
+                                    <td>
+                                        <input type="text" id="middleName" 
+                                        name="middleName" 
+                                        value="${fieldValue(bean:studentInstance,field:'middleName')}"/><br />
+                                    </td> 
+                                </tr>
+
+                                <tr class="prop">
+                                    <td><label for="lastName">Last Name: </label> </td>
+                                    <td>
+                                        <input type="text" id="lastName" 
+                                        name="lastName" 
+                                        value="${fieldValue(bean:studentInstance,field:'lastName')}"/><br />
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><label for="signupDate">Signup Date</label></td>
+                                    <td>
+                                        <input class="hasDatePicker" type="text" id="signupDate" name="signupDate" 
+                                        value="${new Date().format('MM/dd/yyyy')}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="lastName">Interests</label> </td>
+                                    <td>
+                                        <enrollio:courseDropDown studentInstance="${studentInstance}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <g:actionSubmit value="Create Contact" action="save" />
                 </g:form>

@@ -104,6 +104,7 @@ class ContactController {
 
     def create = {
         def contactInstance = new Contact()
+        def studentInstance = contactService.createStudentStub(contactInstance)
         // Create two new phone numbers
         contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Home'))
         contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Work'))
@@ -112,6 +113,7 @@ class ContactController {
         contactInstance.properties = params
         def defaultAreaCode = configSettingService.getSetting(ConfigSetting.DEFAULT_AREA_CODE)?.toString()
         return ['contactInstance':contactInstance,
+                'studentInstance':studentInstance,
                  defaultAreaCode : defaultAreaCode]
     }
 
