@@ -6,26 +6,23 @@
                 { 'status' : $(this).attr('attendanceStatus'),
                 'id'     : $(this).attr('attendanceId') });
         });
-        $('#selectAll').toggle(
-            function() { 
-                $(this).text("All Absent");
-                $(".statusSwitcher[value='present']").each(function() {
-                    $(this).click();
-                })},
-            function() { 
-            
-                $(this).text("All Present");
-                $(".statusSwitcher[value='absent']").each(function() {
-                    $(this).click();
-                })}
-            );
-
+        $('#selectAll').click(function() { 
+            $(".statusSwitcher[value='present']").each(function() {
+                $(this).click();
+            });
+        });
+        $('#selectNone').click(function() { 
+            $(".statusSwitcher[value='absent']").each(function() {
+                $(this).click();
+            });
+        });
     });
 </script>
 <h3 class="reallynow">${lessonDateInstance}
 
-    <a href="#" id="selectAll">All Present</a>
 
+    <a href="#" id="selectNone" class="delete">None</a>
+    <a href="#" id="selectAll" class="tick">All</a>
 
 </h3>
 <table>

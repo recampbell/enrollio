@@ -428,6 +428,9 @@ form #button1:hover, form #button2:hover {
 
 /* icons */
 .certificate{background:transparent url(../images/icons/script.png) no-repeat left;}
+.email{background:transparent url(../images/icons/email.png) no-repeat left;}
+.tick{background:transparent url(../images/icons/tick.png) no-repeat left;}
+.delete{background:transparent url(../images/icons/delete.png) no-repeat left;}
 .waiting_list{background:transparent url(../images/icons/page_portrait_shot.png) no-repeat left;}
 .welcome_letter{background:transparent url(../images/icons/page_white_swoosh.png) no-repeat left;}
 .attendance{background:transparent url(../images/icons/page_white_paste_table.png) no-repeat left;}
