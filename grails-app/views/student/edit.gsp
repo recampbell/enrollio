@@ -62,7 +62,7 @@
                             </td> 
                         </tr>
                         <tr class="prop">
-                            <td><label for="firstName">Middle Name: </label> </td>
+                            <td><label for="middleName">Middle Name: </label> </td>
                             <td>
                                 <input type="text" id="middleName" 
                                 name="middleName" 
@@ -71,7 +71,7 @@
                         </tr>
 
                         <tr class="prop">
-                            <td><label for="firstName">Last Name: </label> </td>
+                            <td><label for="lastName">Last Name: </label> </td>
                             <td>
                                 <input type="text" id="lastName" 
                                 name="lastName" 
