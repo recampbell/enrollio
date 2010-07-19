@@ -55,7 +55,6 @@ class UrlMappings {
 	'/contacts'(controller: 'contact', action: 'list')
 	"/contact/$id"(controller: 'contact', action: 'show')
 	"/createContact"(controller: 'contact', action: 'create')
-	"/createStudent"(controller: 'contact', action: 'createStudent')
 	"/saveStudent"(controller: 'contact', action: 'saveStudent')
 	"/editContact/$id"(controller: 'contact', action: 'edit')
 	"/updateContact"(controller: 'contact', action: 'update')
