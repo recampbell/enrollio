@@ -13,8 +13,7 @@
       // replace the contents of the span with the result of this POST.
       // if we used only an image w/o a parent <span> it doesn't work
       $(".star").click(function(){
-        $(this).load('${createLink(controller:"student",
-                                action:"toggleStar")}',
+        $(this).load('${createLink(controller:"student", action:"toggleStar")}',
             { 'starred' : $(this).children('img').attr('starred'), 'id' : $(this).attr("starId") });
         });
 
