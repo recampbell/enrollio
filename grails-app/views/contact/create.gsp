@@ -37,6 +37,11 @@
                             <enrollio:phoneNumberInput 
                             phoneNumberList="${contactInstance.phoneNumbers}" />
                     </div>
+                    <div class="infobox margin-left">
+                            <h3 class="reallynow">Student Info</h3>
+                            <enrollio:phoneNumberInput 
+                            phoneNumberList="${contactInstance.phoneNumbers}" />
+                    </div>
                     <g:actionSubmit value="Create Contact" action="save" />
                 </g:form>
                 </div>
