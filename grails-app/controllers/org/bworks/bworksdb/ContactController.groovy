@@ -132,6 +132,15 @@ class ContactController {
                 if (!studentInstance.hasErrors() && studentInstance.validate()) {
 
                     contactInstance.addToStudents(studentInstance).save()
+                    def signupDates = null
+                    if (params['student.signupDate']) {
+                        signupDates = [:]
+                        [params['interestInCourse']].flatten().each { courseId ->
+                            signupDates[courseId] = Date.parse('MM/dd/yyyy', params['student.signupDate'])
+                        }
+                    }
+
+                    studentService.saveInterests(studentInstance, params['interestInCourse'], signupDates)
                     flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
                     redirect(action:show,id:contactInstance.id)
                 }
