@@ -18,6 +18,12 @@
                 <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
             </li>
             <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
+        <g:if test="${contactInstance.comments}">
+        <li>
+        <comments:each bean="${contactInstance}">
+            <b>*</b> ${comment.body}
+        </comments:each></li>
+        </g:if>
         </ul>
     </td>
     <td>
@@ -27,10 +33,9 @@
             <td>
                     ${stud.starred ? '* ' : ''}
                     ${stud}
+                </td>
                 <td><enrollio:enrollmentAbbreviations studentInstance="${stud}" /></td>
-                <g:if test="${stud.enrollments}">
-                </g:if>
-        </tr>
+            </tr>
             </g:each>
         </table>
     </td>
