@@ -147,5 +147,26 @@ class EnrollioTagLib {
         def student = attrs['studentInstance']
         out << student.enrollments?.collect { it.classSession?.abbrev() }.join(',')
     }
+
+    // determine contact's students earliest signup date for a course
+    def signupDateForCourse = { attrs ->
+        def contact = attrs['contactInstance']
+        def course = attrs['courseInstance']
+        def crit = Interest.createCriteria()
+        def interests = crit {
+            eq ('course.id', course.id)
+            eq ('active', true)
+            student {
+                eq ('contact.id', contact.id)
+            }
+            order('signupDate', 'asc')
+            maxResults(1)
+        }
+
+        if (interests) {
+            out << ' (reg. ' + interests[0].signupDate.format("MMM, yyyy") + ')'
+        }
+    }
+
 }
 
