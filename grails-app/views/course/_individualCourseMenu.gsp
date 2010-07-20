@@ -45,7 +45,7 @@
                     action="printableCallList" 
                     id="${courseInstance.id}" 
                     params="[ pdf:true,
-                              reservedForUserId : reservedForUserId,
+                              reservedForUser : reservedForUserId,
                               q : q ]">Call list (PDF)
                     
                     <g:if test="${reservedForUserId || q }">(filter)</g:if>

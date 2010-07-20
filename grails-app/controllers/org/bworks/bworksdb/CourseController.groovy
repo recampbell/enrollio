@@ -137,15 +137,24 @@ class CourseController {
         render("mg. call list")
     }
 
+    // prints PDF version of call list
+    // uses similar options for filtering call list by user, or by search term
+    // doensn't support options for printing page 2 -- users can just do that from the freaking' PDF
     def printableCallList = {
-        // def reportData = callListReportData()
         
         // chain(controller:'jasper',
               // action:'index',
               // model:[data:reportData],params:params)
         def courseInstance = Course.get(params.id) 
-        def contactInstanceList = courseService.callList(courseInstance.id)
+        def options = [:]
+        if (params.q) options['q'] = params.q
+
+        if(params.reservedForUser) {
+            options['reservedForUser'] = ShiroUser.get(params.reservedForUser)
+        }
+        def contactInstanceList = courseService.callList(courseInstance.id, options)
         def callListContacts = courseService.callListContacts(courseInstance)
+
         def model = [ 
                    contactInstanceList : contactInstanceList,
                       callListContacts : callListContacts, 
