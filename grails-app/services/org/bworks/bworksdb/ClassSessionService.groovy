@@ -76,7 +76,10 @@ class ClassSessionService {
 
         def students = classSessionInstance.enrollments.each { enr ->
             def row = [:]
-            row.studentName = enr.student.toString()
+            def phonez = enr.student.contact.phoneNumbers?.collect{
+                it.phoneNumber
+            }.join(", ")
+            row.studentName = enr.student.toString() + phonez
             classSessionInstance.lessonDates.each { ld ->
                row["attended_${ld.id}"] = " "
             }
