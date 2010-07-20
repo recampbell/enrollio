@@ -101,7 +101,6 @@
                                         <g:textField name="q" value="${params.q}" size="20" />
                                     </td>
                                     <td>
-
                                         <label for="reservedForUser">Reserved For:</label>
                                         <g:select 
                                         name="reservedForUser"
@@ -111,13 +110,12 @@
                                         optionKey="id" 
                                         value="${reservedForUserId}"
                                         noSelection="['':'']" />
-                                        <td>
-                                            <g:submitButton name="submitFilter" value="Search" />
-                                            <g:link action="interestedStudents" 
-                                            controller="course" id="${courseInstance.id}">
-                                            Clear
-                                            </g:link>
-                                        </td>
+                                        <g:submitButton name="submitFilter" value="Search" />
+                                        <g:link action="interestedStudents" 
+                                        controller="course" id="${courseInstance.id}">
+                                        Clear
+                                        </g:link>
+                                    </td>
 
                                 </tr>
                             
