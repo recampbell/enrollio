@@ -19,6 +19,7 @@
                         <g:each var="con" in="${contactInstanceList}">
                             <g:render template="printableInterestedContact" 
                             model="[
+                            courseInstance  : courseInstance,
                             contactInstance : con,
                             callListContacts : callListContacts ]" />
                         </g:each>

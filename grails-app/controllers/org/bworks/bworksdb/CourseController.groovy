@@ -144,10 +144,12 @@ class CourseController {
               // action:'index',
               // model:[data:reportData],params:params)
         def courseInstance = Course.get(params.id) 
+        def contactInstanceList = courseService.callList(courseInstance.id)
         def callListContacts = courseService.callListContacts(courseInstance)
-        def model = [ callListContacts : callListContacts, 
-                   contactInstanceList : Contact.list(max:10),
-                  contactInstanceTotal : Contact.list().count() ]
+        def model = [ 
+                   contactInstanceList : contactInstanceList,
+                      callListContacts : callListContacts, 
+                        courseInstance : courseInstance ]
         if (params.pdf) {
             renderPdf(template:"printableCallList", model:model)
         }
