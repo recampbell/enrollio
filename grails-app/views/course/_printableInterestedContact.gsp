@@ -1,9 +1,11 @@
 <tr>
     <td colspan="2">
-       ${callListContacts[contactInstance.id]?.callListPosition}) ${contactInstance}
-       <enrollio:signupDateForCourse 
-       contactInstance="${contactInstance}" 
-       courseInstance="${courseInstance}" />
+        ${callListContacts[contactInstance.id]?.callListPosition})
+        ${contactInstance}
+       <enrollio:signupDateForCourse contactInstance="${contactInstance}" courseInstance="${courseInstance}" />
+        <g:if test="${callListContacts[contactInstance.id]?.user}">
+            <b>(${callListContacts[contactInstance.id]?.user})</b>
+        </g:if>
        <span style="float:right"> ${contactInstance.phoneNumbers?.join(", ")}</span>
    </td>
 </tr>
@@ -40,10 +42,3 @@
         </table>
     </td>
 </tr>
-<g:if test="${callListContacts[contactInstance.id]?.user}">
-<tr>
-    <td>
-        ${callListContacts[contactInstance.id]?.user}
-    </td>
-</tr>
-</g:if>
