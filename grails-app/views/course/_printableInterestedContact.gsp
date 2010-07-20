@@ -33,7 +33,9 @@
             <g:each var="stud" in="${contactInstance.students}">
             <tr>
             <td>
-                    ${stud.starred ? '* ' : ''}
+                <span class="star">
+                    <g:render template="/utility/starredThingy" model="[ hideGreyStar : true, thingy : stud]" />
+                </span>
                     ${stud}
                 </td>
                 <td><enrollio:enrollmentAbbreviations studentInstance="${stud}" /></td>
