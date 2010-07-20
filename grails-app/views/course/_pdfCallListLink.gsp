@@ -10,6 +10,6 @@
     <input type="hidden" name="id" value="${courseInstance.id}" />
     <!-- TODO The &nbsp; is a kludge find CSS way to justify image
     and text so it looks o.k. -->
-    <a href="#" name="callListLink" class="telephone" title="PDF"
-        onClick="return submit_callList(this)">&#160;Call List (PDF)</a>
+    <a href="#" name="callListLink" class="printer" title="PDF"
+        onClick="return submit_callList(this)">&#160;Printable (PDF)</a>
 </g:form>
