@@ -142,5 +142,10 @@ class EnrollioTagLib {
         }
         out << "</table>"
     }
+
+    def enrollmentAbbreviations = { attrs ->
+        def student = attrs['studentInstance']
+        out << student.enrollments?.collect { it.classSession?.abbrev() }.join(',')
+    }
 }
 
