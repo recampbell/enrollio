@@ -97,28 +97,28 @@
                             <table>
                                 <tr>
                                     <td>
-                            <label for="q">Contact Name:</label>
-                            <g:textField name="q" value="${params.q}" size="20" />
-                                </td>
-                                <td>
-                                
-                            <label for="reservedForUser">Reserved For:</label>
-                            <g:select 
-                                name="reservedForUser"
-                                courseId="${courseInstance.id}"
-                                class="reserveContact" 
-                                from="${users}" 
-                                optionKey="id" 
-                                value="${reservedForUserId}"
-                                noSelection="['':'']" />
-                                <td>
-                            <g:submitButton name="submitFilter" value="Search" />
-            <g:link action="interestedStudents" 
-               controller="course" id="${courseInstance.id}">
-                Clear
-            </g:link>
-                                </td>
-                                
+                                        <label for="q">Contact Name:</label>
+                                        <g:textField name="q" value="${params.q}" size="20" />
+                                    </td>
+                                    <td>
+
+                                        <label for="reservedForUser">Reserved For:</label>
+                                        <g:select 
+                                        name="reservedForUser"
+                                        courseId="${courseInstance.id}"
+                                        class="reserveContact" 
+                                        from="${users}" 
+                                        optionKey="id" 
+                                        value="${reservedForUserId}"
+                                        noSelection="['':'']" />
+                                        <td>
+                                            <g:submitButton name="submitFilter" value="Search" />
+                                            <g:link action="interestedStudents" 
+                                            controller="course" id="${courseInstance.id}">
+                                            Clear
+                                            </g:link>
+                                        </td>
+
                                 </tr>
                             
                         <g:if test="${classSessionInstance}">
