@@ -1,7 +1,11 @@
 <tr>
-    <td width="45%">
+    <td colspan="2">
        ${callListContacts[contactInstance.id]?.callListPosition}) ${contactInstance}
        <span style="float:right"> ${contactInstance.phoneNumbers?.join(", ")}</span>
+   </td>
+</tr>
+<tr>
+    <td>
         <ul class="prop">
             <li>
                 <g:if test="${contactInstance.address1}">${contactInstance.address1}, &#160;&#160;</g:if>
@@ -13,16 +17,30 @@
             <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
         </ul>
     </td>
-    <td width="35%">
-        <ul class="prop">
+    <td>
+        <table>
             <g:each var="stud" in="${contactInstance.students}">
-                <li>
+            <tr>
+            <td>
                     ${stud.starred ? '* ' : ''}
                     ${stud}
-                    <enrollio:enrollmentAbbreviations studentInstance="${stud}" />
-                </li>
+                    <enrollio:signupDateForCourse studentInstance="${stud}" courseInstance="${courseInstance}" /></td>
+                <g:if test="${stud.enrollments}">
+                <td><enrollio:enrollmentAbbreviations studentInstance="${stud}" /></td>
+                </g:if>
+        </tr>
             </g:each>
-        </ul>
+        </table>
+        <!-- <ul class="prop"> -->
+            <!-- <g:each var="stud" in="${contactInstance.students}"> -->
+                <!-- <li> -->
+                    <!-- ${stud.starred ? '* ' : ''} -->
+                    <!-- ${stud} -->
+                    <!-- <enrollio:enrollmentAbbreviations studentInstance="${stud}" /> -->
+                    <!-- <enrollio:signupDateForCourse studentInstance="${stud}" courseInstance="${courseInstance}" /> -->
+                <!-- </li> -->
+            <!-- </g:each> -->
+        <!-- </ul> -->
     </td>
 </tr>
 <g:if test="${callListContacts[contactInstance.id]?.user}">
