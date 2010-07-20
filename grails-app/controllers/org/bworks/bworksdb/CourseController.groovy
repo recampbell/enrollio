@@ -159,12 +159,13 @@ class CourseController {
                    contactInstanceList : contactInstanceList,
                       callListContacts : callListContacts, 
                         courseInstance : courseInstance ]
+
+        def filename = "call_list_" + courseInstance.name.substring(0, 4) + '_' + (new Date()).format('yyyy_MM_dd') + '.pdf'
         if (params.pdf) {
-            renderPdf(template:"printableCallList", model:model)
+            renderPdf(template:"printableCallList", model:model, filename:filename)
         }
         else {
-
-            render(template:"printableCallList", model:model)
+            render(template:"printableCallList", model:model, filename:filename)
         }
         
     }
