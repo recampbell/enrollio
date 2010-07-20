@@ -1,3 +1,4 @@
+<table>
 <tr>
     <td colspan="2">
         ${callListContacts[contactInstance.id]?.callListPosition})
@@ -21,7 +22,7 @@
             </li>
             <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
         <g:if test="${contactInstance.comments}">
-        <li>
+        <li><b>Note:</b>
         <comments:each bean="${contactInstance}">
             <b>*</b> ${comment.body}
         </comments:each></li>
@@ -44,3 +45,4 @@
         </table>
     </td>
 </tr>
+</table>

@@ -7,15 +7,13 @@
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme1.css')}" />
         <title>Contact List</title>
     </head>
-    <body>
-        <div id="wrapper">
-            <div id="content">
+    <body style="background:none">
                 <div class="rightnow">
                     <h3 class="reallynow">
-                        <span>Call List for ${courseInstance} as of: <enrollio:formatDate date="${new Date()}"/></span>
+                        <span>Call List for ${courseInstance}</span>
+                        <span style="float:right">Printed: <enrollio:formatDate date="${new Date()}"/></span>
                         <br />
                     </h3>
-                    <table>
                         <g:each var="con" in="${contactInstanceList}">
                             <g:render template="printableInterestedContact" 
                             model="[
@@ -23,9 +21,6 @@
                             contactInstance : con,
                             callListContacts : callListContacts ]" />
                         </g:each>
-                    </table>
                 </div>
-            </div>
-        </div>
     </body>
 </html>
