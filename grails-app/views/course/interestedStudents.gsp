@@ -113,6 +113,10 @@
                                 noSelection="['':'']" />
                                 <td>
                             <g:submitButton name="submitFilter" value="Search" />
+            <g:link action="interestedStudents" 
+               controller="course" id="${courseInstance.id}">
+                Clear
+            </g:link>
                                 </td>
                                 
                                 </tr>
