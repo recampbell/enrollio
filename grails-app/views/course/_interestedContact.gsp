@@ -29,7 +29,7 @@
         <g:each var="stud" in="${contactInstance.students}">
         
         <li>
-        <g:render template="/utility/starredThingy" model="[thingy:stud]" />
+        <g:render template="/utility/starredThingy" model="[thingy:stud, hideGreyStar : true]" />
          <g:if test="${classSessionInstance}">
              <g:checkBox id="enrollStudent${stud.id}"
              name="enrollStudent${stud.id}" 
