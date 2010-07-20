@@ -11,14 +11,13 @@
                 <g:link class="module_edit" name="editCourseLink" controller="course"
                 action="edit" id="${courseInstance.id}">Edit</g:link>
             </li>
-            <li>
+        </ul>
+        <h3>
             <g:link class="waiting_list" action="interestedStudents" 
                controller="course" id="${courseInstance.id}">
                 Waiting List
-            
             </g:link>
-            </li>
-        </ul>
+        </h3>
     </li>
     <li>
         <h3>
