@@ -10,6 +10,22 @@
 	<script type="text/javascript" src="${resource(dir:'js', file:'jquery.multiselect.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js', file:'enrollioContact.js')}"></script>
+        <script type="text/javascript">
+             $(document).ready(function(){
+
+                  // toggle students' starred status, depending on students current starred status                
+                  // We have to use a <span></span> to hold the image, because we
+                  // replace the contents of the span with the result of this POST.
+                  // if we used only an image w/o a parent <span> it doesn't work
+                  // NOTE: THIS BREAKS if it's in its own .js file.
+                  // (the createLink method doesn't execute successfully, and you get a garbage URL back
+                  $(".star").click(function(){
+                    $(this).load('${createLink(controller:"student", action:"toggleStar")}', 
+                        { 'starred' : $(this).children('img').attr('starred'), 'id' : $(this).attr("starId") }); });
+
+              });
+
+        </script>
         <title>${studentInstance ? "Student: " + studentInstance : "Contact:" + contactInstance}</title>
     </head>
     <body>
