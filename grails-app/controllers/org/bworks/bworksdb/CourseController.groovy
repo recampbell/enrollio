@@ -134,6 +134,10 @@ class CourseController {
         }
     }
     
+    def manageCallList = {
+        render("mg. call list")
+    }
+
     def callList = {
         def reportData = callListReportData()
         

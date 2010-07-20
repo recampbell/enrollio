@@ -18,6 +18,17 @@
                 Waiting List
             </g:link>
         </h3>
+        <ul>
+            <li>
+            <g:link class="group_gear" name="manageCallListLink" 
+                controller="course"
+                action="manageCallList" id="${courseInstance.id}">Manage Waiting List</g:link>
+            </li>
+            <li>
+                <g:render template="/course/pdfCallListLink" 
+                          model="[courseInstance:courseInstance]"/>
+            </li>
+        </ul>
     </li>
     <li>
         <h3>
