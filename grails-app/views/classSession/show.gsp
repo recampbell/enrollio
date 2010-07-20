@@ -58,6 +58,10 @@
                         <div class="infobox margin-left">
                             <h3 class="reallynow">
                                 <span>Enrollments</span>
+                <g:link name="editEnrollmentsLink" class="groupadd"
+                controller="course"
+                action="interestedStudents" id="${classSessionInstance.course.id}"
+                params="[ classSessionId :classSessionInstance.id ]">Add</g:link>
                                 <br />
                             </h3>
                             <table>
