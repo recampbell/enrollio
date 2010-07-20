@@ -166,7 +166,8 @@
                     model="[classSessionInstance:classSessionInstance]" />
                 </g:if>
                 <g:else>
-                    <g:render template="individualCourseMenu" />
+                <g:render template="individualCourseMenu" 
+                        model="[q:params.q, reservedForUserId : reservedForUserId]"/>
                 </g:else>
             </div>
         </div>
