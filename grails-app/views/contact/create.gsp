@@ -21,7 +21,15 @@
                   });
                   // Show date picker for the "Signup Date" that shown on the
                   // new student form.  (It's rendered in the createStudent.gsp template below)
-                 $('#signupDate').datepicker({changeYear:true});
+                 $('#studentSignupDate').datepicker({changeYear:true});
+                 $('#newStudentOption').change(function() {
+                     if($(this).attr('checked')) {
+                         $('#newStudentForm').show('slow');
+                     }
+                     else {
+                         $('#newStudentForm').hide('slow');
+                         }
+                 });
              });
         
         </script>
@@ -66,7 +74,15 @@
                             phoneNumberList="${contactInstance.phoneNumbers}" />
                     </div>
                     <div class="infobox margin-left">
-                        <h3 class="reallynow">Student Info</h3>
+                        <h3 class="reallynow">
+                            Add Student
+                            
+                             <g:checkBox name="newStudentOption" 
+                             class="enrollStudent" 
+                             value="${true}" />
+                            
+                        </h3>
+                        <div id="newStudentForm">
                         <p> You can add more students after saving the Contact.</p>
                         <table width="100%">
                             <tbody>
