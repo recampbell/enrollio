@@ -7,6 +7,7 @@ class CourseController {
     
     def index = { redirect(action:list,params:params) }
     def userService
+    def courseService
 
     static navigation = [
         group:'mainMenu',
@@ -15,8 +16,6 @@ class CourseController {
 		isVisible: { SecurityUtils.subject?.isAuthenticated() },
         order:10
     ]
-
-    def courseService
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
@@ -138,12 +137,25 @@ class CourseController {
         render("mg. call list")
     }
 
-    def callList = {
-        def reportData = callListReportData()
+    def printableCallList = {
+        // def reportData = callListReportData()
         
-        chain(controller:'jasper',
-              action:'index',
-              model:[data:reportData],params:params)
+        // chain(controller:'jasper',
+              // action:'index',
+              // model:[data:reportData],params:params)
+        def courseInstance = Course.get(params.id) 
+        def callListContacts = courseService.callListContacts(courseInstance)
+        def model = [ callListContacts : callListContacts, 
+                   contactInstanceList : Contact.list(max:10),
+                  contactInstanceTotal : Contact.list().count() ]
+        if (params.pdf) {
+            renderPdf(template:"printableCallList", model:model)
+        }
+        else {
+
+            render(template:"printableCallList", model:model)
+        }
+        
     }
 
     def lessons = {
