@@ -117,26 +117,26 @@ class ContactController {
                  defaultAreaCode : defaultAreaCode]
     }
 
-    // Only difference between this and saveAndAddStudents is that
-    // saveAndAddStudents redirects to student/create action
+    // TODO DRY up the 'save' action and 'addStudent' action.
     def save = {
         def contactInstance = new Contact(params)
+        def studentSignupDate = params.studentSignupDate
         if(!contactInstance.hasErrors() && contactInstance.save()) {
             if (params.noteText) {
                 contactInstance.addComment(userService.loggedInUser(), params.noteText)
                 contactInstance.save()
             }
-            if (params.student) {
+            if (params.newStudentOption) {
                 def studentInstance = new Student(params.student)
                 studentInstance.contact = contactInstance
                 if (!studentInstance.hasErrors() && studentInstance.validate()) {
 
                     contactInstance.addToStudents(studentInstance).save()
                     def signupDates = null
-                    if (params['student.signupDate']) {
+                    if (studentSignupDate) {
                         signupDates = [:]
                         [params['interestInCourse']].flatten().each { courseId ->
-                            signupDates[courseId] = Date.parse('MM/dd/yyyy', params['student.signupDate'])
+                            signupDates[courseId] = Date.parse('MM/dd/yyyy', studentSignupDate)
                         }
                     }
 
@@ -145,8 +145,12 @@ class ContactController {
                     redirect(action:show,id:contactInstance.id)
                 }
                 else {
-                    render(view:'create', model:[contactInstance:contactInstance,
-                                                 studentInstance:studentInstance])
+                    // pass back any interests that user had selected.
+                    def possibleInterests = [params['interestInCourse']].flatten()
+                    render(view:'create', model:[contactInstance   : contactInstance,
+                                                 studentInstance   : studentInstance,
+                                                 studentSignupDate : studentSignupDate,
+                                                 possibleInterests : possibleInterests])
                 }
             }
             else {

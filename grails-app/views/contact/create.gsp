@@ -112,22 +112,24 @@
                                     </td> 
                                 </tr>
                                 <tr>
-                                    <td><label for="student.signupDate">Signup Date</label></td>
+                                    <td><label for="studentSignupDate">Signup Date</label></td>
                                     <td>
                                         <input class="hasDatePicker" type="text" 
-                                        id="student.signupDate" 
-                                        name="student.signupDate" 
-                                        value="${new Date().format('MM/dd/yyyy')}" />
+                                        id="studentSignupDate" 
+                                        name="studentSignupDate" 
+                                        value="${studentSignupDate ?: new Date().format('MM/dd/yyyy')}" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><label for="lastName">Interests</label> </td>
                                     <td>
-                                        <enrollio:courseDropDown studentInstance="${studentInstance}"/>
+                                        <enrollio:courseDropDown studentInstance="${studentInstance}" 
+                                                               possibleInterests="${possibleInterests}" />
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                    </table>
+                </div>
                     </div>
                     <g:actionSubmit value="Create Contact" action="save" />
                 </g:form>
