@@ -12,7 +12,7 @@
             <div id="content">
                 <div class="rightnow">
                     <h3 class="reallynow">
-                        <span>Call List for ${courseInstance}</span>
+                        <span>Call List for ${courseInstance} as of: <enrollio:formatDate date="${new Date()}"/></span>
                         <br />
                     </h3>
                     <table>
