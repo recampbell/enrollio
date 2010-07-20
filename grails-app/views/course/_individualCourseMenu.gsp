@@ -25,8 +25,18 @@
                 action="manageCallList" id="${courseInstance.id}">Manage Waiting List</g:link>
             </li>
             <li>
-                <g:render template="/course/pdfCallListLink" 
-                          model="[courseInstance:courseInstance]"/>
+                <g:link class="printer" name="printableCallListLink" 
+                    controller="course"
+                    action="printableCallList" 
+                    id="${courseInstance.id}">Printable call list (preview)</g:link>
+                
+            </li>
+<li>
+                <g:link class="printer" name="printableCallListLink" 
+                    controller="course"
+                    action="printableCallList" 
+                    id="${courseInstance.id}" params="[pdf:true]">Printable call list (PDF)</g:link>
+                
             </li>
         </ul>
     </li>
