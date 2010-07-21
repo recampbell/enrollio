@@ -5,6 +5,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="classSession" />
+        <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.3.2.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.core.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'ui.datepicker.js')}"></script>
+	<script type="text/javascript" src="${resource(dir:'js', file:'date.js')}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){ 
+            $('#startDate').datepicker({
+                  showOn: 'both',
+                  buttonImage: '/enrollio/images/calendar.gif',
+                  onSelect: function(dateText, inst) { 
+                  
+                      $('.lessonDate').each(function(i) {
+                          Date.format = 'mm/dd/yyyy';
+                          var newDate = new Date(dateText);
+                          newDate.addDays(i * 7);
+                          $(this).val(newDate.asString('mm/dd/yyyy'));
+                      });
+                  }
+              });
+            });
+
+        </script>
         <title>Edit ClassSession</title>
     </head>
     <body>
@@ -39,13 +61,17 @@
                                 </td>
                             </tr>
 
-                            <tr class="prop">
+                            <tr>
                                 <td valign="top" class="name">
                                     <label for="startDate">Start Date:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
-                                    <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
-                                </td>
+                                    <input type="text" id="startDate"
+                                    name="startDate"
+                                    value="${formatDate(format:'MM/dd/yyyy', date:classSessionInstance.startDate)}"
+                                    class="lessonDate"></input>
+                                Time
+                                  <enrollio:timeSelectors date="${classSessionInstance.startDate}" /></td>
                             </tr>
 
                             <tr class="prop">
