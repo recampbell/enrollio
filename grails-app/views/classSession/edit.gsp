@@ -36,9 +36,9 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'enrollments','errors')}">
                                     <g:select name="enrollments"
-from="${org.bworks.bworksdb.Enrollment.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${classSessionInstance?.enrollments}" />
+                                    from="${org.bworks.bworksdb.Enrollment.list()}"
+                                    size="5" multiple="yes" optionKey="id"
+                                    value="${classSessionInstance?.enrollments}" />
 
                                 </td>
                             </tr>
@@ -49,9 +49,9 @@ value="${classSessionInstance?.enrollments}" />
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'lessonDates','errors')}">
                                     <g:select name="lessonDates"
-from="${org.bworks.bworksdb.LessonDate.list()}"
-size="5" multiple="yes" optionKey="id"
-value="${classSessionInstance?.lessonDates}" />
+                                    from="${org.bworks.bworksdb.LessonDate.list()}"
+                                    size="5" multiple="yes" optionKey="id"
+                                    value="${classSessionInstance?.lessonDates}" />
 
                                 </td>
                             </tr>
