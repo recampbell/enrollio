@@ -1,26 +1,19 @@
 <tr class="${contactInstance.id.toString() == selectedContactId.toString() ? 'selectedLight' : ''}">
-    <td width="45%">
+    <td width="65%">
         <g:link controller="contact" 
            action="show" id="${contactInstance.id}">${callListContacts[contactInstance.id]?.callListPosition}) ${contactInstance}</g:link>
+
+           <span style="float:right">${contactInstance.abbrevPhoneNumbers()}</span>
         <ul class="prop">
         
-            <li>${contactInstance.address1}</li> 
-            <g:if test="${contactInstance.address2}"> <li>${contactInstance.address2}</li></g:if>
             <li>
-                <g:if test="${contactInstance.city}">${contactInstance.city},&#160;&#160;</g:if>
-                <g:if test="${contactInstance.state}">${contactInstance.state}&#160;</g:if>
-                <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
-                <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
+            <g:if test="${contactInstance.address1}"> ${contactInstance.address1}</g:if>
+            <g:if test="${contactInstance.address2}"> ${contactInstance.address2}</g:if>
+            <g:if test="${contactInstance.city}">${contactInstance.city},&#160;&#160;</g:if>
+            <g:if test="${contactInstance.state}">${contactInstance.state}&#160;</g:if>
+            <g:if test="${contactInstance.zipCode}">${contactInstance.zipCode}&#160;&#160;</g:if>
             </li>
-        </ul>
-    </td>
-    <td width="20%">
-        <ul class="prop">
-            <g:if test="${contactInstance.phoneNumbers}">
-                <g:each var="phone" in="${contactInstance.phoneNumbers}">
-                    <li>${phone.phoneNumber}</li>
-                </g:each>
-            </g:if>
+            <g:if test="${contactInstance.emailAddress}"> <li> ${contactInstance.emailAddress}</li> </g:if>
         </ul>
     </td>
 
