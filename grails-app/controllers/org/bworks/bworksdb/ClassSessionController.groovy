@@ -137,7 +137,7 @@ class ClassSessionController {
                     return
                 }
             }
-            def startDate = miscService.parseDate(params.remove('start'),
+            def startDate = miscService.parseDate(params.remove('startDate'),
                                                 params.remove('startTime'),
                                                 params.remove('startAmPm'))
             classSessionInstance.properties = params
