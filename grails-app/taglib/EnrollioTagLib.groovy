@@ -6,8 +6,10 @@ class EnrollioTagLib {
     // Standard Enrollio date formatting
     def formatDate = { attrs ->
         def d = attrs['date']
+        def showTime = attrs['showTime'] ?: false
+        def enrollioFormat = 'MMMM d, yyyy' + (showTime ? ' H:mm a' : '')
         try {
-            def output = d ? d.format('MMMM d, yyyy') : ''
+            def output = d ? d.format(enrollioFormat) : ''
             out << output
         } catch (Exception e) {
             out << ''

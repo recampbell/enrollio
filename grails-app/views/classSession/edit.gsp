@@ -71,7 +71,8 @@
                                     value="${formatDate(format:'MM/dd/yyyy', date:classSessionInstance.startDate)}"
                                     class="lessonDate"></input>
                                 Time
-                                <enrollio:timeSelectors date="${classSessionInstance.startDate}" />
+                                <enrollio:timeSelectors date="${classSessionInstance.startDate}"
+                                fieldNamePrefix="start" />
                             </td>
                             </tr>
 
