@@ -34,7 +34,10 @@
                 action="certificates" id="${ classSessionInstance.id }"
                 controller="classSession">&nbsp;&nbsp;Certificates</g:link>
             </li>
-
+            <li>
+            <g:link name='editClassSessionLink' class="calendar_edit" 
+                action="edit" controller="classSession" id="${ classSessionInstance.id }">&nbsp;&nbsp;Edit</g:link>
+            </li>
         </ul>
         <ul>
             <h3>Print</h3>

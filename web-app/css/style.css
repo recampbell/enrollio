@@ -427,6 +427,7 @@ form #button1:hover, form #button2:hover {
 }
 
 /* icons */
+.calendar_edit{background:transparent url(../images/icons/calendar_edit.png) no-repeat left;}
 .printer{background:transparent url(../images/icons/printer.png) no-repeat left;}
 .group_gear{background:transparent url(../images/icons/group_gear.png) no-repeat left;}
 .certificate{background:transparent url(../images/icons/script.png) no-repeat left;}
