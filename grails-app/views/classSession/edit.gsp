@@ -46,7 +46,7 @@
                         <g:if test="${flash.message}">
                             <div class="message">${flash.message}</div>
                         </g:if>
-            <g:form method="post" >
+            <g:form action="update" controller="classSession" method="post" >
                 <input type="hidden" name="id" value="${classSessionInstance?.id}" />
                 <input type="hidden" name="version" value="${classSessionInstance?.version}" />
                     <table>
@@ -71,7 +71,8 @@
                                     value="${formatDate(format:'MM/dd/yyyy', date:classSessionInstance.startDate)}"
                                     class="lessonDate"></input>
                                 Time
-                                  <enrollio:timeSelectors date="${classSessionInstance.startDate}" /></td>
+                                <enrollio:timeSelectors date="${classSessionInstance.startDate}" />
+                            </td>
                             </tr>
 
                             <tr class="prop">
@@ -87,10 +88,10 @@
 
                         </tbody>
                     </table>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </div>
+                    <label for="saveButton"></label>
+                    <g:submitButton class="save" name="saveButton" value="Update" />
+                        or&nbsp;
+                    <g:link name="cancelLink" class="cancelLink" action="show" id="${classSessionInstance.id}" >Cancel</g:link>
             </g:form>
         </div>
     </div>
