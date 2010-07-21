@@ -20,7 +20,13 @@
                         <h3 class="reallynow">
                             <a href="#" class="headerLink calendar">
 
-                                ${classSessionInstance.name}</a><br />
+                                ${classSessionInstance.name}</a>
+                            
+                        <a href="#"><enrollio:formatDate date="${classSessionInstance.startDate}" 
+                                  showTime="true" /></a>
+                            
+                            
+                            <br />
                         </h3>
                         <p class="youhave">
                         <g:link action="show" controller="course" id="${classSessionInstance.course.id}">

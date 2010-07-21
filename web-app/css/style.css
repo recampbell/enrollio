@@ -729,3 +729,11 @@ tr.selectedLight {
     background:#F3F9FF
 }
 
+#startTime {
+    font-size: 100%;
+    width:75px;
+}
+#startAmPm {
+    font-size: 100%;
+    width:65px;
+}
