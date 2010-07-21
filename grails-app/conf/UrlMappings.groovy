@@ -16,7 +16,7 @@ class UrlMappings {
 	'/classSessions'(controller: 'classSession', action: 'list')
 	"/classSession/$id"(controller: 'classSession', action: 'show')
 	"/editClassSession/$id"(controller: 'classSession', action: 'edit')
-	"/updateClassSession/$id"(controller: 'classSession', action: 'update')
+	"/updateClassSession"(controller: 'classSession', action: 'update')
 	'/createClassSession'(controller: 'classSession', action: 'create')
         '/saveClassSession'(controller: 'classSession', action: 'save')
         "/printGradCerts"(controller: 'classSession', action: 'printGradCerts')
