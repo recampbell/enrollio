@@ -250,7 +250,7 @@ class ClassSessionController {
             redirect(action:list)
         }
         else if (classSessionInstance.enrollments?.size() == 0) { 
-            flash.notice = "No students are enrolled in this class session.  Can't print envelopes for nobody"
+            flash.message = "No students are enrolled in this class session.  Can't print envelopes for nobody"
             redirect(action:show, id:classSessionInstance.id)
         }
         else {

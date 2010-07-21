@@ -39,14 +39,11 @@
                 action="edit" controller="classSession" id="${ classSessionInstance.id }">&nbsp;&nbsp;Edit</g:link>
             </li>
         </ul>
+            <h3 class="printer"><a href="#" class="printer">Print</a></h3>
         <ul>
-            <h3>Print</h3>
             <li>
-            <g:render template="/course/pdfCallListLink" 
-                      model="[courseInstance:classSessionInstance.course]"/>
-            </li>
-            <li>
-                <g:link name='attendanceSheetLink' class="application_list" action="attendanceSheet"
+            <g:link name='attendanceSheetLink' class="application_list" 
+            action="attendanceSheet" controller="classSession"
                 id="${classSessionInstance.id}">&#160;Attendance Sheet</g:link>
             </li>
             <li>
