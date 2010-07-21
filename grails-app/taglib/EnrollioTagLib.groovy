@@ -168,5 +168,20 @@ class EnrollioTagLib {
         }
     }
 
+    // creates a list of show hours to use in drop-down lists
+    def timeSelectors = { attrs ->
+        def fieldNamePrefix = attrs['fieldNamePrefix'] ?: 'date'
+        def showHours = []
+        (1 .. 12).each {
+            showHours.add(it + ":00")
+            showHours.add(it + ":30")
+        }
+
+        def existingTime = attrs['date']?.format('h:mm')
+        out << g.select(name: fieldNamePrefix + 'Time', from:showHours, value: existingTime ?: '9:00')
+
+        def existingAmPm = attrs['date']?.format('a')
+        out << g.select(name: fieldNamePrefix + 'AmPm', from:['PM', 'AM'], value: existingAmPm ?: 'PM')
+    }
 }
 

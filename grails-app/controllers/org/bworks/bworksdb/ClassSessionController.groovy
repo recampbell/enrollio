@@ -136,7 +136,11 @@ class ClassSessionController {
                     return
                 }
             }
+            def startDate = miscService.parseDate(params.remove('start'),
+                                                params.remove('startTime'),
+                                                params.remove('startAmPm'))
             classSessionInstance.properties = params
+            classSessionInstance.startDate = startDate
             if(!classSessionInstance.hasErrors() && classSessionInstance.save()) {
                 flash.message = "ClassSession ${params.id} updated"
                 redirect(action:show,id:classSessionInstance.id)
