@@ -8,6 +8,18 @@
         <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.4.2.min.js')}"></script>
         <script type="text/javascript">
              $(document).ready(function(){
+                     $('#changeAllLink').click().toggle(
+                         function() { $('#changeAllDiv').show() },
+                         function() { $('#changeAllDiv').hide() }
+                     );
+                     $('#changeAllSelectBox').change(function() {
+                         var reserveForUser = $(this).val()
+                        $('.reserveContact').each(function() {
+                            $(this).val(reserveForUser).change(); 
+                        });
+                        // hide select box
+                        $('#changeAllDiv').hide()
+                     });
                 $('.enrollStudent').click(function() {
                     $.post('${createLink(controller:"classSession",
                                             action:"enrollStudent")}',
@@ -105,7 +117,6 @@
                                         <g:select 
                                         name="reservedForUser"
                                         courseId="${courseInstance.id}"
-                                        class="reserveContact" 
                                         from="${users}" 
                                         optionKey="id" 
                                         value="${reservedForUserId}"
@@ -138,9 +149,19 @@
                         </g:form>
                     <table>
                         <thead>
-                            <th colspan="2">Contact</th>
+                            <th>Contact</th>
                             <th>Students</th>
-                            <th colspan="1">Reserved For?</th>
+                            <th colspan="1">
+                                Reserved For? <a id="changeAllLink" href="#">Reserve All</a>
+                                <div id="changeAllDiv" style="display:none">
+                                        <g:select id="changeAllSelectBox"
+                                        name="reserveAllForUser"
+                                        from="${users}" 
+                                        optionKey="id" 
+                                        value=""
+                                        noSelection="['':'']" />
+                                </div>
+                            </th>
                         </thead>
                         <g:each var="con" 
                             in="${contactInstanceList}">
