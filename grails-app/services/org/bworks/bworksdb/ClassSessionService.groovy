@@ -54,7 +54,7 @@ class ClassSessionService {
 
         DynamicReport dr = 
             drb.setTitle("Attendance : ${classSessionInstance.name}")
-               .setSubtitle(classSessionInstance.startDate.format('MMMM d, yyyy'))
+               .setSubtitle(classSessionInstance.startDate.format('MMMM d, yyyy h:mm a'))
                .setSubtitleStyle(subtitleStyle)
                .setUseFullPageWidth(true).build();
  
