@@ -7,7 +7,7 @@ class EnrollioTagLib {
     def formatDate = { attrs ->
         def d = attrs['date']
         def showTime = attrs['showTime'] ?: false
-        def enrollioFormat = 'MMMM d, yyyy' + (showTime ? ' H:mm a' : '')
+        def enrollioFormat = 'MMMM d, yyyy' + (showTime ? ' h:mm a' : '')
         try {
             def output = d ? d.format(enrollioFormat) : ''
             out << output
