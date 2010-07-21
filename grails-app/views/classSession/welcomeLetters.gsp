@@ -79,7 +79,8 @@
                  </td>
              </tr>
          </table>
-         <h3 class="reallynow">Lesson Dates</h3>Classes start at <b>11:00</b> but students are encouraged to arrive at 10:30 a.m.
+         <h3 class="reallynow">Lesson Dates</h3>Classes start at <b>${classSessionInstance.startDate.format('h:mm a')}</b> 
+         but students are encouraged to arrive 30 minutes early.
          <table>
              <tbody>
                  <g:each var="lessonDate"
