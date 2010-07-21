@@ -27,17 +27,6 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="lessonDates">Lesson Dates:</label>
-                                </td>
-                                <td >
-                                    <g:render template="editLessonDates"
-                                    model="[lessonDates:classSessionInstance.lessonDates]" />
-
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="name">Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'name','errors')}">
@@ -45,13 +34,23 @@
                                 </td>
                             </tr>
 
-
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="startDate">Start Date:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'startDate','errors')}">
                                     <g:datePicker name="startDate" value="${classSessionInstance?.startDate}" precision="minute" ></g:datePicker>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="lessonDates">Lesson Dates:</label>
+                                </td>
+                                <td >
+                                    <g:render template="editLessonDates"
+                                    model="[lessonDates:classSessionInstance.lessonDates]" />
+
                                 </td>
                             </tr>
 
