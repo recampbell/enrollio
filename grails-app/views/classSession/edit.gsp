@@ -32,19 +32,6 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="enrollments">Enrollments:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'enrollments','errors')}">
-                                    <g:select name="enrollments"
-                                    from="${org.bworks.bworksdb.Enrollment.list()}"
-                                    size="5" multiple="yes" optionKey="id"
-                                    value="${classSessionInstance?.enrollments}" />
-
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="lessonDates">Lesson Dates:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'lessonDates','errors')}">
