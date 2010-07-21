@@ -34,11 +34,9 @@
                                 <td valign="top" class="name">
                                     <label for="lessonDates">Lesson Dates:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:classSessionInstance,field:'lessonDates','errors')}">
-                                    <g:select name="lessonDates"
-                                    from="${org.bworks.bworksdb.LessonDate.list()}"
-                                    size="5" multiple="yes" optionKey="id"
-                                    value="${classSessionInstance?.lessonDates}" />
+                                <td >
+                                    <g:render template="editLessonDates"
+                                    model="[lessonDates:classSessionInstance.lessonDates]" />
 
                                 </td>
                             </tr>
