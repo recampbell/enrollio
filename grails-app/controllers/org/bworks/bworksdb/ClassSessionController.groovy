@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils
 class ClassSessionController {
 
     def courseService
+    def miscService
     def classSessionService
     def attendanceService
 
@@ -151,7 +152,7 @@ class ClassSessionController {
         }
         else {
             flash.message = "ClassSession not found with id ${params.id}"
-            redirect(action:list)
+            redirect(controller:"course", action:list)
         }
     }
 
