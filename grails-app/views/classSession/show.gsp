@@ -9,7 +9,6 @@
         <title>Class Session: ${classSessionInstance.name}</title>
     </head>
     <body>
-        <div id="container">
             <div id="wrapper">
                 <div id="content">
                     <g:if test="${flash.notice}">
@@ -86,6 +85,5 @@
                     <g:render template="individualClassSessionMenu" model="[classSessionInstance:classSessionInstance]" />
                 </div>
             </div>
-        </div>
     </body>
 </html>

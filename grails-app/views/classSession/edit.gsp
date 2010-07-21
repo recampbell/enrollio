@@ -8,20 +8,25 @@
         <title>Edit ClassSession</title>
     </head>
     <body>
-        <div class="body">
-            <h1>Edit ClassSession</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${classSessionInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${classSessionInstance}" as="list" />
-            </div>
-            </g:hasErrors>
+        <div id="wrapper">
+            <div id="content">
+                <div class="rightnow">
+                    <h3 class="reallynow">
+                        <a href="#" class="headerLink calendar_edit">Edit Class Session</a>
+                        <br />
+                    </h3>
+                        <g:hasErrors bean="${classSessionInstance}">
+                            <div class="errors">
+                                <g:renderErrors bean="${classSessionInstance}"
+                                as="list" />
+                            </div>
+                        </g:hasErrors>
+                        <g:if test="${flash.message}">
+                            <div class="message">${flash.message}</div>
+                        </g:if>
             <g:form method="post" >
                 <input type="hidden" name="id" value="${classSessionInstance?.id}" />
                 <input type="hidden" name="version" value="${classSessionInstance?.version}" />
-                <div class="dialog">
                     <table>
                         <tbody>
 
@@ -56,13 +61,17 @@
 
                         </tbody>
                     </table>
-                </div>
                 <div class="buttons">
                     <span class="button"><g:actionSubmit class="save" value="Update" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
                 </div>
             </g:form>
         </div>
-    </body>
+    </div>
+    <div id="sidebar">
+        <g:render template="individualClassSessionMenu" model="[classSessionInstance:classSessionInstance]" />
+    </div>
+</div>
+</body>
 </html>
 
