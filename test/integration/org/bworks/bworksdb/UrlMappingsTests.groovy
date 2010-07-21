@@ -132,6 +132,9 @@ class UrlMappingsTests extends GrailsUrlMappingsTestCase {
             id = 765
         }
 
+        assertUrlMapping('/updateClassSession/763', controller:'classSession', action:'update') {
+            id = 763
+        }
     }
 
     void testLessonMappings() {
