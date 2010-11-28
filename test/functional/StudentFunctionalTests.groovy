@@ -28,8 +28,15 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // utility method for going to student/edit page
     void gotoStudentEdit(studentName = null) {
         gotoStudentShow(studentName)
-        def studentLink = byXPath("//a[starts-with(@name,'editStudentLink')]")
-        studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
+        def searchResults = byXPath("//a[starts-with(@name,'editStudentLink')]")
+        def studentLink
+        if(! (searchResults instanceof ArrayList)) { searchResults = [ searchResults ] }
+        if (studentName) {
+            studentLink = searchResults.find { it.asText() == studentName }
+        }
+        else {
+            studentLink = searchResults[0]
+        }
         studentLink.click()
     }
 
