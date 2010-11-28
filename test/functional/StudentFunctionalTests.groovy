@@ -7,19 +7,27 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     def testDataService
 
     // utility method for going to student/show page
-    void gotoStudentShow() {
+    void gotoStudentShow(studentName = null) {
         loginAs('bob', 'bobbobbob0')
         click("Students")
 
-        def studentLink = byXPath("//a[starts-with(@href,'/enrollio/student/')]")
-        studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
+        def searchResults = byXPath("//a[starts-with(@href,'/enrollio/student/')]")
+        def studentLink
+        if(! (searchResults instanceof ArrayList)) { searchResults = [ searchResults ] }
+        if (studentName) {
+            studentLink = searchResults.find { it.asText() == studentName }
+        }
+        else {
+            studentLink = searchResults[0]
+        }
+
         studentLink.click()
 
     }
 
     // utility method for going to student/edit page
-    void gotoStudentEdit() {
-        gotoStudentShow()
+    void gotoStudentEdit(studentName = null) {
+        gotoStudentShow(studentName)
         def studentLink = byXPath("//a[starts-with(@name,'editStudentLink')]")
         studentLink = studentLink instanceof ArrayList ? studentLink[0] : studentLink
         studentLink.click()
