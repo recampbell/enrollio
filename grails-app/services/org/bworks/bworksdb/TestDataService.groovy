@@ -72,7 +72,6 @@ class TestDataService {
 
     def enrollDummyStudent(student, classSession) {
         if (classSession.enrollments?.find { it.student.id == student.id }) {
-        if (classSession.enrollments?.findByStudent(student)) {
             return
         }
 
