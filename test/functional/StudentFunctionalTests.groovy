@@ -50,7 +50,7 @@ class StudentFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     }
 
     void testEditStudentName() {
-        gotoStudentEdit()
+        gotoStudentEdit(TestKeys.EDIT_STUDENT_TEST_NAME)
         assertStatus 200
         
         form('editStudentForm') {
