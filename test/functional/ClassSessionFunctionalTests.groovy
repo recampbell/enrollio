@@ -165,7 +165,9 @@ class ClassSessionFunctionalTests extends functionaltestplugin.FunctionalTestCas
         assertNotNull attendanceSheetLink
         attendanceSheetLink.click()
         assertStatus 200
-        assertHeaderContains('Content-Disposition', 'filename=attendanceSheet')
+        def expectedfileName = "attendance_" + TestKeys.SESSION_KIDS_NAME.substring(0,4) +
+                               TestKeys.SESSION_KIDS_DATE.format('yyyy_MM_dd') + '.pdf'
+        assertHeaderContains('Content-Disposition', "filename=${expectedfileName}")
     }
 
     void testNewClassSession() {
