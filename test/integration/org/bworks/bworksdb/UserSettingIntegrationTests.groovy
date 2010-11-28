@@ -23,9 +23,9 @@ class UserSettingIntegrationTests extends GrailsUnitTestCase {
 
         configSettingService.setSetting(ConfigSetting.DEFAULT_STATE, 'MO')
         // pretend like 'bob' is logged in
-        userService.metaClass.loggedInUser = {
+        configSettingService.userService = [ loggedInUser : { -> 
             return ShiroUser.findByUsername('bob')
-        }
+        } ]
 
         assertEquals 'MO', configSettingService.getSetting(ConfigSetting.DEFAULT_STATE).toString()
 
