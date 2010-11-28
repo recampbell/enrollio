@@ -14,7 +14,7 @@
         </h3>
         <ul>
             <li>
-                <g:link name="editEnrollmentsLink" class="groupadd"
+                <g:link name="editEnrollmentsLinkSidebar" class="groupadd"
                 controller="course"
                 action="interestedStudents" id="${classSessionInstance.course.id}"
                 params="[ classSessionId :classSessionInstance.id ]">&nbsp;&nbsp;Enroll / Call List</g:link>
