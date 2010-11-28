@@ -35,13 +35,16 @@ class TestDataService {
 
         def student = new Student(lastName:TestKeys.STUDENT, contact:contact)
         def student2 = new Student(lastName:TestKeys.STUDENT2, contact:contact)
+        def student3 = new Student(lastName:TestKeys.EDIT_STUDENT_TEST_NAME, contact:contact)
 
         contact.addToStudents(student)
         contact.addToStudents(student2)
+        contact.addToStudents(student3)
         contact.save(flush:true)
 
         // interests
         addInterest(student, adultCourse , true)
+        addInterest(student3, adultCourse , true)
         addInterest(student, childrensCourse, false)
         addInterest(student2, childrensCourse, true)
 
@@ -64,9 +67,11 @@ class TestDataService {
                                   TestKeys.SESSION_ADULT_NAME)
         enrollDummyStudent(student, adultClassSession)
 
+        enrollDummyStudent(student3, adultClassSession)
     }
 
     def enrollDummyStudent(student, classSession) {
+        if (classSession.enrollments?.find { it.student.id == student.id }) {
         if (classSession.enrollments?.findByStudent(student)) {
             return
         }
