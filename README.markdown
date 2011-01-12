@@ -1,6 +1,12 @@
 # What is Enrollio?
 
-Enrollio is an open-source application that tracks enrollment and attendance for small-to-medium size classes. Ideal for groups of up to 20 students or participants.
+Enrollio is an open-source application that tracks enrollment and attendance
+for small-to-medium size classes. Ideal for groups of up to 20 students or
+participants.
+
+## Demo
+
+A live demo of Enrollio is here:  [[http://enrollio.org]]
 
 ## Features
 
@@ -18,7 +24,7 @@ Consider using Enrollio for the following scenarios:
   * Tracking enrollment/completion of safety training
   * Tracking meeting attendance
 
-Enrollio is currently being developed for use by Bworks (http://bworks.org).
+Enrollio is currently being developed for use by Bworks [[http://bworks.org]].
 
 Bworks is the umbrella organization for Byteworks and Bicycleworks located
 in Saint Louis, Missouri
