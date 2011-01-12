@@ -6,7 +6,7 @@ participants.
 
 ## Demo
 
-A live demo of Enrollio is here:  [[http://enrollio.org]]
+A [live demo](http://enrollio.org) of Enrollio is here:  [http://enrollio.org](http://enrollio.org)
 
 ## Features
 
@@ -24,7 +24,7 @@ Consider using Enrollio for the following scenarios:
   * Tracking enrollment/completion of safety training
   * Tracking meeting attendance
 
-Enrollio is currently being developed for use by Bworks [[http://bworks.org]].
+Enrollio is currently being developed for use at [St. Louis Bworks](http://bworks.org).
 
 Bworks is the umbrella organization for Byteworks and Bicycleworks located
 in Saint Louis, Missouri
@@ -76,10 +76,6 @@ Thanks to the following sources for providing code examples, etc
 
 Addition of dynamic contact phone numbers was provided by:
 http://lxisoft.com/web/guest/grails
-
-## General Layout of Application
-
-http://moongrails.blogspot.com/2008/12/grails-templates.html
 
 # Problems
 
