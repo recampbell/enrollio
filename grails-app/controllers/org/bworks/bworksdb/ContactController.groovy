@@ -139,16 +139,17 @@ class ContactController {
             }
         }
 
+        // if contact has errors or student has any errors except for 
+        // invalid contact
         if (contactInstance.hasErrors() || !contactInstance.validate() ||
-            (studentInstance && studentInstance.hasErrors())) {
+            (studentInstance && studentInstance.hasErrors()
+            && studentInstance.errors.getFieldError('contact') == null ||
+               studentInstance.errors.getAllErrors().size() > 1)) {
             // remove annoying message about 'contact' must have a value
-            println "BOO" * 100
-                studentInstance.discard()
-                contactInstance.discard()
-                render(view:'create', model:[contactInstance   : contactInstance,
-                                             studentInstance   : studentInstance,
-                                             studentSignupDate : studentSignupDate,
-                                             possibleInterests : possibleInterests])
+            render(view:'create', model:[contactInstance   : contactInstance,
+                                         studentInstance   : studentInstance,
+                                         studentSignupDate : studentSignupDate,
+                                         possibleInterests : possibleInterests])
         }
         else {
             // student is valid or user doesn't want to save it.
@@ -157,7 +158,6 @@ class ContactController {
                 if (studentInstance) {
                     studentInstance.contact = contactInstance
                     contactInstance.addToStudents(studentInstance).save()
-                    studentInstance.save()
                     studentService.saveInterests(studentInstance, params['interestInCourse'], signupDates)
                 }
                 if (params.noteText) {
