@@ -124,27 +124,6 @@ class EnrollioTagLib {
         out << "</select>"
     }
 
-    def phoneNumberInput = { attrs ->
-        def phoneNumberList = attrs['phoneNumberList']
-        def phoneLabels = [ 'Home', 'Work', 'Mobile', 'Other' ]
-        out << "<table>"
-        phoneNumberList.eachWithIndex { phoneNumber, i ->
-            out << "<tr>"
-            out << "<td>"
-            out << select(from:phoneLabels, value:phoneNumber.label,
-                          name:"phoneNumbers[${i}].label")
-            out << """
-            <input name="phoneNumbers[${i}].phoneNumber"
-                  value="${phoneNumber.phoneNumber}"
-                  class="phoneNumber" />
-            """
-            out << hiddenField(name:"phoneNumbers[${i}].id", value:"${phoneNumber.id}")
-            out << "</td>"
-            out << "</tr>"
-        }
-        out << "</table>"
-    }
-
     def enrollmentAbbreviations = { attrs ->
         def student = attrs['studentInstance']
         out << student.enrollments?.collect { it.classSession?.abbrev() }.join(',')
