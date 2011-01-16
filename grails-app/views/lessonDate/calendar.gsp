@@ -10,7 +10,6 @@
         <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'fullcalendar.css')}" />
         <meta name="layout" content="main" />
         <title>Calendar</title>
-        <g:javascript src="jquery-1.4.2.min.js" />
         <g:javascript src="fullcalendar.min.js" />
 
         <script type="text/javascript">
