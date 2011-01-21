@@ -98,7 +98,7 @@ class ContactController {
         }
         else {
             flash.message = "Contact not found with id ${params.id}"
-            redirect(action:list)
+            redirect(action:list, controller:'student')
         }
     }
 
