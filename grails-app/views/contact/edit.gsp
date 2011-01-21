@@ -5,10 +5,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <meta name="tabName" content="contact" />    
+        <g:javascript src="jquery.maskedinput-1.2.2.min.js" />
         <title>Edit Contact</title>         
         <script>
             $(function() {
-            $("#saveContact").button();
+                $("#saveContact").button();
+                $(".phoneNumber").mask("(999) 999-9999")
             });
         </script>
     </head>
