@@ -74,6 +74,7 @@ class ClassSessionController {
 
 
 
+    // TODO Nuke this action
     def saveEnrollments = {
         def enrollees = params.interestedStudents
         def classSession = ClassSession.get(params.classSessionId)

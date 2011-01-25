@@ -99,6 +99,7 @@ class UrlMappings {
     '/createCourse'(controller: 'course', action: 'create')
     '/saveCourse'(controller: 'course', action: 'save')
     "/editCourse/$id"(controller: 'course', action: 'edit')
+    "/enrollStudent/$id"(controller:'course', action:'enrollStudent')
     "/manageCallList/$id"(controller: 'course', action: 'manageCallList')
     "/updateCourse"(controller: 'course', action: 'update')
     "/nextAvailableLessonDates"(controller: 'course', action: 'nextAvailableLessonDates')
