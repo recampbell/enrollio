@@ -81,7 +81,7 @@
             }
 
         </script>
-        <title></title><style>
+        <style>
                 fieldset label {
                     float:left;
                     padding:4px;
