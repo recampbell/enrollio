@@ -56,7 +56,8 @@ class UrlMappings {
     // contact controller
     '/contact'(controller: 'contact', action: 'index')
     '/contacts'(controller: 'contact', action: 'list')
-    "/contact/$id"(controller: 'contact', action: 'show')
+    "/contact/$id?"(controller: 'contact', action: 'show')
+    "/student/$studentId"(controller: 'contact', action: 'show')
     "/createContact"(controller: 'contact', action: 'create')
     "/saveStudent"(controller: 'contact', action: 'saveStudent')
     "/editContact/$id"(controller: 'contact', action: 'edit')
@@ -120,7 +121,6 @@ class UrlMappings {
 
     // student controller
     '/students'(controller: 'student', action: 'list')
-    "/student/$id"(controller: 'student', action: 'show')
     "/editStudent/$id"(controller: 'student', action: 'edit')
     "/updateStudent"(controller: 'student', action: 'update')
     "/student/toggleStar"(controller: 'student', action: 'toggleStar')
