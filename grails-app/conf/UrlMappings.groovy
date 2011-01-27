@@ -104,7 +104,6 @@ class UrlMappings {
     "/manageCallList/$id"(controller: 'course', action: 'manageCallList')
     "/updateCourse"(controller: 'course', action: 'update')
     "/nextAvailableLessonDates"(controller: 'course', action: 'nextAvailableLessonDates')
-    "/courseLessons/$id"(controller: 'course', action: 'lessons')
     "/sortLessons/$id"(controller: 'course', action: 'sortLessons')
     "/saveLessonSort"(controller: 'course', action: 'saveLessonSort')
     "/interestedStudents/$id"(controller: 'course', action: 'interestedStudents')
