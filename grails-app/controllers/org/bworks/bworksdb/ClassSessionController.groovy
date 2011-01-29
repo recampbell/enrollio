@@ -114,7 +114,7 @@ class ClassSessionController {
         println "Clas ss " + classSessionInstance
 
         def lessonDateInstance = classSessionService.closestLessonDate(classSessionInstance)
-        attendanceService.initializeAttendees(lessonDateInstance)
+        if (lessonDateInstance) attendanceService.initializeAttendees(lessonDateInstance);
 
         if(!classSessionInstance) {
             flash.message = "ClassSession not found with id ${params.id}"
