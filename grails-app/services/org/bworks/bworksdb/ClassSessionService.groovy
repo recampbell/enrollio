@@ -109,7 +109,10 @@ class ClassSessionService {
 
         classSessionInstance.lessonDates.each {
             it.attendees.each { att ->
-                if (att.status == 'present') {
+                if (!results[att.student.id]) {
+                    println "no student for ${att.student.id}"
+                }
+                if (att.status == 'present' && results[att.student.id]) {
                     results[att.student.id].attendanceCount += 1
                     // remove this attendance's lessonDate from the student's "missed" list.
                     results[att.student.id].missed.remove(att.lessonDate)
