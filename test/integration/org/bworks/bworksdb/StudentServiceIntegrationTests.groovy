@@ -3,7 +3,7 @@ package org.bworks.bworksdb
 import org.bworks.bworksdb.util.TestKeys
 import grails.test.*
 
-class StudentServiceTests extends GrailsUnitTestCase {
+class StudentServiceIntegrationTests extends GrailsUnitTestCase {
     def studentService
     
     protected void setUp() {
