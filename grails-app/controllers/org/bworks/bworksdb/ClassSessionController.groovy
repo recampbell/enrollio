@@ -22,6 +22,16 @@ class ClassSessionController {
         [ classSessionInstanceList: ClassSession.list( params ), classSessionInstanceTotal: ClassSession.count() ]
     }
 
+    def quickCallList = {
+        def classSessionInstance = ClassSession.get(params.id)
+        def contactInstanceList = classSessionInstance.enrollments.collect {
+            it.student.contact
+        }.unique()
+        
+        [ classSessionInstance: classSessionInstance, 
+          contactInstanceList : contactInstanceList ]
+    }
+
     def welcomeLetters = {
         def classSessionInstance = ClassSession.get(params.id)
         def contactInstanceList = classSessionInstance.enrollments.collect {

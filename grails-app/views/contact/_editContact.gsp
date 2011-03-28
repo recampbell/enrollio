@@ -82,26 +82,13 @@
                 </td>
             </tr>
 
-            <tr class="prop">
-                    <td valign="top" class="name">
-                        <label for="noteText">Note:</label>
-                    </td>
-                    <td valign="top">
-                        <g:textArea name="noteText" 
-                            value="${noteText}"
-                            rows="2" cols="30"/>
-                    </td>
-            </tr>
-            <g:if test="${showDrop}">
-                <tr class="prop">
-                    <td valign="top" class="name">
-                        <label for="cannotReach">Drop - Cannot Reach</label>
-                    </td>
-                    <td valign="top">
-                        <g:checkBox name="cannotReach" value="${contactInstance?.cannotReach}" ></g:checkBox>
-                    </td>
-                </tr>
-            </g:if>
+            <enrollio:phoneNumberInput phoneNumberList="${contactInstance.phoneNumbers}" />
         </tbody>
     </table>
+    <div style="float:right">
+            <g:if test="${showDrop}">
+                        <label for="cannotReach">Drop - Cannot Reach</label>
+                        <g:checkBox name="cannotReach" value="${contactInstance?.cannotReach}" ></g:checkBox>
+            </g:if>
+        </div>
 </div>

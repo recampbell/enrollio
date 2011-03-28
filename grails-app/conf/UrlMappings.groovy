@@ -28,6 +28,7 @@ class UrlMappings {
         "/attendance/$id"(controller: 'classSession', action: 'attendance')
         "/reserveContact"(controller: 'classSession', action: 'reserveContact')
         "/welcomeLetters/$id"(controller: 'classSession', action: 'welcomeLetters')
+        "/quickCallList/$id"(controller: 'classSession', action: 'quickCallList')
         "/envelopes/$id"(controller: 'classSession', action: 'envelopes')
 
         // attendance controller
