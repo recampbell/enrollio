@@ -6,19 +6,10 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     // For security tests, use SecurityFiltersFunctionalTests.
     def testDataService
 
-    void loginAdmin() {
-        get('/login')
-        form('loginForm') {
-            username = 'admin'
-            password = 'admin0'
-            click "login"
-        }
-    }
-
     // The settings list test could be refactored
     // later to a SettingsFunctionalTests.groovy file
     void testSettingsPage() {
-        loginAdmin()
+        loginAs("admin", "admin0")
         click('Admin')
         click('Settings')
         assertStatus 200

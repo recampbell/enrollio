@@ -35,7 +35,7 @@ class BootStrap {
                     form('loginForm') {
                         username = userName
                         password = pass
-                        click "login"
+                        click "Sign in"
                     }                    
                 }
 
