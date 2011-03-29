@@ -42,6 +42,7 @@
             
 
         </script>
+        <title>Waiting List - ${courseInstance}</title>
     </head>
     <body>
         <!-- form to use when enrolling.  Not visible -->
