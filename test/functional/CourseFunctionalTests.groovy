@@ -7,7 +7,7 @@ class CourseFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         form('loginForm') {
             username = userName
             password = pass
-            click "login"
+            click "Sign in"
         }
     }
 

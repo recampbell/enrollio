@@ -11,7 +11,7 @@ class AdminFunctionalTests extends functionaltestplugin.FunctionalTestCase {
         form('loginForm') {
             username = 'admin'
             password = 'admin0'
-            click "login"
+            click "Sign in"
         }
     }
 

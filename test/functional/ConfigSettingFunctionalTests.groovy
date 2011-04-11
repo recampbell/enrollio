@@ -8,7 +8,7 @@ class ConfigSettingFunctionalTests extends functionaltestplugin.FunctionalTestCa
         form('loginForm') {
             username = 'admin'
             password = 'admin0'
-            click "login"
+            click "Sign in"
         }
     }
     
