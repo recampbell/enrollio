@@ -82,7 +82,7 @@
             }
 
         </script>
-        <title></title>
+        <title>Interested Students</title>
     </head>
     <body>
         <div id="wrapper">
