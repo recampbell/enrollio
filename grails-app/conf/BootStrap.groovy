@@ -5,6 +5,7 @@ import org.apache.shiro.crypto.hash.Sha1Hash
 class BootStrap {
     def testDataService
     def searchableService
+    def shiroSecurityService
 
     def init = { servletContext ->
         def totalUsers = ShiroUser.count()
@@ -51,16 +52,19 @@ class BootStrap {
 
         // Administrator user and role. 
         def adminRole = ShiroRole.findByName("Administrator")
-        def adminUser = new ShiroUser(username: "admin", 
-        firstName : 'Bert',
-        lastName : 'Adminbadboy',
-        password : 'admin0',
-        passwordConfirm : 'admin0',
-        passwordHash: new Sha1Hash("admin0").toHex()
+        def admin_username = "admin"
+        def admin_pass = "admin0"
+        def adminUser = new ShiroUser(username: admin_username, 
+            firstName : 'Bert',
+            lastName : 'Adminbadboy',
+            password : admin_pass,
+            passwordConfirm : admin_pass,
+            passwordHash: shiroSecurityService.encodePassword(admin_pass)
         )
         if (!adminUser.validate()) {
             println "User didn't validate!"
             println adminUser.errors.allErrors
+            assert false  // Just give up here -- something's wrong
         }
         else {
             adminUser.save()

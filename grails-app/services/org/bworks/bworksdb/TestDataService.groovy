@@ -14,6 +14,7 @@ class TestDataService {
     def courseService
     def classSessionService
     def config = ConfigurationHolder.config
+    def shiroSecurityService
 
     // we don't want random data for integration tests
     def loadIntegrationTestData() {
@@ -82,13 +83,14 @@ class TestDataService {
 
         // Administrator user and role.
         def userRole = ShiroRole.findByName("User")
+        def user_password = 'bobbobbob0'
         def user = new ShiroUser(
             username: TestKeys.USER_BOB_USERNAME,
             firstName : TestKeys.USER_BOB_FIRSTNAME,
             lastName : TestKeys.USER_BOB_LASTNAME,
-            password : 'bobbobbob0',
-            passwordConfirm : 'bobbobbob0',
-            passwordHash: new Sha1Hash("bobbobbob0").toHex()
+            password : user_password,
+            passwordConfirm : user_password,
+            passwordHash: shiroSecurityService.encodePassword(user_password)
         )
         if (!user.validate()) {
             log.error "User didn't validate!"
@@ -181,11 +183,11 @@ class TestDataService {
                     lastName : lastName,
                     password : password,
                     passwordConfirm : password,
-                    passwordHash: new Sha1Hash(password as String).toHex()
+                    passwordHash: shiroSecurityService.encodePassword(password)
             )
             if (!dummyUser.validate()) {
                 log.error "User didn't validate!"
-                log.error adminUser.errors.allErrors
+                log.error dummyUser.errors.allErrors
             }
             else {
                 dummyUser.save()
@@ -347,7 +349,9 @@ class TestDataService {
             def randomDay = seed.nextInt(1000) 
             it.dateCreated = new Date() - randomDay
             if (randomDay.mod(6) == 0) {
-                it.lastUpdated = new Date() - seed.nextInt(randomDay)
+                // nextInt must be positive, so remove chance of it being 0
+                // This was an error found when upgrading to Grails 1.3.6
+                it.lastUpdated = new Date() - seed.nextInt(randomDay + 1)
             }
             it.save()
         }

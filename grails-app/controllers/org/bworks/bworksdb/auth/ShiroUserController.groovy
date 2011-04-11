@@ -4,6 +4,8 @@ package org.bworks.bworksdb.auth
 import org.apache.shiro.crypto.hash.Sha1Hash
 
 class ShiroUserController {
+
+    def shiroSecurityService
     
     def index = { redirect(action:list,params:params) }
 
@@ -75,7 +77,8 @@ class ShiroUserController {
                     // due to constraints in ShiroUser
                     // Generate a new password hash, now that we're sure that 
                     // the user typed something in the password box
-                    shiroUserInstance.passwordHash = new Sha1Hash(shiroUserInstance.password).toHex()
+                    shiroUserInstance.passwordHash = 
+                        shiroSecurityService.encodePassword(shiroUserInstance.password)
                 }
                 shiroUserInstance.save()
                 flash.message = "ShiroUser ${params.id} updated"

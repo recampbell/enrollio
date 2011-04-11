@@ -1,12 +1,13 @@
 package org.bworks.bworksdb.auth
 
 import org.apache.shiro.SecurityUtils
+import org.apache.shiro.web.util.WebUtils
+import org.apache.shiro.web.util.SavedRequest
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.UsernamePasswordToken
-import org.apache.shiro.web.SavedRequest
-import org.apache.shiro.web.WebUtils
 
 class AuthController {
+
     def shiroSecurityManager
 
     def index = { redirect(action: "login", params: params) }
@@ -34,7 +35,7 @@ class AuthController {
     }
 
     def signIn = {
-        def authToken = new UsernamePasswordToken(params.username, params.password)
+        def authToken = new UsernamePasswordToken(params.username, params.password as String)
 
         // Support for "remember me"
         if (params.rememberMe) {
