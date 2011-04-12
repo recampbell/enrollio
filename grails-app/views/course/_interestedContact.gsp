@@ -40,15 +40,6 @@
     
     </td>
     <td>
-        <g:select 
-            contactId="${contactInstance.id}" 
-            courseId="${courseInstance.id}"
-            class="reserveContact" 
-            from="${users}" 
-            optionValue="username" 
-            optionKey="id" 
-            value="${callListContacts[contactInstance.id]?.user?.id}"
-            noSelection="['':'']" />
 
             <!-- show red push pin if this contact is reserved for currently logged
                  in user -->
