@@ -70,66 +70,6 @@
                     </div>
                     <div class="infobox margin-left">
                             <h3 class="reallynow">Phone Numbers</h3>
-                            <enrollio:phoneNumberInput 
-                            phoneNumberList="${contactInstance.phoneNumbers}" />
-                    </div>
-                    <div class="infobox margin-left">
-                        <h3 class="reallynow">
-                            Add Student
-                            
-                             <g:checkBox name="newStudentOption" 
-                             class="enrollStudent" 
-                             value="${true}" />
-                            
-                        </h3>
-                        <div id="newStudentForm">
-                        <p> You can add more students after saving the Contact.</p>
-                        <table width="100%">
-                            <tbody>
-                                <tr class="prop">
-                                    <td><label for="student.firstName">First Name : </label> </td>
-                                    <td>
-                                        <input type="text" id="firstName" 
-                                        name="student.firstName" 
-                                        value="${fieldValue(bean:studentInstance,field:'firstName')}"/><br />
-                                    </td> 
-                                </tr>
-                                <tr class="prop">
-                                    <td><label for="student.middleName">Middle Name: </label> </td>
-                                    <td>
-                                        <input type="text" id="middleName" 
-                                        name="student.middleName" 
-                                        value="${fieldValue(bean:studentInstance,field:'middleName')}"/><br />
-                                    </td> 
-                                </tr>
-
-                                <tr class="prop">
-                                    <td><label for="student.lastName">Last Name: </label> </td>
-                                    <td>
-                                        <input type="text" id="lastName" 
-                                        name="student.lastName" 
-                                        value="${fieldValue(bean:studentInstance,field:'lastName')}"/><br />
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <td><label for="studentSignupDate">Signup Date</label></td>
-                                    <td>
-                                        <input class="hasDatePicker" type="text" 
-                                        id="studentSignupDate" 
-                                        name="studentSignupDate" 
-                                        value="${studentSignupDate ?: new Date().format('MM/dd/yyyy')}" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="lastName">Interests</label> </td>
-                                    <td>
-                                        <enrollio:courseDropDown studentInstance="${studentInstance}" 
-                                                               possibleInterests="${possibleInterests}" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                    </table>
-                </div>
                     </div>
                     <g:actionSubmit value="Create Contact" action="save" />
                 </g:form>

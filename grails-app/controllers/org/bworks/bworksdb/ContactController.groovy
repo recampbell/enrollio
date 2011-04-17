@@ -126,33 +126,6 @@ class ContactController {
                 contactInstance.addComment(userService.loggedInUser(), params.noteText)
                 contactInstance.save()
             }
-            if (params.newStudentOption) {
-                def studentInstance = new Student(params.student)
-                studentInstance.contact = contactInstance
-                if (!studentInstance.hasErrors() && studentInstance.validate()) {
-
-                    contactInstance.addToStudents(studentInstance).save()
-                    def signupDates = null
-                    if (studentSignupDate) {
-                        signupDates = [:]
-                        [params['interestInCourse']].flatten().each { courseId ->
-                            signupDates[courseId] = Date.parse('MM/dd/yyyy', studentSignupDate)
-                        }
-                    }
-
-                    studentService.saveInterests(studentInstance, params['interestInCourse'], signupDates)
-                    flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
-                    redirect(action:show,id:contactInstance.id)
-                }
-                else {
-                    // pass back any interests that user had selected.
-                    def possibleInterests = [params['interestInCourse']].flatten()
-                    render(view:'create', model:[contactInstance   : contactInstance,
-                                                 studentInstance   : studentInstance,
-                                                 studentSignupDate : studentSignupDate,
-                                                 possibleInterests : possibleInterests])
-                }
-            }
             else {
                 flash.message = "Created contact \"${contactInstance}\".  You can enter students below."
                 redirect(action:show,id:contactInstance.id)
