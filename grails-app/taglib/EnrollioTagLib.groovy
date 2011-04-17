@@ -125,10 +125,10 @@ class EnrollioTagLib {
     }
 
     def phoneNumberInput = { attrs ->
-        def phoneNumberList = attrs['phoneNumberList']
+        def contactInstance = attrs['contactInstance']
         def phoneLabels = [ 'Home', 'Work', 'Mobile', 'Other' ]
         out << "<table>"
-        phoneNumberList.eachWithIndex { phoneNumber, i ->
+        contactInstance.phoneNumbers.eachWithIndex { phoneNumber, i ->
             out << "<tr>"
             out << "<td>"
             out << select(from:phoneLabels, value:phoneNumber.label,
