@@ -82,7 +82,6 @@
                 </td>
             </tr>
 
-            <enrollio:phoneNumberInput phoneNumberList="${contactInstance.phoneNumbers}" />
         </tbody>
     </table>
     <div style="float:right">
