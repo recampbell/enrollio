@@ -71,6 +71,12 @@ class ContactController {
             redirect(action:list)
         }
         else {
+            // Create two new phone numbers if no phonez
+            if (!contactInstance.phoneNumbers || 
+                    contactInstance.phoneNumbers.size() == 0) {
+                contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Home', phoneNumber:""))
+                contactInstance.addToPhoneNumbers(new PhoneNumber(label:'Work', phoneNumber:""))
+            }
             return [ contactInstance : contactInstance ]
         }
     }
