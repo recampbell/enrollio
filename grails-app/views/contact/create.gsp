@@ -70,6 +70,7 @@
                     </div>
                     <div class="infobox margin-left">
                             <h3 class="reallynow">Phone Numbers</h3>
+                            <enrollio:phoneNumberInput contactInstance="${contactInstance}" />
                     </div>
                     <g:actionSubmit value="Create Contact" action="save" />
                 </g:form>
