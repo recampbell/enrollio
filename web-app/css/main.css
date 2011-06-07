@@ -1,325 +1,273 @@
+html * {
+    margin: 0;
+    /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+}
+
+/* GENERAL */
+
+.spinner {
+    padding: 5px;
+    position: absolute;
+    right: 0;
+}
+
+body {
+    background: #fff;
+    color: #333;
+    font: 11px verdana, arial, helvetica, sans-serif;
+}
+#grailsLogo {
+	padding:20px;
+}
+
+a:link, a:visited, a:hover {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h1 {
+    color: #48802c;
+    font-weight: normal;
+    font-size: 16px;
+    margin: .8em 0 .3em 0;
+}
+
+ul {
+    padding-left: 15px;
+}
+
+input, select, textarea {
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    font: 11px verdana, arial, helvetica, sans-serif;
+    margin: 2px 0;
+    padding: 2px 4px;
+}
+select {
+   padding: 2px 2px 2px 0;
+}
+textarea {
+	width: 250px;
+	height: 150px;
+	vertical-align: top;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 1px solid #b2d1ff;
+}
+
 .body {
-	margin-left: 30px;
-	font-family: Tahoma, Verdana, Arial;
-	font-size:95%;
-}  
-#header .images {         
-	padding-bottom:40px;
-} 
-#header .message {
-	font-family:"Century Gothic", "Trebuchet MS", "Arial Narrow", Arial, sans-serif;
-	font-size:15px;
-	text-transform:uppercase;
-	text-align:right;
-	font-weight:normal;	
-	margin:0;
-	padding:0;
-	margin-right:40px;	
-	color:#000000;
-	border-bottom:1px solid #eeeeee;					
-}  
-
-.warning {
-  background-image: url(../img/warning.gif);
-  background-repeat: no-repeat;
-  background-position: 7 7;
-  border: 1px solid #CC0000;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 10px;
-  padding-left: 40px;
-  line-height: 100%;
-  width: 80%;	
-  background-color: #FFCCCC;
+    float: left;
+    margin: 0 15px 10px 15px;
 }
 
-.note {
-  background-image: url(../img/note.gif);
-  background-repeat: no-repeat;
-  background-position: 7 7;
-  border: 1px solid #F0C000;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 10px;
-  padding-left: 40px;
-  line-height: 100%;
-  width: 80%;	
-  background-color: #FFFFCE;
+/* NAVIGATION MENU */
+
+.nav {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-style: solid none solid none;
+    margin-top: 5px;
+    padding: 7px 12px;
 }
 
-pre .code {
-	border: 1px solid black;
-	padding-bottom:10px;
-	background-color: lightgrey;    
-	padding-left:20px;  	
-}    
-.bq {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 5px 5px 5px 5px;
-  padding-bottom: 15px;
-  color: inherit;
-  background-color: #F0F0F0;
-  border: 1px dashed black;
-  font-family: courier, courier new, monospace;
-  font-size: 12px;
-  line-height: 100%;
-  white-space: pre;
-  width: 90%;
-  overflow: auto;
-  overflow: scroll -moz-scrollbars-horizontal;
-  overflow-x: auto;
+.menuButton {
+    font-size: 10px;
+    padding: 0 5px;
 }
-#footer {
-	border-top:1px solid #eeeeee;										
-	text-align:center;
-} 
-.tocItem {
-	padding-bottom: 4px;
+.menuButton a {
+    color: #333;
+    padding: 4px 6px;
 }
-/**
- * Wiki text stylesheet definitions.
- * @author Matthias L. Jugel
- * @version $Id: SnipSnap-Theme.snip,v 1.1.2.1 2004/01/26 14:07:31 leo Exp $
- */
-
-.bold { font-weight: bold; }
-.italic { font-style: italic; }
-
-/************************************************/
-/* image positioning                            */
-img {
-  margin-top: 1px;
-  margin-bottom: 1px;
-  vertical-align: middle;
+.menuButton a.home {
+    background: url(../images/skin/house.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.list {
+    background: url(../images/skin/database_table.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.create {
+    background: url(../images/skin/database_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
 }
 
-img.left {
-  display: block;
-  left: 0px;
+/* MESSAGES AND ERRORS */
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
 }
 
-img.right {
-  display: block;
-  right: 0px;
+div.errors {
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
+div.errors ul {
+    list-style: none;
+    padding: 0;
+}
+div.errors li {
+	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+    line-height: 16px;
+    padding-left: 30px;
 }
 
-img.center {
-  text-align: center;
+td.errors select {
+    border: 1px solid red;
+}
+td.errors input {
+    border: 1px solid red;
+}
+td.errors textarea {
+    border: 1px solid red;
 }
 
-img.float-left {
-  float: left;
-  margin-top: 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
+/* TABLES */
+
+table {
+    border: 1px solid #ccc;
+    width: 100%
+}
+tr {
+    border: 0;
+}
+td, th {
+    font: 11px verdana, arial, helvetica, sans-serif;
+    line-height: 12px;
+    padding: 5px 6px;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    background: #fff url(../images/skin/shadow.jpg);
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 2px 6px;
+}
+th a:link, th a:visited, th a:hover {
+    color: #333;
+    display: block;
+    font-size: 10px;
+    text-decoration: none;
+    width: 100%;
+}
+th.asc a, th.desc a {
+    background-position: right;
+    background-repeat: no-repeat;
+}
+th.asc a {
+    background-image: url(../images/skin/sorted_asc.gif);
+}
+th.desc a {
+    background-image: url(../images/skin/sorted_desc.gif);
 }
 
-img.float-right {
-  float: right;
-  margin-top: 3px;
-  margin-left: 3px;
-  margin-bottom: 3px;
+.odd {
+    background: #f7f7f7;
+}
+.even {
+    background: #fff;
 }
 
-/*
-.graph-image {
-  position: relative; 
-  width: 100%;
-}
-*/
+/* LIST */
 
-.heading-1 {
-  font-weight: bold;
-  font-size: 14px;
-  font-variant: small-caps;
+.list table {
+    border-collapse: collapse;
 }
-
-.heading-1-1 {
-  font-size: 12px;
-  font-variant: small-caps;
+.list th, .list td {
+    border-left: 1px solid #ddd;
+}
+.list th:hover, .list tr:hover {
+    background: #b2d1ff;
 }
 
-.heading-1-1-1 {
-  font-size: 12px;
+/* PAGINATION */
+
+.paginateButtons {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-top: 0;
+    color: #666;
+    font-size: 10px;
+    overflow: hidden;
+    padding: 10px 3px;
+}
+.paginateButtons a {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-color: #ccc #aaa #aaa #ccc;
+    color: #666;
+    margin: 0 3px;
+    padding: 2px 6px;
+}
+.paginateButtons span {
+    padding: 2px 3px;
 }
 
-.quote {
-  font-style: italic;
-  color: inherit;
-  background-color: inherit;
-  font-family: inherit;
-  font-size: inherit;
+/* DIALOG */
+
+.dialog table {
+    padding: 5px 0;
 }
 
-/************************************************/
-/* code formatting */
-.code {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 5px 5px 5px 5px;
-  color: inherit;
-  background-color: #F0F0F0;
-  border: 1px dashed black;
-  font-family: courier, courier new, monospace;
-  font-size: 12px;
-  line-height: 100%;
-  white-space: pre;
-  width: 98%;
-  overflow: auto;
-  overflow: scroll -moz-scrollbars-horizontal;
-  overflow-x: auto;
+.prop {
+    padding: 5px;
+}
+.prop .name {
+    text-align: left;
+    width: 15%;
+    white-space: nowrap;
+}
+.prop .value {
+    text-align: left;
+    width: 85%;
 }
 
+/* ACTION BUTTONS */
 
-.java-keyword {
-  font-weight: bold;
-  color: #0000aa;
-  background-color: inherit;
+.buttons {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    color: #666;
+    font-size: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 0;
 }
 
-.java-object {
-  color: #000088;
-  background-color: inherit;
+.buttons input {
+    background: #fff;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 3px;
+    overflow: visible;
+    padding: 2px 6px;
 }
-
-.java-quote {
-  color: #00aa00;
-  background-color: inherit;
+.buttons input.delete {
+    background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }
-
-.xml-keyword {
-  font-weight: bold;
+.buttons input.edit {
+    background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }
-
-.xml-tag {
-  color: #0000aa;
-  background-color: inherit;
-}
-
-/* weblog formatting */
-.blog-date {
-  display: block;
-  background-color: #f8f8f8;
-  color: black;
-  font-family: verdana, sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-/* special formatting of a wiki table */
-.wiki-table {
-  border-style: solid;
-  border-color: black;
-  border-width: 0px 1px 1px 1px;
-  empty-cells: show;
-}
-
-.wiki-table td {
-  border-top: 1px solid black;
-  padding: 4px 4px 4px 4px;
-}
-
-.wiki-table th {
-  border-top: 1px solid black;
-  text-align: left;
-  color: inherit;
-  font-weight: bold;
-  /* background-color: #DDEEFF; */
-  background-color: #d9e4f9;
-}
-
-.wiki-table .table-odd {
-  color: inherit;
-  background-color: #F8F8F8;
-}
-
-.wiki-table .table-even {
-}
-
-/************************************************/
-/* list formatting                              */
-
-.list {
-}
-
-.list-title {
-  font-weight: bold;
-}
-
-.list ul {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  padding-left: 0px;
-  list-style-type: none;
-}
-
-/* wiki lists */
-
-ul.minus { list-style-type: square; }
-ul.star { list-style-type: circle; }
-ol.roman { list-style-type: lower-roman; }
-ol.ROMAN { list-style-type: upper-roman; }
-ol.alpha { list-style-type: lower-alpha; }
-ol.ALPHA { list-style-type: upper-alpha; }
-ol.greek { list-style-type: lower-greek; }
-ol.GREEK { list-style-type: upper-greek; }
-ol.hiragana { list-style-type: hiragana; }
-ol.HIRAGANA { list-style-type: hiragana-iroha; }
-ol.katakana { list-style-type: katakana; }
-ol.KATAKANA { list-style-type: katakana-iroha; }
-ol.HEBREW { list-style-type: hebrew; }
-
-
-/************************************************/
-/* index formatting                             */
-.index-top {
-}
-
-.index-top th {
-  padding: 1px 1px 1px 1px;
-  text-align: left;
-  color: inherit;
-  font-weight: bold;
-  background-color: #d9e4f9;
-}
-
-.index {
-}
-
-.index td {
-  padding: 1px 1px 1px 1px;
-}
-
-.index th {
-  padding: 1px 1px 1px 1px;
-  text-align: left;
-  color: inherit;
-  font-weight: bold;
-  background-color: #d9e4f9;
-}
-
-/************************************************/
-/* calendar display                             */
-.calendar {
-  border-spacing: 0px;
-  font-size: 0.7em;
-}
-
-.calendar td {
-  text-align: right;
-  padding: 0px;
-}
-
-.calendar caption {
-  font-size: 1em;
-  text-align: left;
-  font-weight: bold;
-}
-
-.calendar .today {
-  border: 3px solid #cccccc;
+.buttons input.save {
+    background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
+    padding-left: 28px;
 }

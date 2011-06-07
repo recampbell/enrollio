@@ -1,39 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
 <html>
     <head>
-        <title>
-            <g:layoutTitle default="Enrollio" />
-        </title>
+        <title><g:layoutTitle default="Grails" /></title>
+        <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-        <!--[if IE]>
-        <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
-        <![endif]-->
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css/redmond', file:'jquery-ui-1.7.2.custom.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'style.css')}" />
-        <link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'theme1.css')}" />
         <g:layoutHead />
-        <nav:resources override="true" />
         <g:javascript library="application" />
     </head>
     <body>
-        <div id="container">
-            <div id="header">
-                <g:mascotIcon style="vertical-align:middle" />
-                <shiro:isLoggedIn>
-                    <h2 style="display:inline">Welcome to Enrollio, 
-                    <shiro:principal />!</h2>
-                </shiro:isLoggedIn>
-                <shiro:isNotLoggedIn>
-                    <h2 style="display:inline">Welcome to Enrollio!</h2>
-                </shiro:isNotLoggedIn>
-    
-                <div id="topmenu">
-                    <nav:render group="mainMenu" /> 
-                </div>
-            </div>
-            <g:layoutBody />
+        <div id="spinner" class="spinner" style="display:none;">
+            <img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" />
         </div>
+        <div id="grailsLogo"><a href="http://grails.org"><img src="${resource(dir:'images',file:'grails_logo.png')}" alt="Grails" border="0" /></a></div>
+        <g:layoutBody />
     </body>
 </html>
